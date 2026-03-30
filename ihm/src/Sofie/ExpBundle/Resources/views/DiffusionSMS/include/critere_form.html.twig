@@ -1,0 +1,99 @@
+{% if form is defined and form is not empty %}
+    {{ form_start(form, {'method':'POST', 'attr':{'class':'form-horizontal', 'role':'form', 'id':'critere'}}) }}
+        <div class="text-danger small">{{ form_errors(form) }}</div>
+        {% if form.regions is defined %}
+            <div class="form-group">
+                {{ form_label(form.regions, null, {'label_attr':{'class':'control-label col-sm-2'}}) }}
+                <div class="col-sm-8">
+                    {{ form_widget(form.regions, {'attr':{'class':'select2 form-control w-95'}}) }}
+                    <input type="checkbox" class="check-all" name="check_all_regions" />
+                </div>
+            </div>
+        {% endif %}
+        {% if form.localites is defined %}
+            <div class="form-group">
+                {{ form_label(form.localites, null, {'label_attr':{'class':'control-label col-sm-2'}}) }}
+                <div class="col-sm-8">
+                    {{ form_widget(form.localites, {'attr':{'class':'select2 form-control w-95'}}) }}
+                    <input type="checkbox" class="check-all" name="check_all_localites" />
+                </div>
+            </div>
+        {% endif %}
+        {% if form.comites is defined %}
+            <div class="form-group">
+                {{ form_label(form.comites, null, {'label_attr':{'class':'control-label col-sm-2'}}) }}
+                <div class="col-sm-8">
+                    {{ form_widget(form.comites, {'attr':{'class':'select2 form-control w-95'}}) }}
+                    <input type="checkbox" class="check-all" name="check_all_comites" />
+                </div>
+            </div>
+        {% endif %}
+        {% if form.reparateurs is defined %}
+            <div class="form-group">
+                {{ form_label(form.reparateurs, null, {'label_attr':{'class':'control-label col-sm-2'}}) }}
+                <div class="col-sm-8">
+                    {{ form_widget(form.reparateurs, {'attr':{'class':'select2 form-control w-95'}}) }}
+                    <input type="checkbox" class="check-all" name="check_all_reparateurs" />
+                </div>
+            </div>
+        {% endif %}
+        {% if form.agents is defined %}
+            <div class="form-group">
+                {{ form_label(form.agents, null, {'label_attr':{'class':'control-label col-sm-2'}}) }}
+                <div class="col-sm-8">
+                    {{ form_widget(form.agents, {'attr':{'class':'select2 form-control w-95'}}) }}
+                    <input type="checkbox" class="check-all" name="check_all_agents" />
+                </div>
+            </div>
+        {% endif %}
+        {% if form.sociologues is defined %}
+            <div class="form-group">
+                {{ form_label(form.sociologues, null, {'label_attr':{'class':'control-label col-sm-2'}}) }}
+                <div class="col-sm-8">
+                    {{ form_widget(form.sociologues, {'attr':{'class':'select2 form-control w-95'}}) }}
+                    <input type="checkbox" class="check-all" name="check_all_sociologues" />
+                </div>
+            </div>
+        {% endif %}
+        {% if form.directeurs is defined %}
+            <div class="form-group">
+                {{ form_label(form.directeurs, null, {'label_attr':{'class':'control-label col-sm-2'}}) }}
+                <div class="col-sm-8">
+                    {{ form_widget(form.directeurs, {'attr':{'class':'select2 form-control w-95'}}) }}
+                    <input type="checkbox" class="check-all" name="check_all_directeurs" />
+                </div>
+            </div>
+        {% endif %}
+        {% if form.autres is defined %}
+            <div class="form-group">
+                {{ form_label(form.autres, null, {'label_attr':{'class':'control-label col-sm-2'}}) }}
+                <div class="col-sm-8">
+                    {{ form_widget(form.autres, {'attr':{'class':'form-control'}}) }}
+                    <div class="text-muted small">
+                        Entrez les numéros de téléphone séparés par des point-virgules (;)
+                    </div>
+                    <div class="text-danger small">{{ form_errors(form.autres) }}</div>
+                </div>
+            </div>
+        {% endif %}
+        {% if form.message is defined %}
+            <div class="form-group">
+                {{ form_label(form.message, null, {'label_attr':{'class':'control-label col-sm-2'}}) }}
+                <div class="col-sm-8">
+                    {{ form_widget(form.message, {'attr':{'class':'form-control'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.message) }}</div>
+                </div>
+            </div>
+        {% endif %}
+        <div class="form-group">
+            <div class="col-sm-offset-2">
+                <button class="btn btn-default" type="submit">
+                    Envoyer
+                </button>
+            </div>
+        </div>
+
+        <div>{{ form_rest(form) }}</div>
+
+    {{ form_end(form) }}
+{% endif %}

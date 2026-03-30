@@ -1,0 +1,76 @@
+Sofie\UserBundle\Entity\Droit:
+    type: entity
+    table: t_droit
+    repositoryClass: Sofie\UserBundle\Entity\DroitRepository
+    uniqueConstraints:
+        role:
+            columns:
+                - role
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: NONE
+    fields:
+        role:
+            type: string
+            length: 50
+            unique: true
+            column: `role`
+        libelle:
+            type: string
+            length: 150
+        context:
+            type: string
+            length: null
+        sync:
+            type: string
+            length: 1
+            nullable: true
+            options:
+                default: 'N'
+            column: `sync`
+        deletedAt:
+            type: datetime
+            nullable: true
+            column: deleted_at
+    manyToOne:
+        droitCategory:
+            targetEntity: DroitCategory
+            inversedBy: droits
+            cascade: ["persist"]
+            joinColumn:
+                name: droitcategory_id
+                nullable: true
+                referencedColumnName: id
+                onDelete: "SET NULL"
+            orphanRemoval: false
+        parent:
+            targetEntity: Droit
+            cascade: ["persist"]
+            inversedBy: children
+            joinColumn:
+                name: parent_id
+                nullable: true
+                referencedColumnName: id
+                onDelete: "SET NULL"
+            orphanRemoval: false
+    oneToMany:
+        groupeDroits:
+            targetEntity: GroupeDroit
+            cascade: ["persist", "remove"]
+            mappedBy: droit
+            fetch: EXTRA_LAZY
+        children:
+            targetEntity: Droit
+            cascade: ["persist"]
+            mappedBy: parent
+            fetch: EXTRA_LAZY
+    lifecycleCallbacks:
+        preUpdate: [setUpdatedValue]
+        preRemove: [setRemovedValue]

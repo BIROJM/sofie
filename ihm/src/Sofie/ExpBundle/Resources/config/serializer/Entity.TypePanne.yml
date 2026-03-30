@@ -1,0 +1,11 @@
+Sofie\ExpBundle\Entity\TypePanne:
+    exclusion_policy: ALL
+    properties:
+        libelle:
+            expose: true
+            serialized_name: libelle
+            groups: [api_add]
+        sync:
+            expose: true
+            serialized_name: sync
+            groups: [api_add]

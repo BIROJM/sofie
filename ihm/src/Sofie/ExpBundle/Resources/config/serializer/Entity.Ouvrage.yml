@@ -1,0 +1,281 @@
+Sofie\ExpBundle\Entity\Ouvrage:
+    exclusion_policy: ALL
+    properties:
+        code:
+            expose: true
+            serialized_name: CodeOuvrage
+            groups: [api_add]
+        type:
+            expose: true
+            serialized_name: TypeOuvrage
+            groups: [api_add]
+        statutOuvrage:
+            expose: true
+            serialized_name: StatutOuvrage
+            groups: [api_add]
+        statut:
+            expose: true
+            serialized_name: Statut
+            groups: [api_add]
+        statutPanne:
+            expose: true
+            serialized_name: StatutPanne
+            groups: [api_add]
+        dateMiseAJour:
+            expose: true
+            serialized_name: DateMiseAjour
+            groups: [api_add]
+            type: DateTime<'Y-m-d H:i:s'>
+        latitude:
+            expose: true
+            serialized_name: Latitude
+            groups: [api_add]
+        longitude:
+            expose: true
+            serialized_name: Longitude
+            groups: [api_add]
+        altitude:
+            expose: true
+            serialized_name: Altitude
+            groups: [api_add]
+        idRegion:
+            expose: true
+            serialized_name: IDRegion
+            groups: [api_add]
+        idReparateur:
+            expose: true
+            serialized_name: IDReparateur
+            groups: [api_add]
+        idAgentforma:
+            expose: true
+            serialized_name: IDAgentForma
+            groups: [api_add]
+        idSociologue:
+            expose: true
+            serialized_name: IDSociologue
+            groups: [api_add]
+        iddr:
+            expose: true
+            serialized_name: IDDR
+            groups: [api_add]
+        dateStatut:
+            expose: true
+            serialized_name: dateStatut
+            groups: [api_add]
+            type: DateTime<'Y-m-d H:i:s'>
+        numIRH:
+            expose: true
+            serialized_name: numIRH
+            groups: [api_add]
+        autreNumId:
+            expose: true
+            serialized_name: AutreNumID
+            groups: [api_add]
+        designation:
+            expose: true
+            serialized_name: Designation
+            groups: [api_add]
+        operateurSaisie:
+            expose: true
+            serialized_name: OperateurSaisie
+            groups: [api_add]
+        dateSaisie:
+            expose: true
+            serialized_name: DateSaisie
+            groups: [api_add]
+            type: DateTime<'Y-m-d'>
+        numLocaliteProgres:
+            expose: true
+            serialized_name: NumLocaliteProgres
+            groups: [api_add]
+        quartier:
+            expose: true
+            serialized_name: Quartier
+            groups: [api_add]
+        etatInitialCaptage:
+            expose: true
+            serialized_name: EtatInitialCaptage
+            groups: [api_add]
+        propriete:
+            expose: true
+            serialized_name: Propriete
+            groups: [api_add]
+        usage:
+            expose: true
+            serialized_name: Usage
+            groups: [api_add]
+        nomDuProjet:
+            expose: true
+            serialized_name: NomDuProjet
+            groups: [api_add]
+        financement:
+            expose: true
+            serialized_name: Financement
+            groups: [api_add]
+        ingenieurConseil:
+            expose: true
+            serialized_name: IngenieurConseil
+            groups: [api_add]
+        entreprise:
+            expose: true
+            serialized_name: Entreprise
+            groups: [api_add]
+        dateFinForation:
+            expose: true
+            serialized_name: DateFinForation
+            groups: [api_add]
+            type: DateTime<'Y-m-d'>
+        debit:
+            expose: true
+            serialized_name: Debit
+            groups: [api_add]
+        profondeurTotale:
+            expose: true
+            serialized_name: profondeurTotale
+            groups: [api_add]
+        profondeurEquipee:
+            expose: true
+            serialized_name: ProfondeurEquipee
+            groups: [api_add]
+        niveauStatique:
+            expose: true
+            serialized_name: NiveauStatique
+            groups: [api_add]
+        dateNs:
+            expose: true
+            serialized_name: DateNs
+            groups: [api_add]
+            type: DateTime<'Y-m-d'>
+        geomorphologie:
+            expose: true
+            serialized_name: Geomorphologie
+            groups: [api_add]
+        epaisseurAlteration:
+            expose: true
+            serialized_name: EpaisseurAlteration
+            groups: [api_add]
+        nomAquifere:
+            expose: true
+            serialized_name: NomAquifere
+            groups: [api_add]
+        lithologieAquifere:
+            expose: true
+            serialized_name: LithologieAquifere
+            groups: [api_add]
+        profondeurToit:
+            expose: true
+            serialized_name: ProfondeurToit
+            groups: [api_add]
+        profondeurMur:
+            expose: true
+            serialized_name: ProfondeurMur
+            groups: [api_add]
+        datePrelevement:
+            expose: true
+            serialized_name: DatePrelevement
+            groups: [api_add]
+            type: DateTime<'Y-m-d'>
+        temperature:
+            expose: true
+            serialized_name: Temperature
+            groups: [api_add]
+        conductivite:
+            expose: true
+            serialized_name: Conductivite
+            groups: [api_add]
+        ph:
+            expose: true
+            serialized_name: Ph
+            groups: [api_add]
+        ferTotal:
+            expose: true
+            serialized_name: FerTotal
+            groups: [api_add]
+        nitrates:
+            expose: true
+            serialized_name: Nitrates
+            groups: [api_add]
+        couleur:
+            expose: true
+            serialized_name: Couleur
+            groups: [api_add]
+        turbidite:
+            expose: true
+            serialized_name: Turbidite
+            groups: [api_add]
+        marquePompe:
+            expose: true
+            serialized_name: MarquePompe
+            groups: [api_add]
+        dateInstallPompe:
+            expose: true
+            serialized_name: DateInstallPompe
+            groups: [api_add]
+            type: DateTime<'Y-m-d'>
+        profondeurInstallPompe:
+            expose: true
+            serialized_name: ProfondeurInstallPompe
+            groups: [api_add]
+        prefecture:
+            expose: true
+            serialized_name: Prefecture
+            groups: [api_add]
+        canton:
+            expose: true
+            serialized_name: Canton
+            groups: [api_add]
+        createdAt:
+            expose: true
+            serialized_name: created_at
+            groups: [api_add]
+            type: DateTime<'Y-m-d H:i:s'>
+        updatedAt:
+            expose: true
+            serialized_name: updated_at
+            groups: [api_add]
+            type: DateTime<'Y-m-d H:i:s'>
+        validated:
+            expose: true
+            serialized_name: validated
+            groups: [api_add]
+        validatedAt:
+            expose: true
+            serialized_name: validated_at
+            groups: [api_add]
+            type: DateTime<'Y-m-d H:i:s'>
+        origin:
+            expose: true
+            serialized_name: origin
+            groups: [api_add]
+        sync:
+            expose: true
+            serialized_name: sync
+            groups: [api_add]
+        comite:
+            expose: true
+            serialized_name: IDComite
+            groups: [api_add]
+            type: integer
+            max_depth: 1
+            accessor:
+                getter: getComiteId
+        localite:
+            expose: true
+            serialized_name: IDLocalite
+            groups: [api_add]
+            type: integer
+            max_depth: 1
+            accessor:
+                getter: getLocaliteId
+        validatedBy:
+            expose: true
+            serialized_name: validated_by
+            groups: [api_add]
+            type: integer
+            max_depth: 1
+            accessor:
+                getter: getValidatedById
+        codeOuvrageProgres:
+            expose: true
+            serialized_name: code_ouvrage_progres
+            groups: [api_add]

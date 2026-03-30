@@ -1,0 +1,299 @@
+{% extends 'SofieExpBundle:Ouvrage:collectes/index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li><a href="{{ path('sofieexp_collecte_view', {'id': collecte.id|default(0)}) }}">Voir une collecte</a></li>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="box-name">
+                        <i class="fa fa-info-circle"></i>
+                        <span>Détails sur collecte</span>
+                    </div>
+                </div>
+                <div class="box-content">
+                    {% if collecte is defined %}
+
+                        {% import '::macro/tr_views.html.twig' as trViews %}
+
+                        <div class="clearfix">
+                            <div class="pull-right">
+                                {% if is_granted('ROLE_EDIT_COLLECTE') %}
+                                    <a class="text-success" href="{{ path('sofieexp_collecte_edit', {'id':collecte.id|default(0)}) }}" title="Modifier">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                {% endif %}
+                                {% if is_granted('ROLE_DELETE_COLLECTE') %}
+                                    <a class="text-danger confirm-delete" href="{{ path('sofieexp_collecte_delete', {'id':collecte.id|default(0)}) }}" title="Supprimer">
+                                        <i class="fa fa-remove"></i>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <hr class="x-margin" />
+                        <div class="row">
+                            <div class="col-md-5 col-sm-6 col-xs-12">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        {{ trViews.date_tr('Date de saisie : ', collecte.dateSaisie|default('')) }}
+                                        {{ trViews.tr('Nom opérateur : ', collecte.nomOperateur|default('')) }}
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-sm-6 col-xs-12 col-md-offset-1">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        {{ trViews.date_tr('Date de remplissage de la fiche : ', collecte.dateRemplissage|default('')) }}
+                                        {{ trViews.tr('Nom de l\'agent ayant rempli la fiche : ', collecte.nomAgentSaisie|default('')) }}
+                                        {{ trViews.tr('Service : ', collecte.service|default('')) }}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="x-margin" />
+                        <div class="page-header">DESCRIPTION DE L'OUVRAGE</div>
+                        <div class="large text-muted">Etat</div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-5 col-sm-6">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        {{ trViews.tr('Etat de l\'ouvrage : ', collecte.etatOuvrage|default('')) }}
+                                        {{ trViews.tr('Si abandon, cause principale : ', collecte.codeCauseSiAbandon|default('')) }}
+                                        {{ trViews.tr('Si destruction, cause : ', collecte.causeDestruction|default('')) }}
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-5 col-md-offset-1 col-sm-6">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        <caption><i>Pérennité à l'année</i></caption>
+                                        {{ trViews.tr('Nombre de mois : ', collecte.pereniteAnneeNbMois|default('')) }}
+                                        {{ trViews.tr('Pérennité dans la journée : ', collecte.pereniteAnneeDsJournee|default('')) }}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="large text-muted">Superstructure</div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-5 col-sm-6">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        {{ trViews.tr('Super structure réhabilité : ', collecte.superStructureRehabilite|default('')|oui_non) }}
+                                        {{ trViews.tr('Etat margelle : ', collecte.etatMargelle|default('')|bon_mauvais) }}
+                                        {{ trViews.tr('Etanchéité forage : ', collecte.etancheiteforage|default('')|bonne_mauvaise) }}
+                                        {{ trViews.tr('Etat fixation pompe : ', collecte.etatFixationPompe|default('')|bonne_mauvaise) }}
+                                        {{ trViews.tr('Etat anti bourbier : ', collecte.etatAntiBourbier|default('')) }}
+                                        {{ trViews.tr('Etat clôture : ', collecte.etatCloture|default('')) }}
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-5 col-md-offset-1 col-sm-6">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        {{ trViews.tr('Etat rigole évacuation : ', collecte.etatRigoleEvacuation|default('')) }}
+                                        {{ trViews.tr('Etat puit perdu : ', collecte.etatPuitPerdu|default('')) }}
+                                        {{ trViews.tr('Propreté intérieur clôture : ', collecte.propreteInterieurCloture|default('')|bonne_mauvaise) }}
+                                        {{ trViews.tr('Propreté extérieur clôture : ', collecte.propreteExterieurCloture|default('')|bonne_mauvaise) }}
+                                        {{ trViews.tr('Source de pollution 1 : ', collecte.sourcePollution1|default('')) }}
+                                        {{ trViews.tr('Source de pollution 2 : ', collecte.sourcePollution2|default('')) }}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        {{ trViews.tr('Présence défériseur : ', collecte.presenceDeferiseur|default('')|oui_non) }}
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        {{ trViews.tr('Défériseur utilisé : ', collecte.deferiseurUtilise|default('')|oui_non) }}
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        {{ trViews.tr('Etat défériseur : ', collecte.etatDeferiseur|default('')) }}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="large text-muted">Etat</div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-5 col-sm-6">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        {{ trViews.tr('Etat de l\'ouvrage : ', collecte.etatOuvrage|default('')) }}
+                                        {{ trViews.tr('Si abandon, cause principale : ', collecte.codeCauseSiAbandon|default('')) }}
+                                        {{ trViews.tr('Si destruction, cause : ', collecte.causeDestruction|default('')) }}
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-5 col-md-offset-1 col-sm-6">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        <caption><i>Pérennité à l'année</i></caption>
+                                        {{ trViews.tr('Nombre de mois : ', collecte.pereniteAnneeNbMois|default('')) }}
+                                        {{ trViews.tr('Pérennité dans la journée : ', collecte.pereniteAnneeDsJournee|default('')) }}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="large text-muted">Pompe</div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-5 col-sm-6">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        {{ trViews.tr('Nombre de pompe : ', collecte.nbPompe|default('')) }}
+                                        {{ trViews.tr('Marque de la pompe : ', collecte.marquePompe|default('')) }}
+                                        {{ trViews.tr('Pompe remplacée : ', collecte.pompeRemplace|default('')|oui_non) }}
+                                        {{ trViews.tr('Année de pose de la pompe : ', collecte.anneePosePompe|default('')) }}
+                                        {{ trViews.tr('Financement du remplacement : ', collecte.financementRemplacement|default('')) }}
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-5 col-md-offset-1 col-sm-6">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        {{ trViews.tr('Nom du projet : ', collecte.nomProjet|default('')) }}
+                                        {{ trViews.tr('Etat de la pompe : ', collecte.etatPompe|default('')) }}
+                                        {{ trViews.tr('Durée de la panne : ', collecte.dureePanne|default('')) }}
+                                        {{ trViews.tr('Cause de non réparation : ', collecte.causeNonReparation|default('')) }}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="x-margin" />
+                        <div class="page-header">QUALITE DE L'EAU</div>
+                        <div class="large text-muted">Analyse physico-chimique</div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-5 col-sm-6">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        {{ trViews.tr('Turbidité : ', collecte.turbidite|default('')) }}
+                                        {{ trViews.tr('Odeur de l\'eau : ', collecte.odeurEau|default('')) }}
+                                        {{ trViews.tr('Goût de l\'eau : ', collecte.goutEau|default('')) }}
+                                        {{ trViews.tr('Pellicule en surface : ', collecte.pelliculeEnSurface|default('')|oui_non) }}
+                                        {{ trViews.tr('Présence de vers : ', collecte.presenceVers|default('')|oui_non) }}
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-5 col-md-offset-1 col-sm-6">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        {{ trViews.tr('Conductivité : ', collecte.conductivite|default('')) }}
+                                        {{ trViews.tr('PH : ', collecte.ph|default('')) }}
+                                        {{ trViews.tr('Nitrates NO3 : ', collecte.nitratesNo3|default('')) }}
+                                        {{ trViews.tr('Nitrites NO2 : ', collecte.nitritesNo2|default('')) }}
+                                        {{ trViews.tr('Fer total : ', collecte.ferTotal|default('')) }}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="x-margin" />
+                        <div class="page-header">GESTION DU POINT D'EAU</div>
+                        <div class="large text-muted">Mode de gestion de l'ouvrage</div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-5 col-sm-6">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        {{ trViews.tr("Mode gestion de l'ouvrage : ", collecte.modeGestionOuvrage|default('')) }}
+                                        {{ trViews.tr("Présence d'une unité de gestion : ", collecte.presenceUniteGestion|default('')|oui_non) }}
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-5 col-md-offset-1 col-sm-6">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        {{ trViews.tr('Village UE : ', collecte.villageUe|default('')) }}
+                                        {{ trViews.tr("N° UE dans le village : ", collecte.numVillageUe|default('')) }}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="large text-muted">Financement du point d'eau</div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-5 col-sm-6">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        {{ trViews.tr("Assistance bienfaiteur : ", collecte.assistanceBienfaiteur|default('')|oui_non) }}
+                                        {{ trViews.tr("Mode de paiement de l'eau : ", collecte.modePaiementEau|default('')) }}
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-5 col-md-offset-1 col-sm-6">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        <caption><i>Si vente au volume, prix de l'eau</i></caption>
+                                        {{ trViews.tr('Seau 20 litres : ', collecte.prixSeau20Litres|default('')) }}
+                                        {{ trViews.tr("Bassine 35 litres : ", collecte.prixBassine35Litres|default('')) }}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="large text-muted">Maintenance</div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-5 col-sm-6">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        {{ trViews.tr("Nom de l'artisan réparateur : ", collecte.nomArtisanReparateur|default('')) }}
+                                        {{ trViews.tr("Village de résidence de l'artisan : ", collecte.villageResidenceReparateur|default('')) }}
+                                        {{ trViews.tr("Cahier d'entretien de la pompe : ", collecte.cahierEntretientPompe|default('')) }}
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-5 col-md-offset-1 col-sm-6">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        {{ trViews.tr("Contrat d'entretien avec l'artisan : ", collecte.contratEntretienArtisan|default('')|oui_non) }}
+                                        {{ trViews.tr("Si oui, type de contrat : ", collecte.typeContrat|default('')) }}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="x-margin" />
+                        <div class="page-header">COMMENTAIRES EVENTUELS</div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <blockquote>
+                                    {{ collecte.commentaires|default('') }}
+                                </blockquote>
+                            </div>
+                        </div>
+                        <hr class="x-margin" />
+                        <div class="clearfix">
+                            <div class="pull-right">
+                                {% if is_granted('ROLE_EDIT_COLLECTE') %}
+                                    <a class="text-success" href="{{ path('sofieexp_collecte_edit', {'id':collecte.id|default(0)}) }}" title="Modifier">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                {% endif %}
+                                {% if is_granted('ROLE_DELETE_COLLECTE') %}
+                                    <a class="text-danger confirm-delete" href="{{ path('sofieexp_collecte_delete', {'id':collecte.id|default(0)}) }}" title="Supprimer">
+                                        <i class="fa fa-remove"></i>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <button class="btn btn-default back-location" type="button">
+                <i class="fa fa-chevron-left"></i> Retour
+            </button>
+        </div>
+    </div>
+{% endblock %}

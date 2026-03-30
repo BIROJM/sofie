@@ -1,0 +1,39 @@
+{% if form|default(null) is not empty %}
+    {{
+        form_start(form, {
+            'action':path('sofieexp_ouvrage_panne_edit_type', {'id': panne.id|default(0)}), 'method':'POST',
+            'attr':{'class':'form-horizontal', 'role':'form', 'id':'editTypePanneOuvrage'}
+        })
+    }}
+        <div class="text-danger help-block">{{ form_errors(form) }}</div>
+        {% if form.typePanne is defined %}
+            <div class="form-group">
+                {{ form_label(form.typePanne, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                <div class="col-sm-8">
+                    {{ form_widget(form.typePanne, {'attr':{'class':'select2 form-control'}}) }}
+                    <small class="help-block col-sm-offset-4 text-danger" style="">{{ form_errors(form.typePanne) }}</small>
+                </div>
+            </div>
+        {% endif %}
+        {% if form.newTypePanne is defined %}
+            <div class="form-group">
+                {{ form_label(form.newTypePanne, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                <div class="col-sm-8">
+                    {{ form_widget(form.newTypePanne, {'attr':{'class':'form-control'}}) }}
+                    <small class="help-block col-sm-offset-4 text-danger">{{ form_errors(form.newTypePanne) }}</small>
+                </div>
+            </div>
+        {% endif %}
+        <div>{{ form_rest(form) }}</div>
+        <div class="form-group">
+            <div class="col-sm-offset-4">
+                <button type="submit" class="btn btn-success btn-label-left">
+                   <span><i class="fa fa-save"></i></span> Enrégistrer
+                </button>
+            </div>
+        </div>
+    {{ form_end(form) }}
+    <script type="text/javascript">
+        typePanneFormListener($('#editTypePanneOuvrage'));
+    </script>
+{% endif %}

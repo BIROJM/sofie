@@ -1,0 +1,139 @@
+<div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover table-heading">
+
+        {% import '::macro/links.html.twig' as links %}
+
+        {% if is_granted('ROLE_ADD_OUVRAGE') %}
+            <caption>
+                <div class="pull-right">
+                    <a class="btn btn-primary btn-label-left" title="Ajouter" href="{{ path('sofieexp_ouvrage_add') }}">
+                        <span><i class="fa fa-plus"></i></span> Ajouter
+                    </a>
+                    <i class="fa fa-ellipsis-v fa-2x"></i>
+                    {{ links.pdf_link({}, {'class':'fa-2x'}) }}
+                </div>
+            </caption>
+        {% endif %}
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Code</th>
+            <th>N° IRH</th>
+            <th>Type</th>
+            <th>Statut</th>
+            <th>Nb. pannes</th>
+            <th>Nb. collectes</th>
+            <th>Région</th>
+            <th>Localité</th>
+            <th>Comité</th>
+            <th>Validé</th>
+            <th>Origine</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        {% if ouvrages is defined %}
+            {% if ouvrages is not empty %}
+                {% import '::macro/view.html.twig' as views %}
+                <tbody>
+                    {% set page_inc = g_paginator_items*(page-1) %}
+                    {% for ouvrage in ouvrages %}
+                        <tr>
+                            <td>{{ loop.index+page_inc }}</td>
+                            <td>
+                                {{ ouvrage.code|default('') }}
+                            </td>
+                            <td>{{ ouvrage.numIRH|default('') }}</td>
+                            <td>{{ ouvrage.type|default('') }}</td>
+                            <td>{{ ouvrage.statutOuvrage|default('') }}</td>
+                            <td class="text-center">
+                                {% if is_granted('ROLE_PANNE') %}
+                                    <a href="{{ path('sofieexp_ouvrage_pannes', {'id':ouvrage.id|default(0)}) }}">
+                                        <span class="badge">{{ ouvrage.pannes|default('')|length }}</span>
+                                    </a>
+                                {% else %}
+                                    {{ ouvrage.pannes|default('')|length }}
+                                {% endif %}
+                            </td>
+                            <td class="text-center">
+                                {% if is_granted('ROLE_COLLECTE') %}
+                                    <a href="{{ path('sofieexp_collecte_index', {'id':ouvrage.id|default(0)}) }}">
+                                        <span class="badge">{{ ouvrage.collectes|default('')|length }}</span>
+                                    </a>
+                                {% else %}
+                                    {{ ouvrage.collectes|default('')|length }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if is_granted('ROLE_REGION') %}
+                                    <a href="{{ path('sofieexp_region_view', {'id':ouvrage.region.id|default(0)}) }}">
+                                        {{ ouvrage.region.nom|default('') }}
+                                    </a>
+                                {% else %}
+                                    {{ ouvrage.region.nom|default('') }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if is_granted('ROLE_LOCALITE') %}
+                                <a href="{{ path('sofieexp_localite_view', {'id':ouvrage.localite.id|default(0)}) }}">
+                                    {{ ouvrage.localite.nom|default('') }}
+                                </a>
+                                {% else %}
+                                    {{ ouvrage.localite.nom|default('') }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if is_granted('ROLE_COMITE') %}
+                                    <a href="{{ path('sofieexp_comite_view', {'id':ouvrage.comite.id|default(0)}) }}">
+                                        {{ ouvrage.comite.nom|default('') }}
+                                    </a>
+                                {% else %}
+                                    {{ ouvrage.comite.nom|default('') }}
+                                {% endif %}
+                            </td>
+                            <td class="text-center">
+                                {{ views.validate_action(ouvrage, path('sofieexp_ouvrage_ajax_validate', {'id':ouvrage.id|default(0)})) }}
+                                {#<div class="toggle-switch toggle-switch-success center-block" title="{{ titleValidate }}">
+                                    <label>
+                                        <input type="checkbox" name="action_validated" data-href="{{ path('sofieexp_ouvrage_ajax_validate', {'id':ouvrage.id|default(0)}) }}"
+                                                {{ stateValidate }} value="{{ ouvrage.validated|default(null) }}"
+                                                {% if ouvrage.validated|default(null) %}checked{% endif %} />
+                                        <div class="toggle-switch-inner oui"></div>
+                                        <div class="toggle-switch-switch"><i class="fa fa-check"></i></div>
+                                    </label>
+                                </div>#}
+                            </td>
+                            <td class="text-center">
+                                <span {% if not ouvrage.validatable|default(false) %} class="text-danger"
+                                    title="{{ ouvragetitleValidate|default(false) }}" {% endif %}>
+                                    {{ ouvrage.origin|default('I') }}
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                {% if is_granted('ROLE_ADD_COLLECTE') %}
+                                    <a class="text-primary" href="{{ path('sofieexp_collecte_add', {'id':ouvrage.id|default(0)}) }}" title="Ajouter une collecte">
+                                        <i class="fa fa-newspaper-o"></i>
+                                    </a>
+                                {% endif %}
+                                <a class="text-info" href="{{ path('sofieexp_ouvrage_view', {'id':ouvrage.id|default(0)}) }}" title="Voir">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                {% if is_granted('ROLE_EDIT_OUVRAGE') %}
+                                    <a class="text-success" href="{{ path('sofieexp_ouvrage_edit', {'id':ouvrage.id|default(0)}) }}" title="Modifier">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                {% endif %}
+                                {% if is_granted('ROLE_DELETE_OUVRAGE') %}
+                                <a class="text-danger confirm-delete" href="{{ path('sofieexp_ouvrage_delete', {'id':ouvrage.id|default(0)}) }}" title="Supprimer">
+                                    <i class="fa fa-remove"></i>
+                                </a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            {% endif %}
+        {% endif %}
+    </table>
+</div>
+{# Pagination #}
+{% include '::include/paginator/paginator.html.twig' with {'total': ouvrages|default([])|length} %}

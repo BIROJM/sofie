@@ -1,0 +1,53 @@
+Sofie\UserBundle\Entity\Groupe:
+    type: entity
+    table: t_groupe
+    repositoryClass: Sofie\UserBundle\Entity\GroupeRepository
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: NONE
+#                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        sync:
+            type: string
+            length: 1
+            nullable: true
+            options:
+                default: 'N'
+            column: `sync`
+        deletedAt:
+            type: datetime
+            nullable: true
+            column: deleted_at
+    oneToMany:
+        userGroupes:
+            targetEntity: UserGroupe
+            cascade: ["persist", "remove"]
+            mappedBy: groupe
+            fetch: EXTRA_LAZY
+        groupeDroits:
+            targetEntity: GroupeDroit
+            cascade: ["persist", "remove"]
+            mappedBy: groupe
+            fetch: EXTRA_LAZY
+    lifecycleCallbacks:
+        prePersist: [setCreatedValue, setCustomId]
+        preUpdate: [setUpdatedValue]
+        preRemove: [setRemovedValue]

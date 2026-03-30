@@ -1,0 +1,2061 @@
+<?php
+
+namespace Sofie\ExpBundle\Entity;
+use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\ORM\Event\PreUpdateEventArgs;
+
+
+/**
+ * Collecte
+ */
+class Collecte
+{
+    const SYNC = 'Y';
+    const NO_SYNC = 'N';
+
+    const VALIDATED_WORD = 'Validé';
+    const NOT_VALIDATED_WORD = 'Non validé';
+
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     */
+    private $dateSaisie;
+
+    /**
+     * @var \DateTime
+     */
+    private $dateRemplissage;
+
+    /**
+     * @var string
+     */
+    private $nomOperateur;
+
+    /**
+     * @var string
+     */
+    private $nomAgentSaisie;
+
+    /**
+     * @var string
+     */
+    private $service;
+
+    /**
+     * @var string
+     */
+    private $etatOuvrage;
+
+    /**
+     * @var string
+     */
+    private $codeCauseSiAbandon;
+
+    /**
+     * @var string
+     */
+    private $causeDestruction;
+
+    /**
+     * @var integer
+     */
+    private $pereniteAnneeNbMois;
+
+    /**
+     * @var string
+     */
+    private $pereniteAnneeDsJournee;
+
+    /**
+     * @var boolean
+     */
+    private $superStructureRehabilite;
+
+    /**
+     * @var boolean
+     */
+    private $etatMargelle;
+
+    /**
+     * @var boolean
+     */
+    private $etancheiteforage;
+
+    /**
+     * @var boolean
+     */
+    private $etatFixationPompe;
+
+    /**
+     * @var string
+     */
+    private $etatAntiBourbier;
+
+    /**
+     * @var string
+     */
+    private $etatCloture;
+
+    /**
+     * @var string
+     */
+    private $etatRigoleEvacuation;
+
+    /**
+     * @var string
+     */
+    private $etatPuitPerdu;
+
+    /**
+     * @var boolean
+     */
+    private $propreteInterieurCloture;
+
+    /**
+     * @var boolean
+     */
+    private $propreteExterieurCloture;
+
+    /**
+     * @var string
+     */
+    private $sourcePollution1;
+
+    /**
+     * @var string
+     */
+    private $sourcePollution2;
+
+    /**
+     * @var boolean
+     */
+    private $presenceDeferiseur;
+
+    /**
+     * @var boolean
+     */
+    private $deferiseurUtilise;
+
+    /**
+     * @var string
+     */
+    private $etatDeferiseur;
+
+    /**
+     * @var integer
+     */
+    private $nbPompe;
+
+    /**
+     * @var string
+     */
+    private $marquePompe;
+
+    /**
+     * @var boolean
+     */
+    private $pompeRemplace;
+
+    /**
+     * @var integer
+     */
+    private $anneePosePompe;
+
+    /**
+     * @var string
+     */
+    private $financementRemplacement;
+
+    /**
+     * @var string
+     */
+    private $nomProjet;
+
+    /**
+     * @var string
+     */
+    private $etatPompe;
+
+    /**
+     * @var string
+     */
+    private $dureePanne;
+
+    /**
+     * @var string
+     */
+    private $causeNonReparation;
+
+    /**
+     * @var string
+     */
+    private $turbidite;
+
+    /**
+     * @var string
+     */
+    private $odeurEau;
+
+    /**
+     * @var string
+     */
+    private $goutEau;
+
+    /**
+     * @var boolean
+     */
+    private $pelliculeEnSurface;
+
+    /**
+     * @var boolean
+     */
+    private $presenceVers;
+
+    /**
+     * @var string
+     */
+    private $conductivite;
+
+    /**
+     * @var string
+     */
+    private $ph;
+
+    /**
+     * @var string
+     */
+    private $nitratesNo3;
+
+    /**
+     * @var string
+     */
+    private $nitritesNo2;
+
+    /**
+     * @var string
+     */
+    private $ferTotal;
+
+    /**
+     * @var string
+     */
+    private $modeGestionOuvrage;
+
+    /**
+     * @var boolean
+     */
+    private $presenceUniteGestion;
+
+    /**
+     * @var string
+     */
+    private $villageUe;
+
+    /**
+     * @var string
+     */
+    private $numVillageUe;
+
+    /**
+     * @var boolean
+     */
+    private $assistanceBienfaiteur;
+
+    /**
+     * @var string
+     */
+    private $modePaiementEau;
+
+    /**
+     * @var float
+     */
+    private $prixSeau20Litres;
+
+    /**
+     * @var float
+     */
+    private $prixBassine35Litres;
+
+    /**
+     * @var string
+     */
+    private $nomArtisanReparateur;
+
+    /**
+     * @var string
+     */
+    private $villageResidenceReparateur;
+
+    /**
+     * @var string
+     */
+    private $cahierEntretientPompe;
+
+    /**
+     * @var boolean
+     */
+    private $contratEntretienArtisan;
+
+    /**
+     * @var string
+     */
+    private $typeContrat;
+
+    /**
+     * @var string
+     */
+    private $commentaires;
+
+    /**
+     * @var \DateTime
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
+     * @var \Sofie\ExpBundle\Entity\Ouvrage
+     */
+    private $ouvrage;
+
+    /**
+     * @var boolean
+     */
+    private $validated;
+
+    /**
+     * @var \DateTime
+     */
+    private $validatedAt;
+
+    /**
+     * @var string
+     */
+    private $numIRH;
+
+    /**
+     * @var string
+     */
+    private $sync;
+
+    /**
+     * @var \Sofie\ExpBundle\Entity\Agent
+     */
+    private $validatedBy;
+
+    /**
+     * @var \DateTime
+     */
+    private $deletedAt;
+
+
+    /**
+     * @var string
+     */
+    private $origin;
+
+
+    public function __construct()
+    {
+        $this->sync = static::NO_SYNC;
+        $this->origin = 'I';
+        $this->validated = false;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * Set dateSaisie
+     *
+     * @param \DateTime $dateSaisie
+     * @return Collecte
+     */
+    public function setDateSaisie($dateSaisie)
+    {
+        $this->dateSaisie = $dateSaisie;
+
+        return $this;
+    }
+
+    /**
+     * Get dateSaisie
+     *
+     * @return \DateTime 
+     */
+    public function getDateSaisie()
+    {
+        return $this->dateSaisie;
+    }
+
+    /**
+     * Set dateRemplissage
+     *
+     * @param \DateTime $dateRemplissage
+     * @return Collecte
+     */
+    public function setDateRemplissage($dateRemplissage)
+    {
+        $this->dateRemplissage = $dateRemplissage;
+
+        return $this;
+    }
+
+    /**
+     * Get dateRemplissage
+     *
+     * @return \DateTime 
+     */
+    public function getDateRemplissage()
+    {
+        return $this->dateRemplissage;
+    }
+
+    /**
+     * Set nomOperateur
+     *
+     * @param string $nomOperateur
+     * @return Collecte
+     */
+    public function setNomOperateur($nomOperateur)
+    {
+        $this->nomOperateur = $nomOperateur;
+
+        return $this;
+    }
+
+    /**
+     * Get nomOperateur
+     *
+     * @return string 
+     */
+    public function getNomOperateur()
+    {
+        return $this->nomOperateur;
+    }
+
+    /**
+     * Set nomAgentSaisie
+     *
+     * @param string $nomAgentSaisie
+     * @return Collecte
+     */
+    public function setNomAgentSaisie($nomAgentSaisie)
+    {
+        $this->nomAgentSaisie = $nomAgentSaisie;
+
+        return $this;
+    }
+
+    /**
+     * Get nomAgentSaisie
+     *
+     * @return string 
+     */
+    public function getNomAgentSaisie()
+    {
+        return $this->nomAgentSaisie;
+    }
+
+    /**
+     * Set service
+     *
+     * @param string $service
+     * @return Collecte
+     */
+    public function setService($service)
+    {
+        $this->service = $service;
+
+        return $this;
+    }
+
+    /**
+     * Get service
+     *
+     * @return string 
+     */
+    public function getService()
+    {
+        return $this->service;
+    }
+
+    /**
+     * Set etatOuvrage
+     *
+     * @param string $etatOuvrage
+     * @return Collecte
+     */
+    public function setEtatOuvrage($etatOuvrage)
+    {
+        $this->etatOuvrage = $etatOuvrage;
+
+        return $this;
+    }
+
+    /**
+     * Get etatOuvrage
+     *
+     * @return string 
+     */
+    public function getEtatOuvrage()
+    {
+        return $this->etatOuvrage;
+    }
+
+    /**
+     * Set codeCauseSiAbandon
+     *
+     * @param string $codeCauseSiAbandon
+     * @return Collecte
+     */
+    public function setCodeCauseSiAbandon($codeCauseSiAbandon)
+    {
+        $this->codeCauseSiAbandon = $codeCauseSiAbandon;
+
+        return $this;
+    }
+
+    /**
+     * Get codeCauseSiAbandon
+     *
+     * @return string
+     */
+    public function getCodeCauseSiAbandon()
+    {
+        return $this->codeCauseSiAbandon;
+    }
+
+    /**
+     * Set causeDestruction
+     *
+     * @param string $causeDestruction
+     * @return Collecte
+     */
+    public function setCauseDestruction($causeDestruction)
+    {
+        $this->causeDestruction = $causeDestruction;
+
+        return $this;
+    }
+
+    /**
+     * Get causeDestruction
+     *
+     * @return string 
+     */
+    public function getCauseDestruction()
+    {
+        return $this->causeDestruction;
+    }
+
+    /**
+     * Set pereniteAnneeNbMois
+     *
+     * @param integer $pereniteAnneeNbMois
+     * @return Collecte
+     */
+    public function setPereniteAnneeNbMois($pereniteAnneeNbMois)
+    {
+        $this->pereniteAnneeNbMois = $pereniteAnneeNbMois;
+
+        return $this;
+    }
+
+    /**
+     * Get pereniteAnneeNbMois
+     *
+     * @return integer 
+     */
+    public function getPereniteAnneeNbMois()
+    {
+        return $this->pereniteAnneeNbMois;
+    }
+
+    /**
+     * Set pereniteAnneeDsJournee
+     *
+     * @param string $pereniteAnneeDsJournee
+     * @return Collecte
+     */
+    public function setPereniteAnneeDsJournee($pereniteAnneeDsJournee)
+    {
+        $this->pereniteAnneeDsJournee = $pereniteAnneeDsJournee;
+
+        return $this;
+    }
+
+    /**
+     * Get pereniteAnneeDsJournee
+     *
+     * @return string 
+     */
+    public function getPereniteAnneeDsJournee()
+    {
+        return $this->pereniteAnneeDsJournee;
+    }
+
+    /**
+     * Set superStructureRehabilite
+     *
+     * @param boolean $superStructureRehabilite
+     * @return Collecte
+     */
+    public function setSuperStructureRehabilite($superStructureRehabilite)
+    {
+        $this->superStructureRehabilite = $superStructureRehabilite;
+
+        return $this;
+    }
+
+    /**
+     * Get superStructureRehabilite
+     *
+     * @return boolean 
+     */
+    public function getSuperStructureRehabilite()
+    {
+        return $this->superStructureRehabilite;
+    }
+
+    /**
+     * Set etatMargelle
+     *
+     * @param boolean $etatMargelle
+     * @return Collecte
+     */
+    public function setEtatMargelle($etatMargelle)
+    {
+        $this->etatMargelle = $etatMargelle;
+
+        return $this;
+    }
+
+    /**
+     * Get etatMargelle
+     *
+     * @return boolean 
+     */
+    public function getEtatMargelle()
+    {
+        return $this->etatMargelle;
+    }
+
+    /**
+     * Set etancheiteforage
+     *
+     * @param boolean $etancheiteforage
+     * @return Collecte
+     */
+    public function setEtancheiteforage($etancheiteforage)
+    {
+        $this->etancheiteforage = $etancheiteforage;
+
+        return $this;
+    }
+
+    /**
+     * Get etancheiteforage
+     *
+     * @return boolean 
+     */
+    public function getEtancheiteforage()
+    {
+        return $this->etancheiteforage;
+    }
+
+    /**
+     * Set etatFixationPompe
+     *
+     * @param boolean $etatFixationPompe
+     * @return Collecte
+     */
+    public function setEtatFixationPompe($etatFixationPompe)
+    {
+        $this->etatFixationPompe = $etatFixationPompe;
+
+        return $this;
+    }
+
+    /**
+     * Get etatFixationPompe
+     *
+     * @return boolean 
+     */
+    public function getEtatFixationPompe()
+    {
+        return $this->etatFixationPompe;
+    }
+
+    /**
+     * Set etatAntiBourbier
+     *
+     * @param string $etatAntiBourbier
+     * @return Collecte
+     */
+    public function setEtatAntiBourbier($etatAntiBourbier)
+    {
+        $this->etatAntiBourbier = $etatAntiBourbier;
+
+        return $this;
+    }
+
+    /**
+     * Get etatAntiBourbier
+     *
+     * @return string 
+     */
+    public function getEtatAntiBourbier()
+    {
+        return $this->etatAntiBourbier;
+    }
+
+    /**
+     * Set etatCloture
+     *
+     * @param string $etatCloture
+     * @return Collecte
+     */
+    public function setEtatCloture($etatCloture)
+    {
+        $this->etatCloture = $etatCloture;
+
+        return $this;
+    }
+
+    /**
+     * Get etatCloture
+     *
+     * @return string
+     */
+    public function getEtatCloture()
+    {
+        return $this->etatCloture;
+    }
+
+    /**
+     * Set etatRigoleEvacuation
+     *
+     * @param string $etatRigoleEvacuation
+     * @return Collecte
+     */
+    public function setEtatRigoleEvacuation($etatRigoleEvacuation)
+    {
+        $this->etatRigoleEvacuation = $etatRigoleEvacuation;
+
+        return $this;
+    }
+
+    /**
+     * Get etatRigoleEvacuation
+     *
+     * @return string
+     */
+    public function getEtatRigoleEvacuation()
+    {
+        return $this->etatRigoleEvacuation;
+    }
+
+    /**
+     * Set etatPuitPerdu
+     *
+     * @param string $etatPuitPerdu
+     * @return Collecte
+     */
+    public function setEtatPuitPerdu($etatPuitPerdu)
+    {
+        $this->etatPuitPerdu = $etatPuitPerdu;
+
+        return $this;
+    }
+
+    /**
+     * Get etatPuitPerdu
+     *
+     * @return integer 
+     */
+    public function getEtatPuitPerdu()
+    {
+        return $this->etatPuitPerdu;
+    }
+
+    /**
+     * Set propreteInterieurCloture
+     *
+     * @param boolean $propreteInterieurCloture
+     * @return Collecte
+     */
+    public function setPropreteInterieurCloture($propreteInterieurCloture)
+    {
+        $this->propreteInterieurCloture = $propreteInterieurCloture;
+
+        return $this;
+    }
+
+    /**
+     * Get propreteInterieurCloture
+     *
+     * @return boolean 
+     */
+    public function getPropreteInterieurCloture()
+    {
+        return $this->propreteInterieurCloture;
+    }
+
+    /**
+     * Set propreteExterieurCloture
+     *
+     * @param boolean $propreteExterieurCloture
+     * @return Collecte
+     */
+    public function setPropreteExterieurCloture($propreteExterieurCloture)
+    {
+        $this->propreteExterieurCloture = $propreteExterieurCloture;
+
+        return $this;
+    }
+
+    /**
+     * Get propreteExterieurCloture
+     *
+     * @return boolean 
+     */
+    public function getPropreteExterieurCloture()
+    {
+        return $this->propreteExterieurCloture;
+    }
+
+    /**
+     * Set sourcePollution1
+     *
+     * @param string $sourcePollution1
+     * @return Collecte
+     */
+    public function setSourcePollution1($sourcePollution1)
+    {
+        $this->sourcePollution1 = $sourcePollution1;
+
+        return $this;
+    }
+
+    /**
+     * Get sourcePollution1
+     *
+     * @return string
+     */
+    public function getSourcePollution1()
+    {
+        return $this->sourcePollution1;
+    }
+
+    /**
+     * Set sourcePollution2
+     *
+     * @param string $sourcePollution2
+     * @return Collecte
+     */
+    public function setSourcePollution2($sourcePollution2)
+    {
+        $this->sourcePollution2 = $sourcePollution2;
+
+        return $this;
+    }
+
+    /**
+     * Get sourcePollution2
+     *
+     * @return string
+     */
+    public function getSourcePollution2()
+    {
+        return $this->sourcePollution2;
+    }
+
+    /**
+     * Set presenceDeferiseur
+     *
+     * @param boolean $presenceDeferiseur
+     * @return Collecte
+     */
+    public function setPresenceDeferiseur($presenceDeferiseur)
+    {
+        $this->presenceDeferiseur = $presenceDeferiseur;
+
+        return $this;
+    }
+
+    /**
+     * Get presenceDeferiseur
+     *
+     * @return boolean 
+     */
+    public function getPresenceDeferiseur()
+    {
+        return $this->presenceDeferiseur;
+    }
+
+    /**
+     * Set deferiseurUtilise
+     *
+     * @param boolean $deferiseurUtilise
+     * @return Collecte
+     */
+    public function setDeferiseurUtilise($deferiseurUtilise)
+    {
+        $this->deferiseurUtilise = $deferiseurUtilise;
+
+        return $this;
+    }
+
+    /**
+     * Get deferiseurUtilise
+     *
+     * @return boolean 
+     */
+    public function getDeferiseurUtilise()
+    {
+        return $this->deferiseurUtilise;
+    }
+
+    /**
+     * Set etatDeferiseur
+     *
+     * @param string $etatDeferiseur
+     * @return Collecte
+     */
+    public function setEtatDeferiseur($etatDeferiseur)
+    {
+        $this->etatDeferiseur = $etatDeferiseur;
+
+        return $this;
+    }
+
+    /**
+     * Get etatDeferiseur
+     *
+     * @return string 
+     */
+    public function getEtatDeferiseur()
+    {
+        return $this->etatDeferiseur;
+    }
+
+    /**
+     * Set nbPompe
+     *
+     * @param integer $nbPompe
+     * @return Collecte
+     */
+    public function setNbPompe($nbPompe)
+    {
+        $this->nbPompe = $nbPompe;
+
+        return $this;
+    }
+
+    /**
+     * Get nbPompe
+     *
+     * @return integer 
+     */
+    public function getNbPompe()
+    {
+        return $this->nbPompe;
+    }
+
+    /**
+     * Set marquePompe
+     *
+     * @param string $marquePompe
+     * @return Collecte
+     */
+    public function setMarquePompe($marquePompe)
+    {
+        $this->marquePompe = $marquePompe;
+
+        return $this;
+    }
+
+    /**
+     * Get marquePompe
+     *
+     * @return string 
+     */
+    public function getMarquePompe()
+    {
+        return $this->marquePompe;
+    }
+
+    /**
+     * Set pompeRemplace
+     *
+     * @param boolean $pompeRemplace
+     * @return Collecte
+     */
+    public function setPompeRemplace($pompeRemplace)
+    {
+        $this->pompeRemplace = $pompeRemplace;
+
+        return $this;
+    }
+
+    /**
+     * Get pompeRemplace
+     *
+     * @return boolean 
+     */
+    public function getPompeRemplace()
+    {
+        return $this->pompeRemplace;
+    }
+
+    /**
+     * Set anneePosePompe
+     *
+     * @param integer $anneePosePompe
+     * @return Collecte
+     */
+    public function setAnneePosePompe($anneePosePompe)
+    {
+        $this->anneePosePompe = $anneePosePompe;
+
+        return $this;
+    }
+
+    /**
+     * Get anneePosePompe
+     *
+     * @return integer 
+     */
+    public function getAnneePosePompe()
+    {
+        return $this->anneePosePompe;
+    }
+
+    /**
+     * Set financementRemplacement
+     *
+     * @param string $financementRemplacement
+     * @return Collecte
+     */
+    public function setFinancementRemplacement($financementRemplacement)
+    {
+        $this->financementRemplacement = $financementRemplacement;
+
+        return $this;
+    }
+
+    /**
+     * Get financementRemplacement
+     *
+     * @return string 
+     */
+    public function getFinancementRemplacement()
+    {
+        return $this->financementRemplacement;
+    }
+
+    /**
+     * Set nomProjet
+     *
+     * @param string $nomProjet
+     * @return Collecte
+     */
+    public function setNomProjet($nomProjet)
+    {
+        $this->nomProjet = $nomProjet;
+
+        return $this;
+    }
+
+    /**
+     * Get nomProjet
+     *
+     * @return string 
+     */
+    public function getNomProjet()
+    {
+        return $this->nomProjet;
+    }
+
+    /**
+     * Set etatPompe
+     *
+     * @param string $etatPompe
+     * @return Collecte
+     */
+    public function setEtatPompe($etatPompe)
+    {
+        $this->etatPompe = $etatPompe;
+
+        return $this;
+    }
+
+    /**
+     * Get etatPompe
+     *
+     * @return string 
+     */
+    public function getEtatPompe()
+    {
+        return $this->etatPompe;
+    }
+
+    /**
+     * Set dureePanne
+     *
+     * @param string $dureePanne
+     * @return Collecte
+     */
+    public function setDureePanne($dureePanne)
+    {
+        $this->dureePanne = $dureePanne;
+
+        return $this;
+    }
+
+    /**
+     * Get dureePanne
+     *
+     * @return string 
+     */
+    public function getDureePanne()
+    {
+        return $this->dureePanne;
+    }
+
+    /**
+     * Set causeNonReparation
+     *
+     * @param string $causeNonReparation
+     * @return Collecte
+     */
+    public function setCauseNonReparation($causeNonReparation)
+    {
+        $this->causeNonReparation = $causeNonReparation;
+
+        return $this;
+    }
+
+    /**
+     * Get causeNonReparation
+     *
+     * @return string 
+     */
+    public function getCauseNonReparation()
+    {
+        return $this->causeNonReparation;
+    }
+
+    /**
+     * Set turbidite
+     *
+     * @param string $turbidite
+     * @return Collecte
+     */
+    public function setTurbidite($turbidite)
+    {
+        $this->turbidite = $turbidite;
+
+        return $this;
+    }
+
+    /**
+     * Get turbidite
+     *
+     * @return string
+     */
+    public function getTurbidite()
+    {
+        return $this->turbidite;
+    }
+
+    /**
+     * Set odeurEau
+     *
+     * @param string $odeurEau
+     * @return Collecte
+     */
+    public function setOdeurEau($odeurEau)
+    {
+        $this->odeurEau = $odeurEau;
+
+        return $this;
+    }
+
+    /**
+     * Get odeurEau
+     *
+     * @return string
+     */
+    public function getOdeurEau()
+    {
+        return $this->odeurEau;
+    }
+
+    /**
+     * Set goutEau
+     *
+     * @param string $goutEau
+     * @return Collecte
+     */
+    public function setGoutEau($goutEau)
+    {
+        $this->goutEau = $goutEau;
+
+        return $this;
+    }
+
+    /**
+     * Get goutEau
+     *
+     * @return string
+     */
+    public function getGoutEau()
+    {
+        return $this->goutEau;
+    }
+
+    /**
+     * Set pelliculeEnSurface
+     *
+     * @param boolean $pelliculeEnSurface
+     * @return Collecte
+     */
+    public function setPelliculeEnSurface($pelliculeEnSurface)
+    {
+        $this->pelliculeEnSurface = $pelliculeEnSurface;
+
+        return $this;
+    }
+
+    /**
+     * Get pelliculeEnSurface
+     *
+     * @return boolean 
+     */
+    public function getPelliculeEnSurface()
+    {
+        return $this->pelliculeEnSurface;
+    }
+
+    /**
+     * Set presenceVers
+     *
+     * @param boolean $presenceVers
+     * @return Collecte
+     */
+    public function setPresenceVers($presenceVers)
+    {
+        $this->presenceVers = $presenceVers;
+
+        return $this;
+    }
+
+    /**
+     * Get presenceVers
+     *
+     * @return boolean 
+     */
+    public function getPresenceVers()
+    {
+        return $this->presenceVers;
+    }
+
+    /**
+     * Set conductivite
+     *
+     * @param string $conductivite
+     * @return Collecte
+     */
+    public function setConductivite($conductivite)
+    {
+        $this->conductivite = $conductivite;
+
+        return $this;
+    }
+
+    /**
+     * Get conductivite
+     *
+     * @return string 
+     */
+    public function getConductivite()
+    {
+        return $this->conductivite;
+    }
+
+    /**
+     * Set ph
+     *
+     * @param string $ph
+     * @return Collecte
+     */
+    public function setPh($ph)
+    {
+        $this->ph = $ph;
+
+        return $this;
+    }
+
+    /**
+     * Get ph
+     *
+     * @return string 
+     */
+    public function getPh()
+    {
+        return $this->ph;
+    }
+
+    /**
+     * Set nitratesNo3
+     *
+     * @param string $nitratesNo3
+     * @return Collecte
+     */
+    public function setNitratesNo3($nitratesNo3)
+    {
+        $this->nitratesNo3 = $nitratesNo3;
+
+        return $this;
+    }
+
+    /**
+     * Get nitratesNo3
+     *
+     * @return string 
+     */
+    public function getNitratesNo3()
+    {
+        return $this->nitratesNo3;
+    }
+
+    /**
+     * Set nitritesNo2
+     *
+     * @param string $nitritesNo2
+     * @return Collecte
+     */
+    public function setNitritesNo2($nitritesNo2)
+    {
+        $this->nitritesNo2 = $nitritesNo2;
+
+        return $this;
+    }
+
+    /**
+     * Get nitritesNo2
+     *
+     * @return string 
+     */
+    public function getNitritesNo2()
+    {
+        return $this->nitritesNo2;
+    }
+
+    /**
+     * Set ferTotal
+     *
+     * @param string $ferTotal
+     * @return Collecte
+     */
+    public function setFerTotal($ferTotal)
+    {
+        $this->ferTotal = $ferTotal;
+
+        return $this;
+    }
+
+    /**
+     * Get ferTotal
+     *
+     * @return string 
+     */
+    public function getFerTotal()
+    {
+        return $this->ferTotal;
+    }
+
+    /**
+     * Set modeGestionOuvrage
+     *
+     * @param string $modeGestionOuvrage
+     * @return Collecte
+     */
+    public function setModeGestionOuvrage($modeGestionOuvrage)
+    {
+        $this->modeGestionOuvrage = $modeGestionOuvrage;
+
+        return $this;
+    }
+
+    /**
+     * Get modeGestionOuvrage
+     *
+     * @return string
+     */
+    public function getModeGestionOuvrage()
+    {
+        return $this->modeGestionOuvrage;
+    }
+
+    /**
+     * Set presenceUniteGestion
+     *
+     * @param boolean $presenceUniteGestion
+     * @return Collecte
+     */
+    public function setPresenceUniteGestion($presenceUniteGestion)
+    {
+        $this->presenceUniteGestion = $presenceUniteGestion;
+
+        return $this;
+    }
+
+    /**
+     * Get presenceUniteGestion
+     *
+     * @return boolean 
+     */
+    public function getPresenceUniteGestion()
+    {
+        return $this->presenceUniteGestion;
+    }
+
+    /**
+     * Set villageUe
+     *
+     * @param string $villageUe
+     * @return Collecte
+     */
+    public function setVillageUe($villageUe)
+    {
+        $this->villageUe = $villageUe;
+
+        return $this;
+    }
+
+    /**
+     * Get villageUe
+     *
+     * @return string 
+     */
+    public function getVillageUe()
+    {
+        return $this->villageUe;
+    }
+
+    /**
+     * Set numVillageUe
+     *
+     * @param string $numVillageUe
+     * @return Collecte
+     */
+    public function setNumVillageUe($numVillageUe)
+    {
+        $this->numVillageUe = $numVillageUe;
+
+        return $this;
+    }
+
+    /**
+     * Get numVillageUe
+     *
+     * @return string 
+     */
+    public function getNumVillageUe()
+    {
+        return $this->numVillageUe;
+    }
+
+    /**
+     * Set assistanceBienfaiteur
+     *
+     * @param boolean $assistanceBienfaiteur
+     * @return Collecte
+     */
+    public function setAssistanceBienfaiteur($assistanceBienfaiteur)
+    {
+        $this->assistanceBienfaiteur = $assistanceBienfaiteur;
+
+        return $this;
+    }
+
+    /**
+     * Get assistanceBienfaiteur
+     *
+     * @return boolean 
+     */
+    public function getAssistanceBienfaiteur()
+    {
+        return $this->assistanceBienfaiteur;
+    }
+
+    /**
+     * Set modePaiementEau
+     *
+     * @param string $modePaiementEau
+     * @return Collecte
+     */
+    public function setModePaiementEau($modePaiementEau)
+    {
+        $this->modePaiementEau = $modePaiementEau;
+
+        return $this;
+    }
+
+    /**
+     * Get modePaiementEau
+     *
+     * @return string
+     */
+    public function getModePaiementEau()
+    {
+        return $this->modePaiementEau;
+    }
+
+    /**
+     * Set prixSeau20Litres
+     *
+     * @param float $prixSeau20Litres
+     * @return Collecte
+     */
+    public function setPrixSeau20Litres($prixSeau20Litres)
+    {
+        $this->prixSeau20Litres = $prixSeau20Litres;
+
+        return $this;
+    }
+
+    /**
+     * Get prixSeau20Litres
+     *
+     * @return float 
+     */
+    public function getPrixSeau20Litres()
+    {
+        return $this->prixSeau20Litres;
+    }
+
+    /**
+     * Set prixBassine35Litres
+     *
+     * @param float $prixBassine35Litres
+     * @return Collecte
+     */
+    public function setPrixBassine35Litres($prixBassine35Litres)
+    {
+        $this->prixBassine35Litres = $prixBassine35Litres;
+
+        return $this;
+    }
+
+    /**
+     * Get prixBassine35Litres
+     *
+     * @return float 
+     */
+    public function getPrixBassine35Litres()
+    {
+        return $this->prixBassine35Litres;
+    }
+
+    /**
+     * Set nomArtisanReparateur
+     *
+     * @param string $nomArtisanReparateur
+     * @return Collecte
+     */
+    public function setNomArtisanReparateur($nomArtisanReparateur)
+    {
+        $this->nomArtisanReparateur = $nomArtisanReparateur;
+
+        return $this;
+    }
+
+    /**
+     * Get nomArtisanReparateur
+     *
+     * @return string 
+     */
+    public function getNomArtisanReparateur()
+    {
+        return $this->nomArtisanReparateur;
+    }
+
+    /**
+     * Set villageResidenceReparateur
+     *
+     * @param string $villageResidenceReparateur
+     * @return Collecte
+     */
+    public function setVillageResidenceReparateur($villageResidenceReparateur)
+    {
+        $this->villageResidenceReparateur = $villageResidenceReparateur;
+
+        return $this;
+    }
+
+    /**
+     * Get villageResidenceReparateur
+     *
+     * @return string 
+     */
+    public function getVillageResidenceReparateur()
+    {
+        return $this->villageResidenceReparateur;
+    }
+
+    /**
+     * Set cahierEntretientPompe
+     *
+     * @param string $cahierEntretientPompe
+     * @return Collecte
+     */
+    public function setCahierEntretientPompe($cahierEntretientPompe)
+    {
+        $this->cahierEntretientPompe = $cahierEntretientPompe;
+
+        return $this;
+    }
+
+    /**
+     * Get cahierEntretientPompe
+     *
+     * @return string
+     */
+    public function getCahierEntretientPompe()
+    {
+        return $this->cahierEntretientPompe;
+    }
+
+    /**
+     * Set contratEntretienArtisan
+     *
+     * @param boolean $contratEntretienArtisan
+     * @return Collecte
+     */
+    public function setContratEntretienArtisan($contratEntretienArtisan)
+    {
+        $this->contratEntretienArtisan = $contratEntretienArtisan;
+
+        return $this;
+    }
+
+    /**
+     * Get contratEntretienArtisan
+     *
+     * @return boolean 
+     */
+    public function getContratEntretienArtisan()
+    {
+        return $this->contratEntretienArtisan;
+    }
+
+    /**
+     * Set typeContrat
+     *
+     * @param string $typeContrat
+     * @return Collecte
+     */
+    public function setTypeContrat($typeContrat)
+    {
+        $this->typeContrat = $typeContrat;
+
+        return $this;
+    }
+
+    /**
+     * Get typeContrat
+     *
+     * @return string
+     */
+    public function getTypeContrat()
+    {
+        return $this->typeContrat;
+    }
+
+    /**
+     * Set commentaires
+     *
+     * @param string $commentaires
+     * @return Collecte
+     */
+    public function setCommentaires($commentaires)
+    {
+        $this->commentaires = $commentaires;
+
+        return $this;
+    }
+
+    /**
+     * Get commentaires
+     *
+     * @return string 
+     */
+    public function getCommentaires()
+    {
+        return $this->commentaires;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return Collecte
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return Collecte
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set ouvrage
+     *
+     * @param \Sofie\ExpBundle\Entity\Ouvrage $ouvrage
+     * @return Collecte
+     */
+    public function setOuvrage(\Sofie\ExpBundle\Entity\Ouvrage $ouvrage = null)
+    {
+        $this->ouvrage = $ouvrage;
+
+        return $this;
+    }
+
+    /**
+     * Get ouvrage
+     *
+     * @return \Sofie\ExpBundle\Entity\Ouvrage 
+     */
+    public function getOuvrage()
+    {
+        return $this->ouvrage;
+    }
+
+    public function setCreatedValue()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = $this->createdAt;
+    }
+
+    public function setUpdatedValue(PreUpdateEventArgs $eventArgs)
+    {
+        $this->updatedAt = new \DateTime();
+        if($eventArgs->hasChangedField('validated')){
+            $this->validatedAt = $this->updatedAt;
+        }
+        $this->unsynchronize();
+    }
+
+    /**
+     * Set validated
+     *
+     * @param boolean $validated
+     * @return Collecte
+     */
+    public function setValidated($validated)
+    {
+        $this->validated = $validated;
+
+        return $this;
+    }
+
+    /**
+     * Get validated
+     *
+     * @return boolean 
+     */
+    public function getValidated()
+    {
+        return $this->validated;
+    }
+
+    /**
+     * Set validatedAt
+     *
+     * @param \DateTime $validatedAt
+     * @return Collecte
+     */
+    public function setValidatedAt($validatedAt)
+    {
+        $this->validatedAt = $validatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get validatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getValidatedAt()
+    {
+        return $this->validatedAt;
+    }
+
+    /**
+     * Set numIRH
+     *
+     * @param string $numIRH
+     * @return Collecte
+     */
+    public function setNumIRH($numIRH)
+    {
+        $this->numIRH = $numIRH;
+
+        return $this;
+    }
+
+    /**
+     * Get numIRH
+     *
+     * @return string 
+     */
+    public function getNumIRH()
+    {
+        return $this->numIRH;
+    }
+
+    /**
+     * Set sync
+     *
+     * @param string $sync
+     * @return Collecte
+     */
+    public function setSync($sync)
+    {
+        $this->sync = $sync;
+
+        return $this;
+    }
+
+    /**
+     * Get sync
+     *
+     * @return string 
+     */
+    public function getSync()
+    {
+        return $this->sync;
+    }
+
+    /**
+     * Set validatedBy
+     *
+     * @param \Sofie\ExpBundle\Entity\Agent $validatedBy
+     * @return Collecte
+     */
+    public function setValidatedBy(\Sofie\ExpBundle\Entity\Agent $validatedBy = null)
+    {
+        $this->validatedBy = $validatedBy;
+
+        return $this;
+    }
+
+    /**
+     * Get validatedBy
+     *
+     * @return \Sofie\ExpBundle\Entity\Agent 
+     */
+    public function getValidatedBy()
+    {
+        return $this->validatedBy;
+    }
+
+    public function setCustomId(LifecycleEventArgs $eventArgs)
+    {
+        /*if($this->id == null){
+            $this->id = $eventArgs->getEntityManager()->getRepository('SofieExpBundle:Collecte')->getNextId();
+        }*/
+    }
+
+    public function getOuvrageId()
+    {
+        if($this->ouvrage != null) {
+            return $this->ouvrage->getId();
+        }
+        return null;
+    }
+
+    public function getValidatedById()
+    {
+        if($this->validatedBy != null){
+            return $this->validatedBy->getId();
+        }
+        return null;
+    }
+
+    public function synchronize()
+    {
+        $this->sync = static::SYNC;
+    }
+
+    public function unsynchronize()
+    {
+        $this->sync = static::SYNC;
+    }
+    
+    /**
+     * Set deletedAt
+     *
+     * @param \DateTime $deletedAt
+     * @return Collecte
+     */
+    public function setDeletedAt($deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get deletedAt
+     *
+     * @return \DateTime 
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
+    }
+
+    /**
+     * Set origin
+     *
+     * @param string $origin
+     * @return Collecte
+     */
+    public function setOrigin($origin)
+    {
+        $this->origin = $origin;
+
+        return $this;
+    }
+
+    /**
+     * Get origin
+     *
+     * @return string 
+     */
+    public function getOrigin()
+    {
+        return $this->origin;
+    }
+
+    public function logString()
+    {
+        $msg = 'Identifiant: '.$this->id;
+        if($this->nomAgentSaisie) $msg .= ', Agent de saisie : '.$this->nomAgentSaisie;
+        if($this->etatOuvrage) $msg .= ', Etat ouvrage : '.$this->etatOuvrage;
+        return $msg;
+    }
+
+    public function isValidatable()
+    {
+        return (
+            $this->validated || ( !is_null($this->ouvrage) && !is_null($this->ouvrage->getCode()))
+            && !empty($this->nomAgentSaisie)
+        );
+    }
+
+    public function titleValidate()
+    {
+        $msg = '';
+        if(is_null($this->ouvrage) || (!is_null($this->ouvrage) && is_null($this->ouvrage->getCode()))){
+            $this->addSubject($msg, "le code de l'ouvrage");
+        }
+        if(empty($this->nomAgentSaisie)){
+            $this->addSubject($msg, "l'agent de saisie");
+        }
+        if(!empty($msg)){
+            $lastPos = strrpos($msg, ',');
+            if($lastPos === false){
+                $msg .= ' ne doit pas être vide !';
+            }else{
+                $msg = substr_replace($msg, ' et', $lastPos, 1);
+                $msg .= ' ne doivent pas être vides !';
+            }
+        }
+        return $msg;
+    }
+
+    protected function addSubject(&$msg, $subject)
+    {
+        if(!empty($msg)){
+            $msg .= ', ';
+            $subject = lcfirst($subject);
+        }else{
+            $msg .= ' ';
+            $subject = ucfirst($subject);
+        }
+        $msg .= $subject;
+    }
+
+    static public function getValidatedWordArrayAssoc(){
+        return array('0'=>self::NOT_VALIDATED_WORD, '1'=>self::VALIDATED_WORD);
+    }
+
+    /**
+     * ORM\PreRemove
+     */
+    public function setRemovedValue(LifecycleEventArgs $eventArgs)
+    {
+        $this->unsynchronize();
+        $eventArgs->getEntityManager()->flush();
+    }
+}

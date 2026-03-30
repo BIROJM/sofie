@@ -1,0 +1,94 @@
+Sofie\ExpBundle\Entity\EssaisPompage:
+    type: entity
+    table: t_essaispompage
+    repositoryClass: Sofie\ExpBundle\Entity\EssaisPompageRepository
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    id:
+        id:
+            type: integer
+            nullable: false
+            id: true
+            column: IDEssaispompage
+            generator:
+                strategy: NONE
+#                strategy: IDENTITY
+    fields:
+        date:
+            type: date
+            nullable: true
+            column: `Date`
+        typeEssai:
+            type: string
+            nullable: true
+            length: 50
+            column: TypeEssai
+        dureeEssai:
+            type: string
+            nullable: true
+            length: 10
+            options:
+                comment: ''
+            column: DureeEssai
+        debitMax:
+            type: string
+            nullable: true
+            length: 20
+            column: DebitMax
+        rabattement:
+            type: string
+            nullable: true
+            length: 50
+            column: Rabattement
+        debitCritique:
+            type: string
+            nullable: true
+            length: 10
+            column: DebitCritique
+        transmissivite:
+            type: string
+            nullable: true
+            length: 20
+            column: Transmissivite
+        emmagasinage:
+            type: string
+            nullable: true
+            length: 50
+            column: Emmagasinage
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        sync:
+            type: string
+            length: 1
+            nullable: false
+            options:
+                default: 'N'
+            column: sync
+        deletedAt:
+            type: datetime
+            nullable: true
+            column: deleted_at
+    manyToOne:
+        ouvrage:
+            targetEntity: Ouvrage
+            cascade: ["persist"]
+            inversedBy: essaisPompages
+            joinColumn:
+                name: IDOuvrage
+                nullable: true
+                referencedColumnName: IDOuvrage
+                onDelete: "CASCADE"
+            orphanRemoval: true
+    lifecycleCallbacks:
+        prePersist: [setCreatedValue, setCustomId]
+        preUpdate: [setUpdatedValue]
+        preFlush: [setPreFlushValue]
+        preRemove: [setRemovedValue]

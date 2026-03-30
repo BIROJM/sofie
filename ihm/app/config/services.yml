@@ -1,0 +1,35 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/book/service_container.html
+parameters:
+#    parameter_name: value
+    sofieexp.valid_date.class: Sofie\ExpBundle\ValidDate\ValidDate
+    sofie.twig.extension.class: Sofie\ExpBundle\Twig\TwigExtension
+    check_url.class: Sofie\ExpBundle\CheckUrl\CheckUrl
+    api_add.class: Sofie\AdminBundle\ApiAdd\ApiAdd
+
+services:
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+
+    sofie.valid_date:
+        class: %sofieexp.valid_date.class%
+
+    sofie.twig.extension:
+        class: %sofie.twig.extension.class%
+        arguments: [@request_stack]
+        tags:
+            - { name: twig.extension }
+
+    check_url:
+        class: %check_url.class%
+
+    api_add:
+        class: %api_add.class%
+        arguments: [@jms_serializer,@doctrine.orm.entity_manager, @check_url, %api_add_url%, @ras_flash_alert.alert_reporter, @request_stack]
+
+    referer.referer_listener:
+        class: Sofie\AdminBundle\Daemon\RefererListener
+        arguments: [%referer_sessname%]
+        tags:
+            - { name: kernel.event_subscriber}

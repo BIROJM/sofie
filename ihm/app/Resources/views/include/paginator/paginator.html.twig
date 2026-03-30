@@ -1,0 +1,14 @@
+{% import '::include/paginator/paginator_template.html.twig' as sofie_paginator %}
+<div class="row">
+    <div class="col-xs-4">
+        <div class="count">
+            Total : {{ total|default(0) }} {{ (total > 1)?'éléments':'élément' }}
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="navigation pull-right">
+            {{ sofie_paginator.paginator(total|default(0), g_paginator_items, page, g_nb_paginator) }}
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>

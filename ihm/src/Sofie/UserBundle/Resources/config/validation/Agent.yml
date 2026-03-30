@@ -1,0 +1,8 @@
+Sofie\ExpBundle\Entity\Agent:
+    properties:
+        nom:
+            - NotBlank: ~
+        prenoms:
+            - NotBlank: ~
+        qualification:
+            - NotBlank: ~

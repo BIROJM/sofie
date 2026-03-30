@@ -1,0 +1,61 @@
+Sofie\ExpBundle\Entity\Agent:
+    exclusion_policy: ALL
+    properties:
+        nom:
+            expose: true
+            serialized_name: NomAgent
+            groups: [api_add]
+        prenoms:
+            expose: true
+            serialized_name: PrenomsAgent
+            groups: [api_add]
+        codeInit:
+            expose: true
+            serialized_name: CodeInitAgent
+            groups: [api_add]
+        qualificationAgent:
+            expose: true
+            serialized_name: QualificationAgent
+            groups: [api_add]
+        idNumappelNotification:
+            expose: true
+            serialized_name: IDNumAppelNotification
+            groups: [api_add]
+        idLocalite:
+            expose: true
+            serialized_name: IDLocalite
+            groups: [api_add]
+        initStatus:
+            expose: true
+            serialized_name: InitSatus
+            groups: [api_add]
+        sync:
+            expose: true
+            serialized_name: sync
+            groups: [api_add]
+        createdAt:
+            expose: true
+            serialized_name: created_at
+            groups: [api_add]
+            type: DateTime<'Y-m-d H:i:s'>
+        updatedAt:
+            expose: true
+            serialized_name: updated_at
+            groups: [api_add]
+            type: DateTime<'Y-m-d H:i:s'>
+        region:
+            expose: true
+            serialized_name: IDRegion
+            groups: [api_add]
+            type: integer
+            max_depth: 1
+            accessor:
+                getter: getRegionId
+        qualification:
+            expose: true
+            serialized_name: Qualification
+            groups: [api_add]
+            type: integer
+            max_depth: 1
+            accessor:
+                getter: getQualificationId

@@ -1,0 +1,4 @@
+sofieuser_profile_index:
+    path:     /
+    defaults: { _controller: SofieUserBundle:Profile:index }
+    methods: [GET|POST]

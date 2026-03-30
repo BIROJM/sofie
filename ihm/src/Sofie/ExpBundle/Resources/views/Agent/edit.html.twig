@@ -1,0 +1,27 @@
+{% extends 'SofieExpBundle:Agent:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li><a href="{{ app.request.requestUri }}">Editer un exploitant</a></li>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="box-name">
+                        <i class="fa fa-search"></i>
+                        <span>Edition d'un exploitant</span>
+                    </div>
+                </div>
+                {% if form is defined and form is not empty %}
+                    <div class="box-content">
+                        {% include 'SofieUserBundle:User:from_agent.html.twig' %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

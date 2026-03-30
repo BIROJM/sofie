@@ -1,0 +1,32 @@
+sofieadmin_groupe_index:
+    path:     /{page}
+    defaults: { _controller: SofieAdminBundle:Groupe:index, page: 1 }
+    methods: [GET]
+    requirements:
+        page: \d+
+
+sofieadmin_groupe_add:
+    path:     /add
+    defaults: { _controller: SofieAdminBundle:Groupe:add }
+    methods: [GET, POST]
+
+sofieadmin_groupe_edit:
+    path:     /edit/{id}
+    defaults: { _controller: SofieAdminBundle:Groupe:edit }
+    methods: [GET, POST]
+    requirements:
+        id: \d+
+
+sofieadmin_groupe_view:
+    path:     /view/{id}
+    defaults: { _controller: SofieAdminBundle:Groupe:view }
+    methods: [GET]
+    requirements:
+        id: \d+
+
+sofieadmin_groupe_delete:
+    path:     /delete/{id}
+    defaults: { _controller: SofieAdminBundle:Groupe:delete }
+    methods: [GET]
+    requirements:
+        id: \d+

@@ -1,0 +1,60 @@
+{% extends 'SofieAdminBundle:Groupe:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li><a href="{{ path('sofieadmin_groupe_view', {'id': groupe.id|default(0)}) }}">Voir un groupe</a></li>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="box-name">
+                        <i class="fa fa-info-circle"></i>
+                        <span>Détails sur groupe</span>
+                    </div>
+                </div>
+                <div class="box-content">
+                    {% if groupe is defined %}
+
+                        {% import '::macro/tr_views.html.twig' as trViews %}
+
+                        <div class="row">
+                            <div class="col-md-6 col-sm-8 col-xs-12">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        {{ trViews.tr('Nom du groupe :', groupe.name|default('')) }}
+                                        {{ trViews.tr('Nombre d\'utilisateurs :', groupe.userGroupes|default([])|length) }}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="x-margin" />
+                        <div class="clearfix">
+                            <div class="pull-right">
+                                {% if is_granted('ROLE_EDIT_GROUPE') %}
+                                    <a class="text-success" href="{{ path('sofieadmin_groupe_edit', {'id':groupe.id|default('0')}) }}" title="Modifier">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                {% endif %}
+                                {% if is_granted('ROLE_DELETE_GROUPE') %}
+                                    <a class="text-danger confirm-delete" href="{{ path('sofieadmin_groupe_delete', {'id':groupe.id|default('0')}) }}" title="Supprimer">
+                                        <i class="fa fa-remove"></i>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <button class="btn btn-default back-location" type="button">
+                <i class="fa fa-chevron-left"></i> Retour
+            </button>
+        </div>
+    </div>
+{% endblock %}

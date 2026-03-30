@@ -1,0 +1,4 @@
+services:
+#    sofie_stat.example:
+#        class: Sofie\StatBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

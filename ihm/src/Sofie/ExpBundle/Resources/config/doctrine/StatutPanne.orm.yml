@@ -1,0 +1,51 @@
+Sofie\ExpBundle\Entity\StatutPanne:
+    type: entity
+    table: t_statutpanne
+    repositoryClass: Sofie\ExpBundle\Entity\StatutPanneRepository
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    uniqueConstraints:
+        id:
+            columns:
+                - id
+    id:
+        id:
+            type: integer
+            nullable: false
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        libelle:
+            type: string
+            nullable: true
+            length: 100
+            column: libelleStatut
+        icone:
+            type: string
+            nullable: true
+            length: 200
+        couleur:
+            type: string
+            nullable: true
+            length: 10
+        sync:
+            type: string
+            length: 1
+            nullable: true
+            options:
+                default: 'N'
+            column: sync
+        deletedAt:
+            type: datetime
+            nullable: true
+            column: deleted_at
+    oneToMany:
+        pannes:
+            targetEntity: Panne
+            cascade: ["persist"]
+            mappedBy: statutPanne
+            fetch: EXTRA_LAZY
+    lifecycleCallbacks: {  }

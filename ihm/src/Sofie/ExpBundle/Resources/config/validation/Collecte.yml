@@ -1,0 +1,12 @@
+Sofie\ExpBundle\Entity\Collecte:
+    properties:
+        nomOperateur:
+            - NotBlank: ~
+        nomAgentSaisie:
+            - NotBlank: ~
+        dateSaisie:
+            - NotBlank: ~
+            - Date: ~
+        dateRemplissage:
+            - NotBlank: ~
+            - Date: ~

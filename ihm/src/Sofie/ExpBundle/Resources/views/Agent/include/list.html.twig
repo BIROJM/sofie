@@ -1,0 +1,83 @@
+<div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover table-heading">
+
+        {% import '::macro/links.html.twig' as links %}
+
+        {% if is_granted('ROLE_ADD_AGENT') %}
+            <caption>
+                <div class="pull-right">
+                    <a class="btn btn-primary btn-label-left" title="Ajouter" href="{{ path('sofieexp_agent_add') }}">
+                        <span><i class="fa fa-plus"></i></span> Ajouter
+                    </a>
+                    <i class="fa fa-ellipsis-v fa-2x"></i>
+                    {{ links.pdf_link({}, {'class':'fa-2x'}) }}
+                </div>
+            </caption>
+        {% endif %}
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Nom</th>
+            <th>Prénoms</th>
+            <th>Initialisé</th>
+            <th>C. initialisation</th>
+            <th>Qualification</th>
+            <th>N° appel</th>
+            <th>Région</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        {% if agents is defined %}
+            {% if agents is not empty %}
+                {% import '::macro/view.html.twig' as views %}
+                <tbody>
+                    {% set page_inc = g_paginator_items*(page-1) %}
+                    {% for agent in agents %}
+                        <tr>
+                            <td>{{ loop.index+page_inc }}</td>
+                            <td>{{ agent.nom|default('') }}</td>
+                            <td>{{ agent.prenoms|default('') }}</td>
+                            <td class="text-center">
+                                {% if agent.mustInitialized()|default(false) %}
+                                    {{ views.init_profile(agent, path('sofieexp_agent_ajax_init', {'id':agent.id|default(0)})) }}
+                                {% endif %}
+                            </td>
+                            <td>{{ agent.codeInit|default('') }}</td>
+                            <td>{{ agent.qualification|default('') }}</td>
+                            <td class="profile-number">{{ agent.numeroAppel.numero|default('') }}</td>
+                            <td>
+                                {% if is_granted('ROLE_REGION') %}
+                                    <a href="{{ path('sofieexp_region_view', {'id':agent.region.id|default(0)}) }}">
+                                        {{ agent.region.nom|default('') }}
+                                    </a>
+                                {% else %}
+                                    {{ agent.region.nom|default('') }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a class="text-info" href="{{ path('sofieexp_agent_view', {'id':agent.id|default(0)}) }}" title="Voir">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                {% if is_granted('ROLE_EDIT_AGENT') %}
+                                    <a class="text-success" href="{{ path('sofieexp_agent_edit', {'id':agent.id|default(0)}) }}" title="Modifier">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                {% endif %}
+                                {% if is_granted('ROLE_DELETE_AGENT') %}
+                                    <a class="text-danger confirm-delete" href="{{ path('sofieexp_agent_delete', {'id':agent.id|default(0)}) }}" title="Supprimer">
+                                        <i class="fa fa-remove"></i>
+                                    </a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                {# Pagination #}
+                {#{% set pagination = agents|default([]) %}#}
+            {% endif %}
+        {% endif %}
+    </table>
+</div>
+{# Pagination #}
+{#{% include '::include/knp_paginator.html.twig' %}#}
+{% include '::include/paginator/paginator.html.twig' with {'total': agents|default([])|length} %}

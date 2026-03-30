@@ -1,0 +1,9 @@
+{{ (page-1)*g_paginator_items+1 }}
+-
+{% if page == nbPage %}
+    {{ itemLength }}
+{% else %}
+    {{ (page*g_paginator_items) }}
+{% endif %}
+/
+{{ itemLength }}

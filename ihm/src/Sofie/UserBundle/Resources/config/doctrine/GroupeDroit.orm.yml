@@ -1,0 +1,49 @@
+Sofie\UserBundle\Entity\GroupeDroit:
+    type: entity
+    table: groupes_droits
+    repositoryClass: Sofie\UserBundle\Entity\GroupeDroitRepository
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    id:
+        droit:
+            associationKey: true
+        groupe:
+            associationKey: true
+    fields:
+        deletedAt:
+            type: datetime
+            nullable: true
+            column: deleted_at
+        sync:
+            type: string
+            length: 1
+            nullable: true
+            options:
+                default: 'N'
+            column: sync
+    manyToOne:
+        droit:
+            targetEntity: Droit
+            inversedBy: groupeDroits
+            cascade: ["persist"]
+            joinColumn:
+                name: droit_id
+                nullable: false
+                referencedColumnName: id
+                onDelete: "CASCADE"
+            orphanRemoval: true
+        groupe:
+            targetEntity: Groupe
+            inversedBy: groupeDroits
+            cascade: ["persist"]
+            joinColumn:
+                name: groupe_id
+                nullable: false
+                referencedColumnName: id
+                onDelete: "CASCADE"
+            orphanRemoval: true
+    lifecycleCallbacks:
+        preUpdate: [setUpdatedValue]
+        preRemove: [setRemovedValue]

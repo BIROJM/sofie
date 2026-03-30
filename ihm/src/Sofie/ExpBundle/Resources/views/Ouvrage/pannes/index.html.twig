@@ -1,0 +1,46 @@
+{% extends 'SofieExpBundle:Ouvrage:index.html.twig' %}
+
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li><a href="{{ path('sofieexp_ouvrage_pannes', {'id': ouvrage.id|default(0)}) }}">Pannes</a></li>
+{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="box-name">
+                        <i class="fa fa-table"></i>
+                        <span>Liste des pannes de l'ouvrage n°{{ ouvrage.code|default('') }}</span>
+                    </div>
+                </div>
+                <div class="box-content no-padding">
+                    <div class="bs-callout content-critere">
+                        {% include 'SofieExpBundle:Ouvrage:pannes/critere_form.html.twig' %}
+                    </div>
+                    {% include 'SofieExpBundle:Ouvrage:pannes/list.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/sofieexp/js/panne.js') }}"></script>
+{% endblock %}
+
+{% block flash_scripts %}
+<script type="text/javascript">
+    $(function(){
+        critereListener();
+        classicDaterangepicker($('.daterange-picker'));
+        panneAppelsListener($('.panne-appels-view'));
+        panneNotificationsListener($('.panne-notifications-view'));
+        typePanneListener($('.edit-type-panne'));
+    });
+</script>
+{% endblock %}

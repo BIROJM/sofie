@@ -1,0 +1,35 @@
+Sofie\ExpBundle\Entity\Ouvrage:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: code
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: comite
+    properties:
+#        comite:
+#            - NotBlank:
+#                message: "La champ comité ne doit pas être vide"
+        localite:
+            - NotBlank: ~
+        type:
+            - NotBlank: ~
+        statutOuvrage:
+            - NotBlank: ~
+        latitude:
+            - NotBlank: ~
+            - Type:
+                type: numeric
+        longitude:
+            - NotBlank: ~
+            - Type:
+                type: numeric
+        numIRH:
+            - NotBlank: ~
+        operateurSaisie:
+            - NotBlank: ~
+        dateSaisie:
+            - NotBlank: ~
+            - Date: ~
+        dateNs:
+            - Date: ~
+        datePrelevement:
+            - Date: ~
+        dateInstallPompe:
+            - Date: ~

@@ -1,0 +1,55 @@
+{% import '::macro/links.html.twig' as links %}
+
+<div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover table-heading">
+        {% if is_granted('ROLE_TYPE_PANNE') %}
+            <caption>
+                <div class="pull-right">
+                    <a class="btn btn-primary btn-label-left" title="Ajouter" href="{{ path('sofieexp_typepanne_add') }}">
+                        <span><i class="fa fa-plus"></i></span> Ajouter
+                    </a>
+                    <i class="fa fa-ellipsis-v fa-2x"></i>
+                    {{ links.pdf_link({}, {'class':'fa-2x'}) }}
+                </div>
+            </caption>
+        {% endif %}
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Libellé</th>
+            <th>Nb. pannes</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        {% if typePannes is defined %}
+            {% if typePannes is not empty %}
+                <tbody>
+                    {% set page_inc = g_paginator_items*(page-1) %}
+                    {% for typePanne in typePannes %}
+                        <tr>
+                            <td>{{ loop.index+page_inc }}</td>
+                            <td>{{ typePanne|default('') }}</td>
+                            <td class="text-center">
+                                {{ typePanne.pannes|default('')|length }}
+                            </td>
+                            <td class="text-center">
+                                {% if is_granted('ROLE_EDIT_TYPE_PANNE') %}
+                                    <a class="text-success" href="{{ path('sofieexp_typepanne_edit', {'id':typePanne.id|default(0)}) }}" title="Modifier">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                {% endif %}
+                                {% if is_granted('ROLE_DELETE_TYPE_PANNE') %}
+                                    <a class="text-danger confirm-delete" href="{{ path('sofieexp_typepanne_delete', {'id':typePanne.id|default(0)}) }}" title="Supprimer">
+                                        <i class="fa fa-remove"></i>
+                                    </a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            {% endif %}
+        {% endif %}
+    </table>
+</div>
+{# Pagination #}
+{% include '::include/paginator/paginator.html.twig' with {'total': typePannes|default([])|length} %}

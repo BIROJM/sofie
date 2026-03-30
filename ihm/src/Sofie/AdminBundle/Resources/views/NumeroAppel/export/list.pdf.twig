@@ -1,0 +1,38 @@
+{% extends '::pdf.html.twig' %}
+
+{% block title %}Listes des numéros d'appels{% endblock %}
+
+{% block data_source %}Numéros d'appels{% endblock %}
+{% block data_length %}{{ numeroAppels|default([])|length }}{% endblock %}
+
+{% block sofie_pdf_body %}
+    {{ pdf.start_list_table() }}
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Numéro</th>
+                <th>Profil</th>
+                <th>Propriétaire</th>
+                <th>Nb. appels</th>
+                <th>Nb. notifications</th>
+            </tr>
+        </thead>
+        {% if numeroAppels is defined %}
+            {% if numeroAppels is not empty %}
+                <tbody>
+                {% set page_inc = g_paginator_items|default(0)*(page|default(1)-1) %}
+                {% for numeroAppel in numeroAppels %}
+                    <tr>
+                        <td>{{ loop.index+page_inc }}</td>
+                        <td>{{ numeroAppel.numero|default('') }}</td>
+                        <td>{{ numeroAppel.profile.designation|default('') }}</td>
+                        <td>{{ numeroAppel.proprietaire|default('') }}</td>
+                        <td class="text-center">{{ numeroAppel.appels|default([])|length }}</td>
+                        <td class="text-center">{{ numeroAppel.notifications|default('')|length }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            {% endif %}
+        {% endif %}
+    {{ pdf.end_list_table() }}
+{% endblock %}

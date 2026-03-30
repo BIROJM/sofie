@@ -1,0 +1,87 @@
+Sofie\ExpBundle\Entity\Reparateur:
+    type: entity
+    table: t_reparateur
+    repositoryClass: Sofie\ExpBundle\Entity\ReparateurRepository
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    indexes:
+        IDNumAppel:
+            columns:
+                - IDNumAppel
+    uniqueConstraints:
+        CodeInitAgent:
+            columns:
+                - CodeInitRep
+    id:
+        id:
+            type: integer
+            nullable: false
+            id: true
+            column: IDReparateur
+            generator:
+                strategy: NONE
+#                strategy: IDENTITY
+    fields:
+        nom:
+            type: string
+            nullable: true
+            length: 50
+            column: NomRep
+        prenoms:
+            type: string
+            nullable: true
+            length: 50
+            column: PrenomsRep
+        codeInit:
+            type: string
+            nullable: true
+            length: 10
+            column: CodeInitRep
+        initStatus:
+            type: boolean
+            nullable: true
+            options:
+                default: '0'
+            column: InitSatus
+        deletedAt:
+            type: datetime
+            nullable: true
+            column: deleted_at
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        sync:
+            type: string
+            length: 1
+            nullable: true
+            options:
+                default: 'N'
+            column: sync
+    oneToOne:
+        numeroAppel:
+            targetEntity: NumeroAppel
+            cascade: ["persist", "remove"]
+            inversedBy: reparateur
+            joinColumn:
+                name: IDNumAppel
+                nullable: true
+                referencedColumnName: IDNumAppel
+                onDelete: "SET NULL"
+            orphanRemoval: false
+    oneToMany:
+        localites:
+            targetEntity: Localite
+            cascade: ["persist"]
+            mappedBy: reparateur
+            fetch: EXTRA_LAZY
+    lifecycleCallbacks:
+        prePersist: [setCreatedValue, setCustomId, initialize]
+        preUpdate: [setUpdatedValue]
+        preRemove: [setRemovedValue]

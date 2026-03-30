@@ -1,0 +1,36 @@
+{% extends '::pdf.html.twig' %}
+
+{% block title %}Listes des profils utilisateur{% endblock %}
+
+{% block data_source %}Profils utilisateur{% endblock %}
+{% block data_length %}{{ profils|default([])|length }}{% endblock %}
+
+{% block sofie_pdf_body %}
+    {{ pdf.start_list_table() }}
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Code</th>
+                <th>Nom du profil</th>
+                <th>Commentaire</th>
+                <th>Nb. Utilisateurs</th>
+            </tr>
+        </thead>
+        {% if profils is defined %}
+            {% if profils is not empty %}
+                <tbody>
+                {% set page_inc = g_paginator_items|default(0)*(page|default(1)-1) %}
+                {% for profil in profils %}
+                    <tr>
+                         <td>{{ loop.index+page_inc }}</td>
+                            <td>{{ profil.id|default('') }}</td>
+                            <td>{{ profil.designation|default('') }}</td>
+							<td>{{ profil.commentaire|default('') }}</td>
+							<td>{{ profil.agents|default('') |length}}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            {% endif %}
+        {% endif %}
+    {{ pdf.end_list_table() }}
+{% endblock %}

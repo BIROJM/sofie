@@ -1,0 +1,253 @@
+<?php
+
+namespace Sofie\ExpBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+
+/**
+ * NumeroAppel
+ */
+class NumeroAppel
+{
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $numero;
+
+    /**
+     * @var \Sofie\ExpBundle\Entity\Agent
+     */
+    private $agent;
+
+    /**
+     * @var Collection
+     */
+    private $appels;
+
+    /**
+     * @var Collection
+     */
+    private $notifications;
+
+    /**
+     * @var \Sofie\ExpBundle\Entity\Profile
+     */
+    private $profile;
+
+    /**
+     * @var string
+     */
+    private $sync;
+
+    /**
+     * @var \DateTime
+     */
+    private $deletedAt;
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->appels = new ArrayCollection();
+        $this->notifications = new ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set numero
+     *
+     * @param string $numero
+     * @return NumeroAppel
+     */
+    public function setNumero($numero)
+    {
+        $this->numero = $numero;
+
+        return $this;
+    }
+
+    /**
+     * Get numero
+     *
+     * @return string 
+     */
+    public function getNumero()
+    {
+        return $this->numero;
+    }
+
+    /**
+     * Set agent
+     *
+     * @param \Sofie\ExpBundle\Entity\Agent $agent
+     * @return NumeroAppel
+     */
+    public function setAgent(\Sofie\ExpBundle\Entity\Agent $agent = null)
+    {
+        $this->agent = $agent;
+
+        return $this;
+    }
+
+    /**
+     * Get agent
+     *
+     * @return \Sofie\ExpBundle\Entity\Agent 
+     */
+    public function getAgent()
+    {
+        return $this->agent;
+    }
+
+    /**
+     * Add appels
+     *
+     * @param \Sofie\ExpBundle\Entity\AppelTelephonique $appels
+     * @return NumeroAppel
+     */
+    public function addAppel(\Sofie\ExpBundle\Entity\AppelTelephonique $appels)
+    {
+        $this->appels[] = $appels;
+
+        return $this;
+    }
+
+    /**
+     * Remove appels
+     *
+     * @param \Sofie\ExpBundle\Entity\AppelTelephonique $appels
+     */
+    public function removeAppel(\Sofie\ExpBundle\Entity\AppelTelephonique $appels)
+    {
+        $this->appels->removeElement($appels);
+    }
+
+    /**
+     * Get appels
+     *
+     * @return Collection
+     */
+    public function getAppels()
+    {
+        return $this->appels;
+    }
+
+    /**
+     * Add notifications
+     *
+     * @param \Sofie\ExpBundle\Entity\Notification $notifications
+     * @return NumeroAppel
+     */
+    public function addNotification(\Sofie\ExpBundle\Entity\Notification $notifications)
+    {
+        $this->notifications[] = $notifications;
+
+        return $this;
+    }
+
+    /**
+     * Remove notifications
+     *
+     * @param \Sofie\ExpBundle\Entity\Notification $notifications
+     */
+    public function removeNotification(\Sofie\ExpBundle\Entity\Notification $notifications)
+    {
+        $this->notifications->removeElement($notifications);
+    }
+
+    /**
+     * Get notifications
+     *
+     * @return Collection
+     */
+    public function getNotifications()
+    {
+        return $this->notifications;
+    }
+
+    /**
+     * Set profile
+     *
+     * @param \Sofie\ExpBundle\Entity\Profile $profile
+     * @return NumeroAppel
+     */
+    public function setProfile(\Sofie\ExpBundle\Entity\Profile $profile = null)
+    {
+        $this->profile = $profile;
+
+        return $this;
+    }
+
+    /**
+     * Get profile
+     *
+     * @return \Sofie\ExpBundle\Entity\Profile 
+     */
+    public function getProfile()
+    {
+        return $this->profile;
+    }
+
+    /**
+     * Set sync
+     *
+     * @param string $sync
+     * @return NumeroAppel
+     */
+    public function setSync($sync)
+    {
+        $this->sync = $sync;
+
+        return $this;
+    }
+
+    /**
+     * Get sync
+     *
+     * @return string 
+     */
+    public function getSync()
+    {
+        return $this->sync;
+    }
+
+    /**
+     * Set deletedAt
+     *
+     * @param \DateTime $deletedAt
+     * @return NumeroAppel
+     */
+    public function setDeletedAt($deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get deletedAt
+     *
+     * @return \DateTime 
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
+    }
+}

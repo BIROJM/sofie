@@ -1,0 +1,41 @@
+{% extends 'SofieExpBundle::layout.html.twig' %}
+
+{% block nav_region_active %}active{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li><a href="{{ path('sofieexp_region_index') }}">Régions</a></li>
+{% endblock %}
+
+{% block body %}
+
+   {# <div class="row">
+        <div class="col-xs-12">
+            <a class="btn btn-default btn-circle btn-app btn-app-sm">
+                <i class="fa fa-plus"></i>
+            </a>
+        </div>
+    </div>#}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="box-name">
+                        <i class="fa fa-table"></i>
+                        <span class ="titleHeader">Liste des Directions Régionales</span>
+                    </div>
+                </div>
+                <div class="box-content no-padding">
+                    {% include 'SofieExpBundle:Region:include/list.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/sofieexp/js/region.js') }}"></script>
+{% endblock %}
+

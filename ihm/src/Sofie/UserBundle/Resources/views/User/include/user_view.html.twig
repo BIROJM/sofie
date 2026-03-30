@@ -1,0 +1,12 @@
+{% if user is defined %}
+    <div class="table-responsive">
+        <table class="table table-hover table-striped">
+            <caption>Informations d'identification</caption>
+            {{ trViews.tr('Nom d\'utilisateur :', user.username|default('')) }}
+            {{ trViews.tr('Email :', user.email|default('')) }}
+            {{ trViews.tr('Administrateur :', user.admin|default(false)|oui_non) }}
+            {{ trViews.tr('Utilisateur mobile :', user.isMobile|default(false)|oui_non) }}
+            {{ trViews.tr('Actif :', user.isActive|default(false)|oui_non) }}
+        </table>
+    </div>
+{% endif %}

@@ -1,0 +1,49 @@
+Sofie\ExpBundle\Entity\Region:
+    exclusion_policy: ALL
+    properties:
+        nom:
+            expose: true
+            serialized_name: NomRegion
+            groups: [api_add]
+        superficie:
+            expose: true
+            serialized_name: Superficie
+            groups: [api_add]
+        situation:
+            expose: true
+            serialized_name: Stituation
+            groups: [api_add]
+        longitude:
+            expose: true
+            groups: [api_add]
+        latitude:
+            expose: true
+            groups: [api_add]
+        carte:
+            expose: true
+            groups: [api_add]
+        zoom:
+            expose: true
+            groups: [api_add]
+        maxZoom:
+            expose: true
+            serialized_name: maxZoom
+            groups: [api_add]
+        sync:
+            expose: true
+            serialized_name: sync
+            groups: [api_add]
+        createdAt:
+            expose: true
+            serialized_name: created_at
+            type: DateTime<'Y-m-d H:i:s'>
+            groups: [api_add]
+        updatedAt:
+            expose: true
+            serialized_name: updated_at
+            type: DateTime<'Y-m-d H:i:s'>
+            groups: [api_add]
+        numeroModem:
+            expose: true
+            serialized_name: numero_modem
+            groups: [api_add]

@@ -1,0 +1,304 @@
+div#entete  { margin-top: 10px; margin-bottom: 20px; margin-right: 10px;}
+div#entete h1 { color:darkgreen; margin: 0px;}
+div#entete h3 { color:darkred; margin: 0px;  font-size:14px;}
+
+div#contenu h2, div#contenu h3 { color: gray;}
+
+div#conteneur { width: 100%; margin-left: auto; margin-right: auto;}
+
+div#pieds { color: gray; margin-top: 40px; text-align: center; clear: left; font-size:10px;}
+
+input{width:235px;}
+textarea{width:235px;}
+select{width:250px;}
+
+.spanPerso {
+	width: 50%;
+	border: 1px solid green;
+	padding:10px;
+	margin:0 auto;
+}
+
+.contourAdmin{
+border: 1px solid green;
+width: 40%;
+margin: auto;
+padding:10px;
+}
+
+.contourTab{
+border: 1px solid green;
+width: 95%;
+margin: auto;
+padding:10px;
+}
+
+.titreModal{
+font-size:14px;
+TEXT-ALIGN: center;
+vertical-align: middle;
+FONT-WEIGHT: bold; 
+margin-bottom: 5px;
+}
+
+.spanPays {
+	width: 90%;
+	 height:100%;
+	border: 1px solid orange;
+	padding:10px;
+}
+
+.adminMenu{
+padding:10px;
+margin:20px;
+}
+
+.login{
+margin-bottom:20px;
+}
+
+.gauche {
+margin-left: 10px;
+padding-left: 10px;
+}
+
+.gras {
+FONT-WEIGHT: bold;
+}
+
+.bouton {
+width: 70px;
+height: 30px;
+font-size:10px;
+TEXT-ALIGN: center;
+vertical-align: middle;
+FONT-WEIGHT: bold; 
+}
+
+.trait {
+border-color:green;
+margin-bottom:10px;
+}
+
+.separateur{
+background-color: rgb(255, 233, 210);
+}
+
+.interligne{
+background-color: whitesmoke;
+}
+.arrondi{
+background-color: #EDA90B;
+margin-left : 1px;
+height : 8px;
+}
+
+.tableau{
+position: relative; top: -4px;
+}
+
+label
+{
+	display: block;
+	width: 150px;
+	float: left;
+}
+
+#idPartiNumber{
+display: block;
+float: right;
+
+}
+
+/*Entetes des zones de menu de gauche*/
+.enteteMenu {
+	background-color: #eeeeee;
+	text-decoration: none;
+	margin-left: 0px;
+	height: 17px;
+	font-weight: bold;
+	font-size: 17px;
+	padding-left: 0px;
+}
+
+/*Couleur d'entete du tableau */
+.tab {
+	color: #fff;
+	background-color: #00CC66;
+	/*font-weight: bold;*/
+	font-size: 10px;
+	font-family: Verdana, Geneva, sans-serif;
+	/* word-break: break-all;
+	 white-space: normal;*/
+}
+
+.tabmedium {
+	color: #fff;
+	background-color: #00CC66;
+	/*font-weight: bold;*/
+	font-size: 8px;
+	font-family: Verdana, Geneva, sans-serif;
+	/* word-break: break-all;
+	 white-space: normal;*/
+}
+
+.tabInterne {
+	color: #fff;
+	background-color: #F7C559;
+	font-weight: bold;
+	font-size: 9px;
+	font-family: Verdana, Geneva, sans-serif;
+}
+
+.tailleNouveau
+{
+	font-weight: bold;
+	height : 25px;
+	padding-top: 0px;
+}
+
+/*Taille des fenetres modales de base*/
+body .modal {
+	width: 550px;
+	margin-left: -250px;
+}
+
+.modal-backdrop.fade {
+opacity: 0;
+filter: alpha(opacity=0);
+}
+
+.modal-backdrop.fade.in {
+opacity: 0.2;
+filter: alpha(opacity=30);
+}
+
+.btnCaretAction {
+	height:25px;
+}
+
+.btnCaretAction1{
+	height:15px;
+}
+
+.titre {
+color:white;
+}
+
+.center
+{
+text-align:center;
+}
+
+.soustitre
+{
+text-align:left;
+font-size: 9px;
+}
+
+.tooltip-inner {
+  max-width: 200px;
+  padding: 8px;
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+  background-color: red;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+}
+
+.tooltip.bottom .tooltip-arrow {
+  top: 0;
+  left: 50%;
+  margin-left: -5px;
+  border-bottom-color: red;
+  border-width: 0 5px 5px;
+}
+
+#rechercher {
+width:100%;
+padding-top: 5px;
+padding-left: 5px;
+padding-bottom: 0px;
+font-size: 12px;
+margin-bottom:10px;
+margin-right:15px;
+border: 1px solid orange;
+/*background-color: whitesmoke; */
+vertical-align: middle;
+}
+
+.warning{
+background-color: red;
+}
+
+.warning1{
+background-color: white;
+}
+
+.input-search{
+width: 120px;
+height: 30px;
+font-size:12px;
+TEXT-ALIGN: center;
+vertical-align: middle;
+FONT-WEIGHT: bold; 
+}
+
+.ligneTab:hover{
+background-color: #99FFFF;
+cursor:pointer;
+}
+
+.ligne{
+font-size: 12px;
+}
+
+.interligne{
+background-color: whitesmoke;
+}
+
+.Vert{
+background-color: green;
+}
+
+.Rouge{
+background-color:whitered;
+}
+
+.Blue{
+background-color:blue;
+}
+
+.Orange{
+background-color:orange;
+}
+
+.labelClass{
+  #white-space:nowrap;
+  #text-shadow: 0 0 0.1em black, 0 0 0.1em black, 0 0 0.1em black,0 0 0.1em black,0 0 0.1em;
+  color: black;
+  font-size : 14px;
+}
+
+.labelClass1{
+  #white-space:nowrap;
+  #text-shadow: 0 0 0.1em black, 0 0 0.1em black, 0 0 0.1em black,0 0 0.1em black,0 0 0.1em;
+  color: black;
+  font-size : 24px;
+}
+
+.labelClass2{
+  #white-space:nowrap;
+  #text-shadow: 0 0 0.1em black, 0 0 0.1em black, 0 0 0.1em black,0 0 0.1em black,0 0 0.1em;
+  color: black;
+  font-size : 12px;
+}
+
+.labelClass3{
+  #white-space:nowrap;
+  #text-shadow: 0 0 0.1em black, 0 0 0.1em black, 0 0 0.1em black,0 0 0.1em black,0 0 0.1em;
+  color: black;
+  font-size : 10px;
+}

@@ -1,0 +1,225 @@
+<?php
+
+namespace Sofie\UserBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+
+/**
+ * DroitCategory
+ */
+class DroitCategory
+{
+    const SYNC = 'Y';
+    const NO_SYNC = 'N';
+
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $libelle;
+
+    /**
+     * @var string
+     */
+    private $description;
+
+    /**
+     * @var \DateTime
+     */
+    private $deletedAt;
+
+    /**
+     * @var string
+     */
+    private $sync;
+
+
+    /**
+     * @var Collection
+     */
+    private $droits;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->droits = new ArrayCollection();
+        $this->sync = static::NO_SYNC;
+    }
+
+    /**
+     * Set id
+     *
+     * @param integer $id
+     * @return DroitCategory
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set libelle
+     *
+     * @param string $libelle
+     * @return DroitCategory
+     */
+    public function setLibelle($libelle)
+    {
+        $this->libelle = $libelle;
+
+        return $this;
+    }
+
+    /**
+     * Get libelle
+     *
+     * @return string 
+     */
+    public function getLibelle()
+    {
+        return $this->libelle;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return DroitCategory
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set deletedAt
+     *
+     * @param \DateTime $deletedAt
+     * @return DroitCategory
+     */
+    public function setDeletedAt($deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get deletedAt
+     *
+     * @return \DateTime 
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
+    }
+
+    /**
+     * Set sync
+     *
+     * @param string $sync
+     * @return DroitCategory
+     */
+    public function setSync($sync)
+    {
+        $this->sync = $sync;
+
+        return $this;
+    }
+
+    /**
+     * Get sync
+     *
+     * @return string 
+     */
+    public function getSync()
+    {
+        return $this->sync;
+    }
+
+    /**
+     * Add droits
+     *
+     * @param \Sofie\UserBundle\Entity\Droit $droits
+     * @return DroitCategory
+     */
+    public function addDroit(\Sofie\UserBundle\Entity\Droit $droits)
+    {
+        $this->droits[] = $droits;
+        $droits->setDroitCategory($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove droits
+     *
+     * @param \Sofie\UserBundle\Entity\Droit $droits
+     */
+    public function removeDroit(\Sofie\UserBundle\Entity\Droit $droits)
+    {
+        $this->droits->removeElement($droits);
+        $droits->setDroitCategory(null);
+    }
+
+    /**
+     * Get droits
+     *
+     * @return Collection
+     */
+    public function getDroits()
+    {
+        return $this->droits;
+    }
+
+    public function __toString()
+    {
+        return $this->libelle;
+    }
+
+    public function setUpdatedValue()
+    {
+        $this->unsynchronize();
+    }
+
+    public function synchronize()
+    {
+        $this->sync = static::SYNC;
+    }
+
+    public function unsynchronize()
+    {
+        $this->sync = static::NO_SYNC;
+    }
+}

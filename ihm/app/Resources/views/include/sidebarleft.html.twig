@@ -1,0 +1,146 @@
+{% block sidebarleft %}
+<div id="sidebar-left" class="col-xs-2 col-sm-2">
+    <ul class="nav main-menu">
+        <li>
+            <a href="{{ path('sofieexp_homepage') }}" class="{% block nav_dashboard_active %}{% endblock %}">
+                <i class="fa fa-dashboard"></i>
+                <span class="hidden-xs">Tableau de bord</span>
+            </a>
+        </li>
+        {% if is_granted('ROLE_EXP') %}
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle {% block nav_exp_active %}{% endblock %}">
+                    <i class="fa fa-bar-chart-o"></i>
+                    <span class="hidden-xs">Exploitation</span>
+                    <i class="fa fa-plus-square-o hidden-sm hidden-xs pull-right"></i>
+                </a>
+                <ul class="dropdown-menu" style="{% block nav_exp_display %}{% endblock %}">
+                    {% if is_granted('ROLE_REGION') %}
+                        <li>
+                            <a class="{% block nav_region_active %}{% endblock %}" href="{{ path('sofieexp_region_index') }}">
+                                <i class="fa fa-desktop"></i> Directions régionales
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if is_granted('ROLE_LOCALITE') %}
+                        <li>
+                            <a class="{% block nav_localite_active %}{% endblock %}" href="{{ path('sofieexp_localite_index') }}">
+                                <i class="fa fa-laptop"></i> Localités
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if is_granted('ROLE_OUVRAGE') %}
+                        <li>
+                            <a class="{% block nav_ouvrage_active %}{% endblock %}" href="{{ path('sofieexp_ouvrage_index') }}">
+                                <i class="fa fa-gavel"></i> Ouvrages
+                            </a>
+                        </li>
+                    {% endif %}
+                    {#{% if is_granted('ROLE_EVENT') %}
+                        <li>
+                            <a class="{% block nav_event_active %}{% endblock %}" href="{{ path('sofieexp_event_index') }}">
+                                <i class="fa fa-calendar"></i> Evénements
+                            </a>
+                        </li>
+                    {% endif %}#}
+                    {% if is_granted('ROLE_APPEL') %}
+                        <li>
+                            <a class="{% block nav_appel_active %}{% endblock %}" href="{{ path('sofieexp_appel_index') }}">
+                                <i class="fa fa-phone"></i> Appels téléphoniques
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if is_granted('ROLE_AGENT') %}
+                        <li>
+                            <a class="{% block nav_agent_active %}{% endblock %}" href="{{ path('sofieexp_agent_index') }}">
+                                <i class="fa fa-user-secret"></i> Ressources Humaines
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if is_granted('ROLE_REPARATEUR') %}
+                        <li>
+                            <a class="{% block nav_reparateur_active %}{% endblock %}" href="{{ path('sofieexp_reparateur_index') }}">
+                                <i class="fa fa-street-view"></i> Réparateurs
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if is_granted('ROLE_COMITE') %}
+                        <li>
+                            <a class="{% block nav_comite_active %}{% endblock %}" href="{{ path('sofieexp_comite_index') }}">
+                                <i class="fa fa-tint"></i> Comités
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if g_sofie_site|default(null) is null and is_granted('ROLE_SMS') %}
+                        <li>
+                            <a class="{% block nav_diffusionsms_active %}{% endblock %}" href="{{ path('sofieexp_diffusionsms_index') }}">
+                                <i class="fa fa-envelope"></i> Diffusion de messages
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if is_granted('ROLE_TYPE_PANNE') %}
+                        <li>
+                            <a class="{% block nav_typepanne_active %}{% endblock %}" href="{{ path('sofieexp_typepanne_index') }}">
+                                <i class="fa fa-plug"></i> Type de pannes
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </li>
+        {% endif %}
+        {% if is_granted('ROLE_ADMIN_VIEW') %}
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle {% block nav_admin_active %}{% endblock %}">
+                    <i class="fa fa-cog"></i>
+                    <span class="hidden-xs">Administration</span>
+                    <i class="fa fa-plus-square-o hidden-sm hidden-xs pull-right"></i>
+                </a>
+                <ul class="dropdown-menu" style="{% block nav_admin_display %}{% endblock %}">
+                    {% if is_granted('ROLE_NUM_APPEL') %}
+                        <li>
+                            <a class="{% block nav_numappel_active %}{% endblock %}" href="{{ path('sofieadmin_numappel_index') }}">
+                                <i class="fa fa-mobile-phone"></i> Numéros d'appel
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if is_granted('ROLE_USER_VIEW') %}
+                        <li>
+                            <a class="{% block nav_user_active %}{% endblock %}" href="{{ path('sofieadmin_user_index') }}">
+                                <i class="fa fa-user"></i> Utilisateurs
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if is_granted('ROLE_GROUPE') %}
+                        <li>
+                            <a class="{% block nav_groupe_active %}{% endblock %}" href="{{ path('sofieadmin_groupe_index') }}">
+                                <i class="fa fa-group"></i> Groupes
+                            </a>
+                        </li>
+                    {% endif %}
+					{% if is_granted('ROLE_PROFIL') %}
+                        <li>
+                            <a class="{% block nav_profil_active %}{% endblock %}" href="{{ path('sofieadmin_profil_index') }}">
+                                <i class="fa fa-user-secret"></i> Profils
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if is_granted('ROLE_SETTING') %}
+                        <li>
+                            <a class="{% block nav_param_active %}{% endblock %}" href="{{ path('sofieadmin_param_index') }}">
+                                <i class="fa fa-wrench"></i> Paramètres
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if is_granted('ROLE_STAT') %}
+                        <li>
+                            <a class="" href="{{ g_stat_url|default('') }}" target="_blank" id="sofieStat">
+                                <i class="fa fa-diamond"></i> Statistiques
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </li>
+        {% endif %}
+    </ul>
+</div>
+{% endblock %}

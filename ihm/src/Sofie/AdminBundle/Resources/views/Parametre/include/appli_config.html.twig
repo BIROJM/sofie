@@ -1,0 +1,83 @@
+{% if form is defined and form is not empty %}
+    {{
+        form_start(form, {
+            'action':path('sofieadmin_param_appliconfig'), 'method':'POST', 'attr':{
+                'class':'form-horizontal', 'id':'appliConfig', 'role':'form'
+            }
+        })
+    }}
+
+    <div class="text-danger small">{{ form_errors(form) }}</div>
+
+    {% set defaultValMsg = "Laissez le champ vide pour utiliser la configuration par défaut" %}
+
+    {% if form.offsetPaginator is defined %}
+        <div class="form-group">
+            {{ form_label(form.offsetPaginator, null, {'label_attr':{'class':'col-sm-6 control-label'}}) }}
+            <div class="col-sm-6">
+                {{ form_widget(form.offsetPaginator, {'attr':{'class':'form-control'}}) }}
+                <div class="text-danger small">{{ form_errors(form.offsetPaginator) }}</div>
+            </div>
+        </div>
+    {% endif %}
+    {% if form.nbPaginator is defined %}
+        <div class="form-group">
+            {{ form_label(form.nbPaginator, null, {'label_attr':{'class':'col-sm-6 control-label'}}) }}
+            <div class="col-sm-6">
+                {{ form_widget(form.nbPaginator, {'attr':{'class':'form-control'}}) }}
+                <div class="text-danger small">{{ form_errors(form.nbPaginator) }}</div>
+            </div>
+        </div>
+    {% endif %}
+    {% if form.statUrl is defined %}
+        <div class="form-group">
+            {{ form_label(form.statUrl, null, {'label_attr':{'class':'col-sm-6 control-label'}}) }}
+            <div class="col-sm-6">
+                {{ form_widget(form.statUrl, {'attr':{'class':'form-control'}}) }}
+                <div class="text-muted small">{{ defaultValMsg|default('') }}</div>
+                <div class="text-danger small">{{ form_errors(form.statUrl) }}</div>
+            </div>
+        </div>
+    {% endif %}
+    {% if form.apiGetKeyUrl is defined %}
+        <div class="form-group">
+            {{ form_label(form.apiGetKeyUrl, null, {'label_attr':{'class':'col-sm-6 control-label'}}) }}
+            <div class="col-sm-6">
+                {{ form_widget(form.apiGetKeyUrl, {'attr':{'class':'form-control'}}) }}
+                <div class="text-danger small">{{ form_errors(form.apiGetKeyUrl) }}</div>
+            </div>
+        </div>
+    {% endif %}
+    {% if form.carteCentralUrl is defined %}
+        <div class="form-group">
+            {{ form_label(form.carteCentralUrl, null, {'label_attr':{'class':'col-sm-6 control-label'}}) }}
+            <div class="col-sm-6">
+                {{ form_widget(form.carteCentralUrl, {'attr':{'class':'form-control'}}) }}
+                <div class="text-muted small">{{ defaultValMsg|default('') }}</div>
+                <div class="text-danger small">{{ form_errors(form.carteCentralUrl) }}</div>
+            </div>
+        </div>
+    {% endif %}
+    {% if form.carteRegionUrl is defined %}
+        <div class="form-group">
+            {{ form_label(form.carteRegionUrl, null, {'label_attr':{'class':'col-sm-6 control-label'}}) }}
+            <div class="col-sm-6">
+                {{ form_widget(form.carteRegionUrl, {'attr':{'class':'form-control'}}) }}
+                <div class="text-muted small">{{ defaultValMsg|default('') }}</div>
+                <div class="text-danger small">{{ form_errors(form.carteRegionUrl) }}</div>
+            </div>
+        </div>
+    {% endif %}
+    <div class="form-group">
+        <div class="col-sm-offset-6 col-sm-6">
+            <button type="submit" class="btn btn-success btn-label-left">
+                <span><i class="fa fa-clock-o"></i></span>
+                Enrégistrer
+            </button>
+        </div>
+    </div>
+    <div>
+        {{ form_rest(form) }}
+    </div>
+    {{ form_end(form) }}
+{% endif %}

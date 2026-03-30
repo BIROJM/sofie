@@ -1,0 +1,30 @@
+sofie_stat:
+    resource: "@SofieStatBundle/Resources/config/routing.yml"
+    prefix:   /statistiques/
+
+sofie_admin:
+    resource: "@SofieAdminBundle/Resources/config/routing.yml"
+    prefix:   /
+
+sofie_user:
+    resource: "@SofieUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+sofie_exp:
+    resource: "@SofieExpBundle/Resources/config/routing.yml"
+    prefix:   /
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+
+# Security
+sofie_login:
+    path: /login
+    defaults: { _controller: SofieUserBundle:Security:sofieLogin }
+
+sofie_login_check:
+    path: /login_check
+
+sofie_logout:
+    path: /logout

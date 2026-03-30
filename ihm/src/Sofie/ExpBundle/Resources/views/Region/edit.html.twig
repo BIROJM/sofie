@@ -1,0 +1,30 @@
+{% extends 'SofieExpBundle:Region:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li><a href="{{ app.request.requestUri }}">Editer une région</a></li>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="box-name">
+                        <i class="fa fa-search"></i>
+                        <span>Edition d'une région</span>
+                    </div>
+                    <div class="no-move"></div>
+                </div>
+                {% if form is defined and form is not empty %}
+                    <div class="box-content">
+                        {% include 'SofieExpBundle:Region:include/form.html.twig' %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+

@@ -1,0 +1,58 @@
+Sofie\ExpBundle\Entity\Notification:
+    type: entity
+    table: t_notification
+    repositoryClass: Sofie\ExpBundle\Entity\NotificationRepository
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    id:
+        id:
+            type: integer
+            nullable: false
+            id: true
+            column: IDNotification
+            generator:
+                strategy: IDENTITY
+    fields:
+        dateHeureNotif:
+            type: datetime
+            nullable: true
+            column: DateHeureNotif
+        motif:
+            type: integer
+            nullable: true
+            column: MotifNotif
+        sync:
+            type: string
+            length: 1
+            nullable: true
+            options:
+                default: 'N'
+            column: sync
+        deletedAt:
+            type: datetime
+            nullable: true
+            column: deleted_at
+    manyToOne:
+        panne:
+            targetEntity: Panne
+            cascade: ["persist"]
+            inversedBy: notifications
+            joinColumn:
+                name: IDPanne
+                nullable: true
+                referencedColumnName: IDPanne
+                onDelete: "CASCADE"
+            orphanRemoval: false
+        numeroAppel:
+            targetEntity: NumeroAppel
+            cascade: ["persist"]
+            inversedBy: notifications
+            joinColumn:
+                name: IDNumAppel
+                nullable: true
+                referencedColumnName: IDNumAppel
+                onDelete: "CASCADE"
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

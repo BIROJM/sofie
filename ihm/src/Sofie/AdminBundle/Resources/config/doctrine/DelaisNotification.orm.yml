@@ -1,0 +1,49 @@
+Sofie\AdminBundle\Entity\DelaisNotification:
+    type: entity
+    table: t_delaisnotification
+    repositoryClass: Sofie\AdminBundle\Entity\DelaisNotificationRepository
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: NONE
+    fields:
+        horsPriseCommande:
+            type: integer
+            nullable: true
+        horsReparation:
+            type: integer
+            nullable: true
+        uniteParDefaut:
+            type: string
+            length: 255
+            nullable: true
+        sync:
+            type: string
+            length: 1
+            nullable: true
+            options:
+                default: 'N'
+            column: sync
+        deletedAt:
+            type: datetime
+            nullable: true
+            column: deleted_at
+    manyToOne:
+        uniteDelais:
+            targetEntity: UniteDelais
+            cascade: ["persist"]
+            joinColumn:
+                name: uniteDelais_id
+                nullable: true
+                referencedColumnName: id
+                onDelete: "SET NULL"
+            orphanRemoval: false
+    lifecycleCallbacks:
+        preUpdate: [setUpdatedValue]
+        preRemove: [setRemovedValue]

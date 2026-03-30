@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<databaseServer>192.168.120.112</databaseServer>
+	<databaseName>db_sofiev4</databaseName>
+	<databaseUser>sofie</databaseUser>
+	<databasePassword>poiuyt</databasePassword>
+</config>

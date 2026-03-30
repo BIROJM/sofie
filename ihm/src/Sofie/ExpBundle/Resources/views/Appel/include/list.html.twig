@@ -1,0 +1,50 @@
+<div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover table-heading">
+
+        {% import '::macro/links.html.twig' as links %}
+
+        <caption>
+            <div class="pull-right">
+                {{ links.pdf_link({}, {'class':'fa-lg'}) }}
+            </div>
+        </caption>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Date</th>
+                <th>Motif</th>
+                <th>N° panne</th>
+                <th>N° appel</th>
+                <th>Origine</th>
+                <th>Emetteur</th>
+                <th>C. ouvrage</th>
+                <th>Région</th>
+            </tr>
+        </thead>
+        {% if appels is defined %}
+            {% if appels is not empty %}
+                <tbody>
+                {% set page_inc = g_paginator_items*(page-1) %}
+                {% for appel in appels|default([]) %}
+                    <tr>
+                        <td>{{ loop.index+page_inc }}</td>
+                        <td>
+                            {{ (appel.dateAppel|default(null) is not empty) ? appel.dateAppel|date('d/m/Y H:i:s') : '' }}
+                        </td>
+                        <td>{{ appel.getNormMotif(appel.motif|default(''))|default('') }}</td>
+                        <td>{{ appel.panne.numero|default('') }}</td>
+                        <td>{{ appel.numeroAppel.numero|default('') }}</td>
+                        <td>{{ appel.numeroAppel.profile.designation|default('') }}</td>
+                        <td>{{ appel.numeroAppel.emetteur|default('') }}</td>
+                        <td>{{ appel.panne.ouvrage.code|default('') }}</td>
+                        <td>{{ appel.panne.ouvrage.localite.region|default('') }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            {% endif %}
+        {% endif %}
+    </table>
+</div>
+
+{# Pagination #}
+{% include '::include/paginator/paginator.html.twig' with {'total': appels|default([])|length} %}

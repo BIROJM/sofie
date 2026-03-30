@@ -1,0 +1,28 @@
+parameters:
+    sofie_user.user.form.class: Sofie\UserBundle\Form\Type\UserType
+    sofie_user.agent.form.class: Sofie\UserBundle\Form\Type\AgentType
+    sofie_user.password_encoder.class: Sofie\UserBundle\PasswordEncoder\SofiePasswordEncoder
+
+services:
+    sofie_user.user.form.type:
+        class: %sofie_user.user.form.class%
+        arguments: [@doctrine.orm.entity_manager, @security.authorization_checker]
+        tags:
+            - { name: form.type, alias: sofie_userbundle_user }
+
+    sofie_user.agent.form.type:
+        class: %sofie_user.agent.form.class%
+        arguments: [@doctrine.orm.entity_manager, @security.authorization_checker]
+        tags:
+            - { name: form.type, alias: sofie_userbundle_agent }
+
+    sofie.password_encoder:
+        class: %sofie_user.password_encoder.class%
+
+    sofie_admin.auth.auth_listener:
+        class: Sofie\UserBundle\Auth\AuthListener
+        arguments: [@event_dispatcher, @doctrine.orm.entity_manager, @request_stack, %sofie_site%]
+        tags:
+            - { name: kernel.event_listener, event: security.authentication.success, method: success }
+            - { name: kernel.event_listener, event: security.authentication.failure, method: failure }
+

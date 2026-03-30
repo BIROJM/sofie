@@ -1,0 +1,36 @@
+Sofie\ExpBundle\Entity\Region:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: iddr
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: sociologue
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: nom
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: carte
+    properties:
+        nom:
+            - NotBlank: ~
+        iddr:
+            - NotBlank: ~
+        sociologue:
+            - NotBlank: ~
+        superficie:
+            - Type:
+                type: numeric
+        longitude:
+            - NotBlank: ~
+            - Type:
+                type: numeric
+        latitude:
+            - NotBlank: ~
+            - Type:
+                type: numeric
+        zoom:
+            - NotBlank: ~
+            - Type:
+                type: integer
+        maxZoom:
+            - NotBlank: ~
+            - Type:
+                type: integer
+        carte:
+            - NotBlank: ~
+            - Type:
+                type: string

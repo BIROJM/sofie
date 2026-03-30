@@ -1,0 +1,4 @@
+Sofie\ExpBundle\Entity\TypePanne:
+    properties:
+        libelle:
+            - NotBlank: ~

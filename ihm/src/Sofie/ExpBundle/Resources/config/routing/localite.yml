@@ -1,0 +1,49 @@
+sofieexp_localite_index:
+    path:     /{page}
+    defaults: { _controller: SofieExpBundle:Localite:index, page: 1 }
+    methods: [GET|POST]
+    requirements:
+        page: \d+
+
+sofieexp_localite_add:
+    path:     /add
+    defaults: { _controller: SofieExpBundle:Localite:add }
+    methods: [GET, POST]
+
+sofieexp_localite_edit:
+    path:     /edit/{id}
+    defaults: { _controller: SofieExpBundle:Localite:edit }
+    methods: [GET, POST]
+    requirements:
+        id: \d+
+
+sofieexp_localite_view:
+    path:     /view/{id}
+    defaults: { _controller: SofieExpBundle:Localite:view }
+    methods: [GET]
+    requirements:
+        id: \d+
+
+sofieexp_localite_delete:
+    path:     /delete/{id}
+    defaults: { _controller: SofieExpBundle:Localite:delete }
+    methods: [GET]
+    requirements:
+        id: \d+
+
+# AJAX REQUEST
+sofieexp_localite_ajax_by_region:
+    path:     /ajax/region/{id}
+    defaults: { _controller: SofieExpBundle:Localite:ajaxByRegion }
+    methods: [GET]
+    requirements:
+        id: \d+
+    options:
+        expose: true
+
+sofieexp_localite_load_dependencies:
+    path:     /load-dependencies
+    defaults: { _controller: SofieExpBundle:Localite:loadDependencies }
+    methods: [POST]
+    options:
+        expose: true

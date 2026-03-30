@@ -1,0 +1,615 @@
+<?php
+
+namespace Sofie\ExpBundle\Entity;
+
+use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+
+/**
+ * Agent
+ */
+class Agent
+{
+    const SYNC = 'Y';
+    const NO_SYNC = 'N';
+
+    const GROUPE_AGENT_FORMEN = 1;
+    const GROUPE_SOCIOLOGUE = 2;
+    const GROUPE_DIRECTEUR = 3;
+
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $nom;
+
+    /**
+     * @var string
+     */
+    private $prenoms;
+
+    /**
+     * @var string
+     */
+    private $codeInit;
+
+    /**
+     * @var string
+     */
+    private $qualificationAgent;
+
+    /**
+     * @var integer
+     */
+    private $idNumappelNotification;
+
+    /**
+     * @var integer
+     */
+    private $idLocalite;
+
+    /**
+     * @var boolean
+     */
+    private $initStatus;
+
+    /**
+     * @var \Sofie\ExpBundle\Entity\NumeroAppel
+     */
+    private $numeroAppel;
+
+    /**
+     * @var \Sofie\UserBundle\Entity\User
+     */
+    private $user;
+
+    /**
+     * @var Collection
+     */
+    private $localites;
+
+    /**
+     * @var \Sofie\ExpBundle\Entity\Region
+     */
+    private $region;
+
+    /**
+     * @var \Sofie\ExpBundle\Entity\Profile
+     */
+    private $qualification;
+
+    /**
+     * @var \DateTime
+     */
+    private $deletedAt;
+
+    /**
+     * @var \DateTime
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
+     * @var string
+     */
+    private $sync;
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->localites = new ArrayCollection();
+        $this->sync = static::NO_SYNC;
+        $this->initStatus = 0;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     * @return Agent
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string 
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set prenoms
+     *
+     * @param string $prenoms
+     * @return Agent
+     */
+    public function setPrenoms($prenoms)
+    {
+        $this->prenoms = $prenoms;
+
+        return $this;
+    }
+
+    /**
+     * Get prenoms
+     *
+     * @return string 
+     */
+    public function getPrenoms()
+    {
+        return $this->prenoms;
+    }
+
+    /**
+     * Set codeInit
+     *
+     * @param string $codeInit
+     * @return Agent
+     */
+    public function setCodeInit($codeInit)
+    {
+        $this->codeInit = $codeInit;
+
+        return $this;
+    }
+
+    /**
+     * Get codeInit
+     *
+     * @return string 
+     */
+    public function getCodeInit()
+    {
+        return $this->codeInit;
+    }
+
+    /**
+     * Set qualificationAgent
+     *
+     * @param string $qualificationAgent
+     * @return Agent
+     */
+    public function setQualificationAgent($qualificationAgent)
+    {
+        $this->qualificationAgent = $qualificationAgent;
+
+        return $this;
+    }
+
+    /**
+     * Get qualificationAgent
+     *
+     * @return string 
+     */
+    public function getQualificationAgent()
+    {
+        return $this->qualificationAgent;
+    }
+
+    /**
+     * Set idNumappelNotification
+     *
+     * @param integer $idNumappelNotification
+     * @return Agent
+     */
+    public function setIdNumappelNotification($idNumappelNotification)
+    {
+        $this->idNumappelNotification = $idNumappelNotification;
+
+        return $this;
+    }
+
+    /**
+     * Get idNumappelNotification
+     *
+     * @return integer 
+     */
+    public function getIdNumappelNotification()
+    {
+        return $this->idNumappelNotification;
+    }
+
+    /**
+     * Set idLocalite
+     *
+     * @param integer $idLocalite
+     * @return Agent
+     */
+    public function setIdLocalite($idLocalite)
+    {
+        $this->idLocalite = $idLocalite;
+
+        return $this;
+    }
+
+    /**
+     * Get idLocalite
+     *
+     * @return integer 
+     */
+    public function getIdLocalite()
+    {
+        return $this->idLocalite;
+    }
+
+    /**
+     * Set initStatus
+     *
+     * @param boolean $initStatus
+     * @return Agent
+     */
+    public function setInitStatus($initStatus)
+    {
+        $this->initStatus = $initStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get initStatus
+     *
+     * @return boolean 
+     */
+    public function getInitStatus()
+    {
+        return $this->initStatus;
+    }
+
+    /**
+     * Set numeroAppel
+     *
+     * @param \Sofie\ExpBundle\Entity\NumeroAppel $numeroAppel
+     * @return Agent
+     */
+    public function setNumeroAppel(\Sofie\ExpBundle\Entity\NumeroAppel $numeroAppel = null)
+    {
+        $this->numeroAppel = $numeroAppel;
+
+        return $this;
+    }
+
+    /**
+     * Get numeroAppel
+     *
+     * @return \Sofie\ExpBundle\Entity\NumeroAppel 
+     */
+    public function getNumeroAppel()
+    {
+        return $this->numeroAppel;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Sofie\UserBundle\Entity\User $user
+     * @return Agent
+     */
+    public function setUser(\Sofie\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+        if(!is_null($user)){
+            $user->setAgent($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Sofie\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Add localites
+     *
+     * @param \Sofie\ExpBundle\Entity\Localite $localites
+     * @return Agent
+     */
+    public function addLocalite(\Sofie\ExpBundle\Entity\Localite $localites)
+    {
+        $this->localites[] = $localites;
+
+        return $this;
+    }
+
+    /**
+     * Remove localites
+     *
+     * @param \Sofie\ExpBundle\Entity\Localite $localites
+     */
+    public function removeLocalite(\Sofie\ExpBundle\Entity\Localite $localites)
+    {
+        $this->localites->removeElement($localites);
+    }
+
+    /**
+     * Get localites
+     *
+     * @return Collection
+     */
+    public function getLocalites()
+    {
+        return $this->localites;
+    }
+
+    /**
+     * Set region
+     *
+     * @param \Sofie\ExpBundle\Entity\Region $region
+     * @return Agent
+     */
+    public function setRegion(\Sofie\ExpBundle\Entity\Region $region = null)
+    {
+        $this->region = $region;
+
+        return $this;
+    }
+
+    /**
+     * Get region
+     *
+     * @return \Sofie\ExpBundle\Entity\Region 
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    /**
+     * Set qualification
+     *
+     * @param \Sofie\ExpBundle\Entity\Profile $qualification
+     * @return Agent
+     */
+    public function setQualification(\Sofie\ExpBundle\Entity\Profile $qualification = null)
+    {
+        $this->qualification = $qualification;
+
+        return $this;
+    }
+
+    /**
+     * Get qualification
+     *
+     * @return \Sofie\ExpBundle\Entity\Profile 
+     */
+    public function getQualification()
+    {
+        return $this->qualification;
+    }
+
+    public function __toString()
+    {
+        return trim($this->nom.' '.$this->prenoms);
+    }
+
+    public function setCreatedValue()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = $this->createdAt;
+        if(boolval(is_object($this->qualification)) && boolval($this->qualification))
+        {
+            $this->qualificationAgent = $this->qualification->getDesignation();
+        }
+    }
+
+    public function setUpdatedValue()
+    {
+        $this->updatedAt = new \DateTime();
+        if(boolval(is_object($this->qualification)) && boolval($this->qualification))
+        {
+            $this->qualificationAgent = $this->qualification->getDesignation();
+        }
+        $this->unsynchronize();
+    }
+
+    public function initialize(LifecycleEventArgs $eventArgs)
+    {
+        $em = $eventArgs->getEntityManager();
+        if(!$this->codeInit || !$this->initStatus){
+            $code = $em->getRepository('SofieExpBundle:Code')->findOneBy(array(
+                'status'=>Code::STATUS_NO,
+                'profile'=>$this->qualification
+            ));
+            if($code && ($code instanceof Code)){
+                $this->codeInit = $code->getCode();
+                $code->attribCode();
+            }
+        }
+    }
+
+    /**
+     * Set deletedAt
+     *
+     * @param \DateTime $deletedAt
+     * @return Agent
+     */
+    public function setDeletedAt(\DateTime $deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get deletedAt
+     *
+     * @return \DateTime 
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return Agent
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return Agent
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set sync
+     *
+     * @param string $sync
+     * @return Agent
+     */
+    public function setSync($sync)
+    {
+        $this->sync = $sync;
+
+        return $this;
+    }
+
+    /**
+     * Get sync
+     *
+     * @return string 
+     */
+    public function getSync()
+    {
+        return $this->sync;
+    }
+
+    public function setCustomId(LifecycleEventArgs $eventArgs)
+    {
+        if($this->id == null){
+            $this->id = $eventArgs->getEntityManager()->getRepository('SofieExpBundle:Agent')->getNextId();
+        }
+    }
+
+    public function getRegionId()
+    {
+        if($this->region != null){
+            return $this->region->getId();
+        }
+        return null;
+    }
+
+    public function getQualificationId()
+    {
+        if($this->qualification != null){
+            return $this->qualification->getId();
+        }
+        return null;
+    }
+
+    public function synchronize()
+    {
+        $this->sync = static::SYNC;
+    }
+
+    public function unsynchronize()
+    {
+        $this->sync = static::NO_SYNC;
+    }
+
+    public function logString()
+    {
+        $msg = 'Identifiant: '.$this->id;
+        if($this->nom) $msg .= ', Nom : '.$this->nom;
+        if($this->prenoms) $msg .= ', Prénoms : '.$this->prenoms;
+        if($this->codeInit) $msg .= ', Code d\'initialisation : '.$this->codeInit;
+        return $msg;
+    }
+
+    public function isAgentFormen()
+    {
+        return (!is_null($this->qualification) && $this->qualification->isAgentFormen());
+    }
+
+    public function isSociologue()
+    {
+        return (!is_null($this->qualification) && $this->qualification->isSociologue());
+    }
+
+    public function isDirecteur()
+    {
+        return (!is_null($this->qualification) && $this->qualification->isDirecteur());
+    }
+
+
+    public function setBeforeRemovedValue()
+    {
+
+    }
+}

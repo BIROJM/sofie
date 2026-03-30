@@ -1,0 +1,52 @@
+{% extends '::pdf.html.twig' %}
+
+{% block title %}Listes des localités{% endblock %}
+
+{% block data_source %}Localités{% endblock %}
+{% block data_length %}{{ localites|default([])|length }}{% endblock %}
+
+{% block sofie_pdf_body %}
+    {{ pdf.start_list_table() }}
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nom</th>
+                <th>Nb. habitants</th>
+                <th>Région</th>
+                <th>Réparateur</th>
+                <th>Agent formen</th>
+                <th>Nb. ouvrages</th>
+                <th>Nb. comités</th>
+            </tr>
+        </thead>
+        {% if localites is defined %}
+            {% if localites is not empty %}
+                <tbody>
+                {% set page_inc = g_paginator_items|default(0)*(page|default(1)-1) %}
+                {% for localite in localites %}
+                    <tr>
+                        <td>{{ loop.index+page_inc }}</td>
+                        <td>{{ localite.nom|default('') }}</td>
+                        <td class="text-center">{{ localite.nombreHabitant|default('') }}</td>
+                        <td>
+                            {{ localite.region.nom|default('') }}
+                        </td>
+                        <td>
+                            {{ localite.reparateur|default('') }}
+                        </td>
+                        <td>
+                            {{ localite.agentForma|default('') }}
+                        </td>
+                        <td class="text-center">
+                            {{ localite.ouvrages|default([])|length }}
+                        </td>
+                        <td class="text-center">
+                            {{ localite.comites|default([])|length }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            {% endif %}
+        {% endif %}
+    {{ pdf.end_list_table() }}
+{% endblock %}

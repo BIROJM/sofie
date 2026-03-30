@@ -1,0 +1,424 @@
+{% extends 'SofieExpBundle:Ouvrage:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li><a href="{{ path('sofieexp_ouvrage_view', {'id': ouvrage.id|default(0)}) }}">Voir un ouvrage</a></li>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="box-name">
+                        <i class="fa fa-info-circle"></i>
+                        <span>Détails sur ouvrage</span>
+                    </div>
+                </div>
+                <div class="box-content">
+                    {% if ouvrage is defined %}
+
+                        {% import '::macro/tr_views.html.twig' as trViews %}
+                        {% import '::macro/view.html.twig' as view %}
+
+                        <div class="clearfix">
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <div class="pull-left">
+                                    <div>
+                                        {{ view.updated_infos(ouvrage|default(null)) }}
+                                    </div>
+                                    <div>
+                                        {{ view.validated_infos(ouvrage|default(null)) }}
+                                    </div>
+                                </div>
+                            {% endif %}
+                            <div class="pull-right">
+                            {% if is_granted('ROLE_EDIT_OUVRAGE') %}
+                                <a class="text-success" href="{{ path('sofieexp_ouvrage_edit', {'id':ouvrage.id|default(0)}) }}" title="Modifier">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                            {% endif %}
+                            {% if is_granted('ROLE_DELETE_OUVRAGE') %}
+                                <a class="text-danger confirm-delete" href="{{ path('sofieexp_ouvrage_delete', {'id':ouvrage.id|default(0)}) }}" title="Supprimer">
+                                    <i class="fa fa-remove"></i>
+                                </a>
+                            {% endif %}
+                            </div>
+                        </div>
+                        <hr class="x-margin" />
+                        <div class="row">
+                            <div class="col-md-5 col-sm-6 col-xs-12">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        {{ trViews.date_tr('Date de saisie : ', ouvrage.dateSaisie|default(null)) }}
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-sm-6 col-xs-12 col-md-offset-1">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        {{ trViews.tr('Opérateur de saisie : ', ouvrage.operateurSaisie|default('')) }}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="x-margin" />
+                        <div class="page-header">IDENTIFICATION DE L'OUVRAGE</div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-5 col-sm-6">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        {{ trViews.raw_tr('Validité : ', ouvrage.validated|default(false)|oui_non) }}
+                                        {{ trViews.tr('Code : ', ouvrage.code|default('')) }}
+                                        {% if ouvrage.codeOuvrageProgres|default(null) is not empty %}
+                                            {{ trViews.tr('Code dans PROGRES : ', ouvrage.codeOuvrageProgres|default('')) }}
+                                        {% endif %}
+                                        {{ trViews.tr('Statut : ', ouvrage.statutOuvrage|default('')) }}
+                                        {{ trViews.tr('Type : ', ouvrage.type|default('')) }}
+                                        {{ trViews.tr('N° IRH : ', ouvrage.numIRH|default('')) }}
+                                        {{ trViews.tr('Latitude : ', ouvrage.latitude|default('')) }}
+                                        {{ trViews.tr('Longitude : ', ouvrage.longitude|default('')) }}
+                                        {{ trViews.tr('Altitude : ', ouvrage.altitude|default('')) }}
+                                        {{ trViews.tr('Propriété : ', ouvrage.propriete|default('')) }}
+                                        {{ trViews.tr('Etat initial captage : ', ouvrage.etatInitialCaptage|default('')) }}
+                                        {{ trViews.tr('Usage : ', ouvrage.usage|default('')) }}
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-5 col-md-offset-1 col-sm-6">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        {{
+                                            trViews.entity_tr(
+                                                "Région :", ouvrage.region.nom|default(''), {
+                                                    'role': 'ROLE_REGION',
+                                                    'path': path('sofieexp_region_view', {'id':ouvrage.region.id|default(0)})
+                                                }
+                                            )
+                                        }}
+                                        {{
+                                            trViews.entity_tr(
+                                                "Localité :", ouvrage.localite.nom|default(''), {
+                                                    'role': 'ROLE_LOCALITE',
+                                                    'path': path('sofieexp_localite_view', {'id':ouvrage.localite.id|default(0)})
+                                                }
+                                            )
+                                        }}
+                                        {{
+                                            trViews.entity_tr(
+                                                "Comité Eau :", ouvrage.comite.nom|default(''), {
+                                                    'role': 'ROLE_COMITE',
+                                                    'path': path('sofieexp_comite_view', {'id':ouvrage.comite.id|default(0)})
+                                                }
+                                            )
+                                        }}
+                                        {{ trViews.tr('Préfecture : ', ouvrage.prefecture|default('')) }}
+                                        {{ trViews.tr('Canton : ', ouvrage.canton|default('')) }}
+                                        {{ trViews.tr('N° localité PROGRES : ', ouvrage.numLocaliteProgres|default('')) }}
+                                        {{ trViews.tr('Quartier : ', ouvrage.quartier|default('')) }}
+                                        {{ trViews.tr('Autre N° d\'identification : ', ouvrage.autreNumId|default('')) }}
+                                        {{ trViews.tr('Désignation (lieu dit) : ', ouvrage.designation|default('')) }}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="x-margin" />
+                        <div class="page-header">PROJET</div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-5 col-sm-6">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        {{ trViews.tr('Nom du projet : ', ouvrage.nomDuProjet|default('')) }}
+                                        {{ trViews.tr('Financement : ', ouvrage.financement|default('')) }}
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-5 col-md-offset-1 col-sm-6">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        {{ trViews.tr('Ingénieur Conseil : ', ouvrage.ingenieurConseil|default('')) }}
+                                        {{ trViews.tr('Entéprise : ', ouvrage.entreprise|default('')) }}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="x-margin" />
+                        <div class="page-header">CARACTERISTIQUES</div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-5 col-sm-6">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        {{ trViews.date_tr('Date de fin de foration : ', ouvrage.dateFinForation|default('')) }}
+                                        {{ trViews.tr('Débit : ', ouvrage.debit|default('')) }}
+                                        {{ trViews.tr('Niveau statique : ', ouvrage.niveauStatique|default('')) }}
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-5 col-md-offset-1 col-sm-6">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        {{ trViews.tr('Profondeur totale : ', ouvrage.profondeurTotale|default('')) }}
+                                        {{ trViews.tr('Profondeur équipée : ', ouvrage.profondeurEquipee|default('')) }}
+                                        {{ trViews.date_tr('Date NS : ', ouvrage.dateNs|default('')) }}
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped table-heading table-bordered">
+                                        <caption>Equipement du forage : Tubage plein ( P ) et Crépines ( C )</caption>
+                                        <thead>
+                                            <tr>
+                                                <th>Nature</th>
+                                                <th>Prof. sup. (de)</th>
+                                                <th>Prof. inf. (à)</th>
+                                                <th>Diamètre</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for equip in ouvrage.equipementForages|default([]) %}
+                                                <tr>
+                                                    <td>{{ equip.nature|default('') }}</td>
+                                                    <td>{{ equip.profSup|default('') }}</td>
+                                                    <td>{{ equip.profInf|default('') }}</td>
+                                                    <td>{{ equip.diametre|default('') }}</td>
+                                                </tr>
+                                            {% else %}
+                                                <tr>
+                                                    <td colspan="4" align="center">Vide</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="x-margin" />
+                        <div class="page-header">GEOLOGIE DU TERRAIN</div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-5 col-sm-6">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        {{ trViews.tr('Géomorphologie : ', ouvrage.geomorphologie|default('')) }}
+                                        {{ trViews.tr('Epaisseur altération : ', ouvrage.epaisseurAlteration|default('')) }}
+                                        {{ trViews.tr('Nom aquifère : ', ouvrage.nomAquifere|default('')) }}
+                                        {{ trViews.tr('Lithologie aquifère : ', ouvrage.lithologieAquifere|default('')) }}
+                                        {{ trViews.tr('Profondeur toît : ', ouvrage.profondeurToit|default('')) }}
+                                        {{ trViews.tr('Profondeur mur : ', ouvrage.profondeurMur|default('')) }}
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-5 col-md-offset-1 col-sm-6">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped table-bordered table-heading">
+                                        <caption>Venues d'eau principales</caption>
+                                        <thead>
+                                            <tr>
+                                                <th>Profondeur</th>
+                                                <th>Débit cumulé</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for venuEau in ouvrage.venuEauPrincipales|default([]) %}
+                                                <tr>
+                                                    <td>{{ venuEau.profondeur|default('') }}</td>
+                                                    <td>{{ venuEau.debitCumule|default('') }}</td>
+                                            {% else %}
+                                                <tr>
+                                                    <td colspan="2" align="center">Vide</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped table-heading table-bordered">
+                                        <caption>Coupe géologique</caption>
+                                        <thead>
+                                            <tr>
+                                                <th>Cote sup</th>
+                                                <th>Cote inf</th>
+                                                <th>Lithologie</th>
+                                                <th>Description</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for coupeGeo in ouvrage.coupeGeologiques|default([]) %}
+                                                <tr>
+                                                    <td>{{ coupeGeo.coteSup|default('') }}</td>
+                                                    <td>{{ coupeGeo.coteInf|default('') }}</td>
+                                                    <td>{{ coupeGeo.lithographie|default('') }}</td>
+                                                    <td>{{ coupeGeo.description|default('') }}</td>
+                                                </tr>
+                                            {% else %}
+                                                <tr>
+                                                    <td colspan="4" align="center">Vide</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="x-margin" />
+                        <div class="page-header">ESSAIS DE POMPAGE</div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped table-heading table-bordered">
+                                        <caption>Détails des essais</caption>
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Type essai</th>
+                                                <th>Durée essai</th>
+                                                <th>Débit max</th>
+                                                <th>Rabattement</th>
+                                                <th>Débit critique</th>
+                                                <th>Transmissivité</th>
+                                                <th>Emmagasinage</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for essai in ouvrage.essaisPompages|default([]) %}
+                                                <tr>
+                                                    <td>{{ (essai.date|default('') is not empty) ? essai.date|date('d/m/Y') : '' }}</td>
+                                                    <td>{{ essai.typeEssai|default('') }}</td>
+                                                    <td>{{ essai.dureeEssai|default('') }}</td>
+                                                    <td>{{ essai.debitMax|default('') }}</td>
+                                                    <td>{{ essai.rabattement|default('') }}</td>
+                                                    <td>{{ essai.debitCritique|default('') }}</td>
+                                                    <td>{{ essai.transmissivite|default('') }}</td>
+                                                    <td>{{ essai.emmagasinage|default('') }}</td>
+                                                </tr>
+                                            {% else %}
+                                                <tr>
+                                                    <td colspan="8" align="center">Vide</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="x-margin" />
+                        <div class="page-header">PARAMETRES PHYSICO CHIMIQUES</div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-5 col-sm-6">
+                                <h5>Mesures in situ</h5>
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        {{ trViews.date_tr('Date de prélèvement : ', ouvrage.datePrelevement|default('')) }}
+                                        {{ trViews.tr('Température : ', ouvrage.temperature|default('')) }}
+                                        {{ trViews.tr('Conductivité : ', ouvrage.conductivite|default('')) }}
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-5 col-md-offset-1 col-sm-6">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        {{ trViews.tr('PH : ', ouvrage.ph|default('')) }}
+                                        {{ trViews.tr('Fer total : ', ouvrage.ferTotal|default('')) }}
+                                        {{ trViews.tr('Nitrates : ', ouvrage.nitrates|default('')) }}
+                                        {{ trViews.tr('Couleur : ', ouvrage.couleur|default('')) }}
+                                        {{ trViews.tr('Turbidité : ', ouvrage.turbidite|default('')) }}
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped table-heading table-bordered">
+                                        <caption>Suivi physico chimique</caption>
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>PH</th>
+                                                <th>Cond.</th>
+                                                <th>Rés. sec</th>
+                                                <th>Ca++</th>
+                                                <th>Mg++</th>
+                                                <th>Na+</th>
+                                                <th>K+</th>
+                                                <th>Cl-</th>
+                                                <th>NO2</th>
+                                                <th>NO3-</th>
+                                                <th>SO4</th>
+                                                <th>HCO3</th>
+                                                <th>Fe tot</th>
+                                                <th>F</th>
+                                                <th>As</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for suiviPhysico in ouvrage.suiviPhysicoChimiques|default([]) %}
+                                                <tr>
+                                                    <td>{{ (suiviPhysico.date|default('') is not empty) ? suiviPhysico.date|date('d/m/Y') : '' }}</td>
+                                                    <td>{{ suiviPhysico.ph|default('') }}</td>
+                                                    <td>{{ suiviPhysico.cond|default('') }}</td>
+                                                    <td>{{ suiviPhysico.resSec|default('') }}</td>
+                                                    <td>{{ suiviPhysico.ca|default('') }}</td>
+                                                    <td>{{ suiviPhysico.mg|default('') }}</td>
+                                                    <td>{{ suiviPhysico.na|default('') }}</td>
+                                                    <td>{{ suiviPhysico.k|default('') }}</td>
+                                                    <td>{{ suiviPhysico.cl|default('') }}</td>
+                                                    <td>{{ suiviPhysico.no2|default('') }}</td>
+                                                    <td>{{ suiviPhysico.no3|default('') }}</td>
+                                                    <td>{{ suiviPhysico.so4|default('') }}</td>
+                                                    <td>{{ suiviPhysico.hco3|default('') }}</td>
+                                                    <td>{{ suiviPhysico.feTot|default('') }}</td>
+                                                    <td>{{ suiviPhysico.f|default('') }}</td>
+                                                    <td>{{ suiviPhysico.as|default('') }}</td>
+                                                </tr>
+                                            {% else %}
+                                                <tr>
+                                                    <td colspan="16" align="center">Vide</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="x-margin" />
+                        <div class="page-header">SI PMH : EXPLOITATION ET EQUIPEMENT</div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-5 col-sm-6">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        {{ trViews.tr('Marque pompe : ', ouvrage.marquePompe|default('')) }}
+                                        {{ trViews.date_tr('Date d\'installation pompe : ', ouvrage.dateInstallPompe|default('')) }}
+                                        {{ trViews.tr('Profondeur d\'installation pompe : ', ouvrage.profondeurInstallPompe|default('')) }}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="x-margin" />
+                        <div class="clearfix">
+                            <div class="pull-right">
+                                {% if is_granted('ROLE_EDIT_OUVRAGE') %}
+                                    <a class="text-success" href="{{ path('sofieexp_ouvrage_edit', {'id':ouvrage.id|default(0)}) }}" title="Modifier">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                {% endif %}
+                                {% if is_granted('ROLE_DELETE_OUVRAGE') %}
+                                    <a class="text-danger confirm-delete" href="{{ path('sofieexp_ouvrage_delete', {'id':ouvrage.id|default(0)}) }}" title="Supprimer">
+                                        <i class="fa fa-remove"></i>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <button class="btn btn-default back-location" type="button">
+                <i class="fa fa-chevron-left"></i> Retour
+            </button>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% import '::macro/tr_views.html.twig' as trViews %}
+{% if user is defined %}
+    <div class="row">
+        <div class="col-md-6 col-xs-12">
+            {% include 'SofieUserBundle:User:include/user_view.html.twig' %}
+        </div>
+        {% if user.agent is defined %}
+            <div class="col-md-6 col-xs-12">
+                {% include 'SofieUserBundle:User:include/agent_view.html.twig' with {'agent':user.agent} %}
+            </div>
+        {% endif %}
+    </div>
+{% endif %}

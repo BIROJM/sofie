@@ -1,0 +1,61 @@
+{% if form.nom is defined %}
+    <div class="form-group">
+        {{ form_label(form.nom, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+        <div class="col-sm-8">
+            {{ form_widget(form.nom, {'attr':{'class':'form-control'}}) }}
+            <div class="text-danger small">{{ form_errors(form.nom) }}</div>
+        </div>
+    </div>
+{% endif %}
+{% if form.prenoms is defined %}
+    <div class="form-group">
+        {{ form_label(form.prenoms, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+        <div class="col-sm-8">
+            {{ form_widget(form.prenoms, {'attr':{'class':'form-control'}}) }}
+            <div class="text-danger small">{{ form_errors(form.prenoms) }}</div>
+        </div>
+    </div>
+{% endif %}
+{% if form.qualification is defined %}
+    <div class="form-group">
+        {{ form_label(form.qualification, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+        <div class="col-sm-8">
+            {{ form_widget(form.qualification, {'attr':{'class':'select2 form-control'}}) }}
+            <div class="text-danger small">{{ form_errors(form.qualification) }}</div>
+        </div>
+    </div>
+{% endif %}
+{#{% if g_sofie_site|default(null) is null and form.region is defined %}#}
+{% if form.region is defined %}
+    <div class="form-group">
+        {{ form_label(form.region, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+        <div class="col-sm-8">
+            {{ form_widget(form.region, {'attr':{'class':'select2 form-control'}}) }}
+            <div class="text-danger small">{{ form_errors(form.region) }}</div>
+        </div>
+    </div>
+{% endif %}
+
+{% if form.numero is defined %}
+		<div class="form-group">
+				{{ form_label(form.numero, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+				<div class="col-sm-8">
+					{{ form_widget(form.numero, {'attr':{'class':'form-control'}}) }}
+					<div class="text-danger small">{{ form_errors(form.numero) }}</div>
+				</div>
+		</div>	
+{% endif %}
+
+{% if form.numeroAppel is defined %}
+    {% if form.numeroAppel.numero is defined %}
+        <div class="form-group">
+            {{ form_label(form.numeroAppel.numero, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+            <div class="col-sm-8">
+                {{ form_widget(form.numeroAppel.numero, {'attr':{'class':'form-control'}}) }}
+                <div class="text-danger small">{{ form_errors(form.numeroAppel.numero) }}</div>
+            </div>
+        </div>
+		{% do form.numeroAppel.setRendered %}
+	
+    {% endif %}    
+{% endif %}

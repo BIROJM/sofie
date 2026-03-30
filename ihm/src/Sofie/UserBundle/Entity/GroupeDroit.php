@@ -1,0 +1,163 @@
+<?php
+
+namespace Sofie\UserBundle\Entity;
+
+use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GroupeDroit
+ */
+class GroupeDroit
+{
+    const SYNC = 'Y';
+    const NO_SYNC = 'N';
+
+    /**
+     * @var \DateTime
+     */
+    private $deletedAt;
+
+    /**
+     * @var string
+     */
+    private $sync;
+
+    /**
+     * @var \Sofie\UserBundle\Entity\Droit
+     */
+    private $droit;
+
+    /**
+     * @var \Sofie\UserBundle\Entity\Groupe
+     */
+    private $groupe;
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->sync = static::NO_SYNC;
+    }
+
+    /**
+     * Set deletedAt
+     *
+     * @param \DateTime $deletedAt
+     * @return GroupeDroit
+     */
+    public function setDeletedAt($deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get deletedAt
+     *
+     * @return \DateTime 
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
+    }
+
+    /**
+     * Set sync
+     *
+     * @param string $sync
+     * @return GroupeDroit
+     */
+    public function setSync($sync)
+    {
+        $this->sync = $sync;
+
+        return $this;
+    }
+
+    /**
+     * Get sync
+     *
+     * @return string 
+     */
+    public function getSync()
+    {
+        return $this->sync;
+    }
+
+    /**
+     * Set droit
+     *
+     * @param \Sofie\UserBundle\Entity\Droit $droit
+     * @return GroupeDroit
+     */
+    public function setDroit(\Sofie\UserBundle\Entity\Droit $droit)
+    {
+        $this->droit = $droit;
+
+        return $this;
+    }
+
+    /**
+     * Get droit
+     *
+     * @return \Sofie\UserBundle\Entity\Droit 
+     */
+    public function getDroit()
+    {
+        return $this->droit;
+    }
+
+    /**
+     * Set groupe
+     *
+     * @param \Sofie\UserBundle\Entity\Groupe $groupe
+     * @return GroupeDroit
+     */
+    public function setGroupe(\Sofie\UserBundle\Entity\Groupe $groupe)
+    {
+        $this->groupe = $groupe;
+
+        return $this;
+    }
+
+    /**
+     * Get groupe
+     *
+     * @return \Sofie\UserBundle\Entity\Groupe 
+     */
+    public function getGroupe()
+    {
+        return $this->groupe;
+    }
+
+    public function synchronize()
+    {
+        $this->sync = static::SYNC;
+    }
+
+    public function unsynchronize()
+    {
+        $this->sync = static::NO_SYNC;
+    }
+
+    /**
+     * ORM Event
+     */
+    public function setUpdatedValue()
+    {
+        $this->unsynchronize();
+    }
+
+    /**
+     * ORM\PreRemove
+     */
+    public function setRemovedValue(LifecycleEventArgs $eventArgs)
+    {
+        $this->unsynchronize();
+        $eventArgs->getEntityManager()->flush();
+    }
+}

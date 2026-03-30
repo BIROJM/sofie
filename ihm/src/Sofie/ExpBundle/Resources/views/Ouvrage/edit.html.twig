@@ -1,0 +1,38 @@
+{% extends 'SofieExpBundle:Ouvrage:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li><a href="{{ app.request.requestUri }}">Editer un ouvrage</a></li>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="box-name">
+                        <i class="fa fa-search"></i>
+                        <span>Edition d'un ouvrage</span>
+                    </div>
+                </div>
+                {% if form is defined and form is not empty %}
+                    <div class="box-content box-form">
+                        {% include 'SofieExpBundle:Ouvrage:include/form.html.twig' %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block flash_scripts %}
+    <script type="text/javascript">
+        $(function(){
+            $("#tabs").tabs();
+            regionListener($('#sofie_expbundle_ouvrage_region'), $('#sofie_expbundle_ouvrage_localite'));
+            localiteForFreeComiteListener($('#sofie_expbundle_ouvrage_localite'), $('#sofie_expbundle_ouvrage_comite'));
+            prototypesListeners();
+        });
+    </script>
+{% endblock %}
+

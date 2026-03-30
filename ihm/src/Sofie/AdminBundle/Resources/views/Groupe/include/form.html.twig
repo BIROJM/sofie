@@ -1,0 +1,67 @@
+{{
+    form_start(form, {
+        'action':'', 'method':'POST',
+        'attr':{'class':'form-horizontal', 'role':'form'}
+    })
+}}
+    <div class="text-danger">{{ form_errors(form) }}</div>
+    <div class="row">
+        <div class="col-sm-6">
+            {% if form.name is defined %}
+                <div class="form-group">
+                    {{ form_label(form.name, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                    <div class="col-sm-8">
+                        {{ form_widget(form.name, {'attr':{'class':'form-control'}}) }}
+                        <small class="text-danger small">{{ form_errors(form.name) }}</small>
+                    </div>
+                </div>
+            {% endif %}
+            {% if form.users is defined %}
+                <div class="form-group">
+                    {{ form_label(form.users, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                    <div class="col-sm-8">
+                        {{ form_widget(form.users, {'attr':{'class':'select2 form-control'}}) }}
+                        <div class="text-danger small">{{ form_errors(form.users) }}</div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    {% if is_granted('ROLE_DROIT_GROUPE') %}
+        <div class="row">
+        {% set context = '' %}
+        {% set listOpen = false %}
+        <div class="col-sm-2">Gestion des droits</div>
+        <div class="col-sm-8">
+            <div class="" id="accordion">
+                {% for droitCategory in droitCategories|default([]) %}
+                    {% if droitCategory.droits|default([]) is not empty %}
+                        <h3>{{ droitCategory.libelle|default('') }}</h3>
+                        <div>
+                            <ul class="list-style-none">
+                                {% for droit in droitCategory.droits %}
+                                    <li>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="droits[]" id="droit_{{ droit.id|default(0) }}"
+                                                       value="{{ droit.id|default(0) }}"
+                                                       {% if groupe_granted(form.vars.value|default(null), droit|default(null)) %}checked="checked"{% endif %} />
+                                                {{ droit.libelle|default('') }}
+                                                <i class="fa fa-square-o small"></i>
+                                            </label>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <div class="clearfix"></div>
+    <hr class="x-margin" />
+    {% include '::include/default_form_buttons.html.twig' %}
+    <div>{{ form_widget(form._token)  }}</div>
+{{ form_end(form, {'render_rest': false}) }}

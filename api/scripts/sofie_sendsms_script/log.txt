@@ -1,0 +1,439 @@
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:90146926] [SMS STATUS : ] [CONTENU SMS:PROJET SOFIE: VOTRE NOTIFICATION DE REPARATION POUR LE FORAGE: 15597 A ETE ENREGISTRE]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:90937253] [SMS STATUS : ] [CONTENU SMS:PROJET SOFIE: LE FORAGE: 15597 EST REPARE. LA DGEA VOUS REMERCIE.]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93547247] [SMS STATUS : ] [CONTENU SMS:PROJET SOFIE: LE FORAGE: 15597 EST REPARE. LA DGEA VOUS REMERCIE.]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;17785;1]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;12201;1]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;14063;1]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;18738;1]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;15564;1]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;14746;1]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;16024;1]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;14899;1]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;15665;1]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;18237;1]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;15512;1]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;19883;1]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:90146926] [SMS STATUS : ] [CONTENU SMS:PROJET SOFIE: VOTRE NOTIFICATION DE PANNE POUR LE FORAGE: 15597 A ETE ENREGISTRE]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:90937253] [SMS STATUS : ] [CONTENU SMS:PROJET SOFIE: UNE PANNE A ETE SIGNALE POUR LE FORAGE: 15597 TICKET: 19161.]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93547247] [SMS STATUS : ] [CONTENU SMS:PROJET SOFIE: UNE PANNE A ETE SIGNALE POUR LE FORAGE: 15597 TICKET: 19161.]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;18623;1]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;13550;1]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;13112;1]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;12247;1]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;19161;2]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:90146926] [SMS STATUS : ] [CONTENU SMS:PROJET SOFIE: LA COMMANDE POUR LA REPARATION DE VOTRE FORAGE A ETE RECEPTIONNE. UN REPARATEUR A ETE MANDATE. LA DGEA VOUS REMERCIE.]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93547247] [SMS STATUS : ] [CONTENU SMS:PROJET SOFIE: VOTRE SIGNALEMENT DE RECEPTION DE COMMANDE POUR L OUVRAGE:15597 A ETE ENREGISTRE. NUMERO-PANNE:19161. LA DGEA VOUS REMERCIE.]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93541570] [SMS STATUS : ] [CONTENU SMS:PROJET SOFIE: UNE PRISE EN CHARGE DE LA COMMANDE DE REPARATION DE L OUVRAGE:15597 VIENT D ETRE SIGNALEE. NUMERO-PANNE:19161.]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;17785;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;12201;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;14063;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;18738;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;15564;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;14746;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;16024;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;14899;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;15665;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;18237;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;15512;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;19883;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;18623;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;13550;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;13112;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;12247;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;19161;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:90146926] [SMS STATUS : ] [CONTENU SMS:PROJET SOFIE: LA COMMANDE POUR LA REPARATION DE VOTRE FORAGE VIENT D'ETRE RECEPTIONNE PAR LE REPARATEUR.LA DGEA VOUS REMERCIE.]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:90937253] [SMS STATUS : ] [CONTENU SMS:PROJET SOFIE: VOTRE SIGNALEMENT DE RECEPTION DE COMMANDE POUR L OUVRAGE:15597 A ETE ENREGISTRE.NUMERO-PANNE:19161. LA DGEA VOUS REMERCIE.]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93547247] [SMS STATUS : ] [CONTENU SMS:PROJET SOFIE: UN SIGNALEMENT DE RECEPTION DE COMMANDE A ETE ENREGISTE POUR L OUVRAGE:15597. NUMERO-PANNE:19161.]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;17785;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;12201;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;14063;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;18738;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;15564;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;14746;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;16024;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;14899;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;15665;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;18237;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;15512;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;19883;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;18623;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;13550;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;13112;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;12247;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:93544697] [SMS STATUS : ] [CONTENU SMS:1;185;15597;19161;4]
+<05-04-2016 - 14:20:01> [SENDER:93547247] [RECEIVER:92302310] [SMS STATUS : ] [CONTENU SMS:PROJET SOFIE: MARITIME/Kpoklolo/NAGUE Anani OUVRAGE:15597 HORS DELAI DE REPARATION!]
+<05-04-2016 - 14:21:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:21:01> Xml config file Loaded!
+<05-04-2016 - 14:21:01> Target OS : UNIX
+<05-04-2016 - 14:21:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:21:01> Xml config file Loaded!
+<05-04-2016 - 14:21:01> Target OS : UNIX
+<05-04-2016 - 14:21:01> Connecting to Mysql database...
+<05-04-2016 - 14:21:01> Connection to Mysql database Performed!
+<05-04-2016 - 14:22:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:22:01> Xml config file Loaded!
+<05-04-2016 - 14:22:01> Target OS : UNIX
+<05-04-2016 - 14:22:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:22:01> Xml config file Loaded!
+<05-04-2016 - 14:22:01> Target OS : UNIX
+<05-04-2016 - 14:22:01> Connecting to Mysql database...
+<05-04-2016 - 14:22:01> Connection to Mysql database Performed!
+<05-04-2016 - 14:23:02> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:23:02> Xml config file Loaded!
+<05-04-2016 - 14:23:02> Target OS : UNIX
+<05-04-2016 - 14:23:02> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:23:02> Xml config file Loaded!
+<05-04-2016 - 14:23:02> Target OS : UNIX
+<05-04-2016 - 14:23:02> Connecting to Mysql database...
+<05-04-2016 - 14:23:02> Connection to Mysql database Performed!
+<05-04-2016 - 14:24:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:24:01> Xml config file Loaded!
+<05-04-2016 - 14:24:01> Target OS : UNIX
+<05-04-2016 - 14:24:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:24:01> Xml config file Loaded!
+<05-04-2016 - 14:24:01> Target OS : UNIX
+<05-04-2016 - 14:24:01> Connecting to Mysql database...
+<05-04-2016 - 14:24:01> Connection to Mysql database Performed!
+<05-04-2016 - 14:25:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:25:01> Xml config file Loaded!
+<05-04-2016 - 14:25:01> Target OS : UNIX
+<05-04-2016 - 14:25:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:25:01> Xml config file Loaded!
+<05-04-2016 - 14:25:01> Target OS : UNIX
+<05-04-2016 - 14:25:01> Connecting to Mysql database...
+<05-04-2016 - 14:25:01> Connection to Mysql database Performed!
+<05-04-2016 - 14:26:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:26:01> Xml config file Loaded!
+<05-04-2016 - 14:26:01> Target OS : UNIX
+<05-04-2016 - 14:26:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:26:01> Xml config file Loaded!
+<05-04-2016 - 14:26:01> Target OS : UNIX
+<05-04-2016 - 14:26:01> Connecting to Mysql database...
+<05-04-2016 - 14:26:01> Connection to Mysql database Performed!
+<05-04-2016 - 14:27:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:27:01> Xml config file Loaded!
+<05-04-2016 - 14:27:01> Target OS : UNIX
+<05-04-2016 - 14:27:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:27:01> Xml config file Loaded!
+<05-04-2016 - 14:27:01> Target OS : UNIX
+<05-04-2016 - 14:27:01> Connecting to Mysql database...
+<05-04-2016 - 14:27:01> Connection to Mysql database Performed!
+<05-04-2016 - 14:28:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:28:01> Xml config file Loaded!
+<05-04-2016 - 14:28:01> Target OS : UNIX
+<05-04-2016 - 14:28:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:28:01> Xml config file Loaded!
+<05-04-2016 - 14:28:01> Target OS : UNIX
+<05-04-2016 - 14:28:01> Connecting to Mysql database...
+<05-04-2016 - 14:28:02> Connection to Mysql database Performed!
+<05-04-2016 - 14:29:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:29:01> Xml config file Loaded!
+<05-04-2016 - 14:29:01> Target OS : UNIX
+<05-04-2016 - 14:29:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:29:01> Xml config file Loaded!
+<05-04-2016 - 14:29:01> Target OS : UNIX
+<05-04-2016 - 14:29:01> Connecting to Mysql database...
+<05-04-2016 - 14:29:01> Connection to Mysql database Performed!
+<05-04-2016 - 14:30:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:30:01> Xml config file Loaded!
+<05-04-2016 - 14:30:01> Target OS : UNIX
+<05-04-2016 - 14:30:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:30:01> Xml config file Loaded!
+<05-04-2016 - 14:30:01> Target OS : UNIX
+<05-04-2016 - 14:30:01> Connecting to Mysql database...
+<05-04-2016 - 14:30:01> Connection to Mysql database Performed!
+<05-04-2016 - 14:31:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:31:01> Xml config file Loaded!
+<05-04-2016 - 14:31:01> Target OS : UNIX
+<05-04-2016 - 14:31:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:31:01> Xml config file Loaded!
+<05-04-2016 - 14:31:01> Target OS : UNIX
+<05-04-2016 - 14:31:01> Connecting to Mysql database...
+<05-04-2016 - 14:31:01> Connection to Mysql database Performed!
+<05-04-2016 - 14:32:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:32:01> Xml config file Loaded!
+<05-04-2016 - 14:32:01> Target OS : UNIX
+<05-04-2016 - 14:32:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:32:01> Xml config file Loaded!
+<05-04-2016 - 14:32:01> Target OS : UNIX
+<05-04-2016 - 14:32:01> Connecting to Mysql database...
+<05-04-2016 - 14:32:01> Connection to Mysql database Performed!
+<05-04-2016 - 14:33:02> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:33:02> Xml config file Loaded!
+<05-04-2016 - 14:33:02> Target OS : UNIX
+<05-04-2016 - 14:33:02> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:33:02> Xml config file Loaded!
+<05-04-2016 - 14:33:02> Target OS : UNIX
+<05-04-2016 - 14:33:02> Connecting to Mysql database...
+<05-04-2016 - 14:33:02> Connection to Mysql database Performed!
+<05-04-2016 - 14:34:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:34:01> Xml config file Loaded!
+<05-04-2016 - 14:34:01> Target OS : UNIX
+<05-04-2016 - 14:34:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:34:01> Xml config file Loaded!
+<05-04-2016 - 14:34:01> Target OS : UNIX
+<05-04-2016 - 14:34:01> Connecting to Mysql database...
+<05-04-2016 - 14:34:01> Connection to Mysql database Performed!
+<05-04-2016 - 14:35:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:35:01> Xml config file Loaded!
+<05-04-2016 - 14:35:01> Target OS : UNIX
+<05-04-2016 - 14:35:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:35:01> Xml config file Loaded!
+<05-04-2016 - 14:35:01> Target OS : UNIX
+<05-04-2016 - 14:35:01> Connecting to Mysql database...
+<05-04-2016 - 14:35:01> Connection to Mysql database Performed!
+<05-04-2016 - 14:36:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:36:01> Xml config file Loaded!
+<05-04-2016 - 14:36:01> Target OS : UNIX
+<05-04-2016 - 14:36:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:36:01> Xml config file Loaded!
+<05-04-2016 - 14:36:01> Target OS : UNIX
+<05-04-2016 - 14:36:01> Connecting to Mysql database...
+<05-04-2016 - 14:36:01> Connection to Mysql database Performed!
+<05-04-2016 - 14:37:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:37:01> Xml config file Loaded!
+<05-04-2016 - 14:37:01> Target OS : UNIX
+<05-04-2016 - 14:37:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:37:01> Xml config file Loaded!
+<05-04-2016 - 14:37:01> Target OS : UNIX
+<05-04-2016 - 14:37:01> Connecting to Mysql database...
+<05-04-2016 - 14:37:01> Connection to Mysql database Performed!
+<05-04-2016 - 14:38:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:38:01> Xml config file Loaded!
+<05-04-2016 - 14:38:01> Target OS : UNIX
+<05-04-2016 - 14:38:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:38:01> Xml config file Loaded!
+<05-04-2016 - 14:38:01> Target OS : UNIX
+<05-04-2016 - 14:38:01> Connecting to Mysql database...
+<05-04-2016 - 14:38:02> Connection to Mysql database Performed!
+<05-04-2016 - 14:39:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:39:01> Xml config file Loaded!
+<05-04-2016 - 14:39:01> Target OS : UNIX
+<05-04-2016 - 14:39:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:39:01> Xml config file Loaded!
+<05-04-2016 - 14:39:01> Target OS : UNIX
+<05-04-2016 - 14:39:01> Connecting to Mysql database...
+<05-04-2016 - 14:39:01> Connection to Mysql database Performed!
+<05-04-2016 - 14:40:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:40:01> Xml config file Loaded!
+<05-04-2016 - 14:40:01> Target OS : UNIX
+<05-04-2016 - 14:40:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:40:01> Xml config file Loaded!
+<05-04-2016 - 14:40:01> Target OS : UNIX
+<05-04-2016 - 14:40:01> Connecting to Mysql database...
+<05-04-2016 - 14:40:01> Connection to Mysql database Performed!
+<05-04-2016 - 14:41:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:41:01> Xml config file Loaded!
+<05-04-2016 - 14:41:01> Target OS : UNIX
+<05-04-2016 - 14:41:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:41:01> Xml config file Loaded!
+<05-04-2016 - 14:41:01> Target OS : UNIX
+<05-04-2016 - 14:41:01> Connecting to Mysql database...
+<05-04-2016 - 14:41:01> Connection to Mysql database Performed!
+<05-04-2016 - 14:42:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:42:01> Xml config file Loaded!
+<05-04-2016 - 14:42:01> Target OS : UNIX
+<05-04-2016 - 14:42:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:42:01> Xml config file Loaded!
+<05-04-2016 - 14:42:01> Target OS : UNIX
+<05-04-2016 - 14:42:01> Connecting to Mysql database...
+<05-04-2016 - 14:42:01> Connection to Mysql database Performed!
+<05-04-2016 - 14:43:02> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:43:02> Xml config file Loaded!
+<05-04-2016 - 14:43:02> Target OS : UNIX
+<05-04-2016 - 14:43:02> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:43:02> Xml config file Loaded!
+<05-04-2016 - 14:43:02> Target OS : UNIX
+<05-04-2016 - 14:43:02> Connecting to Mysql database...
+<05-04-2016 - 14:43:02> Connection to Mysql database Performed!
+<05-04-2016 - 14:44:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:44:01> Xml config file Loaded!
+<05-04-2016 - 14:44:01> Target OS : UNIX
+<05-04-2016 - 14:44:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:44:01> Xml config file Loaded!
+<05-04-2016 - 14:44:01> Target OS : UNIX
+<05-04-2016 - 14:44:01> Connecting to Mysql database...
+<05-04-2016 - 14:44:01> Connection to Mysql database Performed!
+<05-04-2016 - 14:45:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:45:01> Xml config file Loaded!
+<05-04-2016 - 14:45:01> Target OS : UNIX
+<05-04-2016 - 14:45:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:45:01> Xml config file Loaded!
+<05-04-2016 - 14:45:01> Target OS : UNIX
+<05-04-2016 - 14:45:01> Connecting to Mysql database...
+<05-04-2016 - 14:45:01> Connection to Mysql database Performed!
+<05-04-2016 - 14:46:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:46:01> Xml config file Loaded!
+<05-04-2016 - 14:46:01> Target OS : UNIX
+<05-04-2016 - 14:46:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:46:01> Xml config file Loaded!
+<05-04-2016 - 14:46:01> Target OS : UNIX
+<05-04-2016 - 14:46:01> Connecting to Mysql database...
+<05-04-2016 - 14:46:01> Connection to Mysql database Performed!
+<05-04-2016 - 14:47:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:47:01> Xml config file Loaded!
+<05-04-2016 - 14:47:01> Target OS : UNIX
+<05-04-2016 - 14:47:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:47:01> Xml config file Loaded!
+<05-04-2016 - 14:47:01> Target OS : UNIX
+<05-04-2016 - 14:47:01> Connecting to Mysql database...
+<05-04-2016 - 14:47:01> Connection to Mysql database Performed!
+<05-04-2016 - 14:48:02> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:48:02> Xml config file Loaded!
+<05-04-2016 - 14:48:02> Target OS : UNIX
+<05-04-2016 - 14:48:02> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:48:02> Xml config file Loaded!
+<05-04-2016 - 14:48:02> Target OS : UNIX
+<05-04-2016 - 14:48:02> Connecting to Mysql database...
+<05-04-2016 - 14:48:02> Connection to Mysql database Performed!
+<05-04-2016 - 14:49:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:49:01> Xml config file Loaded!
+<05-04-2016 - 14:49:01> Target OS : UNIX
+<05-04-2016 - 14:49:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:49:01> Xml config file Loaded!
+<05-04-2016 - 14:49:01> Target OS : UNIX
+<05-04-2016 - 14:49:01> Connecting to Mysql database...
+<05-04-2016 - 14:49:01> Connection to Mysql database Performed!
+<05-04-2016 - 14:50:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:50:01> Xml config file Loaded!
+<05-04-2016 - 14:50:01> Target OS : UNIX
+<05-04-2016 - 14:50:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:50:01> Xml config file Loaded!
+<05-04-2016 - 14:50:01> Target OS : UNIX
+<05-04-2016 - 14:50:01> Connecting to Mysql database...
+<05-04-2016 - 14:50:01> Connection to Mysql database Performed!
+<05-04-2016 - 14:51:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:51:01> Xml config file Loaded!
+<05-04-2016 - 14:51:01> Target OS : UNIX
+<05-04-2016 - 14:51:01> Loading xml config file : xml/config.xml
+<05-04-2016 - 14:51:01> Xml config file Loaded!
+<05-04-2016 - 14:51:01> Target OS : UNIX
+<05-04-2016 - 14:51:01> Connecting to Mysql database...
+<05-04-2016 - 14:51:01> Connection to Mysql database Performed!
+<06-04-2016 - 16:22:02> Loading xml config file : xml/config.xml
+<06-04-2016 - 16:22:02> Xml config file Loaded!
+<06-04-2016 - 16:22:02> Target OS : UNIX
+<06-04-2016 - 16:22:02> Loading xml config file : xml/config.xml
+<06-04-2016 - 16:22:02> Xml config file Loaded!
+<06-04-2016 - 16:22:02> Target OS : UNIX
+<06-04-2016 - 16:22:02> Connecting to Mysql database...
+<06-04-2016 - 16:22:02> Connection to Mysql database Performed!
+<06-04-2016 - 16:23:01> Loading xml config file : xml/config.xml
+<06-04-2016 - 16:23:01> Xml config file Loaded!
+<06-04-2016 - 16:23:01> Target OS : UNIX
+<06-04-2016 - 22:47:02> Loading xml config file : xml/config.xml
+<06-04-2016 - 22:47:02> Xml config file Loaded!
+<06-04-2016 - 22:47:02> Target OS : UNIX
+<06-04-2016 - 22:48:01> Loading xml config file : xml/config.xml
+<06-04-2016 - 22:48:01> Xml config file Loaded!
+<06-04-2016 - 22:48:01> Target OS : UNIX
+<06-04-2016 - 22:49:01> Loading xml config file : xml/config.xml
+<06-04-2016 - 22:49:01> Xml config file Loaded!
+<06-04-2016 - 22:49:01> Target OS : UNIX
+<06-04-2016 - 22:51:02> Loading xml config file : xml/config.xml
+<06-04-2016 - 22:51:02> Xml config file Loaded!
+<06-04-2016 - 22:51:02> Target OS : UNIX
+<06-04-2016 - 22:51:02> Loading xml config file : xml/config.xml
+<06-04-2016 - 22:51:02> Xml config file Loaded!
+<06-04-2016 - 22:51:02> Target OS : UNIX
+<06-04-2016 - 22:51:02> Connecting to Mysql database...
+<06-04-2016 - 22:51:02> Connection to Mysql database Performed!
+<06-04-2016 - 22:51:02> [SENDER:93547247] [RECEIVER:90937253] [SMS STATUS : 0: Accepted for delivery] [CONTENU SMS:PROJET SOFIE: TEST GW SMS.]
+<06-04-2016 - 22:51:02> [SENDER:93547247] [RECEIVER:90937253] [SMS STATUS : 0: Accepted for delivery] [CONTENU SMS:PROJET SOFIE: TEST GW SMS.]
+<06-04-2016 - 22:51:02> SQL :[UPDATE t_sendsms SET SENDER=93547247, STATUS=0 WHERE SMS_ID=455].
+<06-04-2016 - 22:52:01> Loading xml config file : xml/config.xml
+<06-04-2016 - 22:52:01> Xml config file Loaded!
+<06-04-2016 - 22:52:01> Target OS : UNIX
+<06-04-2016 - 22:52:01> Loading xml config file : xml/config.xml
+<06-04-2016 - 22:52:01> Xml config file Loaded!
+<06-04-2016 - 22:52:01> Target OS : UNIX
+<06-04-2016 - 22:52:01> Connecting to Mysql database...
+<06-04-2016 - 22:52:01> Connection to Mysql database Performed!
+<06-04-2016 - 22:53:01> Loading xml config file : xml/config.xml
+<06-04-2016 - 22:53:01> Xml config file Loaded!
+<06-04-2016 - 22:53:01> Target OS : UNIX
+<06-04-2016 - 22:53:01> Loading xml config file : xml/config.xml
+<06-04-2016 - 22:53:01> Xml config file Loaded!
+<06-04-2016 - 22:53:01> Target OS : UNIX
+<06-04-2016 - 22:53:01> Connecting to Mysql database...
+<06-04-2016 - 22:53:01> Connection to Mysql database Performed!
+<06-04-2016 - 22:54:01> Loading xml config file : xml/config.xml
+<06-04-2016 - 22:54:01> Xml config file Loaded!
+<06-04-2016 - 22:54:01> Target OS : UNIX
+<06-04-2016 - 22:54:01> Loading xml config file : xml/config.xml
+<06-04-2016 - 22:54:01> Xml config file Loaded!
+<06-04-2016 - 22:54:01> Target OS : UNIX
+<06-04-2016 - 22:54:01> Connecting to Mysql database...
+<06-04-2016 - 22:54:01> Connection to Mysql database Performed!
+<06-04-2016 - 22:55:01> Loading xml config file : xml/config.xml
+<06-04-2016 - 22:55:01> Xml config file Loaded!
+<06-04-2016 - 22:55:01> Target OS : UNIX
+<06-04-2016 - 22:55:01> Loading xml config file : xml/config.xml
+<06-04-2016 - 22:55:01> Xml config file Loaded!
+<06-04-2016 - 22:55:01> Target OS : UNIX
+<06-04-2016 - 22:55:01> Connecting to Mysql database...
+<06-04-2016 - 22:55:01> Connection to Mysql database Performed!
+<06-04-2016 - 22:56:01> Loading xml config file : xml/config.xml
+<06-04-2016 - 22:56:01> Xml config file Loaded!
+<06-04-2016 - 22:56:01> Target OS : UNIX
+<06-04-2016 - 22:56:01> Loading xml config file : xml/config.xml
+<06-04-2016 - 22:56:01> Xml config file Loaded!
+<06-04-2016 - 22:56:01> Target OS : UNIX
+<06-04-2016 - 22:56:01> Connecting to Mysql database...
+<06-04-2016 - 22:56:01> Connection to Mysql database Performed!
+<06-04-2016 - 22:57:01> Loading xml config file : xml/config.xml
+<06-04-2016 - 22:57:01> Xml config file Loaded!
+<06-04-2016 - 22:57:01> Target OS : UNIX
+<06-04-2016 - 22:57:01> Loading xml config file : xml/config.xml
+<06-04-2016 - 22:57:01> Xml config file Loaded!
+<06-04-2016 - 22:57:01> Target OS : UNIX
+<06-04-2016 - 22:57:01> Connecting to Mysql database...
+<06-04-2016 - 22:57:01> Connection to Mysql database Performed!
+<06-04-2016 - 22:58:01> Loading xml config file : xml/config.xml
+<06-04-2016 - 22:58:01> Xml config file Loaded!
+<06-04-2016 - 22:58:01> Target OS : UNIX
+<06-04-2016 - 22:58:01> Loading xml config file : xml/config.xml
+<06-04-2016 - 22:58:01> Xml config file Loaded!
+<06-04-2016 - 22:58:01> Target OS : UNIX
+<06-04-2016 - 22:58:01> Connecting to Mysql database...
+<06-04-2016 - 22:58:01> Connection to Mysql database Performed!
+<06-04-2016 - 22:59:01> Loading xml config file : xml/config.xml
+<06-04-2016 - 22:59:01> Xml config file Loaded!
+<06-04-2016 - 22:59:01> Target OS : UNIX
+<06-04-2016 - 22:59:01> Loading xml config file : xml/config.xml
+<06-04-2016 - 22:59:01> Xml config file Loaded!
+<06-04-2016 - 22:59:01> Target OS : UNIX
+<06-04-2016 - 22:59:01> Connecting to Mysql database...
+<06-04-2016 - 22:59:01> Connection to Mysql database Performed!
+<06-04-2016 - 23:00:01> Loading xml config file : xml/config.xml
+<06-04-2016 - 23:00:01> Xml config file Loaded!
+<06-04-2016 - 23:00:01> Target OS : UNIX
+<06-04-2016 - 23:00:01> Loading xml config file : xml/config.xml
+<06-04-2016 - 23:00:01> Xml config file Loaded!
+<06-04-2016 - 23:00:01> Target OS : UNIX
+<06-04-2016 - 23:00:01> Connecting to Mysql database...
+<06-04-2016 - 23:00:01> Connection to Mysql database Performed!
+<06-04-2016 - 23:01:01> Loading xml config file : xml/config.xml
+<06-04-2016 - 23:01:01> Xml config file Loaded!
+<06-04-2016 - 23:01:01> Target OS : UNIX
+<06-04-2016 - 23:01:01> Loading xml config file : xml/config.xml
+<06-04-2016 - 23:01:01> Xml config file Loaded!
+<06-04-2016 - 23:01:01> Target OS : UNIX
+<06-04-2016 - 23:01:01> Connecting to Mysql database...
+<06-04-2016 - 23:01:01> Connection to Mysql database Performed!
+<06-04-2016 - 23:02:01> Loading xml config file : xml/config.xml
+<06-04-2016 - 23:02:01> Xml config file Loaded!
+<06-04-2016 - 23:02:01> Target OS : UNIX
+<06-04-2016 - 23:02:01> Loading xml config file : xml/config.xml
+<06-04-2016 - 23:02:01> Xml config file Loaded!
+<06-04-2016 - 23:02:01> Target OS : UNIX
+<06-04-2016 - 23:02:01> Connecting to Mysql database...
+<06-04-2016 - 23:02:01> Connection to Mysql database Performed!
+<06-04-2016 - 23:03:01> Loading xml config file : xml/config.xml
+<06-04-2016 - 23:03:01> Xml config file Loaded!
+<06-04-2016 - 23:03:01> Target OS : UNIX
+<06-04-2016 - 23:03:01> Loading xml config file : xml/config.xml
+<06-04-2016 - 23:03:01> Xml config file Loaded!
+<06-04-2016 - 23:03:01> Target OS : UNIX
+<06-04-2016 - 23:03:01> Connecting to Mysql database...
+<06-04-2016 - 23:03:01> Connection to Mysql database Performed!

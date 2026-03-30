@@ -1,0 +1,16 @@
+{% if form is defined and form is not empty %}
+    {{ form_start(form, {'method':'POST', 'attr':{'class':'form-inline', 'role':'form', 'id':'critere'}}) }}
+    <div class="row">
+        <div class="col-sm-12">
+            {% if form.nom is defined %}
+                <div class="form-group">
+                    {{ form_label(form.nom) }}
+                    {{ form_widget(form.nom, {'attr':{'class':'form-control'}}) }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <div>{{ form_widget(form._token) }}</div>
+    {% include '::include/critere_submit_button.html.twig' %}
+    {{ form_end(form, {'render_rest': false}) }}
+{% endif %}

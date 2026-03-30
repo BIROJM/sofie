@@ -1,0 +1,42 @@
+{{
+    form_start(form, {
+        'action':'', 'method':'POST',
+        'attr':{'class':'form-horizontal', 'role':'form'}
+    })
+}}
+    <div class="text-danger">{{ form_errors(form) }}</div>
+    <div class="row">
+        <div class="col-sm-6">
+            {% if form.designation is defined %}
+                <div class="form-group">
+                    {{ form_label(form.designation, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                    <div class="col-sm-8">
+                        {{ form_widget(form.designation, {'attr':{'class':'form-control'}}) }}
+                        <small class="text-danger small">{{ form_errors(form.designation) }}</small>
+                    </div>
+                </div>
+				<div class="form-group">
+                    {{ form_label(form.commentaire, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                    <div class="col-sm-8">
+                        {{ form_widget(form.commentaire, {'attr':{'class':'form-control'}}) }}
+                        <small class="text-danger small">{{ form_errors(form.commentaire) }}</small>
+                    </div>
+                </div>
+            {% endif %}
+            {% if form.users is defined %}
+                <div class="form-group">
+                    {{ form_label(form.users, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                    <div class="col-sm-8">
+                        {{ form_widget(form.users, {'attr':{'class':'select2 form-control'}}) }}
+                        <div class="text-danger small">{{ form_errors(form.users) }}</div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <hr class="x-margin" />
+    {% include '::include/default_form_buttons.html.twig' %}
+    <div>{{ form_widget(form._token)  }}</div>
+{{ form_end(form, {'render_rest': false}) }}

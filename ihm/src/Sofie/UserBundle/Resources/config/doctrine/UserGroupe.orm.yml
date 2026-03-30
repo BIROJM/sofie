@@ -1,0 +1,49 @@
+Sofie\UserBundle\Entity\UserGroupe:
+    type: entity
+    table: users_groupes
+    repositoryClass: Sofie\UserBundle\Entity\UserGroupeRepository
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    id:
+        user:
+            associationKey: true
+        groupe:
+            associationKey: true
+    fields:
+        deletedAt:
+            type: datetime
+            nullable: true
+            column: deleted_at
+        sync:
+            type: string
+            length: 1
+            nullable: true
+            options:
+                default: 'N'
+            column: sync
+    manyToOne:
+        user:
+            targetEntity: User
+            inversedBy: userGroupes
+            cascade: ["persist"]
+            joinColumn:
+                name: user_id
+                nullable: false
+                referencedColumnName: id
+                onDelete: "CASCADE"
+            orphanRemoval: true
+        groupe:
+            targetEntity: Groupe
+            inversedBy: userGroupes
+            cascade: ["persist"]
+            joinColumn:
+                name: groupe_id
+                nullable: false
+                referencedColumnName: id
+                onDelete: "CASCADE"
+            orphanRemoval: true
+    lifecycleCallbacks:
+        preUpdate: [setUpdatedValue]
+        preRemove: [setRemovedValue]

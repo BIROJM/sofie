@@ -1,0 +1,51 @@
+{{
+    form_start(form, {
+        'action':'', 'method':'POST',
+        'attr':{'class':'form-horizontal', 'role':'form'}
+    })
+}}
+    <div class="text-danger help-block">{{ form_errors(form) }}</div>
+    <div class="col-sm-12">
+        {% if form.nom is defined %}
+            <div class="form-group">
+                {{ form_label(form.nom, null, {'label_attr':{'class':'col-sm-3 control-label'}}) }}
+                <div class="col-sm-4">
+                    {{ form_widget(form.nom, {'attr':{'class':'form-control'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.nom) }}</div>
+                </div>
+            </div>
+        {% endif %}
+        {% if form.prenoms is defined %}
+            <div class="form-group">
+                {{ form_label(form.prenoms, null, {'label_attr':{'class':'col-sm-3 control-label'}}) }}
+                <div class="col-sm-4">
+                    {{ form_widget(form.prenoms, {'attr':{'class':'form-control'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.prenoms) }}</div>
+                </div>
+            </div>
+        {% endif %}
+		{% if form.numero is defined %}
+            <div class="form-group">
+                {{ form_label(form.numero, null, {'label_attr':{'class':'col-sm-3 control-label'}}) }}
+                <div class="col-sm-4">
+                    {{ form_widget(form.numero, {'attr':{'class':'form-control'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.numero) }}</div>
+                </div>
+            </div>
+        {% endif %}
+        {% if form.numeroAppel is defined %}
+            {% if form.numeroAppel.numero is defined %}
+                <div class="form-group">
+                    {{ form_label(form.numeroAppel.numero, null, {'label_attr':{'class':'col-sm-3 control-label'}}) }}
+                    <div class="col-sm-4">
+                        {{ form_widget(form.numeroAppel.numero, {'attr':{'class':'form-control'}}) }}
+                        <div class="text-danger small">{{ form_errors(form.numeroAppel.numero) }}</div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+    <div class="clearfix"></div>
+    {% include '::include/default_form_buttons.html.twig' %}
+    <div>{{ form_widget(form._token) }}</div>
+{{ form_end(form, {'render_rest': false}) }}

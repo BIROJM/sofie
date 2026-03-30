@@ -1,0 +1,452 @@
+<?php
+
+namespace Sofie\ExpBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Event\LifecycleEventArgs;
+
+/**
+ * Localite
+ */
+class Localite
+{
+    const SYNC = 'Y';
+    const NO_SYNC = 'N';
+
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $nom;
+
+    /**
+     * @var integer
+     */
+    private $nombreHabitant;
+
+    /**
+     * @var Collection
+     */
+    private $ouvrages;
+
+    /**
+     * @var Collection
+     */
+    private $comites;
+
+    /**
+     * @var \Sofie\ExpBundle\Entity\Region
+     */
+    private $region;
+
+    /**
+     * @var \Sofie\ExpBundle\Entity\Reparateur
+     */
+    private $reparateur;
+
+    /**
+     * @var \Sofie\ExpBundle\Entity\Agent
+     */
+    private $agentForma;
+
+    /**
+     * @var \DateTime
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
+     * @var string
+     */
+    private $sync;
+
+    /**
+     * @var \DateTime
+     */
+    private $deletedAt;
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->ouvrages = new ArrayCollection();
+        $this->comites = new ArrayCollection();
+        $this->sync = static::NO_SYNC;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     * @return Localite
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string 
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set nombreHabitant
+     *
+     * @param integer $nombreHabitant
+     * @return Localite
+     */
+    public function setNombreHabitant($nombreHabitant)
+    {
+        $this->nombreHabitant = $nombreHabitant;
+
+        return $this;
+    }
+
+    /**
+     * Get nombreHabitant
+     *
+     * @return integer 
+     */
+    public function getNombreHabitant()
+    {
+        return $this->nombreHabitant;
+    }
+
+    /**
+     * Add ouvrages
+     *
+     * @param \Sofie\ExpBundle\Entity\Ouvrage $ouvrages
+     * @return Localite
+     */
+    public function addOuvrage(\Sofie\ExpBundle\Entity\Ouvrage $ouvrages)
+    {
+        $this->ouvrages[] = $ouvrages;
+
+        return $this;
+    }
+
+    /**
+     * Remove ouvrages
+     *
+     * @param \Sofie\ExpBundle\Entity\Ouvrage $ouvrages
+     */
+    public function removeOuvrage(\Sofie\ExpBundle\Entity\Ouvrage $ouvrages)
+    {
+        $this->ouvrages->removeElement($ouvrages);
+    }
+
+    /**
+     * Get ouvrages
+     *
+     * @return Collection
+     */
+    public function getOuvrages()
+    {
+        return $this->ouvrages;
+    }
+
+    /**
+     * Add comites
+     *
+     * @param \Sofie\ExpBundle\Entity\Comite $comites
+     * @return Localite
+     */
+    public function addComite(\Sofie\ExpBundle\Entity\Comite $comites)
+    {
+        $this->comites[] = $comites;
+
+        return $this;
+    }
+
+    /**
+     * Remove comites
+     *
+     * @param \Sofie\ExpBundle\Entity\Comite $comites
+     */
+    public function removeComite(\Sofie\ExpBundle\Entity\Comite $comites)
+    {
+        $this->comites->removeElement($comites);
+    }
+
+    /**
+     * Get comites
+     *
+     * @return Collection
+     */
+    public function getComites()
+    {
+        return $this->comites;
+    }
+
+    /**
+     * Set region
+     *
+     * @param \Sofie\ExpBundle\Entity\Region $region
+     * @return Localite
+     */
+    public function setRegion(\Sofie\ExpBundle\Entity\Region $region = null)
+    {
+        $this->region = $region;
+
+        return $this;
+    }
+
+    /**
+     * Get region
+     *
+     * @return \Sofie\ExpBundle\Entity\Region 
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    /**
+     * Set reparateur
+     *
+     * @param \Sofie\ExpBundle\Entity\Reparateur $reparateur
+     * @return Localite
+     */
+    public function setReparateur(\Sofie\ExpBundle\Entity\Reparateur $reparateur = null)
+    {
+        $this->reparateur = $reparateur;
+
+        return $this;
+    }
+
+    /**
+     * Get reparateur
+     *
+     * @return \Sofie\ExpBundle\Entity\Reparateur 
+     */
+    public function getReparateur()
+    {
+        return $this->reparateur;
+    }
+
+    /**
+     * Set agentForma
+     *
+     * @param \Sofie\ExpBundle\Entity\Agent $agentForma
+     * @return Localite
+     */
+    public function setAgentForma(\Sofie\ExpBundle\Entity\Agent $agentForma = null)
+    {
+        $this->agentForma = $agentForma;
+
+        return $this;
+    }
+
+    /**
+     * Get agentForma
+     *
+     * @return \Sofie\ExpBundle\Entity\Agent 
+     */
+    public function getAgentForma()
+    {
+        return $this->agentForma;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return Localite
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return Localite
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set sync
+     *
+     * @param string $sync
+     * @return Localite
+     */
+    public function setSync($sync)
+    {
+        $this->sync = $sync;
+
+        return $this;
+    }
+
+    /**
+     * Get sync
+     *
+     * @return string 
+     */
+    public function getSync()
+    {
+        return $this->sync;
+    }
+
+    public function setCreatedValue()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = $this->createdAt;
+    }
+
+    public function setUpdatedValue()
+    {
+        $this->updatedAt = new \DateTime();
+        $this->unsynchronize();
+    }
+
+    public function setCustomId(LifecycleEventArgs $eventArgs)
+    {
+        /*if($this->id == null){
+            $this->id = $eventArgs->getEntityManager()->getRepository('SofieExpBundle:Localite')->getNextId();
+        }*/
+    }
+
+    public function getRegionId()
+    {
+        if($this->region != null){
+            return $this->region->getId();
+        }
+        return null;
+    }
+
+    public function getReparateurId()
+    {
+        if($this->reparateur != null){
+            return $this->reparateur->getId();
+        }
+        return null;
+    }
+
+    public function getAgentFormaId()
+    {
+        if($this->agentForma != null){
+            return $this->agentForma->getId();
+        }
+        return null;
+    }
+
+    public function synchronize()
+    {
+        $this->sync = static::SYNC;
+    }
+
+    public function unsynchronize()
+    {
+        $this->sync = static::NO_SYNC;
+    }
+
+    /**
+     * Set deletedAt
+     *
+     * @param \DateTime $deletedAt
+     * @return Localite
+     */
+    public function setDeletedAt($deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get deletedAt
+     *
+     * @return \DateTime 
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
+    }
+
+    public function logString()
+    {
+        $msg = 'Identifiant: '.$this->id;
+        if($this->nom) $msg .= ', Nom : '.$this->nom;
+        return $msg;
+    }
+
+    /**
+     * ORM\PreRemove
+     */
+    public function setRemovedValue(LifecycleEventArgs $eventArgs)
+    {
+        $this->unsynchronize();
+        $eventArgs->getEntityManager()->flush();
+    }
+}

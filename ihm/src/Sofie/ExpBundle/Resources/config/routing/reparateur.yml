@@ -1,0 +1,42 @@
+sofieexp_reparateur_index:
+    path:     /{page}
+    defaults: { _controller: SofieExpBundle:Reparateur:index, page: 1 }
+    methods: [GET|POST]
+    requirements:
+        page: \d+
+
+sofieexp_reparateur_add:
+    path:     /add
+    defaults: { _controller: SofieExpBundle:Reparateur:add }
+    methods: [GET, POST]
+
+sofieexp_reparateur_edit:
+    path:     /edit/{id}
+    defaults: { _controller: SofieExpBundle:Reparateur:edit }
+    methods: [GET, POST]
+    requirements:
+        id: \d+
+
+sofieexp_reparateur_view:
+    path:     /view/{id}
+    defaults: { _controller: SofieExpBundle:Reparateur:view }
+    methods: [GET]
+    requirements:
+        id: \d+
+
+sofieexp_reparateur_delete:
+    path:     /delete/{id}
+    defaults: { _controller: SofieExpBundle:Reparateur:delete }
+    methods: [GET]
+    requirements:
+        id: \d+
+
+# AJAX REQUEST
+sofieexp_reparateur_ajax_init:
+    path:     /ajax/init/{id}
+    defaults: { _controller: SofieExpBundle:Reparateur:ajaxInit }
+    methods: [GET|POST]
+    requirements:
+        id: \d+
+    options:
+        expose: true

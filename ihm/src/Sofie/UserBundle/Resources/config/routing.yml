@@ -1,0 +1,8 @@
+sofie_user_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: SofieUserBundle:Default:index }
+
+
+sofieuser_profile:
+    resource: "routing/profile.yml"
+    prefix: /profile/

@@ -1,0 +1,219 @@
+<?php
+
+namespace Sofie\ExpBundle\Entity;
+
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Event\LifecycleEventArgs;
+
+/**
+ * TypePanne
+ */
+class TypePanne
+{
+    const SYNC = 'Y';
+    const NO_SYNC = 'N';
+
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $libelle;
+
+    /**
+     * @var Collection
+     */
+    private $pannes;
+
+    /**
+     * @var string
+     */
+    private $sync;
+
+    /**
+     * @var \DateTime
+     */
+    private $deletedAt;
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->pannes = new ArrayCollection();
+        $this->sync = static::NO_SYNC;
+    }
+
+    /**
+     * Set id
+     *
+     * @param integer $id
+     * @return TypePanne
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set libelle
+     *
+     * @param string $libelle
+     * @return TypePanne
+     */
+    public function setLibelle($libelle)
+    {
+        $this->libelle = $libelle;
+
+        return $this;
+    }
+
+    /**
+     * Get libelle
+     *
+     * @return string 
+     */
+    public function getLibelle()
+    {
+        return $this->libelle;
+    }
+
+    /**
+     * Add pannes
+     *
+     * @param \Sofie\ExpBundle\Entity\Panne $pannes
+     * @return TypePanne
+     */
+    public function addPanne(\Sofie\ExpBundle\Entity\Panne $pannes)
+    {
+        $this->pannes[] = $pannes;
+
+        return $this;
+    }
+
+    /**
+     * Remove pannes
+     *
+     * @param \Sofie\ExpBundle\Entity\Panne $pannes
+     */
+    public function removePanne(\Sofie\ExpBundle\Entity\Panne $pannes)
+    {
+        $this->pannes->removeElement($pannes);
+    }
+
+    /**
+     * Get pannes
+     *
+     * @return Collection
+     */
+    public function getPannes()
+    {
+        return $this->pannes;
+    }
+
+    /**
+     * Set sync
+     *
+     * @param string $sync
+     * @return TypePanne
+     */
+    public function setSync($sync)
+    {
+        $this->sync = $sync;
+
+        return $this;
+    }
+
+    /**
+     * Get sync
+     *
+     * @return string 
+     */
+    public function getSync()
+    {
+        return $this->sync;
+    }
+
+    public function setCustomId(LifecycleEventArgs $eventArgs)
+    {
+        /*if($this->id == null){
+            $this->id = $eventArgs->getEntityManager()->getRepository('SofieExpBundle:TypePanne')->getNextId();
+        }*/
+    }
+
+    public function synchronize()
+    {
+        $this->sync = static::SYNC;
+    }
+
+    public function unsynchronize()
+    {
+        $this->sync = static::NO_SYNC;
+    }
+
+    /**
+     * Set deletedAt
+     *
+     * @param \DateTime $deletedAt
+     * @return TypePanne
+     */
+    public function setDeletedAt($deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get deletedAt
+     *
+     * @return \DateTime 
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
+    }
+
+    public function logString()
+    {
+        $msg = 'Identifiant: '.$this->id;
+        if($this->libelle) $msg .= ', Libellé : '.$this->libelle;
+        return $msg;
+    }
+
+    public function __toString()
+    {
+        return $this->libelle;
+    }
+
+    public function setUpdatedValue()
+    {
+        $this->unsynchronize();
+    }
+
+    /**
+     * ORM\PreRemove
+     */
+    public function setRemovedValue(LifecycleEventArgs $eventArgs)
+    {
+        $this->unsynchronize();
+        $eventArgs->getEntityManager()->flush();
+    }
+}

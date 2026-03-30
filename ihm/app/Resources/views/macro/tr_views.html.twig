@@ -1,0 +1,45 @@
+{% macro tr(label, val, options) %}
+    <tr>
+        <td>{{ label }}</td>
+        <td>
+            <span class="{{ options.val.class|default('text-muted') }}">{{ val|default('') }}</span>
+        </td>
+    </tr>
+{% endmacro %}
+
+{% macro entity_tr(label, val, entity, options) %}
+    <tr>
+        <td>{{ label }}</td>
+        <td>
+            <span class="{{ options.val.class|default('text-muted') }}">
+                {% if is_granted(entity.role) %}
+                    <a href="{{ entity.path|default('#') }}">
+                        {{ val|default('') }}
+                    </a>
+                {% else %}
+                    {{ val|default('') }}
+                {% endif %}
+            </span>
+        </td>
+    </tr>
+{% endmacro %}
+
+{% macro raw_tr(label, val, options) %}
+    <tr>
+        <td>{{ label }}</td>
+        <td>
+            <span class="{{ options.val.class|default('text-muted') }}">{{ val|default('')|raw }}</span>
+        </td>
+    </tr>
+{% endmacro %}
+
+{% macro date_tr(label, val, options) %}
+    <tr>
+        <td>{{ label }}</td>
+        <td>
+            <span class="{{ options.val.class|default('text-muted') }}">
+                {{ (val|default(null) is not empty) ? val|date('d/m/Y') : '' }}
+            </span>
+        </td>
+    </tr>
+{% endmacro %}

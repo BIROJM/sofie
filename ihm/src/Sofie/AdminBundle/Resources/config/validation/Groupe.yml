@@ -1,0 +1,8 @@
+Sofie\UserBundle\Entity\Groupe:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: name
+    properties:
+        name:
+            - NotBlank: ~
+            - Length:
+                min: 2

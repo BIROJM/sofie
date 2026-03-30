@@ -1,0 +1,65 @@
+{% macro updated_infos(object) %}
+    {% if object|default(null) is not empty %}
+        {% if object.createdAt|default(null) is not empty %}
+            <span class="small text-muted" title="Date d'ajout" style="margin-right: 6px;">
+                <i class="fa fa-calendar-plus-o"></i> {{ object.createdAt|date('d/m/Y à H:i:s') }}
+            </span>
+        {% endif %}
+        {% if object.updatedAt|default(null) is not empty %}
+            <span class="small text-muted" title="Dernière modification">
+                <i class="fa fa-calendar"></i> {{ object.updatedAt|date('d/m/Y à H:i:s') }}
+            </span>
+        {% endif %}
+    {% endif %}
+{% endmacro %}
+
+{% macro validated_infos(object) %}
+    {% if object|default(null) is not empty %}
+            <span class="small text-muted" title="Dernière opération sur la validation">
+                Dernière opération sur la validitation effectuée par <strong>{{ object.validatedBy|default('-') }}</strong>
+                {% if object.validatedAt|default(null) is not empty %}
+                    le <i>{{ object.validatedAt|date('d/m/Y à H:i:s') }}</i>
+                {% endif %}
+            </span>
+    {% endif %}
+{% endmacro %}
+
+{% macro validate_action(object, url) %}
+    {% set titleValidate = '' %}
+    {% set stateValidate = 'disabled' %}
+    {% set stateIcone = 'fa fa-toggle-off fa-lg text-danger' %}
+    {% if object.validated|default(null) %}
+        {% set stateIcone = 'fa fa-toggle-on fa-lg text-success' %}
+    {% endif %}
+    {% if is_granted('ROLE_VALIDATE_OUVRAGE') %}
+        {% if object.validatable|default(false) %}
+            {% set titleValidate = "Cliquer pour changer d'état" %}
+            {% set stateValidate = null %}
+        {% else %}
+            {% set titleValidate = object.titleValidate()|default('') %}
+        {% endif %}
+    {% endif %}
+    <i class="{{ stateIcone }} cursor-pointer"
+       id="{{ (object.validatable|default('')) ? 'action_validated'~object.id|default(0) : '' }}"
+       title="{{ titleValidate|default('') }}" {{ stateValidate }} data-href="{{ url }}"></i>
+{% endmacro %}
+
+{% macro init_profile(object, url) %}
+    {% set titleInitialize = '' %}
+    {% set stateInitialize = 'disabled' %}
+    {% set stateIcone = 'fa fa-toggle-off fa-lg text-danger' %}
+    {% if object.initStatus|default(null) %}
+        {% set stateIcone = 'fa fa-toggle-on fa-lg text-success' %}
+    {% endif %}
+    {% if is_granted('ROLE_ADMIN') %}
+        {% if object.initializable|default(false) %}
+            {% set titleInitialize = "Cliquer pour changer d'état" %}
+            {% set stateInitialize = null %}
+        {% else %}
+            {% set titleInitialize = object.titleInitialize() %}
+        {% endif %}
+    {% endif %}
+    <i class="{{ stateIcone }} cursor-pointer"
+       id="{{ (object.initializable|default(false)) ? 'action_initialize'~object.id|default(0) : '' }}"
+       title="{{ titleInitialize|default('') }}" {{ stateInitialize }} data-href="{{ url }}"></i>
+{% endmacro %}

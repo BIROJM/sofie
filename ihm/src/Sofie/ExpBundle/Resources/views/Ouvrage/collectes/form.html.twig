@@ -1,0 +1,681 @@
+{{
+    form_start(form, {
+        'action':'', 'method':'POST',
+        'attr':{'class':'form-horizontal', 'role':'form'}
+    })
+}}
+    <div class="text-danger small">{{ form_errors(form) }}</div>
+    <div class="row">
+        <fieldset class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-6">
+                    {% if form.nomOperateur is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.nomOperateur, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.nomOperateur, {'attr':{'class':'form-control'}}) }}
+                                <div class="text-danger small">{{ form_errors(form.nomOperateur) }}</div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if form.dateSaisie is defined %}
+                        <div class="form-group has-feedback">
+                            {{ form_label(form.dateSaisie, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.dateSaisie, {'attr':{'class':'form-control date-picker'}}) }}
+                                <span class="fa fa-calendar form-control-feedback"></span>
+                                <div class="text-danger small">{{ form_errors(form.dateSaisie) }}</div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-sm-6">
+                    {% if form.dateRemplissage is defined %}
+                        <div class="form-group has-feedback">
+                            {{ form_label(form.dateRemplissage, null, {'label_attr':{'class':'col-sm-6 control-label'}}) }}
+                            <div class="col-sm-6">
+                                {{ form_widget(form.dateRemplissage, {'attr':{'class':'form-control date-picker'}}) }}
+                                <span class="fa fa-calendar form-control-feedback"></span>
+                                <div class="text-danger small">{{ form_errors(form.dateRemplissage) }}</div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if form.nomAgentSaisie is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.nomAgentSaisie, null, {'label_attr':{'class':'col-sm-6 control-label'}}) }}
+                            <div class="col-sm-6">
+                                {{ form_widget(form.nomAgentSaisie, {'attr':{'class':'form-control'}}) }}
+                                <div class="text-danger small">{{ form_errors(form.nomAgentSaisie) }}</div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if form.service is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.service, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.service, {'attr':{'class':'form-control'}}) }}
+                                <div class="text-danger small">{{ form_errors(form.service) }}</div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <hr class="x-margin" />
+    <div class="row">
+        <fieldset class="col-sm-12">
+            <legend>DESCRIPTION DE L'OUVRAGE</legend>
+            <div class="large text-info">Etat</div>
+            <div class="row">
+                <div class="col-sm-12">
+                    {% if form.etatOuvrage is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.etatOuvrage, null, {'label_attr':{'class':'col-sm-3 control-label'}}) }}
+                            <div class="col-sm-3">
+                                {{ form_widget(form.etatOuvrage, {'attr':{'class':'form-control select2'}}) }}
+                            </div>
+                            <div class="col-sm-offset-3 text-danger">{{ form_errors(form.etatOuvrage) }}</div>
+                        </div>
+                    {% endif %}
+                    {% if form.codeCauseSiAbandon is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.codeCauseSiAbandon, null, {'label_attr':{'class':'col-sm-5 control-label'}}) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.codeCauseSiAbandon, {'attr':{'class':'form-control select2'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.codeCauseSiAbandon) }}</div>
+                        </div>
+                    {% endif %}
+                    {% if form.causeDestruction is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.causeDestruction, null, {'label_attr':{'class':'col-sm-5 control-label'}}) }}
+                            <div class="col-sm-6">
+                                {{ form_widget(form.causeDestruction, {'attr':{'class':'form-control'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.causeDestruction) }}</div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">Pérennité à l'année</div>
+                <div class="col-sm-5">
+                    {% if form.pereniteAnneeNbMois is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.pereniteAnneeNbMois, null, {'label_attr':{'class':'col-sm-6 control-label'}}) }}
+                            <div class="col-sm-6">
+                                {{ form_widget(form.pereniteAnneeNbMois, {'attr':{'class':'form-control'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger">{{ form_errors(form.pereniteAnneeNbMois) }}</div>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-sm-5">
+                    {% if form.pereniteAnneeDsJournee is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.pereniteAnneeDsJournee, null, {'label_attr':{'class':'col-sm-6 control-label'}}) }}
+                            <div class="col-sm-6">
+                                {{ form_widget(form.pereniteAnneeDsJournee, {'attr':{'class':'form-control select2'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger">{{ form_errors(form.pereniteAnneeDsJournee) }}</div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="large text-info">Superstructure</div>
+            <div class="row">
+                <div class="col-sm-6">
+                    {% if form.superStructureRehabilite is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.superStructureRehabilite, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                <div class="toggle-switch toggle-switch-success">
+                                    <label>
+                                        {{ form_widget(form.superStructureRehabilite) }}
+                                        <div class="toggle-switch-inner oui"></div>
+                                        <div class="toggle-switch-switch"><i class="fa fa-check"></i></div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.superStructureRehabilite) }}</div>
+                        </div>
+                    {% endif %}
+                    {% if form.etatMargelle is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.etatMargelle, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.etatMargelle, {'attr':{'class':'bon-mauvais-switch'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.etatMargelle) }}</div>
+                        </div>
+                    {% endif %}
+                    {% if form.etancheiteforage is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.etancheiteforage, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.etancheiteforage, {'attr':{'class':'bonne-mauvaise-switch'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.etancheiteforage) }}</div>
+                        </div>
+                    {% endif %}
+                    {% if form.etatFixationPompe is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.etatFixationPompe, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.etatFixationPompe, {'attr':{'class':'bonne-mauvaise-switch'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.etatFixationPompe) }}</div>
+                        </div>
+                    {% endif %}
+                    {% if form.etatAntiBourbier is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.etatAntiBourbier, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.etatAntiBourbier, {'attr':{'class':'form-control select2'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.etatAntiBourbier) }}</div>
+                        </div>
+                    {% endif %}
+                    {% if form.etatCloture is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.etatCloture, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.etatCloture, {'attr':{'class':'form-control select2'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.etatCloture) }}</div>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-sm-6">
+                    {% if form.etatRigoleEvacuation is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.etatRigoleEvacuation, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.etatRigoleEvacuation, {'attr':{'class':'form-control select2'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.etatRigoleEvacuation) }}</div>
+                        </div>
+                    {% endif %}
+                    {% if form.etatPuitPerdu is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.etatPuitPerdu, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.etatPuitPerdu, {'attr':{'class':'form-control select2'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.etatPuitPerdu) }}</div>
+                        </div>
+                    {% endif %}
+                    {% if form.propreteInterieurCloture is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.propreteInterieurCloture, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.propreteInterieurCloture, {'attr':{'class':'bonne-mauvaise-switch'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.propreteInterieurCloture) }}</div>
+                        </div>
+                    {% endif %}
+                    {% if form.propreteExterieurCloture is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.propreteExterieurCloture, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.propreteExterieurCloture, {'attr':{'class':'bonne-mauvaise-switch'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.propreteExterieurCloture) }}</div>
+                        </div>
+                    {% endif %}
+                    {% if form.sourcePollution1 is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.sourcePollution1, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.sourcePollution1, {'attr':{'class':'form-control select2'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.sourcePollution1) }}</div>
+                        </div>
+                    {% endif %}
+                    {% if form.sourcePollution2 is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.sourcePollution2, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.sourcePollution2, {'attr':{'class':'form-control select2'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.sourcePollution2) }}</div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    {% if form.presenceDeferiseur is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.presenceDeferiseur, null, {'label_attr':{'class':'col-sm-6 control-label'}}) }}
+                            <div class="col-sm-6">
+                                <div class="toggle-switch toggle-switch-success">
+                                    <label>
+                                        {{ form_widget(form.presenceDeferiseur) }}
+                                        <div class="toggle-switch-inner oui"></div>
+                                        <div class="toggle-switch-switch"><i class="fa fa-check"></i></div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.presenceDeferiseur) }}</div>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-sm-4">
+                    {% if form.deferiseurUtilise is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.deferiseurUtilise, null, {'label_attr':{'class':'col-sm-6 control-label'}}) }}
+                            <div class="col-sm-6">
+                                <div class="toggle-switch toggle-switch-success">
+                                    <label>
+                                        {{ form_widget(form.deferiseurUtilise) }}
+                                        <div class="toggle-switch-inner oui"></div>
+                                        <div class="toggle-switch-switch"><i class="fa fa-check"></i></div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.deferiseurUtilise) }}</div>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-sm-4">
+                    {% if form.etatDeferiseur is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.etatDeferiseur, null, {'label_attr':{'class':'col-sm-6 control-label'}}) }}
+                            <div class="col-sm-6">
+                                {{ form_widget(form.etatDeferiseur, {'attr':{'class':'form-control select2'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.etatDeferiseur) }}</div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="large text-info">Pompe</div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        {% if form.nbPompe is defined %}
+                            {{ form_label(form.nbPompe, null, {'label_attr':{'class':'col-sm-2 control-label'}}) }}
+                            <div class="col-sm-2">
+                                {{ form_widget(form.nbPompe, {'attr':{'class':'form-control'}}) }}
+                                <div class="text-danger small">{{ form_errors(form.nbPompe) }}</div>
+                            </div>
+                        {% endif %}
+                        {% if form.marquePompe is defined %}
+                            {{ form_label(form.marquePompe, null, {'label_attr':{'class':'col-sm-2 control-label'}}) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.marquePompe, {'attr':{'class':'form-control'}}) }}
+                                <div class="text-danger small">{{ form_errors(form.marquePompe) }}</div>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {% if form.pompeRemplace is defined %}
+                            {{ form_label(form.pompeRemplace, null, {'label_attr':{'class':'col-sm-2 control-label'}}) }}
+                            <div class="col-sm-2">
+                                <div class="toggle-switch toggle-switch-success">
+                                    <label>
+                                        {{ form_widget(form.pompeRemplace) }}
+                                        <div class="toggle-switch-inner oui"></div>
+                                        <div class="toggle-switch-switch"><i class="fa fa-check"></i></div>
+                                    </label>
+                                </div>
+                                <div class="text-danger small">{{ form_errors(form.pompeRemplace) }}</div>
+                            </div>
+                        {% endif %}
+                        {% if form.anneePosePompe is defined %}
+                            {{ form_label(form.anneePosePompe, null, {'label_attr':{'class':'col-sm-3 control-label'}}) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.anneePosePompe, {'attr':{'class':'form-control'}}) }}
+                                <div class="text-danger small">{{ form_errors(form.anneePosePompe) }}</div>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {% if form.financementRemplacement is defined %}
+                            {{ form_label(form.financementRemplacement, null, {'label_attr':{'class':'col-sm-3 control-label'}}) }}
+                            <div class="col-sm-3">
+                                {{ form_widget(form.financementRemplacement, {'attr':{'class':'form-control select2'}}) }}
+                                <div class="text-danger small">{{ form_errors(form.financementRemplacement) }}</div>
+                            </div>
+                        {% endif %}
+                        {% if form.nomProjet is defined %}
+                            {{ form_label(form.nomProjet, null, {'label_attr':{'class':'col-sm-2 control-label'}}) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.nomProjet, {'attr':{'class':'form-control'}}) }}
+                                <div class="text-danger small">{{ form_errors(form.nomProjet) }}</div>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {% if form.etatPompe is defined %}
+                            {{ form_label(form.etatPompe, null, {'label_attr':{'class':'col-sm-2 control-label'}}) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.etatPompe, {'attr':{'class':'form-control select2'}}) }}
+                                <div class="text-danger small">{{ form_errors(form.etatPompe) }}</div>
+                            </div>
+                        {% endif %}
+                        {% if form.dureePanne is defined %}
+                            {{ form_label(form.dureePanne, null, {'label_attr':{'class':'col-sm-2 control-label'}}) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.dureePanne, {'attr':{'class':'form-control select2'}}) }}
+                                <div class="text-danger small">{{ form_errors(form.dureePanne) }}</div>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {% if form.causeNonReparation is defined %}
+                            {{ form_label(form.causeNonReparation, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-6">
+                                {{ form_widget(form.causeNonReparation, {'attr':{'class':'form-control select2'}}) }}
+                                <div class="text-danger small">{{ form_errors(form.causeNonReparation) }}</div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <hr class="x-margin" />
+    <div class="row">
+        <fieldset class="col-sm-12">
+            <legend>QUALITE DE L'EAU</legend>
+            <div class="large text-info">Analyse physico-chimique</div>
+            <div class="row">
+                <div class="col-sm-6">
+                    {% if form.turbidite is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.turbidite, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-6">
+                                {{ form_widget(form.turbidite, {'attr':{'class':'form-control select2'}}) }}
+                                <div class="text-danger small">{{ form_errors(form.turbidite) }}</div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if form.odeurEau is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.odeurEau, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-6">
+                                {{ form_widget(form.odeurEau, {'attr':{'class':'form-control select2'}}) }}
+                                <div class="text-danger small">{{ form_errors(form.odeurEau) }}</div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if form.goutEau is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.goutEau, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-6">
+                                {{ form_widget(form.goutEau, {'attr':{'class':'form-control select2'}}) }}
+                                <div class="text-danger small">{{ form_errors(form.goutEau) }}</div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if form.pelliculeEnSurface is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.pelliculeEnSurface, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-4">
+                                <div class="toggle-switch toggle-switch-success">
+                                    <label>
+                                        {{ form_widget(form.pelliculeEnSurface) }}
+                                        <div class="toggle-switch-inner oui"></div>
+                                        <div class="toggle-switch-switch"><i class="fa fa-check"></i></div>
+                                    </label>
+                                </div>
+                                <div class="text-danger small">{{ form_errors(form.pelliculeEnSurface) }}</div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if form.presenceVers is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.presenceVers, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-4">
+                                <div class="toggle-switch toggle-switch-success">
+                                    <label>
+                                        {{ form_widget(form.presenceVers) }}
+                                        <div class="toggle-switch-inner oui"></div>
+                                        <div class="toggle-switch-switch"><i class="fa fa-check"></i></div>
+                                    </label>
+                                </div>
+                                <div class="text-danger small">{{ form_errors(form.presenceVers) }}</div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-sm-6">
+                    {% if form.conductivite is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.conductivite, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    {{ form_widget(form.conductivite, {'attr':{'class':'form-control'}}) }}
+                                    <div class="input-group-addon">mS.m</div>
+                                </div>
+                                <div class="text-danger small">{{ form_errors(form.conductivite) }}</div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if form.ph is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.ph, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    {{ form_widget(form.ph, {'attr':{'class':'form-control'}}) }}
+                                    <div class="input-group-addon">uPh</div>
+                                </div>
+                                <div class="text-danger small">{{ form_errors(form.ph) }}</div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if form.nitratesNo3 is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.nitratesNo3, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    {{ form_widget(form.nitratesNo3, {'attr':{'class':'form-control'}}) }}
+                                    <div class="input-group-addon">mg/l</div>
+                                </div>
+                                <div class="text-danger small">{{ form_errors(form.nitratesNo3) }}</div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if form.nitritesNo2 is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.nitritesNo2, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    {{ form_widget(form.nitritesNo2, {'attr':{'class':'form-control'}}) }}
+                                    <div class="input-group-addon">mg/l</div>
+                                </div>
+                                <div class="text-danger small">{{ form_errors(form.nitritesNo2) }}</div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if form.ferTotal is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.ferTotal, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    {{ form_widget(form.ferTotal, {'attr':{'class':'form-control'}}) }}
+                                    <div class="input-group-addon">mg/l</div>
+                                </div>
+                                <div class="text-danger small">{{ form_errors(form.ferTotal) }}</div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <hr class="x-margin" />
+    <div class="row">
+        <fieldset class="col-sm-12">
+            <legend>GESTION DU POINT D'EAU</legend>
+            <div class="large text-info">Mode de gestion de l'ouvrage</div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        {% if form.modeGestionOuvrage is defined %}
+                            {{ form_label(form.modeGestionOuvrage, null, {'label_attr':{'class':'col-sm-3 control-label'}}) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.modeGestionOuvrage, {'attr':{'class':'form-control select2'}}) }}
+                                <div class="text-danger small">{{ form_errors(form.modeGestionOuvrage) }}</div>
+                            </div>
+                        {% endif %}
+                        {% if form.presenceUniteGestion is defined %}
+                            {{ form_label(form.presenceUniteGestion, null, {'label_attr':{'class':'col-sm-3 control-label'}}) }}
+                            <div class="col-sm-2">
+                                <div class="toggle-switch toggle-switch-success">
+                                    <label>
+                                        {{ form_widget(form.presenceUniteGestion) }}
+                                        <div class="toggle-switch-inner oui"></div>
+                                        <div class="toggle-switch-switch"><i class="fa fa-check"></i></div>
+                                    </label>
+                                </div>
+                                <div class="text-danger small">{{ form_errors(form.presenceUniteGestion) }}</div>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        {% if form.villageUe is defined %}
+                            {{ form_label(form.villageUe, null, {'label_attr':{'class':'col-sm-2 control-label'}}) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.villageUe, {'attr':{'class':'form-control'}}) }}
+                                <div class="text-danger small">{{ form_errors(form.villageUe) }}</div>
+                            </div>
+                        {% endif %}
+                        {% if form.numVillageUe is defined %}
+                            {{ form_label(form.numVillageUe, null, {'label_attr':{'class':'col-sm-2 control-label'}}) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.numVillageUe, {'attr':{'class':'form-control'}}) }}
+                                <div class="text-danger small">{{ form_errors(form.numVillageUe) }}</div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="large text-info">Financement du point d'eau</div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        {% if form.assistanceBienfaiteur is defined %}
+                            {{ form_label(form.assistanceBienfaiteur, null, {'label_attr':{'class':'col-sm-2 control-label'}}) }}
+                            <div class="col-sm-2">
+                                <div class="toggle-switch toggle-switch-success">
+                                    <label>
+                                        {{ form_widget(form.assistanceBienfaiteur) }}
+                                        <div class="toggle-switch-inner oui"></div>
+                                        <div class="toggle-switch-switch"><i class="fa fa-check"></i></div>
+                                    </label>
+                                </div>
+                                <div class="text-danger small">{{ form_errors(form.assistanceBienfaiteur) }}</div>
+                            </div>
+                        {% endif %}
+                        {% if form.modePaiementEau is defined %}
+                            {{ form_label(form.modePaiementEau, null, {'label_attr':{'class':'col-sm-3 control-label'}}) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.modePaiementEau, {'attr':{'class':'form-control select2'}}) }}
+                                <div class="text-danger small">{{ form_errors(form.modePaiementEau) }}</div>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3">
+                            Si vente au volume, prix de l'eau
+                        </label>
+                        {% if form.prixSeau20Litres is defined %}
+                            {{ form_label(form.prixSeau20Litres, null, {'label_attr':{'class':'col-sm-2 control-label'}}) }}
+                            <div class="col-sm-2">
+                                {{ form_widget(form.prixSeau20Litres, {'attr':{'class':'form-control'}}) }}
+                                <div class="text-danger small">{{ form_errors(form.prixSeau20Litres) }}</div>
+                            </div>
+                        {% endif %}
+                        {% if form.prixBassine35Litres is defined %}
+                            {{ form_label(form.prixBassine35Litres, null, {'label_attr':{'class':'col-sm-2 control-label'}}) }}
+                            <div class="col-sm-2">
+                                {{ form_widget(form.prixBassine35Litres, {'attr':{'class':'form-control'}}) }}
+                                <div class="text-danger small">{{ form_errors(form.prixBassine35Litres) }}</div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="large text-info">Maintenance</div>
+            <div class="row">
+                <div class="col-sm-12">
+                    {% if form.nomArtisanReparateur is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.nomArtisanReparateur, null, {'label_attr':{'class':'col-sm-3 control-label'}}) }}
+                            <div class="col-sm-6">
+                                {{ form_widget(form.nomArtisanReparateur, {'attr':{'class':'form-control'}}) }}
+                                <div class="text-danger small">{{ form_errors(form.nomArtisanReparateur) }}</div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if form.villageResidenceReparateur is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.villageResidenceReparateur, null, {'label_attr':{'class':'col-sm-3 control-label'}}) }}
+                            <div class="col-sm-6">
+                                {{ form_widget(form.villageResidenceReparateur, {'attr':{'class':'form-control'}}) }}
+                                <div class="text-danger small">{{ form_errors(form.villageResidenceReparateur) }}</div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if form.cahierEntretientPompe is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.cahierEntretientPompe, null, {'label_attr':{'class':'col-sm-3 control-label'}}) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.cahierEntretientPompe, {'attr':{'class':'form-control select2'}}) }}
+                                <div class="text-danger small">{{ form_errors(form.cahierEntretientPompe) }}</div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if form.contratEntretienArtisan is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.contratEntretienArtisan, null, {'label_attr':{'class':'col-sm-7 control-label'}}) }}
+                            <div class="col-sm-2">
+                                <div class="toggle-switch toggle-switch-success">
+                                    <label>
+                                        {{ form_widget(form.contratEntretienArtisan) }}
+                                        <div class="toggle-switch-inner oui"></div>
+                                        <div class="toggle-switch-switch"><i class="fa fa-check"></i></div>
+                                    </label>
+                                </div>
+                                <div class="text-danger small">{{ form_errors(form.contratEntretienArtisan) }}</div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if form.typeContrat is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.typeContrat, null, {'label_attr':{'class':'col-sm-3 control-label'}}) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.typeContrat, {'attr':{'class':'form-control select2'}}) }}
+                                <div class="text-danger small">{{ form_errors(form.typeContrat) }}</div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <hr class="x-margin" />
+    <div class="row">
+        <fieldset class="col-sm-12">
+            <legend>COMMENTAIRES EVENTUELS</legend>
+            {% if form.commentaires is defined %}
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        {{ form_widget(form.commentaires, {'attr':{'class':'form-control'}}) }}
+                        <div class="text-danger small">{{ form_errors(form.commentaires) }}</div>
+                    </div>
+                </div>
+            {% endif %}
+        </fieldset>
+    </div>
+    <div class="clearfix"></div>
+    <hr class="x-margin" />
+    {% include '::include/default_form_buttons.html.twig' %}
+    <div>
+        {{ form_rest(form) }}
+    </div>
+{{ form_end(form) }}

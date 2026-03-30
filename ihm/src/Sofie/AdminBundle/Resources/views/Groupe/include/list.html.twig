@@ -1,0 +1,56 @@
+{% import '::macro/links.html.twig' as links %}
+
+<div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover table-heading">
+        {% if is_granted('ROLE_GROUPE') %}
+            <caption>
+                <div class="pull-right">
+                    <a class="btn btn-primary btn-label-left" title="Ajouter" href="{{ path('sofieadmin_groupe_add') }}">
+                        <span><i class="fa fa-plus"></i></span> Ajouter
+                    </a>
+                    <i class="fa fa-ellipsis-v fa-2x"></i>
+                    {{ links.pdf_link({}, {'class':'fa-2x'}) }}
+                </div>
+            </caption>
+        {% endif %}
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Nom du groupe</th>
+            <th>Nb. utilisateurs</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        {% if groupes is defined %}
+            {% if groupes is not empty %}
+                <tbody>
+                    {% set page_inc = g_paginator_items*(page-1) %}
+                    {% for groupe in groupes %}
+                        <tr>
+                            <td>{{ loop.index+page_inc }}</td>
+                            <td>{{ groupe.name|default('') }}</td>
+                            <td class="text-center">{{ groupe.userGroupes|default('')|length }}</td>
+                            <td class="text-center">
+                                <a class="text-info" href="{{ path('sofieadmin_groupe_view', {'id':groupe.id|default('0')}) }}" title="Voir">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                {% if is_granted('ROLE_EDIT_GROUPE') %}
+                                    <a class="text-success" href="{{ path('sofieadmin_groupe_edit', {'id':groupe.id|default('0')}) }}" title="Modifier">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                {% endif %}
+                                {% if is_granted('ROLE_DELETE_GROUPE') %}
+                                    <a class="text-danger confirm-delete" href="{{ path('sofieadmin_groupe_delete', {'id':groupe.id|default('0')}) }}" title="Supprimer">
+                                        <i class="fa fa-remove"></i>
+                                    </a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            {% endif %}
+        {% endif %}
+    </table>
+</div>
+{# Pagination #}
+{% include '::include/paginator/paginator.html.twig' with {total: groupes|default([])|length} %}

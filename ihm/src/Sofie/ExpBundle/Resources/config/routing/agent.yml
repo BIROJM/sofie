@@ -1,0 +1,56 @@
+sofieexp_agent_index:
+    path:     /{page}
+    defaults: { _controller: SofieExpBundle:Agent:index, page: 1 }
+    methods: [GET,POST]
+    requirements:
+        page: \d+
+
+sofieexp_agent_add:
+    path:     /add
+    defaults: { _controller: SofieExpBundle:Agent:add }
+    methods: [GET, POST]
+
+sofieexp_agent_edit:
+    path:     /edit/{id}
+    defaults: { _controller: SofieExpBundle:Agent:edit }
+    methods: [GET, POST]
+    requirements:
+        id: \d+
+
+sofieexp_agent_view:
+    path:     /view/{id}
+    defaults: { _controller: SofieExpBundle:Agent:view }
+    methods: [GET]
+    requirements:
+        id: \d+
+
+sofieexp_agent_delete:
+    path:     /delete/{id}
+    defaults: { _controller: SofieExpBundle:Agent:delete }
+    methods: [GET]
+    requirements:
+        id: \d+
+
+# AJAX REQUEST
+sofieexp_agent_ajax_init:
+    path:     /ajax/init/{id}
+    defaults: { _controller: SofieExpBundle:Agent:ajaxInit }
+    methods: [GET|POST]
+    requirements:
+        id: \d+
+    options:
+        expose: true
+
+sofieexp_agent_ajax_by_region_not_user:
+    path: /ajax/by-region-not-user/{idRegion}
+    defaults: { _controller: SofieExpBundle:Agent:ajaxByRegionNotUser }
+    methods: [GET]
+    options:
+        expose: true
+
+sofieexp_agent_ajax_formen_by_region:
+    path: /ajax/formen-by-region/{idRegion}
+    defaults: { _controller: SofieExpBundle:Agent:ajaxFormenByRegion }
+    methods: [GET]
+    options:
+        expose: true

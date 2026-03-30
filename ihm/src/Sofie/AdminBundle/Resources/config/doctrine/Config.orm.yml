@@ -1,0 +1,91 @@
+Sofie\AdminBundle\Entity\Config:
+    type: entity
+    table: t_config
+    repositoryClass: Sofie\AdminBundle\Entity\ConfigRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: NONE
+    fields:
+        phoneNumber:
+            type: string
+            length: '20'
+            nullable: true
+            column: phone_number
+        isCentral:
+            type: boolean
+            nullable: true
+            unique: true
+            options:
+                default: '0'
+            column: is_central
+        smsGw:
+            type: string
+            length: '60'
+            nullable: true
+            column: sms_gw
+        smsSoa:
+            type: string
+            length: '20'
+            nullable: true
+            column: sms_soa
+        nbPaginator:
+            type: smallint
+            nullable: true
+            options:
+                default: '5'
+            column: nb_paginator
+        offsetPaginator:
+            type: smallint
+            nullable: true
+            options:
+                default: '50'
+            column: offset_paginator
+        statUrl:
+            type: string
+            length: '60'
+            nullable: true
+            column: stat_url
+        carteRegionUrl:
+            type: string
+            nullable: true
+            length: '60'
+            column: carte_region_url
+        carteCentralUrl:
+            type: string
+            nullable: true
+            length: '60'
+            column: carte_central_url
+        apiGetKeyUrl:
+            type: string
+            nullable: true
+            length: '60'
+            column: api_get_key_url
+        sync:
+            type: string
+            length: '1'
+            nullable: true
+            options:
+                default: 'N'
+            column: `sync`
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+    oneToOne:
+        region:
+            targetEntity: Sofie\ExpBundle\Entity\Region
+            cascade: ["persist"]
+            inversedBy: config
+            joinColumn:
+                name: region_id
+                nullable: true
+                referencedColumnName: IDRegion
+                onDelete: "CASCADE"
+            orphanRemoval: false
+    lifecycleCallbacks:
+        prePersist: [setCustomId, setCreatedValue]
+        preUpdate: [setUpdatedValue]
+        preRemove: [setRemovedValue]

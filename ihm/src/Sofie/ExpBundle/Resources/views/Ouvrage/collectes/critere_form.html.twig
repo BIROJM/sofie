@@ -1,0 +1,28 @@
+{% if form is defined and form is not empty %}
+    {{ form_start(form, {'method':'POST', 'attr':{'class':'form-inline', 'role':'form', 'id':'critere'}}) }}
+        <div class="row">
+            <div class="col-sm-12">
+                {% if form.validated is defined %}
+                    <div class="form-group">
+                        {{ form_label(form.validated) }}
+                        {{ form_widget(form.validated, {'attr':{'class':'inline-select2 form-control'}}) }}
+                    </div>
+                {% endif %}
+                {% if form.operateur is defined %}
+                    <div class="form-group">
+                        {{ form_label(form.operateur) }}
+                        {{ form_widget(form.operateur, {'attr':{'class':'form-control'}}) }}
+                    </div>
+                {% endif %}
+                {% if form.agentSaisie is defined %}
+                    <div class="form-group">
+                        {{ form_label(form.agentSaisie) }}
+                        {{ form_widget(form.agentSaisie, {'attr':{'class':'form-control'}}) }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div>{{ (form._token is defined) ? form_widget(form._token) : '' }}</div>
+        {% include '::include/critere_submit_button.html.twig' %}
+    {{ form_end(form, {'render_rest': false}) }}
+{% endif %}

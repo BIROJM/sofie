@@ -1,0 +1,376 @@
+<?php
+
+namespace Sofie\UserBundle\Entity;
+
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Event\LifecycleEventArgs;
+
+/**
+ * Groupe
+ */
+class Groupe
+{
+    const SYNC = 'Y';
+    const NO_SYNC = 'N';
+
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $name;
+
+    /**
+     * @var \DateTime
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
+     * @var string
+     */
+    private $sync;
+
+    /**
+     * @var \DateTime
+     */
+    private $deletedAt;
+
+    /**
+     * @var Collection
+     */
+    private $userGroupes;
+
+    /**
+     * @var Collection
+     */
+    private $groupeDroits;
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->sync = static::NO_SYNC;
+        $this->userGroupes = new ArrayCollection();
+        $this->groupeDroits = new ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Groupe
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return Groupe
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return Groupe
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set sync
+     *
+     * @param string $sync
+     * @return Groupe
+     */
+    public function setSync($sync)
+    {
+        $this->sync = $sync;
+
+        return $this;
+    }
+
+    /**
+     * Get sync
+     *
+     * @return string 
+     */
+    public function getSync()
+    {
+        return $this->sync;
+    }
+
+    public function setCreatedValue()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = $this->createdAt;
+    }
+
+    public function setUpdatedValue()
+    {
+        $this->updatedAt = new \DateTime();
+        $this->unsynchronize();
+    }
+
+    public function setCustomId(LifecycleEventArgs $eventArgs)
+    {
+        /*if($this->id == null){
+            $this->id = $eventArgs->getEntityManager()->getRepository('SofieUserBundle:Groupe')->getNextId();
+        }*/
+    }
+
+    public function synchronize()
+    {
+        $this->sync = static::SYNC;
+    }
+
+    public function unsynchronize()
+    {
+        $this->sync = static::NO_SYNC;
+    }
+
+    /**
+     * Set deletedAt
+     *
+     * @param \DateTime $deletedAt
+     * @return Groupe
+     */
+    public function setDeletedAt($deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get deletedAt
+     *
+     * @return \DateTime 
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
+    }
+
+    public function logString()
+    {
+        $msg = 'Identifiant: '.$this->id;
+        if($this->name) $msg .= ', Nom : '.$this->name;
+        if($this->userGroupes->count() > 0){
+            $idList = '';
+            $msg .= ', Utilisateurs : {';
+            foreach($this->userGroupes as $userGroupe){;
+                if(!empty($idList)) $idList .= ', ';
+                if(!is_null($userGroupe->getUser())){
+                    $idList .= '['.$userGroupe->getUser()->getId().','.$userGroupe->getUser()->getUsername().']';
+                }
+            }
+            $msg .= $idList.'}';
+        }
+        if($this->groupeDroits->count() > 0){
+            $idList = '';
+            $msg .= ', Droits : {';
+            foreach($this->groupeDroits as $groupeDroit){
+                if(!empty($idList)) $idList .= ', ';
+                if(!is_null($groupeDroit->getDroit())){
+                    $idList .= '['.$groupeDroit->getDroit()->getId().','.$groupeDroit->getDroit()->getRole().']';
+                }
+            }
+            $msg .= $idList.'}';
+        }
+        return $msg;
+    }
+
+    /**
+     * Add userGroupes
+     *
+     * @param \Sofie\UserBundle\Entity\UserGroupe $userGroupes
+     * @return Groupe
+     */
+    public function addUserGroupe(\Sofie\UserBundle\Entity\UserGroupe $userGroupes)
+    {
+        if(!$this->hasUserGroupe($userGroupes)){
+            $this->userGroupes[] = $userGroupes;
+            $userGroupes->setGroupe($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Remove userGroupes
+     *
+     * @param \Sofie\UserBundle\Entity\UserGroupe $userGroupes
+     */
+    public function removeUserGroupe(\Sofie\UserBundle\Entity\UserGroupe $userGroupes)
+    {
+        $this->userGroupes->removeElement($userGroupes);
+    }
+
+    /**
+     * Get userGroupes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUserGroupes()
+    {
+        return $this->userGroupes;
+    }
+
+    public function hasUserGroupe(UserGroupe $userGroupe)
+    {
+        $result = false;
+        foreach($this->userGroupes as $userGroupeOld){
+            if($userGroupe->getUser()->getId() == $userGroupeOld->getUser()->getId()){
+                $result = true;
+                break;
+            }
+        }
+        return $result;
+    }
+
+    /**
+     * Add groupeDroits
+     *
+     * @param \Sofie\UserBundle\Entity\GroupeDroit $groupeDroits
+     * @return Groupe
+     */
+    public function addGroupeDroit(\Sofie\UserBundle\Entity\GroupeDroit $groupeDroits)
+    {
+        if(!$this->hasGroupeDroit($groupeDroits)){
+            $this->groupeDroits[] = $groupeDroits;
+            $groupeDroits->setGroupe($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Remove groupeDroits
+     *
+     * @param \Sofie\UserBundle\Entity\GroupeDroit $groupeDroits
+     */
+    public function removeGroupeDroit(\Sofie\UserBundle\Entity\GroupeDroit $groupeDroits)
+    {
+        $this->groupeDroits->removeElement($groupeDroits);
+    }
+
+    /**
+     * Get groupeDroits
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGroupeDroits()
+    {
+        return $this->groupeDroits;
+    }
+
+    public function hasGroupeDroit(GroupeDroit $groupeDroit)
+    {
+        $result = false;
+        foreach($this->groupeDroits as $groupeDroitOld){
+            if($groupeDroit->getDroit() && $groupeDroitOld->getDroit()){
+                if($groupeDroit->getDroit()->getId() == $groupeDroitOld->getDroit()->getId()){
+                    $result = true;
+                    break;
+                }
+            }
+        }
+        return $result;
+    }
+
+    public function getDroits()
+    {
+        $droits = new ArrayCollection();
+        foreach($this->groupeDroits as $groupeDroit){
+            $droits->add($groupeDroit->getDroit());
+        }
+        return $droits;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    /**
+     * ORM\PreRemove
+     */
+    public function setRemovedValue(LifecycleEventArgs $eventArgs)
+    {
+        $this->unsynchronize();
+        $eventArgs->getEntityManager()->flush();
+    }
+}

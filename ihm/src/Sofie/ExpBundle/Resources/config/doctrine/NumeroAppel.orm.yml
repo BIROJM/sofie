@@ -1,0 +1,78 @@
+Sofie\ExpBundle\Entity\NumeroAppel:
+    type: entity
+    table: t_numeroappel
+    repositoryClass: Sofie\ExpBundle\Entity\NumeroAppelRepository
+#    gedmo:
+#        soft_deleteable:
+#            field_name: deletedAt
+#            time_aware: false
+    indexes:
+        IDProfile:
+            columns:
+                - IDProfile
+    id:
+        id:
+            type: integer
+            nullable: false
+            id: true
+            column: IDNumAppel
+            generator:
+                strategy: AUTO
+    fields:
+        numero:
+            type: string
+            nullable: true
+            length: 20
+            column: NumAppel
+        sync:
+            type: string
+            length: 1
+            nullable: true
+            options:
+                default: 'N'
+            column: sync
+        deletedAt:
+            type: datetime
+            nullable: true
+            column: deleted_at
+    oneToOne:
+        agent:
+            targetEntity: Agent
+            cascade: ["persist"]
+            mappedBy: numeroAppel
+            fetch: EXTRA_LAZY
+        comite:
+            targetEntity: Comite
+            cascade: ["persist"]
+            mappedBy: numeroAppel
+            fetch: EXTRA_LAZY
+        reparateur:
+            targetEntity: Reparateur
+            cascade: ["persist"]
+            mappedBy: numeroAppel
+            fetch: EXTRA_LAZY
+    manyToOne:
+        profile:
+            targetEntity: Profile
+            cascade: ["persist"]
+            inversedBy: numeroAppels
+            joinColumn:
+                name: IDProfile
+                nullable: true
+                referencedColumnName: IDProfile
+                onDelete: "SET NULL"
+            orphanRemoval: false
+    oneToMany:
+        appels:
+            targetEntity: AppelTelephonique
+            cascade: ["persist"]
+            mappedBy: numeroAppel
+            fetch: EXTRA_LAZY
+        notifications:
+            targetEntity: Notification
+            cascade: ["persist"]
+            mappedBy: numeroAppel
+            fetch: EXTRA_LAZY
+    lifecycleCallbacks:
+        preUpdate: [setUpdatedValue]
+        preRemove: [setRemovedValue]

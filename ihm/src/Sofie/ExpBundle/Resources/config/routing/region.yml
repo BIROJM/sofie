@@ -1,0 +1,41 @@
+sofieexp_region_index:
+    path:     /{page}
+    defaults: { _controller: SofieExpBundle:Region:index, page: 1 }
+    methods: [GET|POST]
+    requirements:
+        page: \d+
+
+sofieexp_region_add:
+    path:     /add
+    defaults: { _controller: SofieExpBundle:Region:add }
+    methods: [GET, POST]
+
+sofieexp_region_edit:
+    path:     /edit/{id}
+    defaults: { _controller: SofieExpBundle:Region:edit }
+    methods: [GET, POST]
+    requirements:
+        id: \d+
+
+sofieexp_region_view:
+    path:     /view/{id}
+    defaults: { _controller: SofieExpBundle:Region:view }
+    methods: [GET]
+    requirements:
+        id: \d+
+
+sofieexp_region_delete:
+    path:     /delete/{id}
+    defaults: { _controller: SofieExpBundle:Region:delete }
+    methods: [GET]
+    requirements:
+        id: \d+
+
+# AJAX REQUEST
+sofieexp_region_load_dependencies:
+    path:     /load-dependencies
+    defaults: { _controller: SofieExpBundle:Region:loadDependencies }
+    methods: [POST]
+    options:
+        expose: true
+

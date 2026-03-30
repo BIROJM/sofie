@@ -1,0 +1,35 @@
+{% extends "SofieAdminBundle::layout.html.twig" %}
+
+{% block nav_groupe_active %}active{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li><a href="{{ path('sofieadmin_groupe_index') }}">Groupes</a></li>
+{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="box-name">
+                        <i class="fa fa-table"></i>
+                        <span>Liste des groupes</span>
+                    </div>
+                </div>
+                <div class="box-content no-padding">
+                    <div class="bs-callout content-critere">
+                        {% include 'SofieAdminBundle:Groupe:include/critere_form.html.twig' %}
+                    </div>
+                    {% include 'SofieAdminBundle:Groupe:include/list.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/sofieadmin/js/groupe.js') }}"></script>
+{% endblock %}

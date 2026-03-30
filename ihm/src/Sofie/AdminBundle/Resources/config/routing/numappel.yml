@@ -1,0 +1,22 @@
+sofieadmin_numappel_index:
+    path:     /{page}
+    defaults: { _controller: SofieAdminBundle:NumeroAppel:index, page: 1 }
+    methods: [GET,POST]
+    requirements:
+        page: \d+
+
+sofieadmin_numappel_appels:
+    path:     /{id}/appels/{page}
+    defaults: { _controller: SofieAdminBundle:NumeroAppel:appels, page: 1 }
+    methods: [GET,POST]
+    requirements:
+        page: \d+
+        id: \d+
+
+sofieadmin_numappel_notifications:
+    path:     /{id}/notifications/{page}
+    defaults: { _controller: SofieAdminBundle:NumeroAppel:notifications, page: 1 }
+    methods: [GET,POST]
+    requirements:
+        page: \d+
+        id: \d+

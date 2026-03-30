@@ -1,0 +1,47 @@
+{% extends 'SofieExpBundle::layout.html.twig' %}
+
+{% block nav_ouvrage_active %}active-parent active{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li><a href="{{ path('sofieexp_ouvrage_index') }}">Ouvrages</a></li>
+{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="box-name">
+                        <i class="fa fa-table"></i>
+                        <span>Liste des ouvrages</span>
+                    </div>
+                    <div class="no-move"></div>
+                </div>
+                <div class="box-content no-padding">
+                    <div class="bs-callout content-critere">
+                        {% include 'SofieExpBundle:Ouvrage:include/critere_form.html.twig' %}
+                    </div>
+                    {% include 'SofieExpBundle:Ouvrage:include/list.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/sofieexp/js/ouvrage.js') }}"></script>
+{% endblock %}
+
+{% block flash_scripts %}
+    <script type="text/javascript">
+        $(function(){
+            critereListener();
+            regionListener($('#form_region'), $('#form_localite'));
+            validateActionListener();
+        });
+    </script>
+{% endblock %}
+

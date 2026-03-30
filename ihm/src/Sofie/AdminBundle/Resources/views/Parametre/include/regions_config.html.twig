@@ -1,0 +1,36 @@
+{% if configs is defined and configs is not empty %}
+    <form action="{{ path('sofieadmin_param_regionsconfig') }}" method="post" class="form-horizontal" id="regionsConfig" role="form">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Région</th><th>Numéro d'appel</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for config in configs %}
+                    <tr>
+                        <td>
+                            {% if not config.central|default(false) and config.region|default(null) is not null  %}
+                                {{ config.region.nom|default('') }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            <input type="text" name="configs[{{ config.id|default(0) }}]" class="form-control"
+                                   id="configs_{{ config.id|default(0) }}" value="{{ config.phoneNumber|default('') }}" />
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-success btn-label-left">
+                    <span><i class="fa fa-clock-o"></i></span>
+                    Enrégistrer
+                </button>
+            </div>
+        </div>
+    </form>
+{% endif %}

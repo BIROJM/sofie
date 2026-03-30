@@ -1,0 +1,215 @@
+<div class="row">
+	<div id="breadcrumb" class="col-md-12">
+		<ol class="breadcrumb">
+			<li><a href="index.html">Statistiques SOFIE</a></li>
+			<li><a href="#">Rendement des réparateurs</a></li>
+		</ol>
+	</div>
+</div>
+<h4 class="page-header">Rendement des réparateurs</h4>
+<div class="row">
+    <div class="col-xs-12 col-sm-12">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-search"></i>
+                    <span>Critères d'affichage</span>
+                </div>
+                <div class="box-icons">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="expand-link">
+                        <i class="fa fa-expand"></i>
+                    </a>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content">
+                <div class="row">
+                
+                    <div class="col-sm-12">
+                        <form class="form-horizontal" role="form">
+                            
+                            	<!--<label for="date_example" class="col-sm-2 control-label" style="padding-left : 0" >Période de debut </label>-->
+								<div class="col-sm-2">
+									Période de debut  : <input type="text" class="form-control date" id="date_debut" placeholder="">
+								</div>
+								
+								<!--<label for="date_example" class="col-sm-2 control-label">Période de fin </label>-->
+								<div class="col-sm-2">
+									Période de fin  : <input type="text" class="form-control date" id="date_fin" placeholder="">
+								
+								</div>
+								
+								<!-- <label class="col-sm-2 control-label">Etendu</label>-->
+                                <div class="col-sm-2">
+                                   Etendue :  <select id="regions" class=" form-control populate placeholder"></select>
+                                </div>
+								
+								<div class="col-sm-3">
+                                   Localité :  <select id="localites" class=" form-control populate placeholder">
+                                              </select>
+                                </div>
+								
+								<div class="col-sm-3">
+                                   Reparateur :  <select id="localites" class=" form-control populate placeholder">
+                                              </select>
+                                </div>
+								
+								<div class="col-sm-2 pull-right">
+									<button id="showStat" type="button" class="btn btn-primary" style="margin-top : 20px; float: right;">Afficher</button>
+								</div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/script.js"></script>
+<!--<script src="js/graph.js"></script>-->
+
+<div class="row">
+	<div class="col-xs-12">
+		<div class="box">
+			<div class="box-header">
+				<div class="box-name">
+					<i class="fa fa-usd"></i>
+					<span>Liste des reparateurs</span>
+				</div>
+				<div class="box-icons">
+					<a class="collapse-link">
+						<i class="fa fa-chevron-up"></i>
+					</a>
+					<a class="expand-link">
+						<i class="fa fa-expand"></i>
+					</a>
+					<a class="close-link">
+						<i class="fa fa-times"></i>
+					</a>
+				</div>
+				<div class="no-move"></div>
+			</div>
+			<div class="box-content no-padding">
+				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
+					<thead>
+						<tr>
+							<th>N°</th>
+							<th>Nom et prénom</th>
+							<th>N° d'appel</th>
+							<th>Réparations effectuées</th>
+							<th>Taux de réalisation</th>
+							<th>Délai moyen de réparation</th>
+							<th>Transfert de charge pour absence</th>
+							<th>Prise de commande</th>
+							<th>Avis de réparation reçus</th>
+							<th>Palmares</th>
+						</tr>
+					</thead>
+					<tbody>
+					<!-- Start: list_row -->
+						<tr>
+							<td>1</td>
+							<td><img class="img-rounded" src="http://i.forbesimg.com/media/lists/people/carlos-slim-helu_50x50.jpg" alt="">Carlos Slim Helu & family</td>
+							<td>$73 B</td>
+							<td>74</td>
+							<td>telecom</td>
+							<td>Mexico</td>
+							<td>74</td>
+							<td>telecom</td>
+							<td>Mexico</td>
+							<td>Mexico</td>
+						</tr>
+						<tr>
+							<td>2</td>
+							<td><img class="img-rounded" src="http://i.forbesimg.com/media/lists/people/bill-gates_50x50.jpg" alt="">Bill Gates</td>
+							<td>$67 B</td>
+							<td>58</td>
+							<td>Microsoft</td>
+							<td>United States</td>
+							<td>74</td>
+							<td>telecom</td>
+							<td>Mexico</td>
+							<td>Mexico</td>
+						</tr>
+						<tr>
+							<td>3</td>
+							<td><img class="img-rounded" src="http://i.forbesimg.com/media/lists/people/amancio-ortega_50x50.jpg" alt="">Amancio Ortega</td>
+							<td>$57 B</td>
+							<td>77</td>
+							<td>Zara</td>
+							<td>Spain</td>
+							<td>74</td>
+							<td>telecom</td>
+							<td>Mexico</td>
+							<td>Mexico</td>
+						</tr>
+						<tr>
+							<td>4</td>
+							<td><img class="img-rounded" src="http://i.forbesimg.com/media/lists/people/warren-buffett_50x50.jpg" alt="">Warren Buffett</td>
+							<td>$53.5 B</td>
+							<td>83</td>
+							<td>Berkshire Hathaway</td>
+							<td>United States</td>
+							<td>74</td>
+							<td>telecom</td>
+							<td>Mexico</td>
+							<td>Mexico</td>
+						</tr>
+						<tr>
+							<td>5</td>
+							<td><img class="img-rounded" src="http://i.forbesimg.com/media/lists/people/larry-ellison_50x50.jpg" alt="">Larry Ellison</td>
+							<td>$43 B</td>
+							<td>69</td>
+							<td>Oracle</td>
+							<td>United States</td>
+							<td>74</td>
+							<td>telecom</td>
+							<td>Mexico</td>
+							<td>Mexico</td>
+						</tr>
+						
+						
+						
+					<!-- End: list_row -->
+					</tbody>
+					<tfoot>
+						<tr>
+							<th>Rank</th>
+							<th>Name</th>
+							<th>Net Worth</th>
+							<th>Age</th>
+							<th>Source</th>
+							<th>Country of Citizenship</th>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+// Run Datables plugin and create 3 variants of settings
+function AllTables(){
+	TestTable1();
+	LoadSelect2Script(MakeSelect2);
+}
+function MakeSelect2(){
+	$('select').select2();
+	$('.dataTables_filter').each(function(){
+		$(this).find('label input[type=text]').attr('placeholder', 'Search');
+	});
+}
+$(document).ready(function() {
+	// Load Datatables and run plugin on tables 
+	LoadDataTablesScripts(AllTables);
+	// Add Drag-n-Drop feature
+	WinMove();
+});
+</script>

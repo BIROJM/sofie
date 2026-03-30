@@ -1,0 +1,46 @@
+sofieexp_collecte_index:
+    path:     /{id}-ouvrage/{page}
+    defaults: { _controller: SofieExpBundle:Collecte:index, page: 1 }
+    methods: [GET|POST]
+    requirements:
+        id: \d+
+        page: \d+
+
+sofieexp_collecte_add:
+    path:     /{id}-ouvrage/add/
+    defaults: { _controller: SofieExpBundle:Collecte:add }
+    methods: [GET|POST]
+    requirements:
+        id: \d+
+
+sofieexp_collecte_edit:
+    path:     /edit/{id}
+    defaults: { _controller: SofieExpBundle:Collecte:edit }
+    methods: [GET|POST]
+    requirements:
+        id: \d+
+        idCollecte: \d+
+
+sofieexp_collecte_view:
+    path:     /view/{id}
+    defaults: { _controller: SofieExpBundle:Collecte:view }
+    methods: [GET]
+    requirements:
+        id: \d+
+
+sofieexp_collecte_delete:
+    path:     /delete/{id}
+    defaults: { _controller: SofieExpBundle:Collecte:delete }
+    methods: [GET|POST]
+    requirements:
+        id: \d+
+
+# AJAX REQUEST
+sofieexp_collecte_ajax_validate:
+    path: /ajax/validate/{id}
+    defaults: { _controller: SofieExpBundle:Collecte:ajaxValidate }
+    methods: [GET|POST]
+    requirements:
+        id: \d+
+    options:
+        expose: true

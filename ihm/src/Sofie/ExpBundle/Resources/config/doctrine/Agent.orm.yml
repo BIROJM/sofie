@@ -1,0 +1,118 @@
+Sofie\ExpBundle\Entity\Agent:
+    type: entity
+    table: t_agent
+    repositoryClass: Sofie\ExpBundle\Entity\AgentRepository
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    id:
+        id:
+            type: integer
+            nullable: false
+            id: true
+            column: IDAgent
+            generator:
+                strategy: NONE
+#                strategy: IDENTITY
+    fields:
+        nom:
+            type: string
+            nullable: true
+            length: 50
+            column: NomAgent
+        prenoms:
+            type: string
+            nullable: true
+            length: 50
+            column: PrenomsAgent
+        codeInit:
+            type: string
+            nullable: true
+            length: 6
+            column: CodeInitAgent
+        qualificationAgent:
+            type: string
+            nullable: true
+            comment: ''
+            column: QualificationAgent
+        idNumappelNotification:
+            type: integer
+            nullable: true
+            column: IDNumAppelNotification
+        idLocalite:
+            type: integer
+            nullable: true
+            column: IDLocalite
+        initStatus:
+            type: boolean
+            nullable: true
+            options:
+                default: '0'
+            column: InitSatus
+        deletedAt:
+            type: datetime
+            nullable: true
+            column: deleted_at
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        sync:
+            type: string
+            length: 1
+            nullable: true
+            options:
+                default: 'N'
+            column: sync
+    manyToOne:
+        region:
+            targetEntity: Region
+            cascade: ["persist"]
+            inversedBy: agents
+            joinColumn:
+                name: IDRegion
+                nullable: true
+                referencedColumnName: IDRegion
+                onDelete: "SET NULL"
+            orphanRemoval: false
+        qualification:
+            targetEntity: Profile
+            cascade: ["persist"]
+            inversedBy: agents
+            joinColumn:
+                name: Qualification
+                nullable: true
+                referencedColumnName: IDProfile
+                onDelete: "SET NULL"
+            orphanRemoval: false
+    oneToOne:
+        numeroAppel:
+            targetEntity: NumeroAppel
+            cascade: ["persist", "remove"]
+            inversedBy: agent
+            joinColumn:
+                name: IDNumAppel
+                nullable: true
+                referencedColumnName: IDNumAppel
+                onDelete: "SET NULL"
+            orphanRemoval: false
+        user:
+            targetEntity: Sofie\UserBundle\Entity\User
+            cascade: ["persist", "remove"]
+            mappedBy: agent
+            fetch: EXTRA_LAZY
+    oneToMany:
+        localites:
+            targetEntity: Localite
+            cascade: ["persist"]
+            mappedBy: agentForma
+            fetch: EXTRA_LAZY
+    lifecycleCallbacks:
+        prePersist: [setCreatedValue, initialize, setCustomId]
+        preUpdate: [setUpdatedValue]
+        preRemove: [setRemovedValue]

@@ -1,0 +1,17 @@
+# This file is auto-generated during the composer install
+parameters:
+    referer_sessname: 'sofie_http_referer'
+    paginator_items: 50
+    nb_paginator: 5
+    lara_carte_route: api/public/index.php/carte
+    lara_carte_region_route: api/public/index.php/carte/selectRegion/
+    stat_route: stat
+    sofie_server_local: http://192.168.120.114
+    sofie_server: http://192.168.120.114
+    carte_region_url: %sofie_server_local%/sofie/public/carte/selectRegion/
+    carte_admin_url: %sofie_server_local%/sofie/public/carte
+    api_add_url: %sofie_server%/sofie/public/createEntity
+    api_get_key_url: %sofie_server%/sofie/public/getEntityKey
+    stat_url: %sofie_server_local%/sofie/stat/
+    sofie_site: null
+

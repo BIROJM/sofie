@@ -1,0 +1,124 @@
+Sofie\ExpBundle\Entity\Panne:
+    type: entity
+    table: t_panne
+    repositoryClass: Sofie\ExpBundle\Entity\PanneRepository
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    indexes:
+        IDOuvrage:
+            columns:
+                - IDOuvrage
+    id:
+        id:
+            type: integer
+            nullable: false
+            id: true
+            column: IDPanne
+            generator:
+                strategy: AUTO
+    fields:
+        numero:
+            type: string
+            nullable: true
+            length: 10
+            column: NumPanne
+        dateApparution:
+            type: datetime
+            nullable: true
+            column: DateApparution
+        datePriseCharge:
+            type: datetime
+            nullable: true
+            column: DatePriseCharge
+        dateDebutRep:
+            type: datetime
+            nullable: true
+            column: DateDebutRep
+        dateReparation:
+            type: datetime
+            nullable: true
+            column: DateReparation
+        enCours:
+            type: boolean
+            nullable: false
+            options:
+                default: '0'
+            column: enCours
+        idComite:
+            type: integer
+            nullable: true
+            column: IDComite
+        alert:
+            type: integer
+            nullable: true
+            options:
+                default: '0'
+            column: ALERT
+        origine:
+            type: integer
+            nullable: true
+            options:
+                default: '1'
+            column: origine
+        sync:
+            type: string
+            length: 1
+            nullable: true
+            options:
+                default: 'N'
+            column: sync
+        deletedAt:
+            type: datetime
+            nullable: true
+            column: deleted_at
+    manyToOne:
+        ouvrage:
+            targetEntity: Ouvrage
+            cascade: ["persist"]
+            inversedBy: pannes
+            joinColumn:
+                name: IDOuvrage
+                nullable: true
+                referencedColumnName: IDOuvrage
+                onDelete: "SET NULL"
+            orphanRemoval: false
+        statutPanne:
+            targetEntity: StatutPanne
+            cascade: ["persist"]
+            inversedBy: pannes
+            joinColumn:
+                name: StatutPanne
+                nullable: true
+                referencedColumnName: id
+                onDelete: "SET NULL"
+            orphanRemoval: false
+        typePanne:
+            targetEntity: TypePanne
+            inversedBy: pannes
+            cascade: ["persist"]
+            joinColumn:
+                name: type_panne_id
+                nullable: true
+                referencedColumnName: id
+                onDelete: "SET NULL"
+            orphanRemoval: false
+    oneToMany:
+        appels:
+            targetEntity: AppelTelephonique
+            cascade: ["persist"]
+            mappedBy: panne
+            fetch: EXTRA_LAZY
+        notifications:
+            targetEntity: Notification
+            cascade: ["persist"]
+            mappedBy: panne
+            fetch: EXTRA_LAZY
+    lifecycleCallbacks:
+        prePersist: [optimizedValue]
+        preUpdate: [optimizedValue]

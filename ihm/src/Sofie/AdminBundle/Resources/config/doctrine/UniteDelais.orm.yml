@@ -1,0 +1,36 @@
+Sofie\AdminBundle\Entity\UniteDelais:
+    type: entity
+    table: t_unitedelais
+    repositoryClass: Sofie\AdminBundle\Entity\UniteDelaisRepository
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: NONE
+    fields:
+        coefficient:
+            type: integer
+            nullable: true
+        libelle:
+            type: string
+            length: 255
+            nullable: true
+        sync:
+            type: string
+            length: 1
+            nullable: true
+            options:
+                default: 'N'
+            column: sync
+        deletedAt:
+            type: datetime
+            nullable: true
+            column: deleted_at
+    lifecycleCallbacks:
+        preUpdate: [setUpdatedValue]
+        preRemove: [setRemovedValue]

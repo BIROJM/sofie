@@ -1,0 +1,6 @@
+Sofie\ExpBundle\Entity\Reparateur:
+    properties:
+        nom:
+            - NotBlank: ~
+        prenoms:
+            - NotBlank: ~

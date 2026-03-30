@@ -1,0 +1,64 @@
+{% extends '::pdf.html.twig' %}
+
+{% block title %}Listes des pannes{% endblock %}
+
+{% block data_source %}Pannes{% endblock %}
+{% block data_length %}{{ pannes|default([])|length }}{% endblock %}
+
+{% block sofie_pdf_body %}
+    {{ pdf.start_list_table() }}
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Numéro</th>
+                <th>Date apparition</th>
+                <th>Date prise charge</th>
+                <th>Date début réparation</th>
+                <th>Date réparation</th>
+                <th>Type panne</th>
+                <th>Nb. appels</th>
+                <th>Nb. notifications</th>
+            </tr>
+        </thead>
+        {% if pannes is defined %}
+            {% if pannes is not empty %}
+                <tbody>
+                {% set page_inc = g_paginator_items|default(0)*(page|default(1)-1) %}
+                {% for panne in pannes %}
+                    <tr>
+                        <td>{{ loop.index+page_inc }}</td>
+                        <td>{{ panne.numero|default('') }}</td>
+                        <td>
+                            {% if panne.dateApparution|default(null) is not empty %}
+                                {{ panne.dateApparution|date('d/m/Y H:i:s') }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if panne.datePriseCharge|default(null) is not empty %}
+                                {{ panne.datePriseCharge|date('d/m/Y H:i:s') }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if panne.dateDebutRep|default(null) is not empty %}
+                                {{ panne.dateDebutRep|date('d/m/Y H:i:s') }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if panne.dateReparation|default(null) is not empty %}
+                                {{ panne.dateReparation|date('d/m/Y H:i:s') }}
+                            {% endif %}
+                        </td>
+                        <td>{{ panne.typePanne.libelle|default('') }}</td>
+                        <td class="text-center">
+                            {{ panne.appels|default('')|length }}
+                        </td>
+                        <td class="text-center">
+                            {{ panne.notifications|default('')|length }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            {% endif %}
+        {% endif %}
+    {{ pdf.end_list_table() }}
+{% endblock %}

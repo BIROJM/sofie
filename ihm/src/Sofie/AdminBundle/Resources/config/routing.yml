@@ -1,0 +1,19 @@
+sofieadmin_numappel:
+    resource: "routing/numappel.yml"
+    prefix: /numeros-appels/
+
+sofieadmin_user:
+    resource: "routing/user.yml"
+    prefix: /users/
+
+sofieadmin_groupe:
+    resource: "routing/groupe.yml"
+    prefix: /groupes/
+
+sofieadmin_param:
+    resource: "routing/parametre.yml"
+    prefix: /settings/
+
+sofieadmin_profil:
+    resource: "routing/profil.yml"
+    prefix: /profils/

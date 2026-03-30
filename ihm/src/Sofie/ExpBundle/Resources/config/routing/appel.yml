@@ -1,0 +1,6 @@
+sofieexp_appel_index:
+    path:     /{page}
+    defaults: { _controller: SofieExpBundle:Appel:index, page: 1 }
+    methods: [GET,POST]
+    requirements:
+        page: \d+

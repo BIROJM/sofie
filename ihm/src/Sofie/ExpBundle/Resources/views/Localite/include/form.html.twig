@@ -1,0 +1,63 @@
+{{
+    form_start(form, {
+        'action':'', 'method':'POST',
+        'attr':{'class':'form-horizontal', 'role':'form'}
+    })
+}}
+    <div class="text-danger small">{{ form_errors(form) }}</div>
+    <div class="col-sm-6">
+        {% if form.nom is defined %}
+            <div class="form-group">
+                {{ form_label(form.nom, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                <div class="col-sm-8">
+                    {{ form_widget(form.nom, {'attr':{'class':'form-control'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.nom) }}</div>
+                </div>
+            </div>
+        {% endif %}
+        {% if form.nombreHabitant is defined %}
+            <div class="form-group">
+                {{ form_label(form.nombreHabitant, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                <div class="col-sm-8">
+                    {{ form_widget(form.nombreHabitant, {'attr':{'class':'form-control'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.nombreHabitant) }}</div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    <div class="col-sm-6">
+        {% if form.reparateur is defined %}
+            <div class="form-group">
+                {{ form_label(form.reparateur, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                <div class="col-sm-8">
+                    {{ form_widget(form.reparateur, {'attr':{'class':'select2 form-control'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.reparateur) }}</div>
+                </div>
+            </div>
+        {% endif %}
+        {% if g_sofie_site|default(null) is null and form.region is defined %}
+            <div class="form-group">
+                {{ form_label(form.region, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                <div class="col-sm-8">
+                    {{ form_widget(form.region, {'attr':{'class':'select2 form-control'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.region) }}</div>
+                </div>
+            </div>
+        {% endif %}
+        {% if form.agentForma is defined %}
+            <div class="form-group">
+                {{ form_label(form.agentForma, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                <div class="col-sm-8">
+                    {{ form_widget(form.agentForma, {'attr':{'class':'select2 form-control'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.agentForma) }}</div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    <div class="clearfix"></div>
+    <hr class="x-margin" />
+    {% include '::include/default_form_buttons.html.twig' %}
+    <div>
+        {{ form_rest(form) }}
+    </div>
+{{ form_end(form) }}

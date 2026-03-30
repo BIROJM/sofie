@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<databaseServer>192.168.120.112</databaseServer>
+	<databaseName>db_sofiev4</databaseName>
+	<databaseUser>sofie</databaseUser>
+	<databasePassword>poiuyt</databasePassword>
+	<serverUri>/sofie/stat/</serverUri>
+	<region>0</region>
+	<deploymentType>local</deploymentType> <!-- internet-->
+	<localIp>192.168.120.114</localIp>
+	<externalIp>192.168.1.100</externalIp>
+</config>

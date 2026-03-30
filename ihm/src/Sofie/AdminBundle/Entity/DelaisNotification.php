@@ -1,0 +1,242 @@
+<?php
+
+namespace Sofie\AdminBundle\Entity;
+
+use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * DelaisNotification
+ */
+class DelaisNotification
+{
+    const SYNC = 'Y';
+    const NO_SYNC = 'N';
+
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @var integer
+     */
+    private $horsPriseCommande;
+
+    /**
+     * @var integer
+     */
+    private $horsReparation;
+
+    /**
+     * @var \Sofie\AdminBundle\Entity\UniteDelais
+     */
+    private $uniteDelais;
+
+    /**
+     * @var string
+     */
+    private $uniteParDefaut;
+
+    /**
+     * @var string
+     */
+    private $sync;
+
+    /**
+     * @var \DateTime
+     */
+    private $deletedAt;
+
+
+    /**
+     * @param $id
+     * @return $this
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set horsPriseCommande
+     *
+     * @param integer $horsPriseCommande
+     * @return DelaisNotification
+     */
+    public function setHorsPriseCommande($horsPriseCommande)
+    {
+        $this->horsPriseCommande = $horsPriseCommande;
+
+        return $this;
+    }
+
+    /**
+     * Get horsPriseCommande
+     *
+     * @return integer 
+     */
+    public function getHorsPriseCommande()
+    {
+        return $this->horsPriseCommande;
+    }
+
+    /**
+     * Set horsReparation
+     *
+     * @param integer $horsReparation
+     * @return DelaisNotification
+     */
+    public function setHorsReparation($horsReparation)
+    {
+        $this->horsReparation = $horsReparation;
+
+        return $this;
+    }
+
+    /**
+     * Get horsReparation
+     *
+     * @return integer 
+     */
+    public function getHorsReparation()
+    {
+        return $this->horsReparation;
+    }
+
+    /**
+     * Set uniteDelais
+     *
+     * @param \Sofie\AdminBundle\Entity\UniteDelais $uniteDelais
+     * @return DelaisNotification
+     */
+    public function setUniteDelais(\Sofie\AdminBundle\Entity\UniteDelais $uniteDelais = null)
+    {
+        $this->uniteDelais = $uniteDelais;
+
+        return $this;
+    }
+
+    /**
+     * Get uniteDelais
+     *
+     * @return \Sofie\AdminBundle\Entity\UniteDelais 
+     */
+    public function getUniteDelais()
+    {
+        return $this->uniteDelais;
+    }
+
+    /**
+     * Set uniteParDefaut
+     *
+     * @param string $uniteParDefaut
+     * @return DelaisNotification
+     */
+    public function setUniteParDefaut($uniteParDefaut)
+    {
+        $this->uniteParDefaut = $uniteParDefaut;
+
+        return $this;
+    }
+
+    /**
+     * Get uniteParDefaut
+     *
+     * @return string 
+     */
+    public function getUniteParDefaut()
+    {
+        return $this->uniteParDefaut;
+    }
+
+    /**
+     * Set sync
+     *
+     * @param string $sync
+     * @return DelaisNotification
+     */
+    public function setSync($sync)
+    {
+        $this->sync = $sync;
+
+        return $this;
+    }
+
+    /**
+     * Get sync
+     *
+     * @return string 
+     */
+    public function getSync()
+    {
+        return $this->sync;
+    }
+
+    /**
+     * Set deletedAt
+     *
+     * @param \DateTime $deletedAt
+     * @return DelaisNotification
+     */
+    public function setDeletedAt($deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get deletedAt
+     *
+     * @return \DateTime 
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
+    }
+
+    public function logString()
+    {
+        $msg = 'Identifiant: '.$this->id;
+        if($this->horsPriseCommande) $msg .= ', Hors prise commande : '.$this->horsPriseCommande;
+        if($this->horsReparation) $msg .= ', Hors réparation : '.$this->horsReparation;
+        return $msg;
+    }
+
+    public function setUpdatedValue()
+    {
+        $this->unsynchronize();
+    }
+
+    public function synchronize()
+    {
+        $this->sync = static::SYNC;
+    }
+
+    public function unsynchronize()
+    {
+        $this->sync = static::NO_SYNC;
+    }
+
+    /**
+     * ORM\PreRemove
+     */
+    public function setRemovedValue(LifecycleEventArgs $eventArgs)
+    {
+        $this->unsynchronize();
+        $eventArgs->getEntityManager()->flush();
+    }
+}

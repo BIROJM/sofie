@@ -1,0 +1,61 @@
+sofieexp_comite_index:
+    path:     /{page}
+    defaults: { _controller: SofieExpBundle:Comite:index, page: 1 }
+    methods: [GET|POST]
+    requirements:
+        page: \d+
+
+sofieexp_comite_add:
+    path:     /add
+    defaults: { _controller: SofieExpBundle:Comite:add }
+    methods: [GET, POST]
+
+sofieexp_comite_edit:
+    path:     /edit/{id}
+    defaults: { _controller: SofieExpBundle:Comite:edit }
+    methods: [GET, POST]
+    requirements:
+        id: \d+
+
+sofieexp_comite_view:
+    path:     /view/{id}
+    defaults: { _controller: SofieExpBundle:Comite:view }
+    methods: [GET]
+    requirements:
+        id: \d+
+
+sofieexp_comite_delete:
+    path:     /delete/{id}
+    defaults: { _controller: SofieExpBundle:Comite:delete }
+    methods: [GET]
+    requirements:
+        id: \d+
+
+# AJAX REQUEST
+sofieexp_comite_ajax_by_localite:
+    path:     /ajax/localite/{id}
+    defaults: { _controller: SofieExpBundle:Comite:ajaxByLocalite }
+    methods: [GET]
+    requirements:
+        id: \d+
+    options:
+        expose: true
+
+sofieexp_comite_ajax_init:
+    path:     /ajax/init/{id}
+    defaults: { _controller: SofieExpBundle:Comite:ajaxInit }
+    methods: [GET|POST]
+    requirements:
+        id: \d+
+    options:
+        expose: true
+
+sofieexp_comite_ajax_by_localite_and_free:
+    path:     /ajax/localite-free/{id}/{current}
+    defaults: { _controller: SofieExpBundle:Comite:ajaxByLocaliteAndFree, current: 0 }
+    methods: [GET]
+    requirements:
+        id: \d+
+        current: \d+
+    options:
+        expose: true

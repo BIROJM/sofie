@@ -1,0 +1,50 @@
+/* PDF */
+/*@page {
+    margin-top: 2cm;
+}*/
+
+body{
+    background: none;
+    background-color: transparent;
+}
+.pdftable{
+    border-collapse: collapse;
+    border-spacing: 0;
+    topntail: 1px;
+    autosize: 2.4;
+    margin-top: 8px;
+    width: 100%;
+}
+#criteres{
+    font-size: small;
+    font-style: italic;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size:10px;
+}
+
+/* Table */
+.pdftable-striped tbody tr:nth-child(2n+1) {
+    background-color: #f9f9f9;
+}
+.pdftable-heading thead tr{
+    background-color: #f0f0f0;
+    background-image: linear-gradient(to bottom, #f0f0f0, #dfdfdf);
+}
+.pdftable thead tr th, .pdftable tbody tr th, .pdftable tfoot tr th,
+.pdftable thead tr td, .pdftable tbody tr td, .pdftable tfoot tr td {
+    font-weight: normal;
+    padding: 2px;
+    vertical-align: middle;
+}
+.pdftable-bordered thead tr td, .pdftable-bordered thead tr th {
+    border-bottom-width: 2px;
+}
+.pdftable-bordered tbody tr td, .pdftable-bordered tbody tr th,
+.pdftable-bordered tfoot tr td, .pdftable-bordered tfoot tr th, 
+.pdftable-bordered thead tr td, .pdftable-bordered thead tr th {
+    border: 1px solid #ddd;
+}
+
+.libStatGen{
+	font-size:10px;
+   }

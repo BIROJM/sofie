@@ -1,0 +1,99 @@
+Sofie\UserBundle\Entity\User:
+    type: entity
+    table: users
+    repositoryClass: Sofie\UserBundle\Entity\UserRepository
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    users_email_unique:
+        columns:
+            - email
+    id:
+        id:
+            type: integer
+            nullable: false
+            comment: ''
+            id: true
+            generator:
+                strategy: NONE
+#                strategy: IDENTITY
+    fields:
+        email:
+            type: string
+            nullable: true
+            length: 100
+        password:
+            type: string
+            nullable: true
+            length: 255
+        admin:
+            type: boolean
+            nullable: true
+            options:
+                default: '0'
+        rememberToken:
+            type: string
+            nullable: true
+            length: 100
+            column: remember_token
+        roles:
+            type: array
+            nullable: true
+        username:
+            type: string
+            nullable: false
+            length: 50
+        isActive:
+            type: boolean
+            nullable: true
+            column: is_active
+        salt:
+            type: string
+            nullable: true
+            length: 255
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        sync:
+            type: string
+            length: 1
+            nullable: true
+            options:
+                default: 'N'
+            column: `sync`
+        deletedAt:
+            type: datetime
+            nullable: true
+            column: deleted_at
+        isMobile:
+            type: boolean
+            column: is_mobile
+            nullable: true
+    oneToOne:
+        agent:
+            targetEntity: Sofie\ExpBundle\Entity\Agent
+            cascade: ["persist", "remove"]
+            inversedBy: user
+            joinColumn:
+                name: agent_id
+                nullable: true
+                referencedColumnName: IDAgent
+                onDelete: "SET NULL"
+            orphanRemoval: false
+    oneToMany:
+        userGroupes:
+            targetEntity: UserGroupe
+            cascade: ["persist", "remove"]
+            mappedBy: user
+            fetch: EXTRA_LAZY
+    lifecycleCallbacks:
+        prePersist: [setCreatedValue, checkStatus, setCustomId]
+        preUpdate: [setUpdatedValue, checkStatus, initialize]
+        postLoad: [initialize]
+        preRemove: [setRemovedValue]

@@ -1,0 +1,495 @@
+<?php
+
+namespace Sofie\ExpBundle\Entity;
+
+use Doctrine\ORM\Event\LifecycleEventArgs;
+use Sofie\AdminBundle\Model\ParameterFile;
+
+
+/**
+ * Comite
+ */
+class Comite
+{
+    const SYNC = 'Y';
+    const NO_SYNC = 'N';
+    const PROFILE = 1;
+
+    const INIT_WORD = 'Initialisé';
+    const NOINIT_WORD = 'Non initialisé';
+
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $nom;
+
+    /**
+     * @var string
+     */
+    private $codeInit;
+
+    /**
+     * @var string
+     */
+    private $nomSecretaire;
+
+    /**
+     * @var string
+     */
+    private $prenomsSecretaire;
+
+    /**
+     * @var boolean
+     */
+    private $initStatus;
+
+    /**
+     * @var \Sofie\ExpBundle\Entity\NumeroAppel
+     */
+    private $numeroAppel;
+
+    /**
+     * @var \Sofie\ExpBundle\Entity\Localite
+     */
+    private $localite;
+
+    /**
+     * @var \DateTime
+     */
+    private $deletedAt;
+
+    /**
+     * @var \DateTime
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
+     * @var string
+     */
+    private $sync;
+
+    /**
+     * @var \Sofie\ExpBundle\Entity\Ouvrage
+     */
+    private $ouvrage;
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->sync = static::NO_SYNC;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     * @return Comite
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string 
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set codeInit
+     *
+     * @param string $codeInit
+     * @return Comite
+     */
+    public function setCodeInit($codeInit)
+    {
+        $this->codeInit = $codeInit;
+
+        return $this;
+    }
+
+    /**
+     * Get codeInit
+     *
+     * @return string 
+     */
+    public function getCodeInit()
+    {
+        return $this->codeInit;
+    }
+
+    /**
+     * Set nomSecretaire
+     *
+     * @param string $nomSecretaire
+     * @return Comite
+     */
+    public function setNomSecretaire($nomSecretaire)
+    {
+        $this->nomSecretaire = $nomSecretaire;
+
+        return $this;
+    }
+
+    /**
+     * Get nomSecretaire
+     *
+     * @return string 
+     */
+    public function getNomSecretaire()
+    {
+        return $this->nomSecretaire;
+    }
+
+    /**
+     * Set prenomsSecretaire
+     *
+     * @param string $prenomsSecretaire
+     * @return Comite
+     */
+    public function setPrenomsSecretaire($prenomsSecretaire)
+    {
+        $this->prenomsSecretaire = $prenomsSecretaire;
+
+        return $this;
+    }
+
+    /**
+     * Get prenomsSecretaire
+     *
+     * @return string 
+     */
+    public function getPrenomsSecretaire()
+    {
+        return $this->prenomsSecretaire;
+    }
+
+    /**
+     * Set initStatus
+     *
+     * @param boolean $initStatus
+     * @return Comite
+     */
+    public function setInitStatus($initStatus)
+    {
+        $this->initStatus = $initStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get initStatus
+     *
+     * @return boolean 
+     */
+    public function getInitStatus()
+    {
+        return $this->initStatus;
+    }
+
+    /**
+     * Set numeroAppel
+     *
+     * @param \Sofie\ExpBundle\Entity\NumeroAppel $numeroAppel
+     * @return Comite
+     */
+    public function setNumeroAppel(\Sofie\ExpBundle\Entity\NumeroAppel $numeroAppel = null)
+    {
+        $this->numeroAppel = $numeroAppel;
+
+        return $this;
+    }
+
+    /**
+     * Get numeroAppel
+     *
+     * @return \Sofie\ExpBundle\Entity\NumeroAppel 
+     */
+    public function getNumeroAppel()
+    {
+        return $this->numeroAppel;
+    }
+
+    /**
+     * Set localite
+     *
+     * @param \Sofie\ExpBundle\Entity\Localite $localite
+     * @return Comite
+     */
+    public function setLocalite(\Sofie\ExpBundle\Entity\Localite $localite = null)
+    {
+        $this->localite = $localite;
+
+        return $this;
+    }
+
+    /**
+     * Get localite
+     *
+     * @return \Sofie\ExpBundle\Entity\Localite 
+     */
+    public function getLocalite()
+    {
+        return $this->localite;
+    }
+
+    public function getRegion()
+    {
+        if(is_object($this->localite)){
+            return $this->localite->getRegion();
+        }
+        return null;
+    }
+
+    public function __toString()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set deletedAt
+     *
+     * @param \DateTime $deletedAt
+     * @return Comite
+     */
+    public function setDeletedAt($deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get deletedAt
+     *
+     * @return \DateTime 
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return Comite
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return Comite
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set sync
+     *
+     * @param string $sync
+     * @return Comite
+     */
+    public function setSync($sync)
+    {
+        $this->sync = $sync;
+
+        return $this;
+    }
+
+    /**
+     * Get sync
+     *
+     * @return string 
+     */
+    public function getSync()
+    {
+        return $this->sync;
+    }
+
+    public function setCreatedValue()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = $this->createdAt;
+    }
+
+
+    public function setUpdatedValue()
+    {
+        $this->updatedAt = new \DateTime();
+        $this->unsynchronize();
+    }
+
+    public function setCustomId(LifecycleEventArgs $eventArgs)
+    {
+        /*if($this->id == null){
+            $this->id = $eventArgs->getEntityManager()->getRepository('SofieExpBundle:Comite')->getNextId();
+        }*/
+    }
+
+    public function getLocaliteId()
+    {
+        if($this->localite != null){
+            return $this->localite->getId();
+        }
+        return null;
+    }
+
+    public function synchronize()
+    {
+        $this->sync = static::SYNC;
+    }
+
+    public function unsynchronize()
+    {
+        $this->sync = static::NO_SYNC;
+    }
+
+    /**
+     * Set ouvrage
+     *
+     * @param \Sofie\ExpBundle\Entity\Ouvrage $ouvrage
+     * @return Comite
+     */
+    public function setOuvrage(\Sofie\ExpBundle\Entity\Ouvrage $ouvrage = null)
+    {
+        $this->ouvrage = $ouvrage;
+
+        return $this;
+    }
+
+    /**
+     * Get ouvrage
+     *
+     * @return \Sofie\ExpBundle\Entity\Ouvrage 
+     */
+    public function getOuvrage()
+    {
+        return $this->ouvrage;
+    }
+
+    public function initialize(LifecycleEventArgs $eventArgs)
+    {
+        $em = $eventArgs->getEntityManager();
+        if(!$this->codeInit || !$this->initStatus){
+            $code = $em->getRepository('SofieExpBundle:Code')->findOneBy(array(
+                'status'=>Code::STATUS_NO,
+                'profile'=>self::PROFILE
+            ));
+            if($code && ($code instanceof Code)){
+                $this->codeInit = $code->getCode();
+                $code->attribCode();
+            }
+        }
+    }
+
+    public function logString()
+    {
+        $msg = 'Identifiant: '.$this->id;
+        if($this->nom) $msg .= ', Nom : '.$this->nom;
+        if($this->nomSecretaire) $msg .= ', Nom sécrétaire : '.$this->nomSecretaire;
+        if($this->prenomsSecretaire) $msg .= ', Prénoms sécrétaire : '.$this->prenomsSecretaire;
+        if($this->codeInit) $msg .= ', Code d\'initialisation : '.$this->codeInit;
+        return $msg;
+    }
+
+    static public function getInitWordArrayAssoc()
+    {
+        return array('0'=>self::NOINIT_WORD, '1'=>self::INIT_WORD);
+    }
+
+    public function isInitializable()
+    {
+        return (
+            is_null(ParameterFile::loadSite()) && !empty($this->codeInit)
+        );
+    }
+
+    public function titleInitialize()
+    {
+        $msg = '';
+        if(!is_null(ParameterFile::loadSite())){
+            $msg .= 'Fonction disponible uniquement au site central';
+        }else{
+            if(empty($this->codeInit)){
+                $msg .= 'Le code d\'initialisation ne doit pas être vide';
+            }
+        }
+        return $msg;
+    }
+
+    /**
+     * ORM\PreRemove
+     */
+    public function setRemovedValue(LifecycleEventArgs $eventArgs)
+    {
+        $this->unsynchronize();
+        $eventArgs->getEntityManager()->flush();
+    }
+}

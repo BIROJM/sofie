@@ -1,0 +1,60 @@
+sofieexp_homepage:
+    path:     /
+    defaults: { _controller: SofieExpBundle:Exp:index }
+    methods: [GET]
+
+
+# AJAX
+sofie_carte:
+    path: /carte/{id}
+    defaults: { _controller: SofieExpBundle:Region:loadCarte, id: '' }
+    requirements:
+        id: \d+|\s
+    options:
+        expose: true
+
+# Includes
+
+sofieexp_region:
+    resource: "routing/region.yml"
+    prefix: /regions/
+
+sofieexp_localite:
+    resource: "routing/localite.yml"
+    prefix: /localites/
+
+sofieexp_ouvrage:
+    resource: "routing/ouvrage.yml"
+    prefix: /ouvrages/
+
+sofieexp_collecte:
+    resource: "routing/collecte.yml"
+    prefix: /collectes/
+
+sofieexp_event:
+    resource: "routing/event.yml"
+    prefix: /events/
+
+sofieexp_appel:
+    resource: "routing/appel.yml"
+    prefix: /appels/
+
+sofieexp_agent:
+    resource: "routing/agent.yml"
+    prefix: /agents/
+
+sofieexp_reparateur:
+    resource: "routing/reparateur.yml"
+    prefix: /reparateurs/
+
+sofieexp_comite:
+    resource: "routing/comite.yml"
+    prefix: /comites/
+
+sofieexp_diffusionsms:
+    resource: "routing/diffusionsms.yml"
+    prefix: /diffusion-sms/
+
+sofieexp_typepanne:
+    resource: "routing/typepanne.yml"
+    prefix: /types-pannes/

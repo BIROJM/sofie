@@ -1,0 +1,35 @@
+{% extends "SofieExpBundle::layout.html.twig" %}
+
+{% block nav_typepanne_active %}active{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li><a href="{{ path('sofieexp_typepanne_index') }}">Types de panne</a></li>
+{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="box-name">
+                        <i class="fa fa-table"></i>
+                        <span>Liste des types de panne</span>
+                    </div>
+                </div>
+                <div class="box-content no-padding">
+                    <div class="bs-callout content-critere">
+                        {% include 'SofieExpBundle:TypePanne:include/critere_form.html.twig' %}
+                    </div>
+                    {% include 'SofieExpBundle:TypePanne:include/list.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/sofieexp/js/typepanne.js') }}"></script>
+{% endblock %}

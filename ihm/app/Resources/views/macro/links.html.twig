@@ -1,0 +1,13 @@
+{% macro pdf_link(a, i) %}
+    {% set route_index = app.request.attributes.get('_route') %}
+    {% set route_params = app.request.attributes.get('_route_params') %}
+    <a class="{{ a.class|default('') }}" title="Imprimer"
+       href="{{ path(route_index, route_params|merge(app.request.query.all|merge({'pdf': 1}))) }}" target="_blank">
+        <i class="fa fa-print {{ i.class|default('text-danger') }}"></i>
+    </a>
+{% endmacro %}
+
+{% macro pdf_link_red(a, i) %}
+    {% import _self as links %}
+    {{ links.pdf_link(a, i|merge({'class':i.class|default('')~' text-danger'})) }}
+{% endmacro %}

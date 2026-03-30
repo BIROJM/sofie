@@ -1,0 +1,87 @@
+{% import '::macro/links.html.twig' as links %}
+
+<div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover table-heading">
+        <caption>
+            <div class="pull-right">
+                {{ links.pdf_link({}, {'class':'fa-lg'}) }}
+            </div>
+        </caption>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Numéro</th>
+            <th>Date apparition</th>
+            <th>Date prise charge</th>
+            <th>Date début rép.</th>
+            <th>Date réparation</th>
+            <th>Type panne</th>
+            <th>Nb. appels</th>
+            <th>Nb. notifications</th>
+        </tr>
+        </thead>
+        {% if ouvrage is defined and pannes is defined %}
+            {% if pannes is not empty %}
+                <tbody>
+                    {% set page_inc = g_paginator_items*(page-1) %}
+                    {% for panne in pannes %}
+                        <tr>
+                            <td>{{ loop.index+page_inc }}</td>
+                            <td>{{ panne.numero|default('') }}</td>
+                            <td>
+                                {% if panne.dateApparution|default(null) is not empty %}
+                                    {{ panne.dateApparution|date('d/m/Y H:i:s') }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if panne.datePriseCharge|default(null) is not empty %}
+                                    {{ panne.datePriseCharge|date('d/m/Y H:i:s') }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if panne.dateDebutRep|default(null) is not empty %}
+                                    {{ panne.dateDebutRep|date('d/m/Y H:i:s') }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if panne.dateReparation|default(null) is not empty %}
+                                    {{ panne.dateReparation|date('d/m/Y H:i:s') }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                <span class="content-type-panne">
+                                    {{ panne.typePanne.libelle|default('') }}
+                                </span>
+                                {% if is_granted('ROLE_EDIT_TYPE_PANNE') %}
+                                <a class="edit-type-panne" href="#" data-href="{{ path('sofieexp_ouvrage_panne_edit_type', {'id':panne.id|default(0)}) }}">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+                                {% endif %}
+                            </td>
+                            <td class="text-center">
+                                {% if is_granted('ROLE_APPEL') %}
+                                    <a href="#" class="panne-appels-view" data-href="{{ path('sofieexp_ouvrage_panne_appels', {'id':panne.id|default(0)}) }}">
+                                        <span class="badge">{{ panne.appels|default('')|length }}</span>
+                                    </a>
+                                {% else %}
+                                    {{ panne.appels|default('')|length }}
+                                {% endif %}
+                            </td>
+                            <td class="text-center">
+                                {% if is_granted('ROLE_NOTIFICATION') %}
+                                    <a href="#" class="panne-notifications-view" data-href="{{ path('sofieexp_ouvrage_panne_notifications', {'id':panne.id|default(0)}) }}">
+                                        <span class="badge">{{ panne.notifications|default('')|length }}</span>
+                                    </a>
+                                {% else %}
+                                    {{ panne.notifications|default('')|length }}
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            {% endif %}
+        {% endif %}
+    </table>
+</div>
+{# Pagination #}
+{% include '::include/paginator/paginator.html.twig' with {'total': pannes|default([])|length} %}

@@ -1,0 +1,118 @@
+Sofie\ExpBundle\Entity\Region:
+    type: entity
+    table: t_region
+    repositoryClass: Sofie\ExpBundle\Entity\RegionRepository
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    id:
+        id:
+            type: integer
+            nullable: false
+            id: true
+            column: IDRegion
+            generator:
+                strategy: NONE
+#                strategy: IDENTITY
+    fields:
+        nom:
+            type: string
+            nullable: true
+            length: 50
+            unique: true
+            column: NomRegion
+        superficie:
+            type: decimal
+            nullable: true
+            precision: 8
+            scale: 0
+            column: Superficie
+        situation:
+            type: string
+            nullable: true
+            length: 80
+            column: Stituation
+        longitude:
+            type: string
+            nullable: false
+            length: 40
+        latitude:
+            type: string
+            nullable: false
+            length: 40
+        carte:
+            type: string
+            nullable: false
+            unique: true
+            length: 140
+        zoom:
+            type: integer
+            nullable: true
+        maxZoom:
+            type: integer
+            nullable: true
+            column: maxZoom
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        sync:
+            type: string
+            length: 1
+            nullable: true
+            options:
+                default: 'N'
+            column: sync
+        deletedAt:
+            type: datetime
+            nullable: true
+            column: deleted_at
+        numeroModem:
+            type: string
+            length: 20
+            nullable: true
+            column: numero_modem
+    oneToOne:
+        sociologue:
+            targetEntity: Agent
+            cascade: ["persist"]
+            joinColumn:
+                name: IDSociologue
+                nullable: true
+                unique: true
+                referencedColumnName: IDAgent
+                onDelete: "SET NULL"
+        iddr:
+            targetEntity: Agent
+            cascade: ["persist"]
+            joinColumn:
+                name: IDDR
+                nullable: true
+                unique: true
+                referencedColumnName: IDAgent
+                onDelete: "SET NULL"
+        config:
+            targetEntity: Sofie\AdminBundle\Entity\Config
+            cascade: ["persist"]
+            mappedBy: region
+            fetch: EXTRA_LAZY
+    oneToMany:
+        agents:
+            targetEntity: Agent
+            cascade: ["persist"]
+            mappedBy: region
+            fetch: EXTRA_LAZY
+        localites:
+            targetEntity: Localite
+            cascade: ["persist"]
+            mappedBy: region
+            fetch: EXTRA_LAZY
+    lifecycleCallbacks:
+        prePersist: [setCreatedValue, setCustomId]
+        preUpdate: [setUpdatedValue]
+        preRemove: [setRemovedValue]

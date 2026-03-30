@@ -1,0 +1,42 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{{ parent() }} - PROFIL UTILISATEUR{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li><a href="{{ path('sofieuser_profile_index') }}">Profil</a></li>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="box-name">
+                        <i class="fa fa-user"></i>
+                        <span>Profil</span>
+                    </div>
+                    <div class="no-move"></div>
+                </div>
+                <div class="box-content">
+                    {% include 'SofieUserBundle:Profile:include/profile.html.twig' %}
+                    {% if form is defined and form is not empty %}
+                        <hr class="x-margin" />
+                        <div class="row">
+                            <div class="col-sm-8 col-sm-offset-2">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title"><i class="fa fa-key"></i> Changemenet de mot de passe</h4>
+                                    </div>
+                                    <div class="panel-body">
+                                        {% include 'SofieUserBundle:Profile:include/change_password.html.twig' %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,92 @@
+parameters:
+    sofie_exp.region.form.class: Sofie\ExpBundle\Form\Type\RegionType
+    sofie_exp.localite.form.class: Sofie\ExpBundle\Form\Type\LocaliteType
+    sofie_exp.reparateur.form.class: Sofie\ExpBundle\Form\Type\ReparateurType
+    sofie_exp.agent.form.class: Sofie\ExpBundle\Form\Type\AgentType
+    sofie_exp.numeroappel.form.class: Sofie\ExpBundle\Form\Type\NumeroAppelType
+    sofie_exp.comite.form.class: Sofie\ExpBundle\Form\Type\ComiteType
+    sofie_exp.ouvrage.form.class: Sofie\ExpBundle\Form\Type\OuvrageType
+    sofie_exp.equipementforage.form.class: Sofie\ExpBundle\Form\Type\EquipementForageType
+    sofie_exp.coupegeologique.form.class: Sofie\ExpBundle\Form\Type\CoupeGeologiqueType
+    sofie_exp.essaispompage.form.class: Sofie\ExpBundle\Form\Type\EssaisPompageType
+    sofie_exp.suiviphysicochimique.form.class: Sofie\ExpBundle\Form\Type\SuiviPhysicoChimiqueType
+    sofie_exp.venueauprincipale.form.class: Sofie\ExpBundle\Form\Type\VenuEauPrincipaleType
+    sofie_exp.collecte.form.class: Sofie\ExpBundle\Form\Type\CollecteType
+    sofie_exp.enumdata.manager.class: Sofie\ExpBundle\EnumData\EnumDataManager
+
+services:
+# FORMULAIRE
+    sofie_exp.region.form.type:
+        class: %sofie_exp.region.form.class%
+        tags:
+            - { name: form.type, alias: sofie_expbundle_region }
+
+    sofie_exp.localite.form.type:
+        class: %sofie_exp.localite.form.class%
+        arguments: [@doctrine.orm.entity_manager]
+        tags:
+            - { name: form.type, alias: sofie_expbundle_localite }
+
+    sofie_exp.reparateur.form.type:
+        class: %sofie_exp.reparateur.form.class%
+        arguments: [@security.authorization_checker]
+        tags:
+            - { name: form.type, alias: sofie_expbundle_reparateur }
+
+    sofie_exp.agent.form.type:
+        class: %sofie_exp.agent.form.class%
+        arguments: [@doctrine.orm.entity_manager, @security.authorization_checker]
+        tags:
+            - { name: form.type, alias: sofie_expbundle_agent }
+
+    sofie_exp.numeroappel.form.type:
+        class: %sofie_exp.numeroappel.form.class%
+        tags:
+            - { name: form.type, alias: sofie_expbundle_numeroappel }
+
+    sofie_exp.comite.form.type:
+        class: %sofie_exp.comite.form.class%
+        arguments: [@doctrine.orm.entity_manager, @security.authorization_checker]
+        tags:
+            - { name: form.type, alias: sofie_expbundle_comite }
+
+    sofie_exp.ouvrage.form.type:
+        class: %sofie_exp.ouvrage.form.class%
+        arguments: [@doctrine.orm.entity_manager, "@sofie_exp.enumdata.manager"]
+        tags:
+            - { name: form.type, alias: sofie_expbundle_ouvrage }
+
+    sofie_exp.equipementforage.form.type:
+        class: %sofie_exp.equipementforage.form.class%
+        tags:
+            - { name: form.type, alias: sofie_expbundle_equipementforage }
+
+    sofie_exp.coupegeologique.form.type:
+        class: %sofie_exp.coupegeologique.form.class%
+        tags:
+            - { name: form.type, alias: sofie_expbundle_coupegeologique }
+
+    sofie_exp.essaispompage.form.type:
+        class: %sofie_exp.essaispompage.form.class%
+        tags:
+            - { name: form.type, alias: sofie_expbundle_essaispompage }
+
+    sofie_exp.suiviphysicochimique.form.type:
+        class: %sofie_exp.suiviphysicochimique.form.class%
+        tags:
+            - { name: form.type, alias: sofie_expbundle_suiviphysicochimique }
+
+    sofie_exp.venueauprincipale.form.type:
+        class: %sofie_exp.venueauprincipale.form.class%
+        tags:
+            - { name: form.type, alias: sofie_expbundle_venueauprincipale }
+
+    sofie_exp.collecte.form.type:
+        class: %sofie_exp.collecte.form.class%
+        arguments: ["@sofie_exp.enumdata.manager"]
+        tags:
+            - { name: form.type, alias: sofie_expbundle_collecte }
+
+    sofie_exp.enumdata.manager:
+        class: %sofie_exp.enumdata.manager.class%
+        arguments: [@doctrine.orm.entity_manager]

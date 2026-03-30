@@ -1,0 +1,75 @@
+Sofie\ExpBundle\Entity\CoupeGeologique:
+    type: entity
+    table: t_coupegeologique
+    repositoryClass: Sofie\ExpBundle\Entity\CoupeGeologiqueRepository
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: true
+            comment: ''
+            id: true
+            column: IDCoupegeologique
+            generator:
+                strategy: NONE
+#                strategy: IDENTITY
+    fields:
+        coteSup:
+            type: string
+            nullable: true
+            length: 20
+            column: CoteSup
+        coteInf:
+            type: string
+            nullable: true
+            length: 20
+            column: CoteInf
+        lithographie:
+            type: string
+            nullable: true
+            length: 20
+            column: Lithographie
+        description:
+            type: string
+            nullable: true
+            length: 50
+            column: Description
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        sync:
+            type: string
+            length: 1
+            nullable: true
+            options:
+                default: "N"
+            column: sync
+        deletedAt:
+            type: datetime
+            nullable: true
+            column: deleted_at
+    manyToOne:
+        ouvrage:
+            targetEntity: Ouvrage
+            cascade: ["persist"]
+            inversedBy: coupeGeologiques
+            joinColumn:
+                name: IDOuvrage
+                nullable: true
+                referencedColumnName: IDOuvrage
+                onDelete: "CASCADE"
+            orphanRemoval: true
+    lifecycleCallbacks:
+        prePersist: [setCreatedValue, setCustomId]
+        preUpdate: [setUpdatedValue]
+        preFlush: [setPreFlushValue]
+        preRemove: [setRemovedValue]

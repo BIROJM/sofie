@@ -1,0 +1,14 @@
+{% extends '::base.html.twig' %}
+
+{% block nav_exp_active %}active-parent active{% endblock %}
+{% block nav_exp_display %}display:block;{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li><a href="{{ path('sofieexp_homepage') }}">Accueil</a></li>
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/sofieexp/js/exp.js') }}"></script>
+{% endblock %}

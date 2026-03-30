@@ -1,0 +1,27 @@
+{% extends 'SofieExpBundle:TypePanne:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li><a href="{{ app.request.requestUri }}">Editer un type de panne</a></li>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="box-name">
+                        <i class="fa fa-search"></i>
+                        <span>Edition d'un type de panne</span>
+                    </div>
+                </div>
+                {% if form is defined and form is not empty %}
+                    <div class="box-content">
+                        {% include 'SofieExpBundle:TypePanne:include/form.html.twig' %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

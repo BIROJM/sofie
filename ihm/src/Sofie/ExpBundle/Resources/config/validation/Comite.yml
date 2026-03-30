@@ -1,0 +1,6 @@
+Sofie\ExpBundle\Entity\Comite:
+    properties:
+        nom:
+            - NotBlank: ~
+        localite:
+            - NotBlank: ~

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %} SOFIE {% endblock %}</title>
+        <meta name="description" content="SOFIE, Sofie">
+        <meta name="author" content="SOFIE">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="{{ asset('plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('plugins/jquery-ui/jquery-ui.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('plugins/jquery-ui/jquery-ui.structure.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('plugins/jquery-ui/jquery-ui.theme.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('plugins/jquery-ui-daterangepicker/jquery.comiseo.daterangepicker.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('plugins/Font-Awesome/css/font-awesome.css') }}" type="text/css" />
+        <link href="{{ asset('plugins/fancybox/jquery.fancybox.css') }}" rel="stylesheet">
+        <link href="{{ asset('plugins/sweetalert2/sweetalert2.css') }}" rel="stylesheet" />
+        <link href="{{ asset('plugins/bootstrap-switch/css/bootstrap-switch.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
+        <link href="{{ asset('plugins/select2/css/select2.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
+
+        {% block stylesheets %}{% endblock %}
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+        <script src="http://getbootstrap.com/docs-assets/js/html5shiv.js"></script>
+        <script src="http://getbootstrap.com/docs-assets/js/respond.min.js"></script>
+        <![endif]-->
+        {% set projectUrl = base_project_url() %}
+        <!-- Section des variables globales -->
+
+        {# variales de session #}
+        {% set g_config_id = sofie_config['config_id']|default(null) %}
+        {% set g_region_infos = sofie_config['config_infos']|default(null) %}
+        {% set g_paginator_items = sofie_config['offset_paginator']|default(50) %}
+        {% set g_nb_paginator = sofie_config['nb_paginator']|default(5) %}
+        {% set g_carte_region_url = (sofie_config['carte_region_url'] is not empty) ? sofie_config['carte_region_url'] : projectUrl~'/'~g_lara_carte_region_route|default('') %}
+        {% set g_carte_admin_url = (sofie_config['carte_central_url'] is not empty) ? sofie_config['carte_central_url'] : projectUrl~'/'~g_lara_carte_route|default('') %}
+        {% set g_stat_url = (sofie_config['stat_url'] is not empty) ? sofie_config['stat_url'] : projectUrl~'/'~g_stat_route|default('') %}
+
+        {# Routes #}
+        {% set g_route_index = app.request.attributes.get('_route') %}
+        {% set g_route_params = app.request.attributes.get('_route_params') %}
+
+        <!-- Fin des variables globales -->
+
+
+        <!-- Variables globales -->
+        <script type="text/javascript">
+            var base_asset = "{{ asset('') }}";
+            var carteRegionUrl = "{{ g_carte_region_url|default('') }}".trim();
+            var carteAdminUrl = "{{ g_carte_admin_url|default('') }}".trim();
+            var adminProfileId = "{{ constant('\\Sofie\\ExpBundle\\Entity\\Profile::PROFILE_ADMIN') }}";
+            var itinerantProfileId = "{{ constant('\\Sofie\\ExpBundle\\Entity\\Profile::PROFILE_ITINERANT') }}";
+        </script>
+    </head>
+    <body>
+    {#{{ dump(app.request.getSchemeAndHttpHost()) }}#}
+
+        <!--Start Header-->
+        <div id="screensaver">
+            <canvas id="canvas"></canvas>
+            <i class="fa fa-lock" id="screen_unlock"></i>
+        </div>
+        <div id="modalbox">
+            <div class="devoops-modal">
+                <div class="devoops-modal-header">
+                    <div class="modal-header-name">
+                        <span>Basic table</span>
+                    </div>
+                    <div class="box-icons">
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="devoops-modal-inner">
+                </div>
+                <div class="devoops-modal-bottom">
+                </div>
+            </div>
+        </div>
+
+        {# Flashbag #}
+        <div id="flash_render">
+            {{ render_flash_alerts() }}
+        </div>
+
+        {# AJAX LOADER GIF #}
+        <div class="ajax-loader text-center hidden">
+            <img src="{{ asset('img/ajax_loader.gif') }}" alt="chargement..." class="center-block" />
+        </div>
+
+        {% include '::include/header.html.twig' %}
+        <!--End Header-->
+
+        {% use '::include/sidebarleft.html.twig' %}
+
+        <!--Start Container-->
+        <div id="main" class="container-fluid">
+            <div class="row">
+                {% block sidebarleft %}{{ parent() }}{% endblock %}
+
+                <!--Start Content-->
+                <div id="content" class="col-xs-12 col-sm-10">
+                    <div class="preloader">
+                        <img src="{{ asset('img/devoops_getdata.gif') }}" class="devoops-getdata" alt="preloader"/>
+                    </div>
+                    <div id="ajax-content">
+                        <div class="row">
+                            <div id="breadcrumb" class="col-md-12">
+                                <ol class="breadcrumb">
+                                    {% block breadcrumb %}{% endblock %}
+                                </ol>
+                            </div>
+                        </div>
+
+                        {% block body %}{% endblock %}
+                    </div>
+                </div>
+                <!--End Content-->
+            </div>
+        </div>
+        <!--End Container-->
+
+        <!-- Boostrap modal -->
+        <!-- Modal -->
+        <div class="modal fade" id="bootmodalbox"  role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Boostrap modal -->
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <!--<script src="http://code.jquery.com/jquery.js"></script>-->
+        <script src="{{ asset('plugins/jquery/jquery-2.1.4.min.js') }}"></script>
+        <script src="{{ asset('plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
+        <script src="{{ asset('plugins/jquery-ui-daterangepicker/jquery.comiseo.daterangepicker.min.js') }}"></script>
+        <script src="{{ asset('plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+        <script src="{{ asset('plugins/jquery-ui-timepicker-addon/jquery-ui-timepicker-addon.min.js') }}"></script>
+        <script src="{{ asset('plugins/jquery-ui-timepicker-addon/i18n/jquery-ui-timepicker-fr.js') }}"></script>
+        <script src="{{ asset('plugins/jquery-ui-timepicker-addon/i18n/jquery.ui.datepicker-fr.js') }}"></script>
+        <script src="{{ asset('plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
+        <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
+        <script src="{{ asset('plugins/select2/js/i18n/fr.js') }}"></script>
+        <script src="{{ asset('plugins/bootstrap-notify/bootstrap-notify.min.js') }}"></script>
+        {# FOSJsRoutingBundle #}
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+        <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
+        <!-- All functions for this theme + document.ready processing -->
+        <script src="{{ asset('js/devoops.js') }}"></script>
+        <script src="{{ asset('js/script.js') }}"></script>
+
+        {% block scripts %}{% endblock %}
+        {% block flash_scripts %}{% endblock %}
+
+        <script type="text/javascript">
+            $(function(){
+                {% if is_granted('ROLE_ADMIN') %}
+                    var msg;
+                    var url = "{{ path('sofieadmin_param_index') }}";
+                    {% if sofie_config['config_id']|default(null) is null %}
+                        msg = "Aucune configuration n'a été enrégistré.<br />" +
+                                '<i class="small">Paramètres > Configuration générale' +
+                                "<br /><strong>Cliquez pour configurer</strong>";
+                    {% else %}
+                        {% if sofie_config['api_get_key_url']|default(null) is empty %}
+                            msg = "L'url d'obtension de clé pour l'ajout de nouvelle entité n'est pas configurée.<br />" +
+                                    '<i class="small">Paramètres > Configuration générale > Configuration de l\'application</i>' +
+                                    "<br /><strong>Cliquez pour configurer</strong>";
+                        {% endif %}
+                        {% if sofie_config['sms_gw']|default(null) is empty %}
+                            msg = "La passerelle pour l'envoie des sms n'est pas configurée. " +
+                                    '<i class="small">Paramètres > Notification par SMS > Configuration de la passerelle</i>' +
+                                    "<br /><strong>Cliquez pour configurer</strong>";
+                        {% endif %}
+                    {% endif %}
+
+                    if(msg){
+                        configNotify(msg, url);
+                    }
+
+                {% endif %}
+            });
+        </script>
+    </body>
+</html>

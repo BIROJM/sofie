@@ -1,0 +1,36 @@
+{% extends "SofieExpBundle::layout.html.twig" %}
+
+{% block nav_diffusionsms_active %}active{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li><a href="{{ path('sofieexp_diffusionsms_index') }}">Diffusion de messages</a></li>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-sm-12">
+            {% include 'SofieExpBundle:DiffusionSMS:include/critere_form.html.twig' %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/sofieexp/js/diffusionsms.js') }}"></script>
+{% endblock %}
+
+{% block flash_scripts %}
+    <script type="text/javascript">
+        $(function(){
+            checkAll();
+
+            regionMultiListener(
+                    $('#form_regions'), $('#form_localites'), $('#form_reparateurs'),$('#form_comites'),
+                    $('#form_agents'), $('#form_sociologues'), $('#form_directeurs')
+            );
+
+            localiteMultiListener($('#form_localites'), $('#form_reparateurs'),$('#form_comites'), $('#form_agents'));
+        });
+    </script>
+{% endblock %}

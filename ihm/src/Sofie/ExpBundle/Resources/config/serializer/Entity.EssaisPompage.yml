@@ -1,0 +1,55 @@
+Sofie\ExpBundle\Entity\EssaisPompage:
+    exclusion_policy: ALL
+    properties:
+        date:
+            expose: true
+            serialized_name: Date
+            groups: [api_add]
+            type: DateTime<'Y-m-d'>
+        typeEssai:
+            expose: true
+            serialized_name: TypeEssai
+            groups: [api_add]
+        dureeEssai:
+            expose: true
+            serialized_name: DureeEssai
+            groups: [api_add]
+        debitMax:
+            expose: true
+            serialized_name: DebitMax
+            groups: [api_add]
+        rabattement:
+            expose: true
+            serialized_name: Rabattement
+            groups: [api_add]
+        debitCritique:
+            expose: true
+            serialized_name: DebitCritique
+            groups: [api_add]
+        transmissivite:
+            expose: true
+            serialized_name: Transmissivite
+            groups: [api_add]
+        emmagasinage:
+            expose: true
+            serialized_name: Emmagasinage
+            groups: [api_add]
+        sync:
+            expose: true
+            serialized_name: sync
+            groups: [api_add]
+        createdAt:
+            expose: true
+            serialized_name: created_at
+            groups: [api_add]
+            type: DateTime<'Y-m-d H:i:s'>
+        updatedAt:
+            expose: true
+            serialized_name: updated_at
+            groups: [api_add]
+            type: DateTime<'Y-m-d H:i:s'>
+        position:
+            expose: true
+            serialized_name: position
+            type: integer
+            groups: [api_add]

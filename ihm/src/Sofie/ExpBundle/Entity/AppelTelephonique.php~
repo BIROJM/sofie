@@ -1,0 +1,232 @@
+<?php
+
+namespace Sofie\ExpBundle\Entity;
+
+
+/**
+ * AppelTelephonique
+ */
+class AppelTelephonique
+{
+    const DECLA_PANNE = 1;
+    const PRISE_CHARGE_PANNE = 2;
+    const REP_PANNE_ENCOURS = 3;
+    const PANNE_REPAREE = 4;
+    const ABSENCE = 5;
+    const REPRISE_SERVICE = 6;
+
+
+    /**
+     * @param string $motif
+     * @return string
+     */
+    static public function getNormMotif($motif = '')
+    {
+        $norm = '';
+        switch($motif){
+            case static::DECLA_PANNE:
+                $norm = 'Déclaration de panne';
+                break;
+            case static::PRISE_CHARGE_PANNE:
+                $norm = 'Prise en charge de panne';
+                break;
+            case static::REP_PANNE_ENCOURS:
+                $norm = 'Réparation de panne en cours';
+                break;
+            case static::PANNE_REPAREE:
+                $norm = 'Panne réparée';
+                break;
+            case static::ABSENCE:
+                $norm = 'Absence';
+                break;
+            case static::REPRISE_SERVICE:
+                $norm = 'Reprise de service';
+                break;
+        }
+
+        return $norm;
+    }
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     */
+    private $dateAppel;
+
+    /**
+     * @var integer
+     */
+    private $motif;
+
+    /**
+     * @var \Sofie\ExpBundle\Entity\Panne
+     */
+    private $panne;
+
+    /**
+     * @var \Sofie\ExpBundle\Entity\NumeroAppel
+     */
+    private $numeroAppel;
+
+    /**
+     * @var string
+     */
+    private $sync;
+
+    /**
+     * @var \DateTime
+     */
+    private $deletedAt;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set dateAppel
+     *
+     * @param \DateTime $dateAppel
+     * @return AppelTelephonique
+     */
+    public function setDateAppel($dateAppel)
+    {
+        $this->dateAppel = $dateAppel;
+
+        return $this;
+    }
+
+    /**
+     * Get dateAppel
+     *
+     * @return \DateTime 
+     */
+    public function getDateAppel()
+    {
+        return $this->dateAppel;
+    }
+
+    /**
+     * Set motif
+     *
+     * @param integer $motif
+     * @return AppelTelephonique
+     */
+    public function setMotif($motif)
+    {
+        $this->motif = $motif;
+
+        return $this;
+    }
+
+    /**
+     * Get motif
+     *
+     * @return integer 
+     */
+    public function getMotif()
+    {
+        return $this->motif;
+    }
+
+    /**
+     * Set panne
+     *
+     * @param \Sofie\ExpBundle\Entity\Panne $panne
+     * @return AppelTelephonique
+     */
+    public function setPanne(\Sofie\ExpBundle\Entity\Panne $panne = null)
+    {
+        $this->panne = $panne;
+
+        return $this;
+    }
+
+    /**
+     * Get panne
+     *
+     * @return \Sofie\ExpBundle\Entity\Panne 
+     */
+    public function getPanne()
+    {
+        return $this->panne;
+    }
+
+    /**
+     * Set numeroAppel
+     *
+     * @param \Sofie\ExpBundle\Entity\NumeroAppel $numeroAppel
+     * @return AppelTelephonique
+     */
+    public function setNumeroAppel(\Sofie\ExpBundle\Entity\NumeroAppel $numeroAppel = null)
+    {
+        $this->numeroAppel = $numeroAppel;
+
+        return $this;
+    }
+
+    /**
+     * Get numeroAppel
+     *
+     * @return \Sofie\ExpBundle\Entity\NumeroAppel 
+     */
+    public function getNumeroAppel()
+    {
+        return $this->numeroAppel;
+    }
+
+    /**
+     * Set sync
+     *
+     * @param string $sync
+     * @return AppelTelephonique
+     */
+    public function setSync($sync)
+    {
+        $this->sync = $sync;
+
+        return $this;
+    }
+
+    /**
+     * Get sync
+     *
+     * @return string 
+     */
+    public function getSync()
+    {
+        return $this->sync;
+    }
+
+    /**
+     * Set deletedAt
+     *
+     * @param \DateTime $deletedAt
+     * @return AppelTelephonique
+     */
+    public function setDeletedAt($deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get deletedAt
+     *
+     * @return \DateTime 
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
+    }
+}

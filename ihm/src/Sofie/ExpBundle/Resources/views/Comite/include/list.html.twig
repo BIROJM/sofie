@@ -1,0 +1,88 @@
+<div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover table-heading">
+
+        {% import '::macro/links.html.twig' as links %}
+
+        {% if is_granted('ROLE_ADD_COMITE') %}
+            <caption>
+                <div class="pull-right">
+                    <a class="btn btn-primary btn-label-left" title="Ajouter" href="{{ path('sofieexp_comite_add') }}">
+                        <span><i class="fa fa-plus"></i></span> Ajouter
+                    </a>
+                    <i class="fa fa-ellipsis-v fa-2x"></i>
+                    {{ links.pdf_link({}, {'class':'fa-2x'}) }}
+                </div>
+            </caption>
+        {% endif %}
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Nom</th>
+            <th>Sécrétaire</th>
+            <th>Initialisé</th>
+            <th>C. initialisation</th>
+            <th>N° appel</th>
+            <th>C. ouvrage</th>
+            <th>Région</th>
+            <th>Localité</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        {% if comites is defined %}
+            {% if comites is not empty %}
+                {% import '::macro/view.html.twig' as views %}
+                <tbody>
+                    {% set page_inc = g_paginator_items*(page-1) %}
+                    {% for comite in comites %}
+                        <tr>
+                            <td>{{ loop.index+page_inc }}</td>
+                            <td>{{ comite.nom|default('') }}</td>
+                            <td>{{ comite.nomSecretaire|default('')~' '~comite.prenomsSecretaire|default('') }}</td>
+                            <td class="text-center">
+                                {{ views.init_profile(comite, path('sofieexp_comite_ajax_init', {'id':comite.id|default(0)})) }}
+                            </td>
+                            <td>{{ comite.codeInit|default('') }}</td>
+                            <td class="profile-number">{{ comite.numeroAppel.numero|default('') }}</td>
+                            <td>{{ comite.ouvrage.code|default('') }}</td>
+                            <td>
+                                {% if is_granted('ROLE_REGION') %}
+                                    <a href="{{ path('sofieexp_region_view', {'id':comite.region.id|default(0)}) }}">
+                                        {{ comite.region.nom|default('') }}
+                                    </a>
+                                {% else %}
+                                    {{ comite.region.nom|default('') }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if is_granted('ROLE_LOCALITE') %}
+                                    <a href="{{ path('sofieexp_localite_view', {'id':comite.localite.id|default(0)}) }}">
+                                        {{ comite.localite.nom|default('') }}
+                                    </a>
+                                {% else %}
+                                    {{ comite.localite.nom|default('') }}
+                                {% endif %}
+                            </td>
+                            <td class="text-center">
+                                <a class="text-info" href="{{ path('sofieexp_comite_view', {'id':comite.id|default(0)}) }}" title="Voir">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                {% if is_granted('ROLE_EDIT_COMITE') %}
+                                    <a class="text-success" href="{{ path('sofieexp_comite_edit', {'id':comite.id|default(0)}) }}" title="Modifier">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                {% endif %}
+                                {% if is_granted('ROLE_DELETE_COMITE') %}
+                                    <a class="text-danger confirm-delete" href="{{ path('sofieexp_comite_delete', {'id':comite.id|default(0)}) }}" title="Supprimer">
+                                        <i class="fa fa-remove"></i>
+                                    </a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            {% endif %}
+        {% endif %}
+    </table>
+</div>
+{# Pagination #}
+{% include '::include/paginator/paginator.html.twig' with {'total': comites|default([])|length} %}

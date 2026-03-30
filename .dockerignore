@@ -1,0 +1,9 @@
+node_modules
+vendor
+*.log
+*.tmp
+*.cache
+.DS_Store
+.git
+*.zip
+*.tar.gz

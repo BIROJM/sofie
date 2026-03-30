@@ -1,0 +1,822 @@
+<?php
+
+namespace Sofie\UserBundle\Entity;
+
+use Doctrine\ORM\Event\LifecycleEventArgs;
+use Sofie\ExpBundle\Entity\Agent;
+use Sofie\ExpBundle\Entity\Profile;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+
+/**
+ * User
+ */
+class User implements AdvancedUserInterface, \Serializable
+{
+    const ROLE_DEFAULT = 'ROLE_USER';
+    const ROLE_ADMIN = 'ROLE_ADMIN';
+    const ROLE_AGENT_FORMA = 'ROLE_AGENT_FORMA';
+    const ROLE_SOCIOLOGUE = 'ROLE_SOCIOLOGUE';
+    const ROLE_DR = 'ROLE_DR';
+
+    const PROFILE_AGENT_FORMA = 3;
+    const PROFILE_SOCIOLOGUE = 4;
+    const PROFILE_DIRECTEUR = 5;
+
+    const SYNC = 'Y';
+    const NO_SYNC = 'N';
+
+    const ACTIVE_STR = 'Actif';
+    const INACTIVE_STR = 'Inactif';
+
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
+     * @var string
+     */
+    private $email;
+
+    /**
+     * @var string
+     */
+    private $password;
+
+    /**
+     * @var boolean
+     */
+    private $admin;
+
+    /**
+     * @var string
+     */
+    private $rememberToken;
+
+    /**
+     * @var array
+     */
+    private $roles;
+
+    /**
+     * @var string
+     */
+    private $username;
+
+    /**
+     * @var boolean
+     */
+    private $isActive = true;
+
+    /**
+     * @var string
+     */
+    private $salt;
+
+    // ce champ n'est pas persisté dans la base de données,
+    // il contient le mot de passe brut à encoder
+    protected $plainPassword;
+
+    /**
+     * @var \Sofie\ExpBundle\Entity\Agent
+     */
+    private $agent;
+
+    /**
+     * @var string
+     */
+    private $sync;
+
+    /**
+     * @var \DateTime
+     */
+    private $deletedAt;
+
+    /**
+     * @var Collection
+     */
+    private $userGroupes;
+
+    /**
+     * @var boolean
+     */
+    private $isMobile;
+
+    /**
+     * N'est pas persister en base de données
+     * Utiliser pour charger des rôles selon certains Users
+     *
+     * @var array
+     */
+    private $inheranteRoles;
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->roles = array(static::ROLE_DEFAULT);
+//        $this->salt = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
+        $this->isActive = true;
+        $this->sync = static::NO_SYNC;
+        $this->userGroupes = new ArrayCollection();
+        $this->inheranteRoles = array();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return User
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return User
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return User
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     * @return User
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set admin
+     *
+     * @param boolean $admin
+     * @return User
+     */
+    public function setAdmin($admin)
+    {
+        $this->admin = $admin;
+
+        return $this;
+    }
+
+    /**
+     * Get admin
+     *
+     * @return boolean
+     */
+    public function getAdmin()
+    {
+        return $this->admin;
+    }
+
+    /**
+     * Set rememberToken
+     *
+     * @param string $rememberToken
+     * @return User
+     */
+    public function setRememberToken($rememberToken)
+    {
+        $this->rememberToken = $rememberToken;
+
+        return $this;
+    }
+
+    /**
+     * Get rememberToken
+     *
+     * @return string
+     */
+    public function getRememberToken()
+    {
+        return $this->rememberToken;
+    }
+
+    public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    public function eraseCredentials()
+    {
+        $this->plainPassword = '';
+    }
+
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    public function isEnabled()
+    {
+//        return $this->isActive && !is_null($this->agent);
+        return $this->isActive;
+    }
+
+    // serialize and unserialize must be updated - see below
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            $this->salt,
+            $this->isActive
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            $this->salt,
+            $this->isActive
+            ) = unserialize($serialized);
+    }
+
+    /**
+     * Set roles
+     *
+     * @param array $roles
+     * @return User
+     */
+    public function setRoles(array $roles)
+    {
+        foreach ($roles as $role) {
+            $this->addRole($role);
+        }
+        return $this;
+    }
+
+    /**
+     * Get roles
+     *
+     * @return array
+     */
+    public function getRoles()
+    {
+        $rolesToGroupes = array();
+        /*foreach($this->userGroupes as $userGroupe){
+            $rolesToGroupes = array_merge($userGroupe->getGroupe()->getDroits()->toArray(), $rolesToGroupes);
+        }*/
+        foreach($this->userGroupes as $userGroupe){
+            foreach($userGroupe->getGroupe()->getDroits() as $droit){
+                $rolesToGroupes[] = strtoupper($droit->getRole());
+            }
+
+        }
+        if(!is_array($this->inheranteRoles)) $this->inheranteRoles = array();
+        if(!is_array($this->roles)) $this->roles = array();
+        $roles = array_merge($this->roles, $rolesToGroupes, $this->inheranteRoles);
+        $roles = array_merge(array(strtoupper(static::ROLE_DEFAULT)), $roles);
+        $roles = array_unique($roles);
+        return $roles;
+    }
+
+    /**
+     * Never use this to check if this user has access to anything!
+     *
+     * Use the SecurityContext, or an implementation of AccessDecisionManager
+     * instead, e.g.
+     *
+     *         $securityContext->isGranted('ROLE_USER');
+     *
+     * @param string $role
+     *
+     * @return boolean
+     */
+    public function hasRole($role)
+    {
+        if(!is_array($this->roles)) $this->roles = array();
+        return in_array(strtoupper($role), $this->roles, true);
+    }
+
+    public function addRole($role)
+    {
+        if(!is_array($this->roles)) $this->roles = array();
+        $role = strtoupper($role);
+        if(!$this->hasRole($role)){
+            if ($role === strtoupper(static::ROLE_DEFAULT)) {
+                return $this;
+            }
+            $this->roles[] = $role;
+        }
+
+        return $this;
+    }
+
+    public function removeRole($role)
+    {
+        if(!is_array($this->roles)) $this->roles = array();
+        if (false !== $key = array_search(strtoupper($role), $this->roles, true)) {
+            unset($this->roles[$key]);
+            $this->roles = array_values($this->roles);
+        }
+        return $this;
+    }
+
+    public function removeRoleAll()
+    {
+        $this->roles = array(static::ROLE_DEFAULT);
+    }
+
+    /**
+     * Set username
+     *
+     * @param string $username
+     * @return User
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * Get username
+     *
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     * @return User
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * Set salt
+     *
+     * @param string $salt
+     * @return User
+     */
+    public function setSalt($salt)
+    {
+        $this->salt = $salt;
+
+        return $this;
+    }
+
+    /**
+     * Get salt
+     *
+     * @return string
+     */
+    public function getSalt()
+    {
+        return $this->salt;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getDroits()
+    {
+        $droits = array();
+        foreach($this->getUserGroupes() as $userGroupe){
+            $droits = array_merge($droits, $userGroupe->getGroupe()->getDroits()->toArray());
+        }
+        return array_unique($droits);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
+    }
+
+    public function setCreatedValue()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = $this->createdAt;
+    }
+
+    public function setUpdatedValue()
+    {
+        $this->updatedAt = new \DateTime();
+        $this->unsynchronize();
+    }
+
+    protected function clearRoles()
+    {
+        $this->removeRole(static::ROLE_DR);
+        $this->removeRole(static::ROLE_SOCIOLOGUE);
+        $this->removeRole(static::ROLE_AGENT_FORMA);
+    }
+
+    public function checkStatus()
+    {
+        if(!is_null($this->agent)){
+            if($this->agent->isAdmin()){
+                $this->admin = true;
+            }elseif($this->agent->isItinerant()){
+                $this->isMobile = true;
+            }
+        }
+        if($this->admin){
+            $this->addRole(static::ROLE_ADMIN);
+        }else{
+            $this->removeRole(static::ROLE_ADMIN);
+        }
+    }
+
+    /**
+     * Set agent
+     *
+     * @param \Sofie\ExpBundle\Entity\Agent $agent
+     * @return User
+     */
+    public function setAgent(\Sofie\ExpBundle\Entity\Agent $agent = null)
+    {
+        $this->agent = $agent;
+
+        return $this;
+    }
+
+    /**
+     * Get agent
+     *
+     * @return \Sofie\ExpBundle\Entity\Agent 
+     */
+    public function getAgent()
+    {
+        return $this->agent;
+    }
+
+    public function __toString()
+    {
+        $name = $this->username;
+        if(!is_null($this->agent)){
+            $name .= ' ('.$this->agent.')';
+        }
+        return $name;
+    }
+
+    public function isUser(User $user = null)
+    {
+        return null !== $user && $this->getId() === $user->getId();
+    }
+
+    public function isLoadRegional()
+    {
+        if(is_object($this->agent) && $this->agent instanceof Agent){
+            if(is_object($this->agent->getQualification()) && $this->agent->getQualification() instanceof Profile){
+                $profile_id = $this->agent->getQualification()->getId();
+                if($profile_id==static::PROFILE_AGENT_FORMA || $profile_id==static::PROFILE_SOCIOLOGUE || $profile_id==static::PROFILE_DIRECTEUR){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public function getRegion()
+    {
+        if(is_object($this->agent) && $this->agent instanceof Agent){
+            return $this->agent->getRegion();
+        }
+        return null;
+    }
+
+    /**
+     * Set sync
+     *
+     * @param string $sync
+     * @return User
+     */
+    public function setSync($sync)
+    {
+        $this->sync = $sync;
+
+        return $this;
+    }
+
+    /**
+     * Get sync
+     *
+     * @return string 
+     */
+    public function getSync()
+    {
+        return $this->sync;
+    }
+
+    public function setCustomId(LifecycleEventArgs $eventArgs)
+    {
+        /*if($this->id == null){
+            $this->id = $eventArgs->getEntityManager()->getRepository('SofieUserBundle:User')->getNextId();
+        }*/
+    }
+
+    public function getAgentId()
+    {
+        if($this->agent != null){
+            return $this->agent->getId();
+        }
+        return null;
+    }
+
+    public function synchronize()
+    {
+        $this->sync = static::SYNC;
+    }
+
+    public function unsynchronize()
+    {
+        $this->sync = static::NO_SYNC;
+    }
+
+    /**
+     * Set deletedAt
+     *
+     * @param \DateTime $deletedAt
+     * @return User
+     */
+    public function setDeletedAt($deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get deletedAt
+     *
+     * @return \DateTime 
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
+    }
+
+    public function getSerializedRoles()
+    {
+        return ($this->roles!=null) ? serialize($this->roles) : null;
+    }
+
+    public function logString()
+    {
+        $msg = 'Identifiant: '.$this->id;
+        if($this->username) $msg .= ', Nom d\'utilisateur : '.$this->username;
+        if($this->userGroupes->count() > 0){
+            $idList = '';
+            $msg .= ', Groupes : {';
+            foreach($this->userGroupes as $userGroupe){
+                if(!empty($idList)) $idList .= ', ';
+                if(!is_null($userGroupe->getGroupe())){
+                    $idList .= '['.$userGroupe->getGroupe()->getId().','.$userGroupe->getGroupe()->getName().']';
+                }
+            }
+            $msg .= $idList.'}';
+        }
+        return $msg;
+    }
+
+    /**
+     * Add userGroupes
+     *
+     * @param \Sofie\UserBundle\Entity\UserGroupe $userGroupes
+     * @return User
+     */
+    public function addUserGroupe(\Sofie\UserBundle\Entity\UserGroupe $userGroupes)
+    {
+        if(!$this->hasUserGroupes($userGroupes)){
+            $this->userGroupes[] = $userGroupes;
+            $userGroupes->setUser($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Remove userGroupes
+     *
+     * @param \Sofie\UserBundle\Entity\UserGroupe $userGroupes
+     */
+    public function removeUserGroupe(\Sofie\UserBundle\Entity\UserGroupe $userGroupes)
+    {
+        $this->userGroupes->removeElement($userGroupes);
+    }
+
+    /**
+     * Get userGroupes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUserGroupes()
+    {
+        return $this->userGroupes;
+    }
+
+    public function hasUserGroupes(UserGroupe $userGroupe)
+    {
+        $result = false;
+        foreach($this->userGroupes as $userGroupeOld){
+            if($userGroupe->getGroupe()->getId() == $userGroupeOld->getGroupe()->getId()){
+                $result = true;
+                break;
+            }
+        }
+        return $result;
+    }
+
+    public function isAdmin()
+    {
+        return ($this->admin && $this->hasRole(self::ROLE_ADMIN));
+    }
+
+    /**
+     * ORM\PostLoad
+     */
+    public function initialize(LifecycleEventArgs $eventArgs)
+    {
+        if(isset($_POST['_s2_auth_action'])){
+            if($this->isAdmin() && empty($this->inheranteRoles)){
+//            $droits = $eventArgs->getEntityManager()->getRepository('SofieUserBundle:Droit')->findAll();
+                $droits = $eventArgs->getEntityManager()->getConnection()->query("
+                SELECT UPPER(`role`) AS role FROM `t_droit` WHERE `deleted_at` IS NULL
+            ", \PDO::FETCH_ASSOC)->fetchAll();
+                if(!empty($droits)){
+                    if(!is_array($this->inheranteRoles)) $this->inheranteRoles = array();
+                    foreach($droits as $droit){
+                        $this->inheranteRoles[] = $droit['role'];
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Set isMobile
+     *
+     * @param boolean $isMobile
+     * @return User
+     */
+    public function setIsMobile($isMobile)
+    {
+        $this->isMobile = $isMobile;
+
+        return $this;
+    }
+
+    /**
+     * Get isMobile
+     *
+     * @return boolean 
+     */
+    public function getIsMobile()
+    {
+        return $this->isMobile;
+    }
+
+    static public function getActiveStrArrayAssoc()
+    {
+        return array('0'=>self::INACTIVE_STR, '1'=>self::ACTIVE_STR);
+    }
+
+    /**
+     * ORM\PreRemove
+     */
+    public function setRemovedValue(LifecycleEventArgs $eventArgs)
+    {
+        $this->unsynchronize();
+        $eventArgs->getEntityManager()->flush();
+    }
+}

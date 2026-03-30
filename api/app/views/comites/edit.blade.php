@@ -1,0 +1,1 @@
+C:\wamp\www\sofieweb\app/views/regions/edit.blade.php

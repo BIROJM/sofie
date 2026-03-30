@@ -1,0 +1,59 @@
+Sofie\ExpBundle\Entity\Profile:
+    type: entity
+    table: t_profile
+    repositoryClass: Sofie\ExpBundle\Entity\ProfileRepository
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    uniqueConstraints:
+        IDProfile:
+            columns:
+                - IDProfile
+    id:
+        id:
+            type: integer
+            nullable: false
+            id: true
+            column: IDProfile
+            generator:
+                strategy: AUTO
+    fields:
+        designation:
+            type: string
+            nullable: true
+            length: 50
+            column: Designation
+        commentaire:
+            type: string
+            nullable: true
+            length: 300
+            column: commentaire
+        sync:
+            type: string
+            length: 1
+            nullable: true
+            options:
+                default: 'N'
+            column: sync
+        deletedAt:
+            type: datetime
+            nullable: true
+            column: deleted_at
+    oneToMany:
+        numeroAppels:
+            targetEntity: NumeroAppel
+            cascade: ["persist"]
+            mappedBy: profile
+            fetch: EXTRA_LAZY
+        agents:
+            targetEntity: Agent
+            cascade: ["persist"]
+            mappedBy: qualification
+            fetch: EXTRA_LAZY
+        codes:
+            targetEntity: Code
+            cascade: ["persist"]
+            mappedBy: profile
+            fetch: EXTRA_LAZY
+    lifecycleCallbacks: {  }

@@ -1,0 +1,78 @@
+sofieexp_ouvrage_index:
+    path:     /{page}
+    defaults: { _controller: SofieExpBundle:Ouvrage:index, page: 1 }
+    methods: [GET,POST]
+    requirements:
+        page: \d+
+
+sofieexp_ouvrage_add:
+    path:     /add
+    defaults: { _controller: SofieExpBundle:Ouvrage:add }
+    methods: [GET, POST]
+
+sofieexp_ouvrage_edit:
+    path:     /edit/{id}
+    defaults: { _controller: SofieExpBundle:Ouvrage:edit }
+    methods: [GET, POST]
+    requirements:
+        id: \d+
+
+sofieexp_ouvrage_view:
+    path:     /view/{id}
+    defaults: { _controller: SofieExpBundle:Ouvrage:view }
+    methods: [GET]
+    requirements:
+        id: \d+
+
+sofieexp_ouvrage_delete:
+    path:     /delete/{id}
+    defaults: { _controller: SofieExpBundle:Ouvrage:delete }
+    methods: [GET]
+    requirements:
+        id: \d+
+
+sofieexp_ouvrage_pannes:
+    path:     /{id}/pannes/{page}
+    defaults: { _controller: SofieExpBundle:Ouvrage:pannes, page: 1 }
+    methods: [GET, POST]
+    requirements:
+        id: \d+
+        page: \d+
+
+# AJAX REQUEST
+sofieexp_ouvrage_ajax_validate:
+    path: /ajax/validate/{id}
+    defaults: { _controller: SofieExpBundle:Ouvrage:ajaxValidate }
+    methods: [GET, POST]
+    requirements:
+        id: \d+
+    options:
+        expose: true
+
+sofieexp_ouvrage_panne_appels:
+    path: /panne/{id}/appels/
+    defaults: { _controller: SofieExpBundle:Ouvrage:panneAppels }
+    methods: [GET, POST]
+    requirements:
+        id: \d+
+    options:
+        expose: true
+
+sofieexp_ouvrage_panne_notifications:
+    path: /panne/{id}/notifications/
+    defaults: { _controller: SofieExpBundle:Ouvrage:panneNotifications }
+    methods: [GET, POST]
+    requirements:
+        id: \d+
+    options:
+        expose: true
+
+sofieexp_ouvrage_panne_edit_type:
+    path: /pannes/edit-type/{id}
+    defaults: { _controller: SofieExpBundle:Ouvrage:editTypePanne }
+    methods: [GET, POST]
+    requirements:
+        id: \d+
+    options:
+        expose: true
+

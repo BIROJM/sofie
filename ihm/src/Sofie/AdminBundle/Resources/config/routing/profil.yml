@@ -1,0 +1,33 @@
+sofieadmin_profil_index:
+    path:     /{page}
+    defaults: { _controller: SofieAdminBundle:Profil:index, page: 1 }
+    methods: [GET,POST]
+    requirements:
+        page: \d+
+
+sofieadmin_profil_add:
+    path:     /add
+    defaults: { _controller: SofieAdminBundle:Profil:add }
+    methods: [GET, POST]
+
+sofieadmin_profil_edit:
+    path:     /edit/{id}
+    defaults: { _controller: SofieAdminBundle:Profil:edit }
+    methods: [GET, POST]
+    requirements:
+        id: \d+
+
+sofieadmin_profil_view:
+    path:     /view/{id}
+    defaults: { _controller: SofieAdminBundle:Profil:view }
+    methods: [GET]
+    requirements:
+        id: \d+
+
+sofieadmin_profil_delete:
+    path:     /delete/{id}
+    defaults: { _controller: SofieAdminBundle:Profil:delete }
+    methods: [GET]
+    requirements:
+        id: \d+
+

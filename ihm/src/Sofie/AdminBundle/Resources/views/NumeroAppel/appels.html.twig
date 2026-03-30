@@ -1,0 +1,28 @@
+{% extends "SofieAdminBundle:NumeroAppel:index.html.twig" %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>
+        <a href="{{ path('sofieadmin_numappel_appels', {'id':numeroAppel.id|default(0)}) }}">Appels téléphoniques</a>
+    </li>
+{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="box-name">
+                        <i class="fa fa-table"></i>
+                        <span>Liste des appels téléphoniques du numéro {{ numeroAppel.numero|default('') }}</span>
+                    </div>
+                    <div class="no-move"></div>
+                </div>
+                <div class="box-content no-padding">
+                    {% include 'SofieAdminBundle:NumeroAppel:include/appels_list.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

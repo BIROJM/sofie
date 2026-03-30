@@ -1,0 +1,229 @@
+{% extends "SofieAdminBundle::layout.html.twig" %}
+
+{% block nav_param_active %}active{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li><a href="{{ path('sofieadmin_param_index') }}">Paramètres</a></li>
+{% endblock %}
+
+
+{% block body %}
+    <div id="tabsview">
+        <ul>
+            <li><a href="#principale">Configuration générale</a></li>
+            {% if g_sofie_site|default(null) is null %}
+                <li><a href="#notif_sms">Notification par SMS</a></li>
+            {% endif %}
+            {% if g_sofie_site|default(null) is null %}
+                <li><a href="#carte">Carte</a></li>
+            {% endif %}
+            {#<li><a href="#autres">Autres</a></li>#}
+        </ul>
+        <div id="principale">
+            {% if is_granted('ROLE_ADMIN') %}
+                <div class="row">
+                    <div class="col-sm-10">
+                        <div class="box">
+                            <div class="box-header">
+                                <div class="box-name">
+                                    <i class="fa fa-plus-square-o"></i>
+                                    <span>Configuration de l'application</span>
+                                </div>
+                                <div class="box-icons pull-right">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                    <a class="expand-link">
+                                        <i class="fa fa-expand"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="box-content" id="appliConfigHtml">
+                                <img src="{{ asset('img/devoops_getdata.gif') }}" class="center-block" alt="preloader"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% if g_sofie_site|default(null) is null %}
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="box">
+                                <div class="box-header">
+                                    <div class="box-name">
+                                        <i class="fa fa-plus-square-o"></i>
+                                        <span>Configuration des modems des régions</span>
+                                    </div>
+                                    <div class="box-icons pull-right">
+                                        <a class="collapse-link">
+                                            <i class="fa fa-chevron-up"></i>
+                                        </a>
+                                        <a class="expand-link">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="box-content" id="regionsModemConfigHtml">
+                                    <img src="{{ asset('img/devoops_getdata.gif') }}" class="center-block" alt="preloader"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endif %}
+        </div>
+        {% if g_sofie_site|default(null) is null %}
+            <div id="notif_sms">
+                <div class="row">
+                    {% if g_sofie_site|default(null) is null and is_granted('ROLE_SMS_SETTING') %}
+                        <div class="col-sm-6">
+                            <div class="box">
+                                <div class="box-header">
+                                    <div class="box-name">
+                                        <i class="fa fa-bell"></i>
+                                        <span>Configuration de la parserelle</span>
+                                    </div>
+                                    <div class="box-icons pull-right">
+                                        <a class="collapse-link">
+                                            <i class="fa fa-chevron-up"></i>
+                                        </a>
+                                        <a class="expand-link">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="box-content" id="smsConfigHtml">
+                                    {#{{ render(controller('SofieAdminBundle:Parametre:smsConfig')) }}#}
+                                    <img src="{{ asset('img/devoops_getdata.gif') }}" class="center-block" alt="preloader"/>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if g_sofie_site|default(null) is null and is_granted('ROLE_DELAIS_NOTIF_SETTING') %}
+                        <div class="col-sm-6">
+                            <div class="box">
+                                <div class="box-header">
+                                    <div class="box-name">
+                                        <i class="fa fa-bell"></i>
+                                        <span>Délais de notification</span>
+                                    </div>
+                                    <div class="box-icons pull-right">
+                                        <a class="collapse-link">
+                                            <i class="fa fa-chevron-up"></i>
+                                        </a>
+                                        <a class="expand-link">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="box-content" id="delaisNotifConfigHtml">
+                                    <img src="{{ asset('img/devoops_getdata.gif') }}" class="center-block" alt="preloader"/>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+                {% if g_sofie_site|default(null) is null and is_granted('ROLE_SMS_SETTING') %}
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="box">
+                                <div class="box-header">
+                                    <div class="box-name">
+                                        <i class="fa fa-envelope"></i>
+                                        <span>Configuration des SMS</span>
+                                    </div>
+                                    <div class="box-icons pull-right">
+                                        <a class="collapse-link">
+                                            <i class="fa fa-chevron-up"></i>
+                                        </a>
+                                        <a class="expand-link">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="box-content" id="smsContentConfigHtml">
+                                    {#{{ render(controller('SofieAdminBundle:Parametre:smsContentConfig')) }}#}
+                                    <img src="{{ asset('img/devoops_getdata.gif') }}" class="center-block" alt="preloader"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+        {% if g_sofie_site|default(null) is null %}
+            <div id="carte">
+                <div class="row">
+                    {% if g_sofie_site|default(null) is null and is_granted('ROLE_COULEUR_PANNE_SETTING') %}
+                        <div class="col-sm-8">
+                            <div class="box">
+                                <div class="box-header">
+                                    <div class="box-name">
+                                        <i class="fa fa-columns"></i>
+                                        <span>Couleur des pannes</span>
+                                    </div>
+                                    <div class="box-icons pull-right">
+                                        <a class="collapse-link">
+                                            <i class="fa fa-chevron-up"></i>
+                                        </a>
+                                        <a class="expand-link">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="box-content" id="couleurPanneConfigHtml">
+                                    {#{{ render(controller('SofieAdminBundle:Parametre:editCouleurPanne')) }}#}
+                                    <img src="{{ asset('img/devoops_getdata.gif') }}" class="center-block" alt="preloader"/>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+        {#<div id="autres">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="box">
+                        <div class="box-header">
+                            <div class="box-name">
+                                <i class="fa fa-plus-square-o"></i>
+                                <span>Configuration du mode d'ajout des données</span>
+                            </div>
+                            <div class="box-icons pull-right">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                                <a class="expand-link">
+                                    <i class="fa fa-expand"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="box-content" id="addModeConfigHtml">
+                            &#123;&#35;{{ render(controller('SofieAdminBundle:Parametre:editAddMode')) }}&#35;&#125;
+                            <img src="{{ asset('img/devoops_getdata.gif') }}" class="center-block" alt="preloader"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>#}
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/sofieadmin/css/parametre.css') }}" type="text/css" />
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/sofieadmin/js/parametre.js') }}"></script>
+{% endblock %}
+{% block flash_scripts %}
+    <script type="text/javascript">
+        $(function(){
+            // Create jQuery-UI tabs
+            $("#tabsview").tabs();
+        });
+    </script>
+{% endblock %}

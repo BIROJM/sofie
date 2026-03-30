@@ -1,0 +1,49 @@
+{% macro paginator(total, offset, current, links) %}
+    {% if offset < total %}
+        {% set last = (total/offset)|round(0, 'ceil') %}
+        {% set start = ((current - links) > 0) ? (current - links) : 1 %}
+        {% set end = ((current + links) < last) ? (current + links) : last %}
+
+        {% set route_index = app.request.attributes.get('_route') %}
+        {% set route_params = app.request.attributes.get('_route_params')|merge({'_sfp':'1'}) %}
+
+        <ul class="pagination">
+            {% set class = ( current == 1 ) ? "disabled" : "" %}
+            <li class="{{ class }}">
+                <a href="{{ (current==1) ? '#' : path(route_index, route_params|merge(app.request.query.all|merge({'page': (current-1)}))) }}">
+                    &laquo;
+                </a>
+            </li>
+
+            {% if start > 1 %}
+                <li>
+                    <a href="{{ path(route_index, route_params|merge(app.request.query.all|merge({'page': 1}))) }}">1</a>
+                </li>
+                <li class="disabled"><span>...</span></li>;
+            {% endif %}
+
+            {% for p in range(start, end) %}
+                {% set class = (current == p ) ? "active" : "" %}
+                <li class="{{ class }}">
+                    <a href="{{ path(route_index, route_params|merge(app.request.query.all|merge({'page': p}))) }}">{{ p }}</a>
+                </li>
+            {% endfor %}
+
+            {% if end < last %}
+                <li class="disabled"><span>...</span></li>
+                <li>
+                    <a href="{{ path(route_index, route_params|merge(app.request.query.all|merge({'page': last}))) }}">
+                        {{ last }}
+                    </a>
+                </li>
+            {% endif %}
+
+            {% set class = (current == last ) ? "disabled" : "" %}
+            <li class="{{ class }}">
+                <a href="{{ (current==last) ? '#' : path(route_index, route_params|merge(app.request.query.all|merge({'page': (current+1)}))) }}">
+                    &raquo;
+                </a>
+            </li>
+        </ul>
+    {% endif %}
+{% endmacro %}

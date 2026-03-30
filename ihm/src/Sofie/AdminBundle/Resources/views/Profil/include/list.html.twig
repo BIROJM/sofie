@@ -1,0 +1,58 @@
+{% import '::macro/links.html.twig' as links %}
+
+<div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover table-heading">
+       {% if is_granted('ROLE_PROFIL') %}
+            <caption>
+                <div class="pull-right">
+                    <a class="btn btn-primary btn-label-left" title="Ajouter" href="{{ path('sofieadmin_profil_add') }}">
+                        <span><i class="fa fa-plus"></i></span> Ajouter
+                    </a>
+                    <i class="fa fa-ellipsis-v fa-2x"></i>
+                    {{ links.pdf_link({}, {'class':'fa-2x'}) }}
+                </div>
+            </caption>
+        {% endif %}
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Code</th>
+            <th>Nom du profil</th>
+			<th>Commentaire</th>
+			<th>Nb. Utilisateurs</th>
+			<th>Actions</th>
+        </tr>
+        </thead>
+        {% if profils is defined %}
+            {% if profils is not empty %}
+                <tbody>
+                    {% set page_inc = g_paginator_items*(page-1) %}
+                    {% for profil in profils %}
+                        <tr>
+                            <td>{{ loop.index+page_inc }}</td>
+                            <td>{{ profil.id|default('') }}</td>
+                            <td>{{ profil.designation|default('') }}</td>
+							<td>{{ profil.commentaire|default('') }}</td>
+							<td>{{ profil.agents|default('') |length}}</td>
+							<td class="text-center">
+                               
+                                    <a class="text-success" href="{{ path('sofieadmin_profil_edit', {'id':profil.id|default('0')}) }}" title="Modifier">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                               
+                                
+                                    <a class="text-danger confirm-delete" href="{{ path('sofieadmin_profil_delete', {'id':profil.id|default('0')}) }}" title="Supprimer">
+                                        <i class="fa fa-remove"></i>
+                                    </a>
+                                
+                            </td>
+                          
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            {% endif %}
+        {% endif %}
+    </table>
+</div>
+{# Pagination #}
+{% include '::include/paginator/paginator.html.twig' with {'total': profils|default([])|length} %}

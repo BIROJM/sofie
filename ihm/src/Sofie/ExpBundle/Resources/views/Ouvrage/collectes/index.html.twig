@@ -1,0 +1,42 @@
+{% extends 'SofieExpBundle:Ouvrage:index.html.twig' %}
+
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li><a href="{{ path('sofieexp_collecte_index', {'id': ouvrage.id|default(collecte.ouvrage.id|default(0))}) }}">Collectes</a></li>
+{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="box-name">
+                        <i class="fa fa-table"></i>
+                        <span>Liste des collectes de l'ouvrage n°{{ ouvrage.code|default('') }}</span>
+                    </div>
+                </div>
+                <div class="box-content no-padding">
+                    <div class="bs-callout content-critere">
+                        {% include 'SofieExpBundle:Ouvrage:collectes/critere_form.html.twig' %}
+                    </div>
+                    {% include 'SofieExpBundle:Ouvrage:collectes/list.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/sofieexp/js/collecte.js') }}"></script>
+{% endblock %}
+
+{% block flash_scripts %}
+    <script type="text/javascript">
+        critereListener();
+        validateActionListener();
+    </script>
+{% endblock %}
+

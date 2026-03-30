@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}{% endblock %}</title>
+        <meta name="description" content="description">
+        <meta name="author" content="Evgeniya">
+        <meta name="keyword" content="keywords">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="{{ asset('plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('plugins/Font-Awesome/css/font-awesome.css') }}" type="text/css" />
+
+        <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('css/pdf.css') }}" rel="stylesheet" type="text/css" />
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+        <script src="http://getbootstrap.com/docs-assets/js/html5shiv.js"></script>
+        <script src="http://getbootstrap.com/docs-assets/js/respond.min.js"></script>
+        <![endif]-->
+
+        <!-- Section des variables globales -->
+
+        {# variales de session #}
+        {% set g_config_id = sofie_config['config_id']|default(null) %}
+        {% set g_region_infos = sofie_config['region_infos']|default(null) %}
+        {% set g_paginator_items = sofie_config['offset_paginator']|default(50) %}
+        {% set g_nb_paginator = sofie_config['nb_paginator']|default(5) %}
+
+        <!-- Fin des variables globales -->
+    </head>
+    <body>
+    {% import '::macro/pdf.html.twig' as pdf %}
+    {% block pdf_footer %}
+        {{ pdf.footer() }}
+    {% endblock %}
+        <div class="pdf">
+            {% block head %}
+                <table style="width: 100%">
+                    <tr>
+                        <td width="88%">
+                            <div>
+                                <strong>Date</strong> : {{ "now"|date('d/m/Y H:i:s') }}
+                            </div>
+                            {% if(g_sofie_site|default(null) is not null and g_region_infos|default(null) is iterable) %}
+                                <div>
+                                    <strong>Site</strong> : {{ g_region_infos['name']|default('n/a') }}
+                                </div>
+                            {% endif %}
+                            <div>
+                                <strong>Liste de données</strong> : {% block data_source %}{% endblock %}
+                            </div>
+                            <div>
+                                <strong>Nombre de lignes</strong> : {% block data_length %}{% endblock %}
+                            </div>
+                            <div>
+                                <strong>Critères</strong> :
+                                <span id="criteres">{{ (criteres|default('') is empty) ? 'n/a' : criteres|default('') }}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <img src="{{ asset('img/armoirie.jpg') }}" style="height: 68px; width: 75px;" />
+                        </td>
+                    </tr>
+                </table>
+            {% endblock %}
+
+            {% block sofie_pdf_body %}{% endblock %}
+        </div>
+    </body>
+
+</html>

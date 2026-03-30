@@ -1,0 +1,366 @@
+Sofie\ExpBundle\Entity\Collecte:
+    type: entity
+    table: t_collecte
+    repositoryClass: Sofie\ExpBundle\Entity\CollecteRepository
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    id:
+        id:
+            type: integer
+            nullable: false
+            id: true
+            column: IDCollecte
+            generator:
+                strategy: NONE
+#                strategy: IDENTITY
+    fields:
+        dateSaisie:
+            type: date
+            nullable: true
+            column: DateSaisie
+        dateRemplissage:
+            type: date
+            nullable: true
+            column: DateRemplissage
+        nomOperateur:
+            type: string
+            nullable: true
+            length: 50
+            column: NomOperateur
+        nomAgentSaisie:
+            type: string
+            nullable: true
+            length: 50
+            column: NomAgentSaisie
+        service:
+            type: string
+            nullable: true
+            length: 50
+            column: `Service`
+        etatOuvrage:
+            type: string
+            nullable: true
+            length: null
+            column: EtatOuvrage
+        codeCauseSiAbandon:
+            type: string
+            length: null
+            nullable: true
+            column: CodeCauseSiAbandon
+        causeDestruction:
+            type: string
+            nullable: true
+            length: 50
+            column: CauseDestruction
+        pereniteAnneeNbMois:
+            type: smallint
+            nullable: true
+            options:
+                unsigned: false
+                comment: ''
+            column: PereniteAnneeNbMois
+        pereniteAnneeDsJournee:
+            type: string
+            nullable: true
+            length: null
+            column: PereniteAnneeDsJournee
+        superStructureRehabilite:
+            type: boolean
+            nullable: true
+            column: SuperstructureRehabilite
+        etatMargelle:
+            type: boolean
+            nullable: true
+            column: EtatMargelle
+        etancheiteforage:
+            type: boolean
+            nullable: true
+            column: EtancheiteForage
+        etatFixationPompe:
+            type: boolean
+            nullable: true
+            column: EtatFixationPompe
+        etatAntiBourbier:
+            type: string
+            nullable: true
+            length: null
+            column: EtatAntiBourbier
+        etatCloture:
+            type: string
+            nullable: true
+            length: null
+            column: EtatCloture
+        etatRigoleEvacuation:
+            type: string
+            nullable: true
+            length: null
+            column: EtatRigoleEvacuation
+        etatPuitPerdu:
+            type: string
+            nullable: true
+            length: null
+            column: EtatPuitPerdu
+        propreteInterieurCloture:
+            type: boolean
+            nullable: true
+            column: PropreteInterieurCloture
+        propreteExterieurCloture:
+            type: boolean
+            nullable: true
+            column: PropreteExterieurCloture
+        sourcePollution1:
+            type: string
+            nullable: true
+            length: null
+            column: SourcePollution1
+        sourcePollution2:
+            type: string
+            nullable: true
+            length: null
+            column: SourcePollution2
+        presenceDeferiseur:
+            type: boolean
+            nullable: true
+            column: PresenceDeferiseur
+        deferiseurUtilise:
+            type: boolean
+            nullable: true
+            column: DeferiseurUtilise
+        etatDeferiseur:
+            type: string
+            nullable: true
+            length: null
+            column: EtatDeferiseur
+        nbPompe:
+            type: smallint
+            nullable: true
+            options:
+                unsigned: false
+                comment: ''
+            column: NbPompe
+        marquePompe:
+            type: string
+            nullable: true
+            length: 50
+            column: MarquePompe
+        pompeRemplace:
+            type: boolean
+            nullable: true
+            column: PompeRemplace
+        anneePosePompe:
+            type: smallint
+            nullable: true
+            column: AnneePosePompe
+        financementRemplacement:
+            type: string
+            nullable: true
+            length: null
+            column: FinancementRemplacement
+        nomProjet:
+            type: string
+            nullable: true
+            length: 50
+            column: NomProjet
+        etatPompe:
+            type: string
+            nullable: true
+            length: null
+            column: EtatPompe
+        dureePanne:
+            type: string
+            nullable: true
+            length: null
+            column: DureePanne
+        causeNonReparation:
+            type: string
+            nullable: true
+            length: null
+            column: CauseNonReparation
+        turbidite:
+            type: string
+            nullable: true
+            length: null
+            column: Turbidite
+        odeurEau:
+            type: string
+            nullable: true
+            length: null
+            column: OdeurEau
+        goutEau:
+            type: string
+            nullable: true
+            length: null
+            column: GoutEau
+        pelliculeEnSurface:
+            type: boolean
+            nullable: true
+            column: PelliculeEnSurface
+        presenceVers:
+            type: boolean
+            nullable: true
+            column: PresenceVers
+        conductivite:
+            type: decimal
+            nullable: true
+            precision: 5
+            scale: 2
+            column: Conductivite
+        ph:
+            type: decimal
+            nullable: true
+            precision: 5
+            scale: 2
+            column: Ph
+        nitratesNo3:
+            type: decimal
+            nullable: true
+            precision: 5
+            scale: 2
+            column: NitratesNo3
+        nitritesNo2:
+            type: decimal
+            nullable: true
+            precision: 5
+            scale: 2
+            column: NitritesNo2
+        ferTotal:
+            type: decimal
+            nullable: true
+            precision: 5
+            scale: 2
+            column: FerTotal
+        modeGestionOuvrage:
+            type: string
+            nullable: true
+            length: null
+            column: ModeGestionOuvrage
+        presenceUniteGestion:
+            type: boolean
+            nullable: true
+            column: PresenceUniteGestion
+        villageUe:
+            type: string
+            nullable: true
+            length: 50
+            column: VillageUE
+        numVillageUe:
+            type: string
+            nullable: true
+            length: 10
+            column: NumVillageUE
+        assistanceBienfaiteur:
+            type: boolean
+            nullable: true
+            column: AssistanceBienfaiteur
+        modePaiementEau:
+            type: string
+            nullable: true
+            length: null
+            column: ModePaiementEau
+        prixSeau20Litres:
+            type: float
+            nullable: true
+            precision: 8
+            scale: 2
+            column: PrixSeau20Litres
+        prixBassine35Litres:
+            type: float
+            nullable: true
+            precision: 8
+            scale: 2
+            column: PrixBassine35Litres
+        nomArtisanReparateur:
+            type: string
+            nullable: true
+            length: 50
+            column: NomArtisanReparateur
+        villageResidenceReparateur:
+            type: string
+            nullable: true
+            length: 50
+            column: VillageResidenceReparateur
+        cahierEntretientPompe:
+            type: string
+            nullable: true
+            length: null
+            column: CahierEntretientPompe
+        contratEntretienArtisan:
+            type: boolean
+            nullable: true
+            column: ContratEntretienArtisan
+        typeContrat:
+            type: string
+            nullable: true
+            length: null
+            column: TypeContrat
+        commentaires:
+            type: text
+            nullable: true
+            length: null
+            column: Commentaires
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        validated:
+            type: boolean
+            nullable: true
+            options:
+                default: false
+        validatedAt:
+            type: datetime
+            nullable: true
+            column: validated_at
+        numIRH:
+            type: string
+            length: 10
+            nullable: true
+            column: NumIRH
+        sync:
+            type: string
+            length: 1
+            nullable: true
+            options:
+                default: 'N'
+            column: sync
+        deletedAt:
+            type: datetime
+            nullable: true
+            column: deleted_at
+        origin:
+            type: string
+            nullable: true
+            length: 2
+            options:
+                default: 'I'
+            column: origin
+    manyToOne:
+        ouvrage:
+            targetEntity: Ouvrage
+            cascade: ["persist"]
+            inversedBy: collectes
+            joinColumn:
+                name: IDOuvrage
+                nullable: true
+                referencedColumnName: IDOuvrage
+                onDelete: "SET NULL"
+            orphanRemoval: false
+        validatedBy:
+            targetEntity: Agent
+            cascade: ["persist"]
+            joinColumn:
+                name: validated_by
+                nullable: true
+                referencedColumnName: IDAgent
+                onDelete: "SET NULL"
+            orphanRemoval: false
+    lifecycleCallbacks:
+        prePersist: [setCreatedValue, setCustomId]
+        preUpdate: [setUpdatedValue]
+        preRemove: [setRemovedValue]

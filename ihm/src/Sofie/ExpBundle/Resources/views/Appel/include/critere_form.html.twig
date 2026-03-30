@@ -1,0 +1,58 @@
+{% if form is defined and form is not empty %}
+    {{ form_start(form, {'method':'POST', 'attr':{'class':'form-inline', 'role':'form', 'id':'critere'}}) }}
+        <div class="row">
+            <div class="col-sm-12">
+                {% if form.dmin is defined %}
+                    <div class="form-group">
+                        Du
+                        {{ form_widget(form.dmin, {'attr':{'class':'form-control', 'placeholder':'Date de début'}}) }}
+                    </div>
+                {% endif %}
+                {% if form.dmax is defined %}
+                    <div class="form-group">
+                        au
+                        {{ form_widget(form.dmax, {'attr':{'class':'form-control', 'placeholder':'Date de fin'}}) }}
+                    </div>
+                {% endif %}
+                {% if g_sofie_site|default(null) is null and form.region is defined %}
+                    <div class="form-group">
+                        {{ form_label(form.region) }}
+                        {{ form_widget(form.region, {'attr':{'class':'inline-select2 form-control'}}) }}
+                    </div>
+                {% endif %}
+                {% if form.motif is defined %}
+                    <div class="form-group">
+                        {{ form_label(form.motif) }}
+                        {{ form_widget(form.motif, {'attr':{'class':'inline-select2 form-control'}}) }}
+                    </div>
+                {% endif %}
+                {% if form.origine is defined %}
+                    <div class="form-group">
+                        {{ form_label(form.origine) }}
+                        {{ form_widget(form.origine, {'attr':{'class':'inline-select2 form-control'}}) }}
+                    </div>
+                {% endif %}
+                {% if form.ouvrage is defined %}
+                    <div class="form-group">
+                        {{ form_label(form.ouvrage) }}
+                        {{ form_widget(form.ouvrage, {'attr':{'class':'form-control'}}) }}
+                    </div>
+                {% endif %}
+                {% if form.panne is defined %}
+                    <div class="form-group">
+                        {{ form_label(form.panne) }}
+                        {{ form_widget(form.panne, {'attr':{'class':'form-control'}}) }}
+                    </div>
+                {% endif %}
+                {% if form.numeroAppel is defined %}
+                    <div class="form-group">
+                        {{ form_label(form.numeroAppel) }}
+                        {{ form_widget(form.numeroAppel, {'attr':{'class':'form-control'}}) }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div>{{ (form._token is defined) ? form_widget(form._token) : '' }}</div>
+        {% include '::include/critere_submit_button.html.twig' %}
+    {{ form_end(form, {'render_rest': false}) }}
+{% endif %}

@@ -1,0 +1,25 @@
+{% if agent is defined %}
+    <div class="table-responsive">
+        <table class="table table-hover table-striped">
+            <caption>Informations personnelles</caption>
+            {{ trViews.tr('Nom :', agent.nom|default('')) }}
+            {{ trViews.tr('Prénoms :', agent.prenoms|default('')) }}
+            {{ trViews.tr('Qualification :', agent.qualification|default('')) }}
+            {% if agent.mustInitialized()|default(false) %}
+                {{ trViews.tr('Numéro d\'appel :', agent.numeroAppel.numero|default('')) }}
+                {{ trViews.tr('Code d\'initialisation :', agent.codeInit|default('')) }}
+                {{ trViews.raw_tr('Initialisé :', agent.initStatus|default(false)|oui_non|raw) }}
+            {% endif %}
+            {% if agent.region|default(null) is not empty %}
+                {{
+                    trViews.entity_tr(
+                        "Région :", agent.region.nom|default(''), {
+                            'role': 'ROLE_REGION',
+                            'path': path('sofieexp_region_view', {'id':agent.region.id|default(0)})
+                        }
+                    )
+                }}
+            {% endif %}
+        </table>
+    </div>
+{% endif %}

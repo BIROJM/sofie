@@ -1,0 +1,53 @@
+Sofie\ExpBundle\Entity\Code:
+    type: entity
+    table: t_code
+    repositoryClass: Sofie\ExpBundle\Entity\CodeRepository
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    id:
+        id:
+            type: integer
+            nullable: false
+            id: true
+            column: IDCode
+            generator:
+                strategy: AUTO
+    fields:
+        code:
+            type: integer
+            nullable: true
+        status:
+            type: string
+            nullable: true
+            length: 2
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        sync:
+            type: string
+            length: 1
+            nullable: true
+            options:
+                default: 'N'
+            column: sync
+        deletedAt:
+            type: datetime
+            nullable: true
+            column: deleted_at
+    manyToOne:
+        profile:
+            targetEntity: Profile
+            cascade: ["persist"]
+            inversedBy: codes
+            joinColumn:
+                name: profile
+                nullable: true
+                referencedColumnName: IDProfile
+                onDelete: "SET NULL"
+            orphanRemoval: false
+    lifecycleCallbacks:
+        prePersist: [setUpdatedValue]
+        preUpdate: [setUpdatedValue]

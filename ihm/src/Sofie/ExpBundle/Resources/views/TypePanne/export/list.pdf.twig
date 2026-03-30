@@ -1,0 +1,32 @@
+{% extends '::pdf.html.twig' %}
+
+{% block title %}Listes des types de pannes{% endblock %}
+
+{% block data_source %}Types de pannes{% endblock %}
+{% block data_length %}{{ typePannes|default([])|length }}{% endblock %}
+
+{% block sofie_pdf_body %}
+    {{ pdf.start_list_table() }}
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Libellé</th>
+                <th>Nb. pannes</th>
+            </tr>
+        </thead>
+        {% if typePannes is defined %}
+            {% if typePannes is not empty %}
+                <tbody>
+                {% set page_inc = g_paginator_items|default(0)*(page|default(1)-1) %}
+                {% for typePanne in typePannes %}
+                    <tr>
+                        <td>{{ loop.index+page_inc }}</td>
+                        <td>{{ typePanne|default('') }}</td>
+                        <td class="text-center">{{ typePanne.pannes|default([])|length }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            {% endif %}
+        {% endif %}
+    {{ pdf.end_list_table() }}
+{% endblock %}

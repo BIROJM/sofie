@@ -1,0 +1,528 @@
+<?php
+
+namespace Sofie\ExpBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+
+/**
+ * Panne
+ */
+class Panne
+{
+
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $numero;
+
+    /**
+     * @var \DateTime
+     */
+    private $dateApparution;
+
+    /**
+     * @var \DateTime
+     */
+    private $datePriseCharge;
+
+    /**
+     * @var \DateTime
+     */
+    private $dateDebutRep;
+
+    /**
+     * @var \DateTime
+     */
+    private $dateReparation;
+
+    /**
+     * @var boolean
+     */
+    private $statut;
+
+    /**
+     * @var boolean
+     */
+    private $enCours;
+
+    /**
+     * @var integer
+     */
+    private $idComite;
+
+    /**
+     * @var integer
+     */
+    private $alert;
+
+    /**
+     * @var Collection
+     */
+    private $appels;
+
+    /**
+     * @var Collection
+     */
+    private $notifications;
+
+    /**
+     * @var \Sofie\ExpBundle\Entity\Ouvrage
+     */
+    private $ouvrage;
+
+    /**
+     * @var \Sofie\ExpBundle\Entity\StatutPanne
+     */
+    private $statutPanne;
+
+    /**
+     * @var \Sofie\ExpBundle\Entity\TypePanne
+     */
+    private $typePanne;
+
+    /**
+     * @var string
+     */
+    private $sync;
+
+    /**
+     * @var \DateTime
+     */
+    private $deletedAt;
+
+	/**
+     * @var integer
+     */
+    private $origine;
+	
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->appels = new ArrayCollection();
+        $this->notifications = new ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set numero
+     *
+     * @param string $numero
+     * @return Panne
+     */
+    public function setNumero($numero)
+    {
+        $this->numero = $numero;
+
+        return $this;
+    }
+
+    /**
+     * Get numero
+     *
+     * @return string 
+     */
+    public function getNumero()
+    {
+        return $this->numero;
+    }
+
+    /**
+     * Set dateApparution
+     *
+     * @param \DateTime $dateApparution
+     * @return Panne
+     */
+    public function setDateApparution($dateApparution)
+    {
+        $this->dateApparution = new \DateTime(); //$dateApparution;
+
+        return $this;
+    }
+
+    /**
+     * Get dateApparution
+     *
+     * @return \DateTime 
+     */
+    public function getDateApparution()
+    {
+        return $this->dateApparution;
+    }
+
+    /**
+     * Set datePriseCharge
+     *
+     * @param \DateTime $datePriseCharge
+     * @return Panne
+     */
+    public function setDatePriseCharge($datePriseCharge)
+    {
+        $this->datePriseCharge = $datePriseCharge;
+
+        return $this;
+    }
+
+    /**
+     * Get datePriseCharge
+     *
+     * @return \DateTime 
+     */
+    public function getDatePriseCharge()
+    {
+        return $this->datePriseCharge;
+    }
+
+    /**
+     * Set dateDebutRep
+     *
+     * @param \DateTime $dateDebutRep
+     * @return Panne
+     */
+    public function setDateDebutRep($dateDebutRep)
+    {
+        $this->dateDebutRep = $dateDebutRep;
+
+        return $this;
+    }
+
+    /**
+     * Get dateDebutRep
+     *
+     * @return \DateTime 
+     */
+    public function getDateDebutRep()
+    {
+        return $this->dateDebutRep;
+    }
+
+    /**
+     * Set dateReparation
+     *
+     * @param \DateTime $dateReparation
+     * @return Panne
+     */
+    public function setDateReparation($dateReparation)
+    {
+        $this->dateReparation = new \DateTime();//$dateReparation; 
+
+        return $this;
+    }
+
+    /**
+     * Get dateReparation
+     *
+     * @return \DateTime 
+     */
+    public function getDateReparation()
+    {
+        return $this->dateReparation;
+    }
+
+    /**
+     * Set statut
+     *
+     * @param boolean $statut
+     * @return Panne
+     */
+    public function setStatut($statut)
+    {
+        $this->statut = $statut;
+
+        return $this;
+    }
+
+    /**
+     * Get statut
+     *
+     * @return boolean 
+     */
+    public function getStatut()
+    {
+        return $this->statut;
+    }
+
+    /**
+     * Set enCours
+     *
+     * @param boolean $enCours
+     * @return Panne
+     */
+    public function setEnCours($enCours)
+    {
+        $this->enCours = $enCours;
+
+        return $this;
+    }
+
+    /**
+     * Get enCours
+     *
+     * @return boolean 
+     */
+    public function getEnCours()
+    {
+        return $this->enCours;
+    }
+
+    /**
+     * Set idComite
+     *
+     * @param integer $idComite
+     * @return Panne
+     */
+    public function setIdComite($idComite)
+    {
+        $this->idComite = $idComite;
+
+        return $this;
+    }
+
+    /**
+     * Get idComite
+     *
+     * @return integer 
+     */
+    public function getIdComite()
+    {
+        return $this->idComite;
+    }
+
+    /**
+     * Set alert
+     *
+     * @param integer $alert
+     * @return Panne
+     */
+    public function setAlert($alert)
+    {
+        $this->alert = $alert;
+
+        return $this;
+    }
+
+    /**
+     * Get alert
+     *
+     * @return integer 
+     */
+    public function getAlert()
+    {
+        return $this->alert;
+    }
+
+    /**
+     * Add appels
+     *
+     * @param \Sofie\ExpBundle\Entity\AppelTelephonique $appels
+     * @return Panne
+     */
+    public function addAppel(\Sofie\ExpBundle\Entity\AppelTelephonique $appels)
+    {
+        $this->appels[] = $appels;
+
+        return $this;
+    }
+
+    /**
+     * Remove appels
+     *
+     * @param \Sofie\ExpBundle\Entity\AppelTelephonique $appels
+     */
+    public function removeAppel(\Sofie\ExpBundle\Entity\AppelTelephonique $appels)
+    {
+        $this->appels->removeElement($appels);
+    }
+
+    /**
+     * Get appels
+     *
+     * @return Collection
+     */
+    public function getAppels()
+    {
+        return $this->appels;
+    }
+
+    /**
+     * Add notifications
+     *
+     * @param \Sofie\ExpBundle\Entity\Notification $notifications
+     * @return Panne
+     */
+    public function addNotification(\Sofie\ExpBundle\Entity\Notification $notifications)
+    {
+        $this->notifications[] = $notifications;
+
+        return $this;
+    }
+
+    /**
+     * Remove notifications
+     *
+     * @param \Sofie\ExpBundle\Entity\Notification $notifications
+     */
+    public function removeNotification(\Sofie\ExpBundle\Entity\Notification $notifications)
+    {
+        $this->notifications->removeElement($notifications);
+    }
+
+    /**
+     * Get notifications
+     *
+     * @return Collection
+     */
+    public function getNotifications()
+    {
+        return $this->notifications;
+    }
+
+    /**
+     * Set ouvrage
+     *
+     * @param \Sofie\ExpBundle\Entity\Ouvrage $ouvrage
+     * @return Panne
+     */
+    public function setOuvrage(\Sofie\ExpBundle\Entity\Ouvrage $ouvrage = null)
+    {
+        $this->ouvrage = $ouvrage;
+
+        return $this;
+    }
+
+    /**
+     * Get ouvrage
+     *
+     * @return \Sofie\ExpBundle\Entity\Ouvrage 
+     */
+    public function getOuvrage()
+    {
+        return $this->ouvrage;
+    }
+
+    /**
+     * Set statutPanne
+     *
+     * @param \Sofie\ExpBundle\Entity\StatutPanne $statutPanne
+     * @return Panne
+     */
+    public function setStatutPanne(\Sofie\ExpBundle\Entity\StatutPanne $statutPanne = null)
+    {
+        $this->statutPanne = $statutPanne;
+
+        return $this;
+    }
+
+    /**
+     * Get statutPanne
+     *
+     * @return \Sofie\ExpBundle\Entity\StatutPanne 
+     */
+    public function getStatutPanne()
+    {
+        return $this->statutPanne;
+    }
+
+    public function optimizedValue()
+    {
+        if(($this->ouvrage instanceof Ouvrage) && ($this->ouvrage->getComite() instanceof Comite)){
+            $this->idComite = $this->ouvrage->getComite()->getId();
+        }
+    }
+
+    /**
+     * Set typePanne
+     *
+     * @param \Sofie\ExpBundle\Entity\TypePanne $typePanne
+     * @return Panne
+     */
+    public function setTypePanne(\Sofie\ExpBundle\Entity\TypePanne $typePanne = null)
+    {
+        $this->typePanne = $typePanne;
+
+        return $this;
+    }
+
+    /**
+     * Get typePanne
+     *
+     * @return \Sofie\ExpBundle\Entity\TypePanne 
+     */
+    public function getTypePanne()
+    {
+        return $this->typePanne;
+    }
+
+    /**
+     * Set sync
+     *
+     * @param string $sync
+     * @return Panne
+     */
+    public function setSync($sync)
+    {
+        $this->sync = $sync;
+
+        return $this;
+    }
+
+    /**
+     * Get sync
+     *
+     * @return string 
+     */
+    public function getSync()
+    {
+        return $this->sync;
+    }
+
+    /**
+     * Set deletedAt
+     *
+     * @param \DateTime $deletedAt
+     * @return Panne
+     */
+    public function setDeletedAt($deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get deletedAt
+     *
+     * @return \DateTime 
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
+    }
+	
+	public function setOrigine($origine)
+	{
+		$this->origine = $origine;
+		return $this;
+	}
+	
+	public function getOrigine()
+	{
+		return $this->origine;
+	}
+}

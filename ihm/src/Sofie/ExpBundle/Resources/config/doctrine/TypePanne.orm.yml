@@ -1,0 +1,40 @@
+Sofie\ExpBundle\Entity\TypePanne:
+    type: entity
+    table: t_type_panne
+    repositoryClass: Sofie\ExpBundle\Entity\TypePanneRepository
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: NONE
+#                strategy: AUTO
+    fields:
+        libelle:
+            type: string
+            length: 255
+        sync:
+            type: string
+            length: 1
+            nullable: true
+            options:
+                default: 'N'
+            column: `sync`
+        deletedAt:
+            type: datetime
+            nullable: true
+            column: deleted_at
+    oneToMany:
+        pannes:
+            targetEntity: Panne
+            cascade: ["persist"]
+            mappedBy: typePanne
+            fetch: EXTRA_LAZY
+    lifecycleCallbacks:
+        prePersist: [setCustomId]
+        preUpdate: [setUpdatedValue]
+        preRemove: [setRemovedValue]

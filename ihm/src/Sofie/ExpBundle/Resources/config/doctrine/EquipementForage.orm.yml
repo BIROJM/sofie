@@ -1,0 +1,75 @@
+Sofie\ExpBundle\Entity\EquipementForage:
+    type: entity
+    table: t_equipementforage
+    repositoryClass: Sofie\ExpBundle\Entity\EquipementForageRepository
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: true
+            comment: ''
+            id: true
+            column: IDEquipementforage
+            generator:
+                strategy: NONE
+#                strategy: IDENTITY
+    fields:
+        nature:
+            type: string
+            nullable: true
+            length: 50
+            column: Nature
+        profSup:
+            type: string
+            nullable: true
+            length: 20
+            column: ProfSup
+        profInf:
+            type: string
+            nullable: true
+            length: 20
+            column: ProfInf
+        diametre:
+            type: string
+            nullable: true
+            length: 50
+            column: Diametre
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        sync:
+            type: string
+            length: 1
+            nullable: false
+            options:
+                default: 'N'
+            column: sync
+        deletedAt:
+            type: datetime
+            nullable: true
+            column: deleted_at
+    manyToOne:
+        ouvrage:
+            targetEntity: Ouvrage
+            cascade: ["persist"]
+            inversedBy: equipementForages
+            joinColumn:
+                name: IDOuvrage
+                nullable: true
+                referencedColumnName: IDOuvrage
+                onDelete: "CASCADE"
+            orphanRemoval: true
+    lifecycleCallbacks:
+        prePersist: [setCreatedValue, setCustomId]
+        preUpdate: [setUpdatedValue]
+        preFlush: [setPreFlushValue]
+        preRemove: [setRemovedValue]

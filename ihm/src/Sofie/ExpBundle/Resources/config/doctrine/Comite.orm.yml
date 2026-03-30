@@ -1,0 +1,101 @@
+Sofie\ExpBundle\Entity\Comite:
+    type: entity
+    table: t_comite
+    repositoryClass: Sofie\ExpBundle\Entity\ComiteRepository
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    uniqueConstraints:
+        CodeInitComite:
+            columns:
+                - CodeInitComite
+        IDNumAppel_2:
+            columns:
+                - IDNumAppel
+    id:
+        id:
+            type: integer
+            nullable: false
+            id: true
+            column: IDComite
+            generator:
+                strategy: NONE
+#                strategy: IDENTITY
+    fields:
+        nom:
+            type: string
+            nullable: true
+            length: 50
+            column: NomComite
+        codeInit:
+            type: string
+            nullable: true
+            length: 6
+            column: CodeInitComite
+        nomSecretaire:
+            type: string
+            nullable: true
+            length: 50
+            column: NomSecretaire
+        prenomsSecretaire:
+            type: string
+            nullable: true
+            length: 50
+            column: PrenomsSecretaire
+        initStatus:
+            type: boolean
+            nullable: true
+            options:
+                default: '0'
+            column: InitSatus
+        deletedAt:
+            type: datetime
+            nullable: true
+            column: deleted_at
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        sync:
+            type: string
+            length: 1
+            nullable: true
+            options:
+                default: 'N'
+            column: sync
+    oneToOne:
+        numeroAppel:
+            targetEntity: NumeroAppel
+            cascade: ["persist", "remove"]
+            inversedBy: comite
+            joinColumn:
+                name: IDNumAppel
+                nullable: true
+                referencedColumnName: IDNumAppel
+                onDelete: "SET NULL"
+            orphanRemoval: false
+        ouvrage:
+            targetEntity: Ouvrage
+            cascade: ["persist"]
+            mappedBy: comite
+            fetch: EXTRA_LAZY
+    manyToOne:
+        localite:
+            targetEntity: Localite
+            cascade: ["persist"]
+            inversedBy: comites
+            joinColumn:
+                name: IDLocalite
+                nullable: true
+                referencedColumnName: IDLocalite
+                onDelete: "SET NULL"
+            orphanRemoval: false
+    lifecycleCallbacks:
+        prePersist: [setCreatedValue, setCustomId, initialize]
+        preUpdate: [setUpdatedValue]
+        preRemove: [setRemovedValue]

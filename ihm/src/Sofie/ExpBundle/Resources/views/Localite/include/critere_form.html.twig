@@ -1,0 +1,22 @@
+{% if form is defined and form is not empty %}
+    {{ form_start(form, {'method':'POST', 'attr':{'class':'form-inline', 'role':'form', 'id':'critere'}}) }}
+        <div class="row">
+            <div class="col-sm-12">
+                {% if g_sofie_site|default(null) is null and form.region is defined %}
+                    <div class="form-group">
+                        {{ form_label(form.region) }}
+                        {{ form_widget(form.region, {'attr':{'class':'inline-select2 form-control'}}) }}
+                    </div>
+                {% endif %}
+                {% if form.nom is defined %}
+                    <div class="form-group">
+                        {{ form_label(form.nom) }}
+                        {{ form_widget(form.nom, {'attr':{'class':'form-control'}}) }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div>{{ (form._token is defined) ? form_widget(form._token) : '' }}</div>
+        {% include '::include/critere_submit_button.html.twig' %}
+    {{ form_end(form, {'render_rest': false}) }}
+{% endif %}

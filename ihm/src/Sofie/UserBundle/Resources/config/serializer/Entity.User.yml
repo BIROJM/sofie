@@ -1,0 +1,60 @@
+Sofie\UserBundle\Entity\User:
+    exclusion_policy: ALL
+    properties:
+        createdAt:
+            expose: true
+            serialized_name: created_at
+            groups: [api_add]
+            type: DateTime<'Y-m-d H:i:s'>
+        updatedAt:
+            expose: true
+            serialized_name: updated_at
+            groups: [api_add]
+            type: DateTime<'Y-m-d H:i:s'>
+        email:
+            expose: true
+            serialized_name: email
+            groups: [api_add]
+        password:
+            expose: true
+            serialized_name: password
+            groups: [api_add]
+        admin:
+            expose: true
+            serialized_name: admin
+            groups: [api_add]
+        rememberToken:
+            expose: true
+            serialized_name: remember_token
+            groups: [api_add]
+        roles:
+            expose: true
+            serialized_name: roles
+            groups: [api_add]
+            type: string
+            accessor:
+                getter: getSerializedRoles
+        username:
+            expose: true
+            serialized_name: username
+            groups: [api_add]
+        isActive:
+            expose: true
+            serialized_name: is_active
+            groups: [api_add]
+        salt:
+            expose: true
+            serialized_name: salt
+            groups: [api_add]
+        sync:
+            expose: true
+            serialized_name: sync
+            groups: [api_add]
+        agent:
+            expose: true
+            serialized_name: agent_id
+            groups: [api_add]
+            type: integer
+            max_depth: 1
+            accessor:
+                getter: getAgentId

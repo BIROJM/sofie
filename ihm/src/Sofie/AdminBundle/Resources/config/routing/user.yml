@@ -1,0 +1,33 @@
+sofieadmin_user_index:
+    path:     /{page}
+    defaults: { _controller: SofieAdminBundle:User:index, page: 1 }
+    methods: [GET,POST]
+    requirements:
+        page: \d+
+
+sofieadmin_user_add:
+    path:     /add
+    defaults: { _controller: SofieAdminBundle:User:add }
+    methods: [GET,POST]
+
+sofieadmin_user_edit:
+    path:     /edit/{id}
+    defaults: { _controller: SofieAdminBundle:User:edit }
+    methods: [GET, POST]
+    requirements:
+        id: \d+
+
+sofieadmin_user_view:
+    path:     /view/{id}
+    defaults: { _controller: SofieAdminBundle:User:view }
+    methods: [GET]
+    requirements:
+        id: \d+
+
+sofieadmin_user_delete:
+    path:     /delete/{id}
+    defaults: { _controller: SofieAdminBundle:User:delete }
+    methods: [GET]
+    requirements:
+        id: \d+
+

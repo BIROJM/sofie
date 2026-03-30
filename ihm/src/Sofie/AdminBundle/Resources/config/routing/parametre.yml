@@ -1,0 +1,60 @@
+sofieadmin_param_index:
+    path:     /
+    defaults: { _controller: SofieAdminBundle:Parametre:index }
+    methods: [GET]
+
+sofieadmin_param_appliconfig:
+    path: /appli-config/
+    defaults: { _controller: SofieAdminBundle:Parametre:appliConfig }
+    methods: [GET|POST]
+    options:
+        expose: true
+
+sofieadmin_param_regionsconfig:
+    path: /regions-config/
+    defaults: { _controller: SofieAdminBundle:Parametre:regionsConfig }
+    methods: [GET|POST]
+    options:
+        expose: true
+
+sofieadmin_param_regionsmodemconfig:
+    path: /regions-modem-config/
+    defaults: { _controller: SofieAdminBundle:Parametre:regionsModemConfig }
+    methods: [GET|POST]
+    options:
+        expose: true
+
+sofieadmin_param_edit_delaisnotification:
+    path: /delais-notification/
+    defaults: { _controller: SofieAdminBundle:Parametre:editDelaisNotification }
+    methods: [GET|POST]
+    options:
+        expose: true
+
+sofieadmin_param_edit_couleurpanne:
+    path: /couleur-panne/
+    defaults: { _controller: SofieAdminBundle:Parametre:editCouleurPanne }
+    methods: [GET|POST]
+    options:
+        expose: true
+
+sofieadmin_param_sms_config:
+    path: /sms-config/
+    defaults: { _controller: SofieAdminBundle:Parametre:smsConfig }
+    methods: [GET|POST]
+    options:
+        expose: true
+
+sofieadmin_param_edit_addmode:
+    path: /add-mode/
+    defaults: { _controller: SofieAdminBundle:Parametre:editAddMode }
+    methods: [GET|POST]
+    options:
+        expose: true
+
+sofieadmin_param_sms_content_config:
+    path: /sms-content-config/
+    defaults: { _controller: SofieAdminBundle:Parametre:smsContentConfig }
+    methods: [GET|POST]
+    options:
+        expose: true

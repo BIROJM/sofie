@@ -1,0 +1,34 @@
+sofieexp_typepanne_index:
+    path:     /{page}
+    defaults: { _controller: SofieExpBundle:TypePanne:index, page: 1 }
+    methods: [GET|POST]
+    requirements:
+        page: \d+
+
+sofieexp_typepanne_add:
+    path:     /add
+    defaults: { _controller: SofieExpBundle:TypePanne:add }
+    methods: [GET, POST]
+
+sofieexp_typepanne_edit:
+    path:     /edit/{id}
+    defaults: { _controller: SofieExpBundle:TypePanne:edit }
+    methods: [GET, POST]
+    requirements:
+        id: \d+
+
+sofieexp_typepanne_delete:
+    path:     /delete/{id}
+    defaults: { _controller: SofieExpBundle:TypePanne:delete }
+    methods: [GET]
+    requirements:
+        id: \d+
+
+
+# AJAX REQUEST
+sofieexp_typepanne_ajax_select_add:
+    path:     /ajax/select-add/
+    defaults: { _controller: SofieExpBundle:TypePanne:ajaxSelectAdd }
+    methods: [POST]
+    options:
+        expose: true

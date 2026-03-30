@@ -1,0 +1,440 @@
+Sofie\ExpBundle\Entity\Ouvrage:
+    type: entity
+    table: t_ouvrage
+    repositoryClass: Sofie\ExpBundle\Entity\OuvrageRepository
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    indexes:
+        IDLocalite:
+            columns:
+                - IDLocalite
+        StatutOuvrage:
+            columns:
+                - StatutOuvrage
+        StatutPanne:
+            columns:
+                - StatutPanne
+        IDReparateur:
+            columns:
+                - IDReparateur
+        t_ouvrage_fk1:
+            columns:
+                - IDAgentForma
+    uniqueConstraints:
+        CodeOuvrage:
+            columns:
+                - CodeOuvrage
+        IDComite_2:
+            columns:
+                - IDComite
+    id:
+        id:
+            type: integer
+            nullable: false
+            id: true
+            column: IDOuvrage
+            generator:
+                strategy: NONE
+#                strategy: IDENTITY
+    fields:
+        code:
+            type: string
+            nullable: true
+            length: 50
+            unique: true
+            options:
+                fixed: false
+                comment: ''
+            column: CodeOuvrage
+        type:
+            type: string
+            nullable: true
+            length: null
+            options:
+                comment: ''
+            column: TypeOuvrage
+        statutOuvrage:
+            type: string
+            nullable: true
+            length: null
+            column: StatutOuvrage
+        statut:
+            type: smallint
+            nullable: true
+            options:
+                default: '1'
+                comment: ''
+            column: Statut
+        statutPanne:
+            type: smallint
+            nullable: true
+            options:
+                default: '1'
+                comment: ''
+            column: StatutPanne
+        dateMiseAJour:
+            type: datetime
+            nullable: true
+            options:
+                comment: ''
+            column: DateMiseAjour
+        latitude:
+            type: string
+            nullable: false
+            length: 50
+            column: Latitude
+        longitude:
+            type: string
+            nullable: false
+            length: 50
+            column: Longitude
+        altitude:
+            type: string
+            nullable: true
+            length: 40
+            column: Altitude
+        idRegion:
+            type: integer
+            nullable: true
+            column: IDRegion
+        idReparateur:
+            type: integer
+            nullable: true
+            column: IDReparateur
+        idAgentforma:
+            type: integer
+            nullable: true
+            column: IDAgentForma
+        idSociologue:
+            type: integer
+            nullable: true
+            column: IDSociologue
+        iddr:
+            type: integer
+            nullable: true
+            column: IDDR
+        dateStatut:
+            type: datetime
+            nullable: true
+            options:
+                comment: ''
+            column: dateStatut
+        numIRH:
+            type: string
+            length: 20
+            nullable: true
+            column: NumIRH
+        autreNumId:
+            type: string
+            length: 20
+            nullable: true
+            column: `AutreNumID`
+        designation:
+            type: string
+            length: 30
+            nullable: true
+            column: `Designation`
+        operateurSaisie:
+            type: string
+            length: 50
+            nullable: true
+            column: `OperateurSaisie`
+        dateSaisie:
+            type: date
+            nullable: true
+            column: `DateSaisie`
+        numLocaliteProgres:
+            type: string
+            length: 20
+            nullable: true
+            column: `NumLocaliteProgres`
+        quartier:
+            type: string
+            length: 150
+            nullable: true
+            column: `Quartier`
+        etatInitialCaptage:
+            type: string
+            length: null
+            nullable: true
+            column: `EtatInitialCaptage`
+        propriete:
+            type: string
+            length: null
+            nullable: true
+            column: `Propriete`
+        usage:
+            type: string
+            length: null
+            nullable: true
+            column: `Usage`
+        nomDuProjet:
+            type: string
+            length: 50
+            nullable: true
+            column: `NomDuProjet`
+        financement:
+            type: string
+            length: 20
+            nullable: true
+            column: `Financement`
+        ingenieurConseil:
+            type: string
+            length: 50
+            nullable: true
+            column: `IngenieurConseil`
+        entreprise:
+            type: string
+            length: 50
+            nullable: true
+            column: `Entreprise`
+        dateFinForation:
+            type: date
+            nullable: true
+            column: `DateFinForation`
+        debit:
+            type: string
+            length: 15
+            nullable: true
+            column: `Debit`
+        profondeurTotale:
+            type: decimal
+            nullable: true
+            precision: 5
+            scale: 2
+            column: `profondeurTotale`
+        profondeurEquipee:
+            type: decimal
+            nullable: true
+            precision: 5
+            scale: 2
+            column: `ProfondeurEquipee`
+        niveauStatique:
+            type: decimal
+            nullable: true
+            precision: 5
+            scale: 2
+            column: `NiveauStatique`
+        dateNs:
+            type: date
+            nullable: true
+            column: `DateNs`
+        geomorphologie:
+            type: decimal
+            nullable: true
+            precision: 5
+            scale: 2
+            column: `Geomorphologie`
+        epaisseurAlteration:
+            type: decimal
+            nullable: true
+            precision: 5
+            scale: 2
+            column: `EpaisseurAlteration`
+        nomAquifere:
+            type: string
+            length: 50
+            nullable: true
+            column: `NomAquifere`
+        lithologieAquifere:
+            type: decimal
+            nullable: true
+            precision: 5
+            scale: 2
+            column: `LithologieAquifere`
+        profondeurToit:
+            type: decimal
+            nullable: true
+            precision: 5
+            scale: 2
+            column: `ProfondeurToit`
+        profondeurMur:
+            type: decimal
+            nullable: true
+            precision: 5
+            scale: 2
+            column: `ProfondeurMur`
+        datePrelevement:
+            type: date
+            nullable: true
+            column: `DatePrelevement`
+        temperature:
+            type: decimal
+            nullable: true
+            precision: 5
+            scale: 2
+            column: `Temperature`
+        conductivite:
+            type: decimal
+            nullable: true
+            precision: 5
+            scale: 2
+            column: `Conductivite`
+        ph:
+            type: decimal
+            nullable: true
+            precision: 5
+            scale: 2
+            column: `Ph`
+        ferTotal:
+            type: decimal
+            nullable: true
+            precision: 5
+            scale: 2
+            column: `FerTotal`
+        nitrates:
+            type: decimal
+            nullable: true
+            precision: 5
+            scale: 2
+            column: `Nitrates`
+        couleur:
+            type: string
+            nullable: true
+            length: 20
+            column: `Couleur`
+        turbidite:
+            type: string
+            nullable: true
+            length: 100
+            column: `Turbidite`
+        marquePompe:
+            type: string
+            nullable: true
+            length: 40
+            column: `MarquePompe`
+        dateInstallPompe:
+            type: date
+            nullable: true
+            column: `DateInstallPompe`
+        profondeurInstallPompe:
+            type: decimal
+            nullable: true
+            precision: 5
+            scale: 2
+            column: `ProfondeurInstallPompe`
+        prefecture:
+            type: string
+            nullable: true
+            length: 100
+            column: Prefecture
+        canton:
+            type: string
+            nullable: true
+            length: 100
+            column: Canton
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        validated:
+            type: boolean
+            nullable: true
+            options:
+                default: false
+        validatedAt:
+            type: datetime
+            nullable: true
+            column: validated_at
+        origin:
+            type: string
+            nullable: true
+            length: 2
+            options:
+                default: 'I'
+            column: origin
+        sync:
+            type: string
+            length: 1
+            nullable: true
+            options:
+                default: "N"
+            column: `sync`
+        deletedAt:
+            type: datetime
+            nullable: true
+            column: deleted_at
+        codeOuvrageProgres:
+            type: string
+            length: 20
+            nullable: true
+            column: `code_ouvrage_progres`
+    oneToOne:
+        comite:
+            targetEntity: Comite
+            cascade: ["persist"]
+            inversedBy: ouvrage
+            joinColumn:
+                name: IDComite
+                nullable: true
+                unique: true
+                referencedColumnName: IDComite
+                onDelete: "SET NULL"
+            orphanRemoval: false
+    manyToOne:
+        localite:
+            targetEntity: Localite
+            cascade: ["persist"]
+            inversedBy: ouvrages
+            joinColumn:
+                name: IDLocalite
+                nullable: true
+                referencedColumnName: IDLocalite
+                onDelete: "SET NULL"
+            orphanRemoval: false
+        validatedBy:
+            targetEntity: Agent
+            cascade: ["persist"]
+            joinColumn:
+                name: validated_by
+                nullable: true
+                referencedColumnName: IDAgent
+                onDelete: "SET NULL"
+            orphanRemoval: false
+    oneToMany:
+        coupeGeologiques:
+            targetEntity: CoupeGeologique
+            cascade: ["persist","remove"]
+            mappedBy: ouvrage
+            fetch: EXTRA_LAZY
+        equipementForages:
+            targetEntity: EquipementForage
+            cascade: ["persist","remove"]
+            mappedBy: ouvrage
+            fetch: EXTRA_LAZY
+        essaisPompages:
+            targetEntity: EssaisPompage
+            cascade: ["persist","remove"]
+            mappedBy: ouvrage
+            fetch: EXTRA_LAZY
+        suiviPhysicoChimiques:
+            targetEntity: SuiviPhysicoChimique
+            cascade: ["persist","remove"]
+            mappedBy: ouvrage
+            fetch: EXTRA_LAZY
+        venuEauPrincipales:
+            targetEntity: VenuEauPrincipale
+            cascade: ["persist","remove"]
+            mappedBy: ouvrage
+            fetch: EXTRA_LAZY
+        pannes:
+            targetEntity: Panne
+            cascade: ["persist"]
+            mappedBy: ouvrage
+            fetch: EXTRA_LAZY
+        collectes:
+            targetEntity: Collecte
+            cascade: ["persist"]
+            mappedBy: ouvrage
+            fetch: EXTRA_LAZY
+    lifecycleCallbacks:
+        prePersist: [optimizedValue, setCreatedValue, setCustomId]
+        preUpdate: [optimizedValue, setUpdatedValue]
+        postLoad: [postLoadValue]
+        preRemove: [setRemovedValue]

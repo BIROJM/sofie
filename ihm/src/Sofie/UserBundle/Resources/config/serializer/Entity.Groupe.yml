@@ -1,0 +1,21 @@
+Sofie\UserBundle\Entity\Groupe:
+    exclusion_policy: ALL
+    properties:
+        name:
+            expose: true
+            serialized_name: name
+            groups: [api_add]
+        sync:
+            expose: true
+            serialized_name: sync
+            groups: [api_add]
+        createdAt:
+            expose: true
+            serialized_name: created_at
+            groups: [api_add]
+            type: DateTime<'Y-m-d H:i:s'>
+        updatedAt:
+            expose: true
+            serialized_name: updated_at
+            groups: [api_add]
+            type: DateTime<'Y-m-d H:i:s'>

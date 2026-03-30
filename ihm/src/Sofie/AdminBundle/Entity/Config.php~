@@ -1,0 +1,363 @@
+<?php
+
+namespace Sofie\AdminBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Config
+ */
+class Config
+{
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $phoneNumber;
+
+    /**
+     * @var boolean
+     */
+    private $isCentral;
+
+    /**
+     * @var string
+     */
+    private $smsGw;
+
+    /**
+     * @var string
+     */
+    private $smsSoa;
+
+    /**
+     * @var integer
+     */
+    private $nbPaginator;
+
+    /**
+     * @var integer
+     */
+    private $offsetPaginator;
+
+    /**
+     * @var string
+     */
+    private $statUrl;
+
+    /**
+     * @var string
+     */
+    private $carteRegionUrl;
+
+    /**
+     * @var string
+     */
+    private $carteCentralUrl;
+
+    /**
+     * @var string
+     */
+    private $apiGetKeyUrl;
+
+    /**
+     * @var string
+     */
+    private $sync;
+
+    /**
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set phoneNumber
+     *
+     * @param string $phoneNumber
+     * @return Config
+     */
+    public function setPhoneNumber($phoneNumber)
+    {
+        $this->phoneNumber = $phoneNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get phoneNumber
+     *
+     * @return string 
+     */
+    public function getPhoneNumber()
+    {
+        return $this->phoneNumber;
+    }
+
+    /**
+     * Set isCentral
+     *
+     * @param boolean $isCentral
+     * @return Config
+     */
+    public function setIsCentral($isCentral)
+    {
+        $this->isCentral = $isCentral;
+
+        return $this;
+    }
+
+    /**
+     * Get isCentral
+     *
+     * @return boolean 
+     */
+    public function getIsCentral()
+    {
+        return $this->isCentral;
+    }
+
+    /**
+     * Set smsGw
+     *
+     * @param string $smsGw
+     * @return Config
+     */
+    public function setSmsGw($smsGw)
+    {
+        $this->smsGw = $smsGw;
+
+        return $this;
+    }
+
+    /**
+     * Get smsGw
+     *
+     * @return string 
+     */
+    public function getSmsGw()
+    {
+        return $this->smsGw;
+    }
+
+    /**
+     * Set smsSoa
+     *
+     * @param string $smsSoa
+     * @return Config
+     */
+    public function setSmsSoa($smsSoa)
+    {
+        $this->smsSoa = $smsSoa;
+
+        return $this;
+    }
+
+    /**
+     * Get smsSoa
+     *
+     * @return string 
+     */
+    public function getSmsSoa()
+    {
+        return $this->smsSoa;
+    }
+
+    /**
+     * Set nbPaginator
+     *
+     * @param integer $nbPaginator
+     * @return Config
+     */
+    public function setNbPaginator($nbPaginator)
+    {
+        $this->nbPaginator = $nbPaginator;
+
+        return $this;
+    }
+
+    /**
+     * Get nbPaginator
+     *
+     * @return integer 
+     */
+    public function getNbPaginator()
+    {
+        return $this->nbPaginator;
+    }
+
+    /**
+     * Set offsetPaginator
+     *
+     * @param integer $offsetPaginator
+     * @return Config
+     */
+    public function setOffsetPaginator($offsetPaginator)
+    {
+        $this->offsetPaginator = $offsetPaginator;
+
+        return $this;
+    }
+
+    /**
+     * Get offsetPaginator
+     *
+     * @return integer 
+     */
+    public function getOffsetPaginator()
+    {
+        return $this->offsetPaginator;
+    }
+
+    /**
+     * Set statUrl
+     *
+     * @param string $statUrl
+     * @return Config
+     */
+    public function setStatUrl($statUrl)
+    {
+        $this->statUrl = $statUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get statUrl
+     *
+     * @return string 
+     */
+    public function getStatUrl()
+    {
+        return $this->statUrl;
+    }
+
+    /**
+     * Set carteRegionUrl
+     *
+     * @param string $carteRegionUrl
+     * @return Config
+     */
+    public function setCarteRegionUrl($carteRegionUrl)
+    {
+        $this->carteRegionUrl = $carteRegionUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get carteRegionUrl
+     *
+     * @return string 
+     */
+    public function getCarteRegionUrl()
+    {
+        return $this->carteRegionUrl;
+    }
+
+    /**
+     * Set carteCentralUrl
+     *
+     * @param string $carteCentralUrl
+     * @return Config
+     */
+    public function setCarteCentralUrl($carteCentralUrl)
+    {
+        $this->carteCentralUrl = $carteCentralUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get carteCentralUrl
+     *
+     * @return string 
+     */
+    public function getCarteCentralUrl()
+    {
+        return $this->carteCentralUrl;
+    }
+
+    /**
+     * Set apiGetKeyUrl
+     *
+     * @param string $apiGetKeyUrl
+     * @return Config
+     */
+    public function setApiGetKeyUrl($apiGetKeyUrl)
+    {
+        $this->apiGetKeyUrl = $apiGetKeyUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get apiGetKeyUrl
+     *
+     * @return string 
+     */
+    public function getApiGetKeyUrl()
+    {
+        return $this->apiGetKeyUrl;
+    }
+
+    /**
+     * Set sync
+     *
+     * @param string $sync
+     * @return Config
+     */
+    public function setSync($sync)
+    {
+        $this->sync = $sync;
+
+        return $this;
+    }
+
+    /**
+     * Get sync
+     *
+     * @return string 
+     */
+    public function getSync()
+    {
+        return $this->sync;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return Config
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+}

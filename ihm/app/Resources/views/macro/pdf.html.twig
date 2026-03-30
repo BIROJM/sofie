@@ -1,0 +1,19 @@
+{% macro footer() %}
+    <pageheader name="PdfHeader" content-left="Minitère de l'Equipement Rural" content-center="" line="on"
+                content-right="SOFIE"
+                header-style="font-family: serif; font-size: 10pt; font-weight: bold; color: #000000;" />
+
+    <pagefooter name="PdfFooter" content-right="{PAGENO}/{nbpg}" line="on"
+                footer-style="font-family: serif; font-size: 8pt; font-weight: bold; font-style: italic; color: #000000;" />
+
+    <setpageheader name="PdfHeader" value="on" show-this-page="1" />
+    <setpagefooter name="PdfFooter" value="on" />
+{% endmacro %}
+
+{% macro start_list_table() %}
+    <table class="pdftable pdftable-striped pdftable-heading pdftable-bordered">
+{% endmacro %}
+
+{% macro end_list_table() %}
+    </table>
+{% endmacro %}

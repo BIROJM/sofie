@@ -1,0 +1,16 @@
+Sofie\ExpBundle\Entity\Localite:
+    properties:
+        nom:
+            - NotBlank: ~
+        region:
+            - NotBlank: ~
+        nombreHabitant:
+            - Type:
+                type: integer
+                message: cette valeur doit être un entier
+            - GreaterThan:
+                value: 0
+        reparateur:
+            - NotBlank: ~
+        agentForma:
+            - NotBlank: ~

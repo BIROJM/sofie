@@ -1,0 +1,4 @@
+sofieexp_diffusionsms_index:
+    path:     /
+    defaults: { _controller: SofieExpBundle:DiffusionSMS:index, page: 1 }
+    methods: [GET,POST]

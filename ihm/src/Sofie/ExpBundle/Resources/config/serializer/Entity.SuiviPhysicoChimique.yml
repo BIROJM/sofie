@@ -1,0 +1,87 @@
+Sofie\ExpBundle\Entity\SuiviPhysicoChimique:
+    exclusion_policy: ALL
+    properties:
+        date:
+            expose: true
+            serialized_name: Date
+            groups: [api_add]
+            type: DateTime<'Y-m-d'>
+        ph:
+            expose: true
+            serialized_name: Ph
+            groups: [api_add]
+        cond:
+            expose: true
+            serialized_name: Cond
+            groups: [api_add]
+        resSec:
+            expose: true
+            serialized_name: ResSec
+            groups: [api_add]
+        ca:
+            expose: true
+            serialized_name: Ca
+            groups: [api_add]
+        mg:
+            expose: true
+            serialized_name: Mg
+            groups: [api_add]
+        na:
+            expose: true
+            serialized_name: Na
+            groups: [api_add]
+        k:
+            expose: true
+            serialized_name: K
+            groups: [api_add]
+        cl:
+            expose: true
+            serialized_name: Cl
+            groups: [api_add]
+        no2:
+            expose: true
+            serialized_name: No2
+            groups: [api_add]
+        no3:
+            expose: true
+            serialized_name: No3
+            groups: [api_add]
+        so4:
+            expose: true
+            serialized_name: So4
+            groups: [api_add]
+        hco3:
+            expose: true
+            serialized_name: Hco3
+            groups: [api_add]
+        feTot:
+            expose: true
+            serialized_name: FeTot
+            groups: [api_add]
+        f:
+            expose: true
+            serialized_name: F
+            groups: [api_add]
+        as:
+            expose: true
+            serialized_name: As
+            groups: [api_add]
+        sync:
+            expose: true
+            serialized_name: sync
+            groups: [api_add]
+        createdAt:
+            expose: true
+            serialized_name: created_at
+            groups: [api_add]
+            type: DateTime<'Y-m-d H:i:s'>
+        updatedAt:
+            expose: true
+            serialized_name: updated_at
+            groups: [api_add]
+            type: DateTime<'Y-m-d H:i:s'>
+        position:
+            expose: true
+            serialized_name: position
+            type: integer
+            groups: [api_add]

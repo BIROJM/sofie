@@ -1,0 +1,40 @@
+{% if form is defined and form is not empty %}
+    {{
+        form_start(form, {
+            'action':path('sofieadmin_param_sms_config'), 'method':'POST', 'attr':{
+                'class':'form-horizontal', 'id':'smsConfig', 'role':'form'
+            }
+        })
+    }}
+        <div class="text-danger small">{{ form_errors(form) }}</div>
+        {% if form.smsGw is defined %}
+            <div class="form-group">
+                {{ form_label(form.smsGw, null, {'label_attr':{'class':'col-sm-6 control-label'}}) }}
+                <div class="col-sm-6">
+                    {{ form_widget(form.smsGw, {'attr':{'class':'form-control'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.smsGw) }}</div>
+                </div>
+            </div>
+        {% endif %}
+        {% if form.smsSoa is defined %}
+            <div class="form-group">
+                {{ form_label(form.smsSoa, null, {'label_attr':{'class':'col-sm-6 control-label'}}) }}
+                <div class="col-sm-6">
+                    {{ form_widget(form.smsSoa, {'attr':{'class':'form-control'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.smsSoa) }}</div>
+                </div>
+            </div>
+        {% endif %}
+        <div class="form-group">
+            <div class="col-sm-offset-6 col-sm-6">
+                <button type="submit" class="btn btn-success btn-label-left">
+                    <span><i class="fa fa-clock-o"></i></span>
+                    Enrégistrer
+                </button>
+            </div>
+        </div>
+        <div>
+            {{ form_rest(form) }}
+        </div>
+    {{ form_end(form) }}
+{% endif %}

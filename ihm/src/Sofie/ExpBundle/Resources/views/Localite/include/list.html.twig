@@ -1,0 +1,95 @@
+<div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover table-heading">
+
+        {% import '::macro/links.html.twig' as links %}
+
+        {% if is_granted('ROLE_ADD_LOCALITE') %}
+            <caption>
+                <div class="pull-right">
+                    <a class="btn btn-primary btn-label-left" title="Ajouter" href="{{ path('sofieexp_localite_add') }}">
+                        <span><i class="fa fa-plus"></i></span> Ajouter
+                    </a>
+                    <i class="fa fa-ellipsis-v fa-2x"></i>
+                    {{ links.pdf_link({}, {'class':'fa-2x'}) }}
+                </div>
+            </caption>
+        {% endif %}
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Nom</th>
+            <th>Nb. habitants</th>
+            <th>Région</th>
+            <th>Réparateur</th>
+            <th>Agent formen</th>
+            <th>Nb. ouvrages</th>
+            <th>Nb. comités</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        {% if localites is defined %}
+            {% if localites is not empty %}
+                <tbody>
+                    {% set page_inc = g_paginator_items|default(0)*(page|default(1)-1) %}
+                    {% for localite in localites %}
+                        <tr>
+                            <td>{{ loop.index+page_inc }}</td>
+                            <td>{{ localite.nom|default('') }}</td>
+                            <td class="text-center">{{ localite.nombreHabitant|default('') }}</td>
+                            <td>
+                                {% if is_granted('ROLE_REGION') and localite.region|default(null) is not empty %}
+                                    <a href="{{ path('sofieexp_region_view', {'id':localite.region.id|default(0)}) }}">
+                                        {{ localite.region.nom|default('') }}
+                                    </a>
+                                {% else %}
+                                    {{ localite.region.nom|default('') }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if is_granted('ROLE_REPARATEUR') and localite.reparateur|default(null) is not empty %}
+                                    <a href="{{ path('sofieexp_reparateur_view', {'id':localite.reparateur.id|default(0)}) }}">
+                                        {{ localite.reparateur|default('') }}
+                                    </a>
+                                {% else %}
+                                    {{ localite.reparateur|default('') }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if is_granted('ROLE_AGENT') and localite.agentForma|default(null) is not empty %}
+                                    <a href="{{ path('sofieexp_agent_view', {'id':localite.agentForma.id|default(0)}) }}">
+                                        {{ localite.agentForma|default('') }}
+                                    </a>
+                                {% else %}
+                                    {{ localite.agentForma|default('') }}
+                                {% endif %}
+                            </td>
+                            <td class="text-center">
+                                {{ localite.ouvrages|default([])|length }}
+                            </td>
+                            <td class="text-center">
+                                {{ localite.comites|default([])|length }}
+                            </td>
+                            <td class="text-center">
+                                <a class="text-info" href="{{ path('sofieexp_localite_view', {'id':localite.id|default(0)}) }}" title="Voir">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                {% if is_granted('ROLE_EDIT_LOCALITE') %}
+                                    <a class="text-success" href="{{ path('sofieexp_localite_edit', {'id':localite.id|default(0)}) }}" title="Modifier">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                {% endif %}
+                                {% if is_granted('ROLE_DELETE_LOCALITE') %}
+                                    <a class="text-danger confirm-delete" href="{{ path('sofieexp_localite_delete', {'id':localite.id|default(0)}) }}" title="Supprimer">
+                                        <i class="fa fa-remove"></i>
+                                    </a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            {% endif %}
+        {% endif %}
+    </table>
+</div>
+{# Pagination #}
+{% include '::include/paginator/paginator.html.twig' with {'total': localites|default([])|length} %}

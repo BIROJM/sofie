@@ -1,0 +1,6 @@
+sofieexp_event_index:
+    path:     /{page}
+    defaults: { _controller: SofieExpBundle:Event:index, page: 1 }
+    methods: [GET]
+    requirements:
+        page: \d+

@@ -1,0 +1,70 @@
+security:
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+        Sofie\UserBundle\Entity\User:
+            algorithm:           sha256
+            encode_as_base64:    true
+            iterations:          null
+
+
+    role_hierarchy:
+        ROLE_ADMIN: [ROLE_USER, ROLE_ADMIN_VIEW, ROLE_SETTING, ROLE_SMS_SETTING, ROLE_DELAIS_NOTIF_SETTING, ROLE_COULEUR_PANNE_SETTING]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_STAT_GLOBALE: ROLE_STAT
+        ROLE_STAT_COMITE: ROLE_STAT
+        ROLE_STAT_POINT_FORAGE: ROLE_STAT
+        ROLE_STAT_DR: ROLE_STAT
+        ROLE_STAT_SOCIOLOGUE: ROLE_STAT
+        ROLE_STAT_AGENT_FORMEN: ROLE_STAT
+        ROLE_STAT_REPARATEUR: ROLE_STAT
+        ROLE_INSTALL: [ROLE_ADMIN, ROLE_USER_VIEW, ROLE_ADD_USER, ROLE_ACTIVATE_USER]
+
+
+    providers:
+        main_provider:
+            chain:
+              providers: [user_db, in_memory]
+        in_memory:
+            memory:
+                users:
+                    sofieinstall:
+                        password: sofieinstall
+                        roles: [ROLE_INSTALL]
+        user_db:
+            entity:
+                class: SofieUserBundle:User
+                property: username
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt|error)|css|images|js)/
+            security: false
+
+#        main:
+#            anonymous: ~
+
+#        Enable Sofie Form Login
+        sofie_form_login:
+            pattern: ^/login$
+            anonymous: false
+            security: false
+
+#        Secure Sofie Area
+        sofie_secure_area:
+            pattern: ^/
+            provider: main_provider
+            security: true
+            anonymous: false
+            remote_user:
+                provider: main_provider
+            form_login:
+                login_path: sofie_login
+                check_path: sofie_login_check
+                csrf_provider: security.csrf.token_manager
+            logout:
+                path: sofie_logout
+                target: /
+
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: [ROLE_USER, ROLE_ADMIN, IS_AUTHENTICATED_FULLY] }

@@ -1,0 +1,35 @@
+{% extends "SofieAdminBundle::layout.html.twig" %}
+
+{% block nav_numappel_active %}active{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li><a href="{{ path('sofieadmin_numappel_index') }}">Numéros d'appel</a></li>
+{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="box-name">
+                        <i class="fa fa-table"></i>
+                        <span>Liste des numéros d'appel</span>
+                    </div>
+                </div>
+                <div class="box-content no-padding">
+                    <div class="bs-callout content-critere">
+                        {% include 'SofieAdminBundle:NumeroAppel:include/critere_form.html.twig' %}
+                    </div>
+                    {% include 'SofieAdminBundle:NumeroAppel:include/list.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/sofieadmin/js/numappel.js') }}"></script>
+{% endblock %}

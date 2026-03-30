@@ -1,0 +1,43 @@
+{% extends 'SofieAdminBundle:Groupe:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li><a href="{{ app.request.requestUri }}">Editer un groupe</a></li>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="box-name">
+                        <i class="fa fa-search"></i>
+                        <span>Edition d'un groupe</span>
+                    </div>
+                </div>
+                {% if form is defined and form is not empty %}
+                    <div class="box-content">
+                        {% include 'SofieAdminBundle:Groupe:include/form.html.twig' %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block flash_scripts %}
+    <script type="text/javascript">
+        $(function(){
+            var icons = {
+                header: "ui-icon-circle-arrow-e",
+                activeHeader: "ui-icon-circle-arrow-s"
+            };
+            $("#accordion").accordion({
+                icons: icons,
+                heightStyle: "content",
+                collapsible: true
+            });
+        });
+    </script>
+{% endblock %}
+

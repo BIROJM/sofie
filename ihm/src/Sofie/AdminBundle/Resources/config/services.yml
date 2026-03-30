@@ -1,0 +1,43 @@
+parameters:
+    sofie_admin.user.form.class: Sofie\AdminBundle\Form\Type\UserType
+    sofie_admin.groupe.form.class: Sofie\AdminBundle\Form\Type\GroupeType
+    sofie_admin.changepassword.form.class: Sofie\AdminBundle\Form\Type\ChangePasswordType
+    sofie_admin.profil.form.class: Sofie\AdminBundle\Form\Type\ProfilType
+
+services:
+    sofie_admin.user.form.type:
+        class: %sofie_admin.user.form.class%
+        arguments: [@doctrine.orm.entity_manager, @security.authorization_checker]
+        tags:
+            - { name: form.type, alias: sofie_adminbundle_user }
+
+    sofie_admin.groupe.form.type:
+        class: %sofie_admin.groupe.form.class%
+        tags:
+            - { name: form.type, alias: sofie_adminbundle_groupe }
+
+    sofie_admin.profil.form.type:
+        class: %sofie_admin.profil.form.class%
+        tags:
+            - { name: form.type, alias: sofie_adminbundle_profil }
+
+    sofie_admin.changepassword.form.type:
+        class: %sofie_admin.changepassword.form.class%
+        tags:
+            - { name: form.type, alias: sofie_adminbundle_changepassword }
+
+#    sofie_admin.test:
+#        class: Sofie\AdminBundle\Exception\Test
+#
+#    sofie_admin.test.listener:
+#        class: Sofie\AdminBundle\Exception\TestListener
+#        arguments: [@sofie_admin.test, "J'ai réussi !"]
+#        tags:
+#            - { name: kernel.event_listener, event: kernel.response, method: processMsg }
+
+
+    sofie_admin.daemon.config_session_listener:
+        class: Sofie\AdminBundle\Daemon\ConfigSessionListener
+        arguments: [@session]
+        tags:
+            - { name: kernel.event_subscriber}

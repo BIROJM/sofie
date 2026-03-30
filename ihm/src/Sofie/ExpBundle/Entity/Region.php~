@@ -1,0 +1,585 @@
+<?php
+
+namespace Sofie\ExpBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Event\LifecycleEventArgs;
+use Doctrine\ORM\Event\PreUpdateEventArgs;
+
+/**
+ * Region
+ */
+class Region
+{
+    const SYNC = 'Y';
+    const NO_SYNC = 'N';
+
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $nom;
+
+    /**
+     * @var string
+     */
+    private $superficie;
+
+    /**
+     * @var string
+     */
+    private $situation;
+
+    /**
+     * @var string
+     */
+    private $longitude;
+
+    /**
+     * @var string
+     */
+    private $latitude;
+
+    /**
+     * @var string
+     */
+    private $carte;
+
+    /**
+     * @var integer
+     */
+    private $zoom;
+
+    /**
+     * @var integer
+     */
+    private $maxZoom;
+
+    /**
+     * @var \Sofie\ExpBundle\Entity\Agent
+     */
+    private $iddr;
+
+    /**
+     * @var Collection
+     */
+    private $agents;
+
+    /**
+     * @var Collection
+     */
+    private $localites;
+
+    /**
+     * @var \DateTime
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
+     * @var string
+     */
+    private $sync;
+
+    /**
+     * @var \DateTime
+     */
+    private $deletedAt;
+    
+    /**
+     * @var Agent
+     */
+    private $sociologue;
+
+    /**
+     * @var \Sofie\AdminBundle\Entity\Config
+     */
+    private $config;
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->agents = new ArrayCollection();
+        $this->localites = new ArrayCollection();
+        $this->sync = static::NO_SYNC;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     * @return Region
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string 
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set superficie
+     *
+     * @param string $superficie
+     * @return Region
+     */
+    public function setSuperficie($superficie)
+    {
+        $this->superficie = $superficie;
+
+        return $this;
+    }
+
+    /**
+     * Get superficie
+     *
+     * @return string 
+     */
+    public function getSuperficie()
+    {
+        return $this->superficie;
+    }
+
+    /**
+     * Set longitude
+     *
+     * @param string $longitude
+     * @return Region
+     */
+    public function setLongitude($longitude)
+    {
+        $this->longitude = $longitude;
+
+        return $this;
+    }
+
+    /**
+     * Get longitude
+     *
+     * @return string 
+     */
+    public function getLongitude()
+    {
+        return $this->longitude;
+    }
+
+    /**
+     * Set latitude
+     *
+     * @param string $latitude
+     * @return Region
+     */
+    public function setLatitude($latitude)
+    {
+        $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    /**
+     * Get latitude
+     *
+     * @return string 
+     */
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
+
+    /**
+     * Set carte
+     *
+     * @param string $carte
+     * @return Region
+     */
+    public function setCarte($carte)
+    {
+        $this->carte = $carte;
+
+        return $this;
+    }
+
+    /**
+     * Get carte
+     *
+     * @return string 
+     */
+    public function getCarte()
+    {
+        return $this->carte;
+    }
+
+    /**
+     * Set zoom
+     *
+     * @param integer $zoom
+     * @return Region
+     */
+    public function setZoom($zoom)
+    {
+        $this->zoom = $zoom;
+
+        return $this;
+    }
+
+    /**
+     * Get zoom
+     *
+     * @return integer 
+     */
+    public function getZoom()
+    {
+        return $this->zoom;
+    }
+
+    /**
+     * Set maxZoom
+     *
+     * @param integer $maxZoom
+     * @return Region
+     */
+    public function setMaxZoom($maxZoom)
+    {
+        $this->maxZoom = $maxZoom;
+
+        return $this;
+    }
+
+    /**
+     * Get maxZoom
+     *
+     * @return integer 
+     */
+    public function getMaxZoom()
+    {
+        return $this->maxZoom;
+    }
+
+    /**
+     * Add agents
+     *
+     * @param \Sofie\ExpBundle\Entity\Agent $agents
+     * @return Region
+     */
+    public function addAgent(\Sofie\ExpBundle\Entity\Agent $agents)
+    {
+        $this->agents[] = $agents;
+
+        return $this;
+    }
+
+    /**
+     * Remove agents
+     *
+     * @param \Sofie\ExpBundle\Entity\Agent $agents
+     */
+    public function removeAgent(\Sofie\ExpBundle\Entity\Agent $agents)
+    {
+        $this->agents->removeElement($agents);
+    }
+
+    /**
+     * Get agents
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAgents()
+    {
+        return $this->agents;
+    }
+
+    /**
+     * Add localites
+     *
+     * @param \Sofie\ExpBundle\Entity\Localite $localites
+     * @return Region
+     */
+    public function addLocalite(\Sofie\ExpBundle\Entity\Localite $localites)
+    {
+        $this->localites[] = $localites;
+
+        return $this;
+    }
+
+    /**
+     * Remove localites
+     *
+     * @param \Sofie\ExpBundle\Entity\Localite $localites
+     */
+    public function removeLocalite(\Sofie\ExpBundle\Entity\Localite $localites)
+    {
+        $this->localites->removeElement($localites);
+    }
+
+    /**
+     * Get localites
+     *
+     * @return Collection
+     */
+    public function getLocalites()
+    {
+        return $this->localites;
+    }
+
+    public function __toString()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * Set situation
+     *
+     * @param string $situation
+     * @return Region
+     */
+    public function setSituation($situation)
+    {
+        $this->situation = $situation;
+
+        return $this;
+    }
+
+    /**
+     * Get situation
+     *
+     * @return string 
+     */
+    public function getSituation()
+    {
+        return $this->situation;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return Region
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return Region
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set sync
+     *
+     * @param string $sync
+     * @return Region
+     */
+    public function setSync($sync)
+    {
+        $this->sync = $sync;
+
+        return $this;
+    }
+
+    /**
+     * Get sync
+     *
+     * @return string 
+     */
+    public function getSync()
+    {
+        return $this->sync;
+    }
+
+    public function setCreatedValue()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = $this->createdAt;
+    }
+
+    public function setUpdatedValue(PreUpdateEventArgs $eventArgs)
+    {
+        $this->updatedAt = new \DateTime();
+        $this->unsynchronize();
+    }
+
+    public function setCustomId(LifecycleEventArgs $eventArgs)
+    {
+        if($this->id == null){
+            $this->id = $eventArgs->getEntityManager()->getRepository('SofieExpBundle:Region')->getNextId();
+        }
+    }
+
+    public function synchronize()
+    {
+        $this->sync = static::SYNC;
+    }
+
+    public function unsynchronize()
+    {
+        $this->sync = static::NO_SYNC;
+    }
+
+    /**
+     * Set deletedAt
+     *
+     * @param \DateTime $deletedAt
+     * @return Region
+     */
+    public function setDeletedAt($deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get deletedAt
+     *
+     * @return \DateTime 
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
+    }
+
+    public function logString()
+    {
+        $msg = 'Identifiant: '.$this->id;
+        if($this->nom) $msg .= ', Nom : '.$this->nom;
+        return $msg;
+    }
+
+    /**
+     * Set sociologue
+     *
+     * @param \Sofie\ExpBundle\Entity\Agent $sociologue
+     * @return Region
+     */
+    public function setSociologue(\Sofie\ExpBundle\Entity\Agent $sociologue = null)
+    {
+        $this->sociologue = $sociologue;
+
+        return $this;
+    }
+
+    /**
+     * Get sociologue
+     *
+     * @return \Sofie\ExpBundle\Entity\Agent 
+     */
+    public function getSociologue()
+    {
+        return $this->sociologue;
+    }
+
+    /**
+     * Set iddr
+     *
+     * @param Agent $iddr
+     * @return Region
+     */
+    public function setIddr(Agent $iddr = null)
+    {
+        $this->iddr = $iddr;
+
+        return $this;
+    }
+
+    /**
+     * Get iddr
+     *
+     * @return Agent
+     */
+    public function getIddr()
+    {
+        return $this->iddr;
+    }
+
+    /**
+     * Set config
+     *
+     * @param \Sofie\AdminBundle\Entity\Config $config
+     * @return Region
+     */
+    public function setConfig(\Sofie\AdminBundle\Entity\Config $config = null)
+    {
+        $this->config = $config;
+
+        return $this;
+    }
+
+    /**
+     * Get config
+     *
+     * @return \Sofie\AdminBundle\Entity\Config 
+     */
+    public function getConfig()
+    {
+        return $this->config;
+    }
+}

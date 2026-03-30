@@ -1,0 +1,22 @@
+{{
+    form_start(form, {
+        'action':'', 'method':'POST',
+        'attr':{'class':'form-horizontal', 'role':'form'}
+    })
+}}
+    <div class="text-danger help-block">{{ form_errors(form) }}</div>
+    <div class="col-sm-12">
+        {% if form.libelle is defined %}
+            <div class="form-group">
+                {{ form_label(form.libelle, null, {'label_attr':{'class':'col-sm-2 control-label'}}) }}
+                <div class="col-sm-10">
+                    {{ form_widget(form.libelle, {'attr':{'class':'form-control'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.libelle) }}</div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    <div class="clearfix"></div>
+    {% include '::include/default_form_buttons.html.twig' %}
+    <div>{{ form_widget(form._token) }}</div>
+{{ form_end(form, {'render_rest': false}) }}

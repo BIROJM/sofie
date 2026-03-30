@@ -1,0 +1,56 @@
+{% import '::macro/links.html.twig' as links %}
+
+<div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover table-heading">
+        <caption>
+            <div class="pull-right">
+                {{ links.pdf_link({}, {'class':'fa-lg'}) }}
+            </div>
+        </caption>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Numéro</th>
+            <th>Profil</th>
+            <th>Nom et prénoms</th>
+            <th>Nb. appels</th>
+            <th>Nb. notifications</th>
+        </tr>
+        </thead>
+        {% if numeroAppels is defined %}
+            {% if numeroAppels is not empty %}
+                <tbody>
+                    {% set page_inc = g_paginator_items*(page-1) %}
+                    {% for numeroAppel in numeroAppels %}
+                        <tr>
+                            <td>{{ loop.index+page_inc }}</td>
+                            <td>{{ numeroAppel.numero|default('') }}</td>
+                            <td>{{ numeroAppel.profile.designation|default('') }}</td>
+                            <td>{{ numeroAppel.proprietaire|default('') }}</td>
+                            <td class="text-center">
+                                {% if is_granted('ROLE_APPEL') %}
+                                    <a href="{{ path('sofieadmin_numappel_appels', {'id':numeroAppel.id|default(0)}) }}">
+                                        <span class="badge">{{ numeroAppel.appels|length|default('') }}</span>
+                                    </a>
+                                {% else %}
+                                    {{ numeroAppel.appels|default('')|length }}
+                                {% endif %}
+                            </td>
+                            <td class="text-center">
+                                {% if is_granted('ROLE_NOTIFICATION') %}
+                                    <a href="{{ path('sofieadmin_numappel_notifications', {'id':numeroAppel.id|default(0)}) }}">
+                                        <span class="badge">{{ numeroAppel.notifications|default('')|length }}</span>
+                                    </a>
+                                {% else %}
+                                    {{ numeroAppel.notifications|default('')|length }}
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            {% endif %}
+        {% endif %}
+    </table>
+</div>
+{# Pagination #}
+{% include '::include/paginator/paginator.html.twig' with {'total': numeroAppels|default([])|length} %}

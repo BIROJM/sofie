@@ -1,0 +1,103 @@
+Sofie\ExpBundle\Entity\Localite:
+    type: entity
+    table: t_localite
+    repositoryClass: Sofie\ExpBundle\Entity\LocaliteRepository
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    indexes:
+        IDAgentForma:
+            columns:
+                - IDAgentForma
+                - IDReparateur
+        IDReparateur:
+            columns:
+                - IDReparateur
+        IDAgentForma_2:
+            columns:
+                - IDAgentForma
+    id:
+        id:
+            type: integer
+            nullable: false
+            id: true
+            column: IDLocalite
+            generator:
+                strategy: NONE
+#                strategy: IDENTITY
+    fields:
+        nom:
+            type: string
+            nullable: true
+            length: 50
+            column: NomLocalite
+        nombreHabitant:
+            type: integer
+            nullable: true
+            column: NombreHabitant
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        updatedAt:
+            type: datetime
+            nullable: true
+            column: updated_at
+        sync:
+            type: string
+            length: 1
+            nullable: true
+            options:
+                default: 'N'
+            column: sync
+        deletedAt:
+            type: datetime
+            nullable: true
+            column: deleted_at
+    manyToOne:
+        region:
+            targetEntity: Region
+            cascade: ["persist"]
+            inversedBy: localites
+            joinColumn:
+                name: IDRegion
+                nullable: true
+                referencedColumnName: IDRegion
+                onDelete: "SET NULL"
+            orphanRemoval: false
+        reparateur:
+            targetEntity: Reparateur
+            cascade: ["persist"]
+            inversedBy: localites
+            joinColumn:
+                name: IDReparateur
+                referencedColumnName: IDReparateur
+                onDelete: "SET NULL"
+                nullable: true
+            orphanRemoval: false
+        agentForma:
+            targetEntity: Agent
+            cascade: ["persist"]
+            inversedBy: localites
+            joinColumn:
+                name: IDAgentForma
+                referencedColumnName: IDAgent
+                onDelete: "SET NULL"
+                nullable: true
+            orphanRemoval: false
+    oneToMany:
+        ouvrages:
+            targetEntity: Ouvrage
+            cascade: ["persist"]
+            mappedBy: localite
+            fetch: EXTRA_LAZY
+        comites:
+            targetEntity: Comite
+            cascade: ["persist"]
+            mappedBy: localite
+            fetch: EXTRA_LAZY
+    lifecycleCallbacks:
+        prePersist: [setCreatedValue, setCustomId]
+        preUpdate: [setUpdatedValue]
+        preRemove: [setRemovedValue]

@@ -1,0 +1,23 @@
+{{
+    form_start(form, {
+        'action':'', 'method':'POST',
+        'attr':{'class':'form-horizontal', 'role':'form'}
+    })
+}}
+
+    <div class="text-danger small">{{ form_errors(form) }}</div>
+
+    <div class="col-md-6">
+        <fieldset>
+            <legend>Informations personnelles</legend>
+            {% include 'SofieUserBundle:User:include/agent_form.html.twig' %}
+        </fieldset>
+     </div>
+    
+    <div class="clearfix"></div>
+    <hr class="x-margin" />
+    {% include '::include/default_form_buttons.html.twig' %}
+    <div>
+        {{ form_rest(form) }}
+    </div>
+{{ form_end(form) }}

@@ -1,0 +1,809 @@
+{{
+    form_start(form, {
+        'action':'', 'method':'POST',
+        'attr':{'class':'form-horizontal', 'role':'form'}
+    })
+}}
+    <div class="text-danger small">{{ form_errors(form) }}</div>
+    <div class="row">
+        <div class="col-sm-6">
+            {% if form.dateSaisie is defined %}
+                <div class="form-group has-feedback">
+                    {{ form_label(form.dateSaisie, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                    <div class="col-sm-6">
+                        {{ form_widget(form.dateSaisie, {'attr':{'class':'form-control date-picker',  value :  'now'|date('d/m/Y')  }}) }}
+                        <span class="fa fa-calendar form-control-feedback"></span>
+                        <div class="text-danger small">{{ form_errors(form.dateSaisie) }}</div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-sm-6">
+            {% if form.operateurSaisie is defined %}
+                <div class="form-group">
+                    {{ form_label(form.operateurSaisie, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                    <div class="col-sm-8">
+                        {{ form_widget(form.operateurSaisie, {'attr':{'class':'form-control'}}) }}
+                    </div>
+                    <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.operateurSaisie) }}</div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <hr class="x-margin" />
+    <div class="row">
+        <fieldset class="col-sm-12">
+            <legend>IDENTIFICATION DE L'OUVRAGE</legend>
+            <div class="row">
+                <div class="col-sm-6">
+                    {% if form.code is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.code, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.code, {'attr':{'class':'form-control'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.code) }}</div>
+                        </div>
+                    {% endif %}
+                    {% if form.statutOuvrage is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.statutOuvrage, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.statutOuvrage, {'attr':{'class':'select2 form-control'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.statutOuvrage) }}</div>
+                        </div>
+                    {% endif %}
+                    {% if form.type is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.type, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.type, {'attr':{'class':'select2 form-control'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.type) }}</div>
+                        </div>
+                    {% endif %}
+                    {% if form.numIRH is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.numIRH, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.numIRH, {'attr':{'class':'form-control'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.numIRH) }}</div>
+                        </div>
+                    {% endif %}
+                    {% if form.latitude is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.latitude, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    {{ form_widget(form.latitude, {'attr':{'class':'form-control'}}) }}
+                                    <div class="input-group-addon">N</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.latitude) }}</div>
+                        </div>
+                    {% endif %}
+                    {% if form.longitude is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.longitude, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    {{ form_widget(form.longitude, {'attr':{'class':'form-control'}}) }}
+                                    <div class="input-group-addon">E</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.longitude) }}</div>
+                        </div>
+                    {% endif %}
+                    {% if form.altitude is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.altitude, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                <div class="input-group">
+                                    {{ form_widget(form.altitude, {'attr':{'class':'form-control'}}) }}
+                                    <div class="input-group-addon">m</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.altitude) }}</div>
+                        </div>
+                    {% endif %}
+                    {% if form.propriete is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.propriete, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.propriete, {'attr':{'class':'form-control select2'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.propriete) }}</div>
+                        </div>
+                    {% endif %}
+                    {% if form.etatInitialCaptage is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.etatInitialCaptage, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.etatInitialCaptage, {'attr':{'class':'form-control select2'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.etatInitialCaptage) }}</div>
+                        </div>
+                    {% endif %}
+                    {% if form.usage is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.usage, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.usage, {'attr':{'class':'form-control select2'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.usage) }}</div>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-sm-6">
+                    {% if g_sofie_site|default(null) is null and form.region is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.region, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.region, {'attr':{'class':'select2 form-control'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.region) }}</div>
+                        </div>
+                    {% endif %}
+                    {% if form.localite is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.localite, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.localite, {'attr':{'class':'select2 form-control'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.localite) }}</div>
+                        </div>
+                    {% endif %}
+                    {% if comites is defined %}
+                        <div class="form-group">
+                            <label for="sofie_expbundle_ouvrage_comite" class="col-sm-4 control-label">Comité</label>
+                            <div class="col-sm-8">
+                                <select id="sofie_expbundle_ouvrage_comite"
+                                        class="select2 form-control" name="sofie_expbundle_ouvrage_comite" data-current-id="{{ currentId|default(0) }}">
+                                    <option></option>
+                                    {% for comite in comites|default([]) %}
+                                        <option value="{{ comite.id|default(null) }}" {% if comite==form.vars.value.comite|default(null) %}selected{% endif %}>
+                                            {{ comite.nom|default('') }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                                {% if form.comite is defined %}
+                                    <div class="text-danger small">{{ form_errors(form.comite) }}</div>
+                                    {% do form.comite.setRendered %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if form.prefecture is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.prefecture, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.prefecture, {'attr':{'class':'form-control'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.prefecture) }}</div>
+                        </div>
+                    {% endif %}
+                    {% if form.canton is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.canton, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.canton, {'attr':{'class':'form-control'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.canton) }}</div>
+                        </div>
+                    {% endif %}
+                    {% if form.numLocaliteProgres is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.numLocaliteProgres, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.numLocaliteProgres, {'attr':{'class':'form-control'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.numLocaliteProgres) }}</div>
+                        </div>
+                    {% endif %}
+                    {% if form.quartier is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.quartier, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.quartier, {'attr':{'class':'form-control'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.quartier) }}</div>
+                        </div>
+                    {% endif %}
+                    {% if form.autreNumId is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.autreNumId, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.autreNumId, {'attr':{'class':'form-control'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.autreNumId) }}</div>
+                        </div>
+                    {% endif %}
+                    {% if form.designation is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.designation, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.designation, {'attr':{'class':'form-control'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.designation) }}</div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <hr class="x-margin" />
+    <div class="row">
+        <fieldset class="col-sm-12">
+            <legend>PROJET</legend>
+            <div class="row">
+                <div class="col-sm-6">
+                    {% if form.nomDuProjet is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.nomDuProjet, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.nomDuProjet, {'attr':{'class':'form-control'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.nomDuProjet) }}</div>
+                        </div>
+                    {% endif %}
+                    {% if form.financement is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.financement, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.financement, {'attr':{'class':'form-control'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.financement) }}</div>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-sm-6">
+                    {% if form.ingenieurConseil is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.ingenieurConseil, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.ingenieurConseil, {'attr':{'class':'form-control'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.ingenieurConseil) }}</div>
+                        </div>
+                    {% endif %}
+                    {% if form.entreprise is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.entreprise, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                            <div class="col-sm-8">
+                                {{ form_widget(form.entreprise, {'attr':{'class':'form-control'}}) }}
+                            </div>
+                            <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.entreprise) }}</div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <hr class="x-margin" />
+    <div class="row">
+        <div id="tabs">
+            <ul>
+                <li><a href="#tab_caract">CARACTERISTIQUES</a></li>
+                <li><a href="#tab_geo">GEOLOGIE DU TERRAIN</a></li>
+                <li><a href="#tab_essais_pompage">ESSAIS DE POMPAGE</a></li>
+                <li><a href="#tab_suivi_physico">PARAMETRES PHYSICO CHIMIQUES</a></li>
+            </ul>
+            <div id="tab_caract">
+                <div class="row">
+                    <div class="col-sm-6">
+                        {% if form.dateFinForation is defined %}
+                            <div class="form-group has-feedback">
+                                {{ form_label(form.dateFinForation, null, {'label_attr':{'class':'col-sm-6 control-label'}}) }}
+                                <div class="col-sm-6">
+                                    {{ form_widget(form.dateFinForation, {'attr':{'class':'form-control date-picker'}}) }}
+                                    <span class="fa fa-calendar form-control-feedback"></span>
+                                </div>
+                                <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.dateFinForation) }}</div>
+                            </div>
+                        {% endif %}
+                        {% if form.debit is defined %}
+                            <div class="form-group">
+                                {{ form_label(form.debit, null, {'label_attr':{'class':'col-sm-6 control-label'}}) }}
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        {{ form_widget(form.debit, {'attr':{'class':'form-control'}}) }}
+                                        <div class="input-group-addon">m<sup>3</sup>/h</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.debit) }}</div>
+                            </div>
+                        {% endif %}
+                        {% if form.niveauStatique is defined %}
+                            <div class="form-group">
+                                {{ form_label(form.niveauStatique, null, {'label_attr':{'class':'col-sm-6 control-label'}}) }}
+                                <div class="col-sm-6">
+                                    {{ form_widget(form.niveauStatique, {'attr':{'class':'form-control'}}) }}
+                                </div>
+                                <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.niveauStatique) }}</div>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="col-sm-6">
+                        {% if form.profondeurTotale is defined %}
+                            <div class="form-group">
+                                {{ form_label(form.profondeurTotale, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        {{ form_widget(form.profondeurTotale, {'attr':{'class':'form-control'}}) }}
+                                        <div class="input-group-addon">m</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.profondeurTotale) }}</div>
+                            </div>
+                        {% endif %}
+                        {% if form.profondeurEquipee is defined %}
+                            <div class="form-group">
+                                {{ form_label(form.profondeurEquipee, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        {{ form_widget(form.profondeurEquipee, {'attr':{'class':'form-control'}}) }}
+                                        <div class="input-group-addon">m</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.profondeurEquipee) }}</div>
+                            </div>
+                        {% endif %}
+                        {% if form.dateNs is defined %}
+                            <div class="form-group has-feedback">
+                                {{ form_label(form.dateNs, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                                <div class="col-sm-6">
+                                    {{ form_widget(form.dateNs, {'attr':{'class':'form-control date-picker'}}) }}
+                                    <span class="fa fa-calendar form-control-feedback"></span>
+                                </div>
+                                <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.dateNs) }}</div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% if form.equipementForages is defined %}
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <caption>
+                                        Equipement du forage : Tubage plein ( P ) et Crépines ( C )
+                                    </caption>
+                                    <thead>
+                                    <tr>
+                                        <th>{{ form_label(form.equipementForages.vars.prototype.nature, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                        <th>{{ form_label(form.equipementForages.vars.prototype.profSup, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                        <th>{{ form_label(form.equipementForages.vars.prototype.profInf, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                        <th>{{ form_label(form.equipementForages.vars.prototype.diametre, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="equip_forages" data-prototype="{{ form_widget(form.equipementForages.vars.prototype)|e }}">
+                                    {% for equipementForage in form.equipementForages %}
+                                        <tr>
+                                            <td>{{ form_widget(equipementForage.nature, {'attr':{'class':'form-control'}}) }}</td>
+                                            <td>{{ form_widget(equipementForage.profSup, {'attr':{'class':'form-control'}}) }}</td>
+                                            <td>{{ form_widget(equipementForage.profInf, {'attr':{'class':'form-control'}}) }}</td>
+                                            <td>{{ form_widget(equipementForage.diametre, {'attr':{'class':'form-control'}}) }}</td>
+                                            <td><a href="#" class="remove-row"><i class="fa fa-minus-square text-danger"></i></a></td>
+                                        </tr>
+                                    {% else %}
+                                        {% do form.equipementForages.setRendered %}
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                <div>
+                                    <a id="add_equip_forage" class="pull-right" href="#">
+                                        <i class="fa fa-plus-square text-primary"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <!--End Dashboard Tab 1-->
+            <!--Start Dashboard Tab 2-->
+            <div id="tab_geo">
+                <div class="row">
+                    <div class="col-sm-8">
+                        {% if form.geomorphologie is defined %}
+                            <div class="form-group">
+                                {{ form_label(form.geomorphologie, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                                <div class="col-sm-6">
+                                    {{ form_widget(form.geomorphologie, {'attr':{'class':'form-control'}}) }}
+                                    <div class="text-danger small">{{ form_errors(form.geomorphologie) }}</div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if form.epaisseurAlteration is defined %}
+                            <div class="form-group">
+                                {{ form_label(form.epaisseurAlteration, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        {{ form_widget(form.epaisseurAlteration, {'attr':{'class':'form-control'}}) }}
+                                        <div class="input-group-addon">m</div>
+                                    </div>
+                                    <div class="text-danger small">{{ form_errors(form.epaisseurAlteration) }}</div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if form.nomAquifere is defined %}
+                            <div class="form-group">
+                                {{ form_label(form.nomAquifere, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                                <div class="col-sm-6">
+                                    {{ form_widget(form.nomAquifere, {'attr':{'class':'form-control'}}) }}
+                                    <div class="text-danger small">{{ form_errors(form.nomAquifere) }}</div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if form.lithologieAquifere is defined %}
+                            <div class="form-group">
+                                {{ form_label(form.lithologieAquifere, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                                <div class="col-sm-6">
+                                    {{ form_widget(form.lithologieAquifere, {'attr':{'class':'form-control'}}) }}
+                                    <div class="text-danger small">{{ form_errors(form.lithologieAquifere) }}</div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if form.profondeurToit is defined %}
+                            <div class="form-group">
+                                {{ form_label(form.profondeurToit, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        {{ form_widget(form.profondeurToit, {'attr':{'class':'form-control'}}) }}
+                                        <div class="input-group-addon">m</div>
+                                    </div>
+                                    <div class="text-danger small">{{ form_errors(form.profondeurToit) }}</div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if form.profondeurMur is defined %}
+                            <div class="form-group">
+                                {{ form_label(form.profondeurMur, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        {{ form_widget(form.profondeurMur, {'attr':{'class':'form-control'}}) }}
+                                        <div class="input-group-addon">m</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.profondeurMur) }}</div>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="col-sm-4">
+                        {% if form.venuEauPrincipales is defined %}
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <caption>Venues d'eau principales</caption>
+                                            <thead>
+                                            <tr>
+                                                <th>{{ form_label(form.venuEauPrincipales.vars.prototype.profondeur, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                                <th>{{ form_label(form.venuEauPrincipales.vars.prototype.debitCumule, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="venus_eau" data-prototype="{{ form_widget(form.venuEauPrincipales.vars.prototype)|e }}">
+                                            {% for venuEauPrincipale in form.venuEauPrincipales %}
+                                                <tr>
+                                                    <td>{{ form_widget(venuEauPrincipale.profondeur, {'attr':{'class':'form-control'}}) }}</td>
+                                                    <td>{{ form_widget(venuEauPrincipale.debitCumule, {'attr':{'class':'form-control'}}) }}</td>
+                                                    <td><a href="#" class="remove-row"><i class="fa fa-minus-square text-danger"></i></a></td>
+                                                </tr>
+                                            {% else %}
+                                                {% do form.venuEauPrincipales.setRendered %}
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                        <div>
+                                            <a class="pull-right" id="add_venu_eau" href="#">
+                                                <i class="fa fa-plus-square text-primary"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% if form.coupeGeologiques is defined %}
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <caption>Coupe géologique</caption>
+                                    <thead>
+                                    <tr>
+                                        <th>{{ form_label(form.coupeGeologiques.vars.prototype.coteSup, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                        <th>{{ form_label(form.coupeGeologiques.vars.prototype.coteInf, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                        <th>{{ form_label(form.coupeGeologiques.vars.prototype.lithographie, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                        <th>{{ form_label(form.coupeGeologiques.vars.prototype.description, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="coupes" data-prototype="{{ form_widget(form.coupeGeologiques.vars.prototype)|e }}">
+                                    {% for coupeGeologique in form.coupeGeologiques %}
+                                        <tr>
+                                            <td>{{ form_widget(coupeGeologique.coteSup, {'attr':{'class':'form-control'}}) }}</td>
+                                            <td>{{ form_widget(coupeGeologique.coteInf, {'attr':{'class':'form-control'}}) }}</td>
+                                            <td>{{ form_widget(coupeGeologique.lithographie, {'attr':{'class':'form-control'}}) }}</td>
+                                            <td>{{ form_widget(coupeGeologique.description, {'attr':{'class':'form-control'}}) }}</td>
+                                            <td><a href="#" class="remove-row"><i class="fa fa-minus-square text-danger"></i></a></td>
+                                        </tr>
+                                    {% else %}
+                                        {% do form.coupeGeologiques.setRendered %}
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                <div>
+                                    <a class="pull-right" id="add_coupe" href="#">
+                                        <i class="fa fa-plus-square text-primary"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <!--End Dashboard Tab 2-->
+            <!--Start Dashboard Tab 3-->
+            <div id="tab_essais_pompage">
+                {% if form.essaisPompages is defined %}
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <caption>Détails des essais</caption>
+                                    <thead>
+                                    <tr>
+                                        <th>{{ form_label(form.essaisPompages.vars.prototype.date, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                        <th>{{ form_label(form.essaisPompages.vars.prototype.typeEssai, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                        <th>{{ form_label(form.essaisPompages.vars.prototype.dureeEssai, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                        <th>{{ form_label(form.essaisPompages.vars.prototype.debitMax, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                        <th>{{ form_label(form.essaisPompages.vars.prototype.rabattement, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                        <th>{{ form_label(form.essaisPompages.vars.prototype.debitCritique, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                        <th>{{ form_label(form.essaisPompages.vars.prototype.transmissivite, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                        <th>{{ form_label(form.essaisPompages.vars.prototype.emmagasinage, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="essais_pompage" data-prototype="{{ form_widget(form.essaisPompages.vars.prototype)|e }}">
+                                    {% for essaisPompage in form.essaisPompages %}
+                                        <tr>
+                                            <td>{{ form_widget(essaisPompage.date) }}</td>
+                                            <td>{{ form_widget(essaisPompage.typeEssai, {'attr':{'class':'form-control'}}) }}</td>
+                                            <td>{{ form_widget(essaisPompage.dureeEssai, {'attr':{'class':'form-control'}}) }}</td>
+                                            <td>{{ form_widget(essaisPompage.debitMax, {'attr':{'class':'form-control'}}) }}</td>
+                                            <td>{{ form_widget(essaisPompage.rabattement, {'attr':{'class':'form-control'}}) }}</td>
+                                            <td>{{ form_widget(essaisPompage.debitCritique, {'attr':{'class':'form-control'}}) }}</td>
+                                            <td>{{ form_widget(essaisPompage.transmissivite, {'attr':{'class':'form-control'}}) }}</td>
+                                            <td>{{ form_widget(essaisPompage.emmagasinage, {'attr':{'class':'form-control'}}) }}</td>
+                                            <td><a href="#" class="remove-row"><i class="fa fa-minus-square text-danger"></i></a></td>
+                                        </tr>
+                                    {% else %}
+                                        {% do form.essaisPompages.setRendered %}
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                <div>
+                                    <a class="pull-right" id="add_essai_pompage" href="#">
+                                        <i class="fa fa-plus-square text-primary"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <!--End Dashboard Tab 3-->
+            <!--Start Dashboard Tab 4-->
+            <div id="tab_suivi_physico">
+                <div style="padding-left: 14px; font-size: large;" class="text-muted">
+                    Mesures in situ
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        {% if form.datePrelevement is defined %}
+                            <div class="form-group has-feedback">
+                                {{ form_label(form.datePrelevement, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                                <div class="col-sm-6">
+                                    {{ form_widget(form.datePrelevement, {'attr':{'class':'form-control date-picker'}}) }}
+                                    <span class="fa fa-calendar form-control-feedback"></span>
+                                </div>
+                                <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.datePrelevement) }}</div>
+                            </div>
+                        {% endif %}
+                        {% if form.temperature is defined %}
+                            <div class="form-group">
+                                {{ form_label(form.temperature, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        {{ form_widget(form.temperature, {'attr':{'class':'form-control'}}) }}
+                                        <div class="input-group-addon">°C</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.temperature) }}</div>
+                            </div>
+                        {% endif %}
+                        {% if form.conductivite is defined %}
+                            <div class="form-group">
+                                {{ form_label(form.conductivite, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        {{ form_widget(form.conductivite, {'attr':{'class':'form-control'}}) }}
+                                        <div class="input-group-addon">µS/cm</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.conductivite) }}</div>
+                            </div>
+                        {% endif %}
+                        {% if form.ph is defined %}
+                            <div class="form-group">
+                                {{ form_label(form.ph, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        {{ form_widget(form.ph, {'attr':{'class':'form-control'}}) }}
+                                        <div class="input-group-addon">upH</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.ph) }}</div>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="col-sm-6">
+                        {% if form.ferTotal is defined %}
+                            <div class="form-group">
+                                {{ form_label(form.ferTotal, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        {{ form_widget(form.ferTotal, {'attr':{'class':'form-control'}}) }}
+                                        <div class="input-group-addon">mg/l</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.ferTotal) }}</div>
+                            </div>
+                        {% endif %}
+                        {% if form.nitrates is defined %}
+                            <div class="form-group">
+                                {{ form_label(form.nitrates, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        {{ form_widget(form.nitrates, {'attr':{'class':'form-control'}}) }}
+                                        <div class="input-group-addon">mg/l</div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.nitrates) }}</div>
+                            </div>
+                        {% endif %}
+                        {% if form.couleur is defined %}
+                            <div class="form-group">
+                                {{ form_label(form.couleur, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                                <div class="col-sm-6">
+                                    {{ form_widget(form.couleur, {'attr':{'class':'form-control'}}) }}
+                                </div>
+                                <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.couleur) }}</div>
+                            </div>
+                        {% endif %}
+                        {% if form.turbidite is defined %}
+                            <div class="form-group">
+                                {{ form_label(form.turbidite, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                                <div class="col-sm-6">
+                                    {{ form_widget(form.turbidite, {'attr':{'class':'form-control'}}) }}
+                                </div>
+                                <div class="col-sm-offset-4 text-danger small">{{ form_errors(form.turbidite) }}</div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% if form.suiviPhysicoChimiques is defined %}
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <caption>Suivi physico chimique</caption>
+                                    <thead>
+                                    <tr>
+                                        <th>{{ form_label(form.suiviPhysicoChimiques.vars.prototype.date, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                        <th>{{ form_label(form.suiviPhysicoChimiques.vars.prototype.ph, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                        <th>{{ form_label(form.suiviPhysicoChimiques.vars.prototype.cond, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                        <th>{{ form_label(form.suiviPhysicoChimiques.vars.prototype.resSec, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                        <th>{{ form_label(form.suiviPhysicoChimiques.vars.prototype.ca, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                        <th>{{ form_label(form.suiviPhysicoChimiques.vars.prototype.mg, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                        <th>{{ form_label(form.suiviPhysicoChimiques.vars.prototype.na, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                        <th>{{ form_label(form.suiviPhysicoChimiques.vars.prototype.k, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                        <th>{{ form_label(form.suiviPhysicoChimiques.vars.prototype.cl, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                        <th>{{ form_label(form.suiviPhysicoChimiques.vars.prototype.no2, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                        <th>{{ form_label(form.suiviPhysicoChimiques.vars.prototype.no3, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                        <th>{{ form_label(form.suiviPhysicoChimiques.vars.prototype.so4, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                        <th>{{ form_label(form.suiviPhysicoChimiques.vars.prototype.hco3, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                        <th>{{ form_label(form.suiviPhysicoChimiques.vars.prototype.feTot, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                        <th>{{ form_label(form.suiviPhysicoChimiques.vars.prototype.f, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                        <th>{{ form_label(form.suiviPhysicoChimiques.vars.prototype.as, null, {'label_attr':{'class':'control-label'}}) }}</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="suivis_physico" data-prototype="{{ form_widget(form.suiviPhysicoChimiques.vars.prototype)|e }}">
+                                    {% for suiviPhysicoChimique in form.suiviPhysicoChimiques %}
+                                        <tr>
+                                            <td>{{ form_widget(suiviPhysicoChimique.date) }}</td>
+                                            <td>{{ form_widget(suiviPhysicoChimique.ph, {'attr':{'class':'form-control'}}) }}</td>
+                                            <td>{{ form_widget(suiviPhysicoChimique.cond, {'attr':{'class':'form-control'}}) }}</td>
+                                            <td>{{ form_widget(suiviPhysicoChimique.resSec, {'attr':{'class':'form-control'}}) }}</td>
+                                            <td>{{ form_widget(suiviPhysicoChimique.ca, {'attr':{'class':'form-control'}}) }}</td>
+                                            <td>{{ form_widget(suiviPhysicoChimique.mg, {'attr':{'class':'form-control'}}) }}</td>
+                                            <td>{{ form_widget(suiviPhysicoChimique.na, {'attr':{'class':'form-control'}}) }}</td>
+                                            <td>{{ form_widget(suiviPhysicoChimique.k, {'attr':{'class':'form-control'}}) }}</td>
+                                            <td>{{ form_widget(suiviPhysicoChimique.cl, {'attr':{'class':'form-control'}}) }}</td>
+                                            <td>{{ form_widget(suiviPhysicoChimique.no2, {'attr':{'class':'form-control'}}) }}</td>
+                                            <td>{{ form_widget(suiviPhysicoChimique.no3, {'attr':{'class':'form-control'}}) }}</td>
+                                            <td>{{ form_widget(suiviPhysicoChimique.so4, {'attr':{'class':'form-control'}}) }}</td>
+                                            <td>{{ form_widget(suiviPhysicoChimique.hco3, {'attr':{'class':'form-control'}}) }}</td>
+                                            <td>{{ form_widget(suiviPhysicoChimique.feTot, {'attr':{'class':'form-control'}}) }}</td>
+                                            <td>{{ form_widget(suiviPhysicoChimique.f, {'attr':{'class':'form-control'}}) }}</td>
+                                            <td>{{ form_widget(suiviPhysicoChimique.as, {'attr':{'class':'form-control'}}) }}</td>
+                                            <td><a href="#" class="remove-row"><i class="fa fa-minus-square text-danger"></i></a></td>
+                                        </tr>
+                                    {% else %}
+                                        {% do form.suiviPhysicoChimiques.setRendered %}
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                <div>
+                                    <a class="pull-right" id="add_suivi_physico" href="#">
+                                        <i class="fa fa-plus-square text-primary"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <!--End Dashboard Tab 4-->
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <hr class="x-margin" />
+    <div class="row">
+        <fieldset class="col-sm-12">
+            <legend>SI PMH : EXPLOITATION ET EQUIPEMENT</legend>
+            <div class="row">
+                <div class="col-sm-12">
+                    {% if form.marquePompe is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.marquePompe, null, {'label_attr':{'class':'col-sm-3 control-label'}}) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.marquePompe, {'attr':{'class':'form-control'}}) }}
+                            </div>
+                            <div class="col-sm-offset-3 text-danger small">{{ form_errors(form.marquePompe) }}</div>
+                        </div>
+                    {% endif %}
+                    {% if form.dateInstallPompe is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.dateInstallPompe, null, {'label_attr':{'class':'col-sm-3 control-label'}}) }}
+                            <div class="col-sm-4 has-feedback">
+                                {{ form_widget(form.dateInstallPompe, {'attr':{'class':'form-control date-picker'}}) }}
+                                <span class="fa fa-calendar form-control-feedback"></span>
+                            </div>
+                            <div class="col-sm-offset-3 text-danger small">{{ form_errors(form.dateInstallPompe) }}</div>
+                        </div>
+                    {% endif %}
+                    {% if form.profondeurInstallPompe is defined %}
+                        <div class="form-group">
+                            {{ form_label(form.profondeurInstallPompe, null, {'label_attr':{'class':'col-sm-3 control-label'}}) }}
+                            <div class="col-sm-4">
+                                {{ form_widget(form.profondeurInstallPompe, {'attr':{'class':'form-control'}}) }}
+                            </div>
+                            <div class="col-sm-offset-3 text-danger small">{{ form_errors(form.profondeurInstallPompe) }}</div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div class="clearfix"></div>
+    <hr />
+    {% include '::include/default_form_buttons.html.twig' %}
+{{ form_end(form) }}

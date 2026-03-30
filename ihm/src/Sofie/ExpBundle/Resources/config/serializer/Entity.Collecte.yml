@@ -1,0 +1,277 @@
+Sofie\ExpBundle\Entity\Collecte:
+    exclusion_policy: ALL
+    properties:
+        dateSaisie:
+            expose: true
+            serialized_name: DateSaisie
+            type: DateTime<'Y-m-d'>
+            groups: [api_add]
+        dateRemplissage:
+            expose: true
+            serialized_name: DateRemplissage
+            type: DateTime<'Y-m-d'>
+            groups: [api_add]
+        nomOperateur:
+            expose: true
+            serialized_name: NomOperateur
+            groups: [api_add]
+        nomAgentSaisie:
+            expose: true
+            serialized_name: NomAgentSaisie
+            groups: [api_add]
+        service:
+            expose: true
+            serialized_name: Service
+            groups: [api_add]
+        codeCauseSiAbandon:
+            expose: true
+            serialized_name: CodeCauseSiAbandon
+            groups: [api_add]
+        causeDestruction:
+            expose: true
+            serialized_name: CauseDestruction
+            groups: [api_add]
+        pereniteAnneeNbMois:
+            expose: true
+            serialized_name: PereniteAnneeNbMois
+            groups: [api_add]
+        pereniteAnneeDsJournee:
+            expose: true
+            serialized_name: PereniteAnneeDsJournee
+            groups: [api_add]
+        superStructureRehabilite:
+            expose: true
+            serialized_name: SuperstructureRehabilite
+            groups: [api_add]
+        etatMargelle:
+            expose: true
+            serialized_name: EtatMargelle
+            groups: [api_add]
+        etancheiteforage:
+            expose: true
+            serialized_name: EtancheiteForage
+            groups: [api_add]
+        etatFixationPompe:
+            expose: true
+            serialized_name: EtatFixationPompe
+            groups: [api_add]
+        etatAntiBourbier:
+            expose: true
+            serialized_name: EtatAntiBourbier
+            groups: [api_add]
+        etatCloture:
+            expose: true
+            serialized_name: EtatCloture
+            groups: [api_add]
+        etatRigoleEvacuation:
+            expose: true
+            serialized_name: EtatRigoleEvacuation
+            groups: [api_add]
+        etatPuitPerdu:
+            expose: true
+            serialized_name: EtatPuitPerdu
+            groups: [api_add]
+        propreteInterieurCloture:
+            expose: true
+            serialized_name: PropreteInterieurCloture
+            groups: [api_add]
+        propreteExterieurCloture:
+            expose: true
+            serialized_name: PropreteExterieurCloture
+            groups: [api_add]
+        sourcePollution1:
+            expose: true
+            serialized_name: SourcePollution1
+            groups: [api_add]
+        sourcePollution2:
+            expose: true
+            serialized_name: SourcePollution2
+            groups: [api_add]
+        presenceDeferiseur:
+            expose: true
+            serialized_name: PresenceDeferiseur
+            groups: [api_add]
+        deferiseurUtilise:
+            expose: true
+            serialized_name: DeferiseurUtilise
+            groups: [api_add]
+        etatDeferiseur:
+            expose: true
+            serialized_name: EtatDeferiseur
+            groups: [api_add]
+        nbPompe:
+            expose: true
+            serialized_name: NbPompe
+        marquePompe:
+            expose: true
+            serialized_name: MarquePompe
+            groups: [api_add]
+        pompeRemplace:
+            expose: true
+            serialized_name: PompeRemplace
+            groups: [api_add]
+        anneePosePompe:
+            expose: true
+            serialized_name: AnneePosePompe
+            groups: [api_add]
+        financementRemplacement:
+            expose: true
+            serialized_name: FinancementRemplacement
+            groups: [api_add]
+        nomProjet:
+            expose: true
+            serialized_name: NomProjet
+            groups: [api_add]
+        etatPompe:
+            expose: true
+            serialized_name: EtatPompe
+            groups: [api_add]
+        dureePanne:
+            expose: true
+            serialized_name: DureePanne
+            groups: [api_add]
+        causeNonReparation:
+            expose: true
+            serialized_name: CauseNonReparation
+            groups: [api_add]
+        turbidite:
+            expose: true
+            serialized_name: Turbidite
+            groups: [api_add]
+        odeurEau:
+            expose: true
+            serialized_name: OdeurEau
+            groups: [api_add]
+        goutEau:
+            expose: true
+            serialized_name: GoutEau
+            groups: [api_add]
+        pelliculeEnSurface:
+            expose: true
+            serialized_name: PelliculeEnSurface
+            groups: [api_add]
+        presenceVers:
+            expose: true
+            serialized_name: PresenceVers
+            groups: [api_add]
+        conductivite:
+            expose: true
+            serialized_name: Conductivite
+            groups: [api_add]
+        ph:
+            expose: true
+            serialized_name: Ph
+            groups: [api_add]
+        nitratesNo3:
+            expose: true
+            serialized_name: NitratesNo3
+            groups: [api_add]
+        nitritesNo2:
+            expose: true
+            serialized_name: NitritesNo2
+            groups: [api_add]
+        ferTotal:
+            expose: true
+            serialized_name: FerTotal
+            groups: [api_add]
+        modeGestionOuvrage:
+            expose: true
+            serialized_name: ModeGestionOuvrage
+            groups: [api_add]
+        presenceUniteGestion:
+            expose: true
+            serialized_name: PresenceUniteGestion
+            groups: [api_add]
+        villageUe:
+            expose: true
+            serialized_name: VillageUE
+            groups: [api_add]
+        numVillageUe:
+            expose: true
+            serialized_name: NumVillageUE
+            groups: [api_add]
+        assistanceBienfaiteur:
+            expose: true
+            serialized_name: AssistanceBienfaiteur
+            groups: [api_add]
+        modePaiementEau:
+            expose: true
+            serialized_name: ModePaiementEau
+            groups: [api_add]
+        prixSeau20Litres:
+            expose: true
+            serialized_name: PrixSeau20Litres
+            groups: [api_add]
+        prixBassine35Litres:
+            expose: true
+            serialized_name: PrixBassine35Litres
+            groups: [api_add]
+        nomArtisanReparateur:
+            expose: true
+            serialized_name: NomArtisanReparateur
+            groups: [api_add]
+        villageResidenceReparateur:
+            expose: true
+            serialized_name: VillageResidenceReparateur
+            groups: [api_add]
+        cahierEntretientPompe:
+            expose: true
+            serialized_name: CahierEntretientPompe
+            groups: [api_add]
+        contratEntretienArtisan:
+            expose: true
+            serialized_name: ContratEntretienArtisan
+            groups: [api_add]
+        typeContrat:
+            expose: true
+            serialized_name: TypeContrat
+            groups: [api_add]
+        validated:
+            expose: true
+            serialized_name: validated
+            groups: [api_add]
+        numIRH:
+            expose: true
+            serialized_name: NumIRH
+            groups: [api_add]
+        commentaires:
+            expose: true
+            serialized_name: Commentaires
+            groups: [api_add]
+        sync:
+            expose: true
+            serialized_name: sync
+            groups: [api_add]
+        origin:
+            expose: true
+            serialized_name: origin
+            groups: [api_add]
+        validatedAt:
+            expose: true
+            serialized_name: validated_at
+            groups: [api_add]
+            type: DateTime<'Y-m-d H:i:s'>
+        createdAt:
+            expose: true
+            serialized_name: created_at
+            groups: [api_add]
+            type: DateTime<'Y-m-d H:i:s'>
+        updatedAt:
+            expose: true
+            serialized_name: updated_at
+            groups: [api_add]
+            type: DateTime<'Y-m-d H:i:s'>
+        ouvrage:
+            expose: true
+            serialized_name: IDOuvrage
+            type: integer
+            max_depth: 1
+            accessor:
+                getter: getOuvrageId
+        validatedBy:
+            expose: true
+            serialized_name: validated_by
+            type: integer
+            max_depth: 1
+            accessor:
+                getter: getValidatedById

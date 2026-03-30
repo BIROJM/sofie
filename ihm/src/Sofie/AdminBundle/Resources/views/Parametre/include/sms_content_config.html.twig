@@ -1,0 +1,48 @@
+{% if smsContents|default([]) is not empty %}
+    <form action="{{ path('sofieadmin_param_sms_config') }}" method="post" id="smsContentConfig" role="form" class="form-horizontal">
+        <div class="form-group">
+            <div class="col-sm-offset-10 col-sm-2">
+                <button type="submit" class="btn btn-success btn-label-left">
+                    <span><i class="fa fa-clock-o"></i></span>
+                    Enrégistrer
+                </button>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover" style="min-width: 900px;">
+                <thead>
+                <tr>
+                    <th>Notification SMS</th>
+                    <th>DA</th>
+                    <th>Contenu</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for smsContent in smsContents %}
+                    <tr>
+                        <td style="min-width: 16%;">{{ smsContent.NOTIFICATION_SMS|default('') }}</td>
+                        <td style="min-width: 24%;">
+                            <input type="text" name="da[{{ smsContent.ID|default(0) }}]" id="context_{{ smsContent.ID|default(0) }}" value="{{ smsContent.DA|default('') }}" class="form-control" />
+                        </td>
+                        <td style="min-width: 30%;">
+                            <textarea rows="3" name="contenu[{{ smsContent.ID|default(0) }}]" id="contenu_{{ smsContent.ID|default(0) }}" class="form-control">{{ smsContent.SMS_CONTENT|default('') }}</textarea>
+                        </td>
+                        <td style="min-width: 30%;">
+                            <textarea rows="3" name="description[{{ smsContent.ID|default(0) }}]" id="description_{{ smsContent.ID|default(0) }}" class="form-control">{{ smsContent.DESCRIPTION|default('') }}</textarea>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-10 col-sm-2">
+                <button type="submit" class="btn btn-success btn-label-left">
+                    <span><i class="fa fa-clock-o"></i></span>
+                    Enrégistrer
+                </button>
+            </div>
+        </div>
+    </form>
+{% endif %}

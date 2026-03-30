@@ -1,0 +1,78 @@
+{% extends 'SofieExpBundle:Comite:index.html.twig' %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li><a href="{{ path('sofieexp_comite_view', {'id': comite.id|default(0)}) }}">Voir un comité</a></li>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="box-name">
+                        <i class="fa fa-info-circle"></i>
+                        <span>Détails sur comité</span>
+                    </div>
+                </div>
+                <div class="box-content">
+                    {% import '::macro/tr_views.html.twig' as trViews %}
+                    {% if comite is defined %}
+                        <div class="row">
+                            <div class="col-md-6 col-sm-8 col-xs-12">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        {{ trViews.tr('Nom :', comite.nom|default('')) }}
+                                        {{ trViews.tr('Nom sécrétaire :', comite.nomSecretaire|default('')) }}
+                                        {{ trViews.tr('Prénoms sécrétaire :', comite.prenomsSecretaire|default('')) }}
+                                        {{ trViews.tr('Numéro d\'appel :', comite.numeroAppel.numero|default('')) }}
+                                        {{ trViews.tr('Code d\'initialisation :', comite.codeInit|default('')) }}
+                                        {{ trViews.raw_tr('Initialisé :', comite.initStatus|default(false)|check_init|raw) }}
+                                        {{
+                                            trViews.entity_tr(
+                                                "Région :", comite.region.nom|default(''), {
+                                                    'role': 'ROLE_REGION',
+                                                    'path': path('sofieexp_region_view', {'id':comite.region.id|default(0)})
+                                                }
+                                            )
+                                        }}
+                                        {{
+                                            trViews.entity_tr(
+                                                "Localité :", comite.localite.nom|default(''), {
+                                                    'role': 'ROLE_LOCALITE',
+                                                    'path': path('sofieexp_localite_view', {'id':comite.localite.id|default(0)})
+                                                }
+                                            )
+                                        }}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="x-margin" />
+                        <div class="clearfix">
+                            <div class="pull-right">
+                                {% if is_granted('ROLE_EDIT_COMITE') %}
+                                    <a class="text-success" href="{{ path('sofieexp_comite_edit', {'id':comite.id|default(0)}) }}" title="Modifier">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                {% endif %}
+                                {% if is_granted('ROLE_DELETE_COMITE') %}
+                                    <a class="text-danger confirm-delete" href="{{ path('sofieexp_comite_delete', {'id':comite.id|default(0)}) }}" title="Supprimer">
+                                        <i class="fa fa-remove"></i>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <button class="btn btn-default back-location" type="button">
+                <i class="fa fa-chevron-left"></i> Retour
+            </button>
+        </div>
+    </div>
+{% endblock %}

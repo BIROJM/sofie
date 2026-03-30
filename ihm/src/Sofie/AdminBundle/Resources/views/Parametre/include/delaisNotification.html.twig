@@ -1,0 +1,58 @@
+{% if form is defined and form is not empty %}
+    {{
+    form_start(form, {
+        'action':'', 'method':'POST', 'attr':{
+            'class':'form-horizontal', 'id':'editDelaisNotificationForm', 'role':'form'
+        }
+    })
+    }}
+    <div class="text-danger help-block">{{ form_errors(form) }}</div>
+    {% if form.horsPriseCommande is defined %}
+        <div class="form-group">
+            {{ form_label(form.horsPriseCommande, null, {'label_attr':{'class':'col-sm-6 control-label'}}) }}
+            <div class="col-sm-6">
+                {{ form_widget(form.horsPriseCommande, {'attr':{'class':'form-control'}}) }}
+                <div class="text-danger small">{{ form_errors(form.horsPriseCommande) }}</div>
+            </div>
+        </div>
+    {% endif %}
+    {% if form.horsReparation is defined %}
+        <div class="form-group">
+            {{ form_label(form.horsReparation, null, {'label_attr':{'class':'col-sm-6 control-label'}}) }}
+            <div class="col-sm-6">
+                {{ form_widget(form.horsReparation, {'attr':{'class':'form-control'}}) }}
+                <div class="text-danger small">{{ form_errors(form.horsReparation) }}</div>
+            </div>
+        </div>
+    {% endif %}
+    {% if form.uniteParDefaut is defined %}
+        <div class="form-group">
+            {{ form_label(form.uniteParDefaut, null, {'label_attr':{'class':'col-sm-6 control-label'}}) }}
+            <div class="col-sm-6">
+                {{ form_widget(form.uniteParDefaut, {'attr':{'class':'form-control'}}) }}
+                <div class="text-danger small">{{ form_errors(form.uniteParDefaut) }}</div>
+            </div>
+        </div>
+    {% endif %}
+    {% if form.uniteDelais is defined %}
+        <div class="form-group">
+            {{ form_label(form.uniteDelais, null, {'label_attr':{'class':'col-sm-6 control-label'}}) }}
+            <div class="col-sm-6">
+                {{ form_widget(form.uniteDelais, {'attr':{'class':'simple-select2 form-control'}}) }}
+                <div class="text-danger small">{{ form_errors(form.uniteDelais) }}</div>
+            </div>
+        </div>
+    {% endif %}
+    <div class="form-group">
+        <div class="col-sm-offset-6 col-sm-6">
+            <button type="submit" class="btn btn-success btn-label-left">
+                <span><i class="fa fa-clock-o"></i></span>
+                Enrégistrer
+            </button>
+        </div>
+    </div>
+    <div>
+        {{ form_rest(form) }}
+    </div>
+    {{ form_end(form) }}
+{% endif %}

@@ -1,0 +1,46 @@
+{% extends '::pdf.html.twig' %}
+
+{% block title %}Listes des ouvrages{% endblock %}
+
+{% block data_source %}Ouvrages{% endblock %}
+{% block data_length %}{{ ouvrages|default([])|length }}{% endblock %}
+
+{% block sofie_pdf_body %}
+    {{ pdf.start_list_table() }}
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Code</th>
+                <th>Type</th>
+                <th>Statut</th>
+                <th>Nb. pannes</th>
+                <th>Nb. collectes</th>
+                <th>Région</th>
+                <th>Localité</th>
+                <th>Comité</th>
+                <th>Validé</th>
+            </tr>
+        </thead>
+        {% if ouvrages is defined %}
+            {% if ouvrages is not empty %}
+                <tbody>
+                {% set page_inc = g_paginator_items|default(0)*(page|default(1)-1) %}
+                {% for ouvrage in ouvrages %}
+                    <tr>
+                        <td>{{ loop.index+page_inc }}</td>
+                        <td>{{ ouvrage.code|default('') }}</td>
+                        <td>{{ ouvrage.type|default('') }}</td>
+                        <td>{{ ouvrage.statutOuvrage|default('') }}</td>
+                        <td class="text-center">{{ ouvrage.pannes|default('')|length }}</td>
+                        <td class="text-center">{{ ouvrage.collectes|default('')|length }}</td>
+                        <td>{{ ouvrage.region.nom|default('') }}</td>
+                        <td>{{ ouvrage.localite.nom|default('') }}</td>
+                        <td>{{ ouvrage.comite.nom|default('') }}</td>
+                        <td>{{ ouvrage.validated|default(false)|oui_non }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            {% endif %}
+        {% endif %}
+    {{ pdf.end_list_table() }}
+{% endblock %}

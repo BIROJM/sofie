@@ -1,0 +1,36 @@
+<form method="post" action="" class="form-horizontal" role="form" id="editCouleurPanneForm">
+    {% if statutPannes is defined and couleurPannes is defined %}
+        {% if statutPannes is not empty %}
+            {% for statut in statutPannes %}
+                <div class="form-group">
+                    <label for="statut{{ statut.id|default(0) }}" class="control-label col-sm-4">
+                        {{ statut.libelle|default('') }}
+                    </label>
+                    <div class="col-sm-5">
+                        <select class="simple-select2 form-control" id="statut{{ statut.id|default(0) }}" name="couleurs[{{ statut.id|default(0) }}]">
+                            {% for couleur in couleurPannes %}
+                                <option value="{{ couleur.path|default('') }}" {% if couleur.path==statut.icone %}selected{% endif %}>
+                                    {{ couleur|default('') }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-sm-1">
+                        =>
+                    </div>
+                    <div class="col-sm-2">
+                        <img src="{{ asset(statut.webPath|default('')) }}" class="img-xs-couleur-panne img-responsive" id="statut{{ statut.id|default(0) }}_imgChanged" />
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-6">
+                    <button type="submit" class="btn btn-success btn-label-left">
+                        <span><i class="fa fa-clock-o"></i></span>
+                        Enrégistrer
+                    </button>
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+</form>

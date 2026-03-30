@@ -1,0 +1,36 @@
+Sofie\AdminBundle\Entity\CouleurPanne:
+    type: entity
+    table: t_couleurpanne
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: NONE
+    fields:
+        libelle:
+            type: string
+            length: 255
+            nullable: true
+        path:
+            type: string
+            length: 255
+            nullable: false
+        sync:
+            type: string
+            length: 1
+            nullable: true
+            options:
+                default: 'N'
+            column: sync
+        deletedAt:
+            type: datetime
+            nullable: true
+            column: deleted_at
+    lifecycleCallbacks:
+        preUpdate: [setUpdatedValue]
+        preRemove: [setRemovedValue]

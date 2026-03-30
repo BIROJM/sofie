@@ -1,0 +1,106 @@
+{{
+    form_start(form, {
+        'action':'', 'method':'POST',
+        'attr':{'class':'form-horizontal', 'role':'form'}
+    })
+}}
+    <div class="text-danger small">{{ form_errors(form) }}</div>
+    <div class="col-sm-6">
+        {% if form.nom is defined %}
+            <div class="form-group">
+                {{ form_label(form.nom, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                <div class="col-sm-8">
+                    {{ form_widget(form.nom, {'attr':{'class':'form-control'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.nom) }}</div>
+                </div>
+            </div>
+        {% endif %}
+        {% if form.superficie is defined %}
+            <div class="form-group">
+                {{ form_label(form.superficie, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                <div class="col-sm-8">
+                    {{ form_widget(form.superficie, {'attr':{'class':'form-control'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.superficie) }}</div>
+                </div>
+            </div>
+        {% endif %}
+        {% if form.zoom is defined %}
+            <div class="form-group">
+                {{ form_label(form.zoom, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                <div class="col-sm-8">
+                    {{ form_widget(form.zoom, {'attr':{'class':'form-control'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.zoom) }}</div>
+                </div>
+            </div>
+        {% endif %}
+        {% if form.maxZoom is defined %}
+            <div class="form-group">
+                {{ form_label(form.maxZoom, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                <div class="col-sm-8">
+                    {{ form_widget(form.maxZoom, {'attr':{'class':'form-control'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.maxZoom) }}</div>
+                </div>
+            </div>
+        {% endif %}
+        {% if form.carte is defined and is_granted('ROLE_ADMIN') %}
+            <div class="form-group">
+                {{ form_label(form.carte, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                <div class="col-sm-8">
+                    {{ form_widget(form.carte, {'attr':{'class':'form-control'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.carte) }}</div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    <div class="col-sm-6">
+        {% if form.situation is defined %}
+            <div class="form-group">
+                {{ form_label(form.situation, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                <div class="col-sm-8">
+                    {{ form_widget(form.situation, {'attr':{'class':'form-control'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.situation) }}</div>
+                </div>
+            </div>
+        {% endif %}
+        {% if form.latitude is defined %}
+            <div class="form-group">
+                {{ form_label(form.latitude, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                <div class="col-sm-8">
+                    {{ form_widget(form.latitude, {'attr':{'class':'form-control'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.latitude) }}</div>
+                </div>
+            </div>
+        {% endif %}
+        {% if form.longitude is defined %}
+            <div class="form-group">
+                {{ form_label(form.longitude, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                <div class="col-sm-8">
+                    {{ form_widget(form.longitude, {'attr':{'class':'form-control'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.longitude) }}</div>
+                </div>
+            </div>
+        {% endif %}
+        {% if form.iddr is defined %}
+            <div class="form-group">
+                {{ form_label(form.iddr, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                <div class="col-sm-8">
+                    {{ form_widget(form.iddr, {'attr':{'class':'select2 form-control'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.iddr) }}</div>
+                </div>
+            </div>
+        {% endif %}
+        {% if form.sociologue is defined %}
+            <div class="form-group">
+                {{ form_label(form.sociologue, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                <div class="col-sm-8">
+                    {{ form_widget(form.sociologue, {'attr':{'class':'select2 form-control'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.sociologue) }}</div>
+                    <div id="socNumber"></div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    <div class="clearfix"></div>
+    <div>{{ form_widget(form._token) }}</div>
+    {% include '::include/default_form_buttons.html.twig' %}
+{{ form_end(form, {'render_rest': false}) }}

@@ -1,0 +1,71 @@
+{{
+    form_start(form, {
+        'action':'', 'method':'POST',
+        'attr':{'class':'form-horizontal', 'role':'form'}
+    })
+}}
+    <div class="text-danger help-block">{{ form_errors(form) }}</div>
+    <div class="col-sm-6">
+        {% if form.nom is defined %}
+            <div class="form-group">
+                {{ form_label(form.nom, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                <div class="col-sm-8">
+                    {{ form_widget(form.nom, {'attr':{'class':'form-control'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.nom) }}</div>
+                </div>
+            </div>
+        {% endif %}
+        {% if form.nomSecretaire is defined %}
+            <div class="form-group">
+                {{ form_label(form.nomSecretaire, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                <div class="col-sm-8">
+                    {{ form_widget(form.nomSecretaire, {'attr':{'class':'form-control'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.nomSecretaire) }}</div>
+                </div>
+            </div>
+        {% endif %}
+        {% if form.prenomsSecretaire is defined %}
+            <div class="form-group">
+                {{ form_label(form.prenomsSecretaire, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                <div class="col-sm-8">
+                    {{ form_widget(form.prenomsSecretaire, {'attr':{'class':'form-control'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.prenomsSecretaire) }}</div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    <div class="col-sm-6">
+        {% if g_sofie_site|default(null) is null and form.region is defined %}
+            <div class="form-group">
+                {{ form_label(form.region, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                <div class="col-sm-8">
+                    {{ form_widget(form.region, {'attr':{'class':'select2 form-control'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.region) }}</div>
+                </div>
+            </div>
+        {% endif %}
+        {% if form.localite is defined %}
+            <div class="form-group">
+                {{ form_label(form.localite, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                <div class="col-sm-8">
+                    {{ form_widget(form.localite, {'attr':{'class':'select2 form-control'}}) }}
+                    <div class="text-danger small">{{ form_errors(form.localite) }}</div>
+                </div>
+            </div>
+        {% endif %}
+        {% if form.numeroAppel is defined %}
+            {% if form.numeroAppel.numero is defined %}
+                <div class="form-group">
+                    {{ form_label(form.numeroAppel.numero, null, {'label_attr':{'class':'col-sm-4 control-label'}}) }}
+                    <div class="col-sm-8">
+                        {{ form_widget(form.numeroAppel.numero, {'attr':{'class':'form-control'}}) }}
+                        <div class="text-danger small">{{ form_errors(form.numeroAppel.numero) }}</div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+    <div class="clearfix"></div>
+    {% include '::include/default_form_buttons.html.twig' %}
+    <div>{{ form_widget(form._token) }}</div>
+{{ form_end(form, {'render_rest': false}) }}
