@@ -1,12 +1,12 @@
 # This file is auto-generated during the composer install
 parameters:
-   database_host: 192.168.120.112
-   database_port: null
-   database_user: sofie
-   database_password: poiuyt
-   mailer_transport: smtp
-   mailer_host: 127.0.0.1
-   mailer_user: null
-   mailer_password: null
-   secret: 537e1502ce8795940af72ec2fe5e36de3a880f0c
-   
+    database_host: db
+    database_port: null
+    database_name: sofie
+    database_user: root
+    database_password: root
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    secret: 537e1502ce8795940af72ec2fe5e36de3a880f0c

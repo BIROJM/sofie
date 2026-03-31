@@ -54,10 +54,10 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => '192.168.120.112',
-			'database'  => 'db_sofiev4',
-			'username'  => 'sofie',
-			'password'  => 'poiuyt',
+			'host'      => 'db',
+			'database'  => 'sofie',
+			'username'  => 'root',
+			'password'  => 'root',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

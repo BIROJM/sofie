@@ -1,11 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "hash": "9b0d3e5a12b377290d1094fdf55f26fb",
-    "content-hash": "d09dff38f2e3f87ee18b92b46d09e981",
+    "content-hash": "5cae29a256841cdbfdca8d4f94a0617c",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -45,7 +44,7 @@
                 "slug",
                 "transliterator"
             ],
-            "time": "2015-09-28 16:26:35"
+            "time": "2015-09-28T16:26:35+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -113,7 +112,7 @@
                 "docblock",
                 "parser"
             ],
-            "time": "2015-08-31 12:32:49"
+            "time": "2015-08-31T12:32:49+00:00"
         },
         {
             "name": "doctrine/cache",
@@ -183,7 +182,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2015-08-31 12:36:41"
+            "time": "2015-08-31T12:36:41+00:00"
         },
         {
             "name": "doctrine/collections",
@@ -249,7 +248,7 @@
                 "collections",
                 "iterator"
             ],
-            "time": "2015-04-14 22:21:58"
+            "time": "2015-04-14T22:21:58+00:00"
         },
         {
             "name": "doctrine/common",
@@ -322,7 +321,7 @@
                 "persistence",
                 "spl"
             ],
-            "time": "2015-08-31 13:00:22"
+            "time": "2015-08-31T13:00:22+00:00"
         },
         {
             "name": "doctrine/data-fixtures",
@@ -379,7 +378,7 @@
             "keywords": [
                 "database"
             ],
-            "time": "2015-03-30 12:14:13"
+            "time": "2015-03-30T12:14:13+00:00"
         },
         {
             "name": "doctrine/dbal",
@@ -442,7 +441,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2015-01-12 21:57:01"
+            "time": "2015-01-12T21:57:01+00:00"
         },
         {
             "name": "doctrine/doctrine-bundle",
@@ -520,7 +519,7 @@
                 "orm",
                 "persistence"
             ],
-            "time": "2015-08-31 14:47:06"
+            "time": "2015-08-31T14:47:06+00:00"
         },
         {
             "name": "doctrine/doctrine-cache-bundle",
@@ -604,7 +603,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2014-11-28 09:43:36"
+            "time": "2014-11-28T09:43:36+00:00"
         },
         {
             "name": "doctrine/doctrine-fixtures-bundle",
@@ -661,7 +660,7 @@
                 "Fixture",
                 "persistence"
             ],
-            "time": "2015-08-04 22:43:14"
+            "time": "2015-08-04T22:43:14+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -728,7 +727,7 @@
                 "singularize",
                 "string"
             ],
-            "time": "2014-12-20 21:24:13"
+            "time": "2014-12-20T21:24:13+00:00"
         },
         {
             "name": "doctrine/instantiator",
@@ -782,7 +781,7 @@
                 "constructor",
                 "instantiate"
             ],
-            "time": "2015-06-14 21:17:01"
+            "time": "2015-06-14T21:17:01+00:00"
         },
         {
             "name": "doctrine/lexer",
@@ -836,7 +835,7 @@
                 "lexer",
                 "parser"
             ],
-            "time": "2014-09-09 13:34:57"
+            "time": "2014-09-09T13:34:57+00:00"
         },
         {
             "name": "doctrine/orm",
@@ -909,7 +908,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2015-08-31 13:19:01"
+            "time": "2015-08-31T13:19:01+00:00"
         },
         {
             "name": "friendsofsymfony/jsrouting-bundle",
@@ -967,7 +966,7 @@
                 "javascript",
                 "routing"
             ],
-            "time": "2015-01-23 02:44:26"
+            "time": "2015-01-23T02:44:26+00:00"
         },
         {
             "name": "gedmo/doctrine-extensions",
@@ -1046,7 +1045,7 @@
                 "tree",
                 "uploadable"
             ],
-            "time": "2015-09-28 16:39:27"
+            "time": "2015-09-28T16:39:27+00:00"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -1097,7 +1096,7 @@
             "keywords": [
                 "parameters management"
             ],
-            "time": "2015-06-03 08:27:03"
+            "time": "2015-06-03T08:27:03+00:00"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -1147,7 +1146,7 @@
                 "highlight",
                 "sql"
             ],
-            "time": "2014-01-12 16:20:24"
+            "time": "2014-01-12T16:20:24+00:00"
         },
         {
             "name": "jms/metadata",
@@ -1199,7 +1198,7 @@
                 "xml",
                 "yaml"
             ],
-            "time": "2014-07-12 07:13:19"
+            "time": "2014-07-12T07:13:19+00:00"
         },
         {
             "name": "jms/parser-lib",
@@ -1234,7 +1233,7 @@
                 "Apache2"
             ],
             "description": "A library for easily creating recursive-descent parsers.",
-            "time": "2012-11-18 18:08:43"
+            "time": "2012-11-18T18:08:43+00:00"
         },
         {
             "name": "jms/serializer",
@@ -1304,7 +1303,7 @@
                 "serialization",
                 "xml"
             ],
-            "time": "2015-06-16 11:50:24"
+            "time": "2015-06-16T11:50:24+00:00"
         },
         {
             "name": "jms/serializer-bundle",
@@ -1373,7 +1372,7 @@
                 "serialization",
                 "xml"
             ],
-            "time": "2015-06-23 19:27:08"
+            "time": "2015-06-23T19:27:08+00:00"
         },
         {
             "name": "knplabs/knp-components",
@@ -1441,7 +1440,7 @@
                 "pager",
                 "paginator"
             ],
-            "time": "2015-09-01 10:54:53"
+            "time": "2015-09-01T10:54:53+00:00"
         },
         {
             "name": "knplabs/knp-paginator-bundle",
@@ -1502,7 +1501,7 @@
                 "pagination",
                 "paginator"
             ],
-            "time": "2015-09-07 04:31:31"
+            "time": "2015-09-07T04:31:31+00:00"
         },
         {
             "name": "kriswallsmith/assetic",
@@ -1580,7 +1579,7 @@
                 "compression",
                 "minification"
             ],
-            "time": "2015-08-31 19:07:16"
+            "time": "2015-08-31T19:07:16+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -1656,7 +1655,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2015-08-31 09:17:37"
+            "time": "2015-08-31T09:17:37+00:00"
         },
         {
             "name": "mpdf/mpdf",
@@ -1699,7 +1698,7 @@
                 "php",
                 "utf-8"
             ],
-            "time": "2015-03-01 10:27:49"
+            "time": "2015-03-01T10:27:49+00:00"
         },
         {
             "name": "phpcollection/phpcollection",
@@ -1749,7 +1748,7 @@
                 "sequence",
                 "set"
             ],
-            "time": "2014-03-11 13:46:42"
+            "time": "2014-03-11T13:46:42+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -1799,7 +1798,7 @@
                 "php",
                 "type"
             ],
-            "time": "2015-07-25 16:39:46"
+            "time": "2015-07-25T16:39:46+00:00"
         },
         {
             "name": "psr/log",
@@ -1837,7 +1836,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2012-12-21 11:40:51"
+            "time": "2012-12-21T11:40:51+00:00"
         },
         {
             "name": "ras/flash-alert-bundle",
@@ -1886,7 +1885,7 @@
                 "notification",
                 "symfony"
             ],
-            "time": "2015-06-25 19:23:06"
+            "time": "2015-06-25T19:23:06+00:00"
         },
         {
             "name": "sensio/distribution-bundle",
@@ -1946,7 +1945,7 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2015-08-03 10:07:56"
+            "time": "2015-08-03T10:07:56+00:00"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -2001,7 +2000,7 @@
                 "annotations",
                 "controllers"
             ],
-            "time": "2015-08-03 11:59:27"
+            "time": "2015-08-03T11:59:27+00:00"
         },
         {
             "name": "sensiolabs/security-checker",
@@ -2045,7 +2044,7 @@
                 }
             ],
             "description": "A security checker for your composer.lock",
-            "time": "2015-08-11 12:11:25"
+            "time": "2015-08-11T12:11:25+00:00"
         },
         {
             "name": "stof/doctrine-extensions-bundle",
@@ -2106,7 +2105,7 @@
                 "translatable",
                 "tree"
             ],
-            "time": "2015-08-12 16:23:48"
+            "time": "2015-08-12T16:23:48+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -2159,7 +2158,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2015-06-06 14:19:39"
+            "time": "2015-06-06T14:19:39+00:00"
         },
         {
             "name": "symfony/assetic-bundle",
@@ -2229,7 +2228,7 @@
                 "compression",
                 "minification"
             ],
-            "time": "2015-09-01 00:05:29"
+            "time": "2015-09-01T00:05:29+00:00"
         },
         {
             "name": "symfony/monolog-bundle",
@@ -2288,7 +2287,7 @@
                 "log",
                 "logging"
             ],
-            "time": "2015-10-02 11:51:59"
+            "time": "2015-10-02T11:51:59+00:00"
         },
         {
             "name": "symfony/swiftmailer-bundle",
@@ -2345,7 +2344,7 @@
             ],
             "description": "Symfony SwiftmailerBundle",
             "homepage": "http://symfony.com",
-            "time": "2014-12-01 17:44:50"
+            "time": "2014-12-01T17:44:50+00:00"
         },
         {
             "name": "symfony/symfony",
@@ -2467,26 +2466,26 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-09-25 11:16:52"
+            "time": "2015-09-25T11:16:52+00:00"
         },
         {
             "name": "tfox/mpdf-port-bundle",
-            "version": "1.3.0",
+            "version": "1.3.1",
             "target-dir": "TFox/MpdfPortBundle",
             "source": {
                 "type": "git",
-                "url": "https://github.com/tasmanianfox/MpdfPortBundle.git",
-                "reference": "d523315da83a20ba53859ee796a605f5179fe85a"
+                "url": "https://bitbucket.org/tasmanianfox/mpdfportbundle.git",
+                "reference": "64eadc3733dd5b633bc6b349b0e253126580cdbd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tasmanianfox/MpdfPortBundle/zipball/d523315da83a20ba53859ee796a605f5179fe85a",
-                "reference": "d523315da83a20ba53859ee796a605f5179fe85a",
+                "url": "https://bitbucket.org/tasmanianfox/mpdfportbundle/get/64eadc3733dd5b633bc6b349b0e253126580cdbd.zip",
+                "reference": "64eadc3733dd5b633bc6b349b0e253126580cdbd",
                 "shasum": ""
             },
             "require": {
                 "mpdf/mpdf": "6.0.*",
-                "symfony/framework-bundle": "~2.3"
+                "symfony/framework-bundle": "~2.3|~3.0"
             },
             "require-dev": {
                 "sensio/framework-extra-bundle": "*",
@@ -2506,23 +2505,25 @@
                     "TFox\\MpdfPortBundle": ""
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "authors": [
                 {
-                    "name": "Sergei Beljakov",
-                    "email": "sergei.beljakov@tfox.eu"
+                    "name": "Tasmanian Fox",
+                    "email": "thisemaildoesnexist@example.com"
                 }
             ],
             "description": "A wrapper for mPDF class which allows to use mPDF in Symfony2 projects",
-            "homepage": "http://github.com/tasmanianfox/MpdfPortBundle",
+            "homepage": "https://bitbucket.org/tasmanianfox/mpdfportbundle",
             "keywords": [
-                "mpdf",
-                "pdf"
+                "PDF",
+                "mPDF"
             ],
-            "time": "2015-08-27 18:09:50"
+            "support": {
+                "source": "https://bitbucket.org/tasmanianfox/mpdfportbundle/src/64eadc3733dd5b633bc6b349b0e253126580cdbd/?at=1.3.1"
+            },
+            "time": "2016-02-15T07:56:10+00:00"
         },
         {
             "name": "twig/twig",
@@ -2583,7 +2584,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-09-22 13:59:32"
+            "time": "2015-09-22T13:59:32+00:00"
         },
         {
             "name": "willdurand/jsonp-callback-validator",
@@ -2623,7 +2624,7 @@
                 }
             ],
             "description": "JSONP callback validator.",
-            "time": "2014-01-20 22:35:06"
+            "time": "2014-01-20T22:35:06+00:00"
         }
     ],
     "packages-dev": [
@@ -2673,7 +2674,7 @@
                 }
             ],
             "description": "This bundle generates code for you",
-            "time": "2015-03-17 06:36:52"
+            "time": "2015-03-17T06:36:52+00:00"
         }
     ],
     "aliases": [],
@@ -2687,5 +2688,6 @@
     "platform": {
         "php": ">=5.3.9"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }

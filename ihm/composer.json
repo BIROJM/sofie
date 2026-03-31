@@ -54,9 +54,16 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
         ]
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://bitbucket.org/tasmanianfox/mpdfportbundle"
+        }
+    ],
     "config": {
         "bin-dir": "bin"
     },
+
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
