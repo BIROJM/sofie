@@ -55,7 +55,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'db',
-			'database'  => 'sofie',
+			'database'  => 'db_sofiev4',
 			'username'  => 'root',
 			'password'  => 'root',
 			'charset'   => 'utf8',

@@ -2,7 +2,7 @@
 parameters:
     database_host: db
     database_port: null
-    database_name: sofie
+    database_name: db_sofiev4
     database_user: root
     database_password: root
     mailer_transport: smtp
